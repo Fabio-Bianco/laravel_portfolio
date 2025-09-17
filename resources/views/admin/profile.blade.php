@@ -2,7 +2,15 @@
 
 @section('content')
 <div class="container">
-  <h1>Admin Profile</h1>
-  <p>Qui i dati profilo admin…</p>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card border-danger">
+                <div class="card-header bg-danger text-white">{{ __('Admin Profile') }}</div>
+                <div class="card-body">
+                    <p>Qui i dati profilo admin…</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection

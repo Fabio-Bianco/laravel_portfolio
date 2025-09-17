@@ -6,5 +6,5 @@ import.meta.glob([
     '../img/**'
 ])
 
-import '../sass/app.scss';
+//# sourceMappingURL=app.js.map
 import '../sass/app.scss';
