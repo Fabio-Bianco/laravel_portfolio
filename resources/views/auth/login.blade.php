@@ -5,7 +5,10 @@
   <div class="row justify-content-center">
     <div class="col-md-6">
       <div class="card border-danger">
-        <div class="card-header bg-danger text-white">{{ __('Login') }}</div>
+        <div class="card-header bg-danger text-white d-flex justify-content-between align-items-center">
+          <span>{{ __('Login') }}</span>
+          <a href="{{ route('register') }}" class="btn btn-light btn-sm text-danger fw-bold">{{ __('Register') }}</a>
+        </div>
 
         <div class="card-body">
           @if (session('status'))

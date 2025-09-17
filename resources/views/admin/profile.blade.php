@@ -7,7 +7,7 @@
             <div class="card border-danger">
                 <div class="card-header bg-danger text-white">{{ __('Admin Profile') }}</div>
                 <div class="card-body">
-                    <p>Qui i dati profilo admin…</p>
+                    <p class="mb-0 text-danger fw-bold">Qui i dati profilo admin…</p>
                 </div>
             </div>
         </div>
