@@ -11,7 +11,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        
+        return "sono la index del controller Project";
     }
 
     /**
