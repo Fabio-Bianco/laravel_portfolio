@@ -5,7 +5,7 @@
 @section('content')
     <p>Benvenuto nella pagina dei progetti.</p>
 
-    <table>
+    <table class="projects-table">
         <thead>
             <tr>
                 <th>Titolo</th>
@@ -19,8 +19,12 @@
             <tr>
                 <td>{{ $project->title }}</td>
                 <td>{{ $project->description }}</td>
-                <td><img src="{{ $project->image }}" alt="{{ $project->title }}"></td>
-                <td><a href="{{ $project->link }}">Link</a></td>
+                <td>
+                    <img class="project-img" src="{{ $project->image }}" alt="{{ $project->title }}">
+                </td>
+                <td>
+                    <a class="project-link" href="{{ route('projects.show', $project) }}">visualizza</a>
+                </td>
             </tr>
             @endforeach
         </tbody>

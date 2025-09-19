@@ -3,22 +3,12 @@
 @section('title', $project->title)
 
 @section('content')
-
-<h2> {{ $project->title }}</h2>
-
-<img src="{{ $project->image }}" alt="photo">
-
-<section>
-
-    <p> {{ $project->description }}</p>
-
-    <a href="{{ route('projects.edit', $project->id) }}">visualizza</a>
-</section>
-
-
-
-
-
-
-
+<div class="project-show">
+    <h2>{{ $project->title }}</h2>
+    <img class="project-img-large" src="{{ $project->image }}" alt="photo">
+    <section>
+        <p>{{ $project->description }}</p>
+        <a class="project-link" href="{{ route('projects.edit', $project->id) }}">modifica</a>
+    </section>
+</div>
 @endsection
