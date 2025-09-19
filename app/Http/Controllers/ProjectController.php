@@ -8,7 +8,7 @@ use App\Models\Project;
 class ProjectController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * rotta per visualizzare tutte le risorse
      */
     public function index()
     {
@@ -37,11 +37,12 @@ class ProjectController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * rotta per visualizzare la singola risorsa
+     * prendiamo il project con id specifico dal database
      */
-    public function show(string $id)
+    public function show(Project $project)
     {
-        //
+        return view('projects.show', compact('project'));
     }
 
     /**
