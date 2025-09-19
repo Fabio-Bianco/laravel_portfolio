@@ -6,10 +6,19 @@
 
 <h2> {{ $project->title }}</h2>
 
-<p> {{ $project->description }}</p>
+<img src="{{ $project->image }}" alt="photo">
 
-<a href="{{ route('projects.edit', $project->id) }}">visualizza</a>
+<section>
 
-<img src="{{ $project->image }}" alt="">
+    <p> {{ $project->description }}</p>
+
+    <a href="{{ route('projects.edit', $project->id) }}">visualizza</a>
+</section>
+
+
+
+
+
+
 
 @endsection
