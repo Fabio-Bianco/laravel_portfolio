@@ -1,47 +1,27 @@
-@extends('layouts.projects')
+@extends('layouts.app')
 
 @section('title','Tutti i progetti')
 
 @section('content')
-  <div class="card shadow-sm mb-4">
-    <div class="card-body">
-      <h2 class="card-title mb-2">Tutti i progetti</h2>
-      <p class="lead mb-0">Benvenuto nella pagina dei progetti.</p>
-    </div>
-  </div>
+<h1>Tutti i progetti</h1>
 
-  <div class="table-responsive mb-4">
-    <table class="projects-table table table-striped align-middle">
-      <thead>
-        <tr>
-          <th>Titolo</th>
-          <th>Descrizione</th>
-          <th>Immagine</th>
-          <th>Link</th>
-        </tr>
-      </thead>
-      <tbody>
-        @foreach ($projects as $project)
-          <tr>
-            <td>{{ $project->title }}</td>
-            <td>{{ $project->description }}</td>
-            <td>
-<img class="project-img"
-     src="{{ $project->image ?: 'https://picsum.photos/80' }}"
-     alt="{{ $project->title }}">
+<ul>
+@foreach($projects as $project)
+    <li>
+        <a href="{{ route('projects.show',$project) }}">
+            {{ $project->title }}
+        </a>
+        @if(auth()->user()->is_admin)
+            | <a href="{{ route('admin.projects.edit',$project) }}">Modifica</a>
+            <form method="POST" action="{{ route('admin.projects.destroy',$project) }}" style="display:inline;">
+                @csrf
+                @method('DELETE')
+                <button type="submit">Elimina</button>
+            </form>
+        @endif
+    </li>
+@endforeach
+</ul>
 
-            </td>
-            <td>
-              <a class="btn btn-primary btn-sm"
-                 href="{{ route('admin.projects.show', $project) }}">Visualizza</a>
-            </td>
-          </tr>
-        @endforeach
-      </tbody>
-    </table>
-  </div>
-
-  <div class="d-flex justify-content-center">
-    <a class="btn btn-secondary" href="{{ route('admin.dashboard') }}">Vai alla Dashboard</a>
-  </div>
+{{ $projects->links() }}
 @endsection

@@ -1,15 +1,23 @@
-@extends('layouts.projects')
+@extends('layouts.app')
 
-@section('title', $project->title)
+@section('title','Dettaglio progetto')
 
 @section('content')
-<div class="project-show">
-    <h2>{{ $project->title }}</h2>
-    <img class="project-img-large" src="{{ $project->image }}" alt="photo">
-    <section>
-        <p>{{ $project->description }}</p>
-        <a class="project-link" href="{{ route('projects.edit', $project->id) }}">modifica</a>
-    </section>
-</div>
- <button class="center-btn"><a href="{{ route('dashboard') }}">vai alla Dashboard</a></button>
+<h2>{{ $project->title }}</h2>
+
+@if($project->image_url)
+    <img src="{{ $project->image_url }}" alt="{{ $project->title }}" style="max-width:300px;">
+@endif
+
+<p>{{ $project->description }}</p>
+
+@if($project->link)
+    <p><a href="{{ $project->link }}" target="_blank">Visita il progetto</a></p>
+@endif
+
+<a href="{{ route('projects.index') }}">Torna alla lista</a>
+
+@if(auth()->user()->is_admin)
+    <a href="{{ route('admin.projects.edit',$project) }}">Modifica</a>
+@endif
 @endsection

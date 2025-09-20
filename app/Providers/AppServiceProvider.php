@@ -19,6 +19,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Qui eventuali bootstrapping dell'app.
+        // NON serve registrare alias del middleware: lo hai già in Kernel.
     }
 }

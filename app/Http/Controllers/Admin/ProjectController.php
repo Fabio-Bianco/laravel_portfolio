@@ -27,7 +27,9 @@ class ProjectController extends Controller
             'image_url' => 'nullable|string|max:255',
             'link' => 'nullable|string|max:255|url',
         ]);
-        $project = Project::create($validated);
+
+        Project::create($validated);
+
         return redirect()->route('admin.projects.index')
             ->with('status', 'Progetto creato con successo!');
     }
@@ -50,7 +52,9 @@ class ProjectController extends Controller
             'image_url' => 'nullable|string|max:255',
             'link' => 'nullable|string|max:255|url',
         ]);
+
         $project->update($validated);
+
         return redirect()->route('admin.projects.index')
             ->with('status', 'Progetto aggiornato!');
     }
@@ -58,8 +62,8 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         $project->delete();
+
         return redirect()->route('admin.projects.index')
             ->with('status', 'Progetto eliminato!');
     }
 }
-

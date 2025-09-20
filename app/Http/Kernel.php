@@ -23,16 +23,16 @@ class Kernel extends HttpKernel
     ];
 
     protected $middlewareAliases = [
-        'auth'      => \App\Http\Middleware\Authenticate::class,
-        'verified'  => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'guest'     => \App\Http\Middleware\RedirectIfAuthenticated::class,
-        'throttle'  => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'signed'    => \Illuminate\Routing\Middleware\ValidateSignature::class,
-        'can'       => \Illuminate\Auth\Middleware\Authorize::class,
-        'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
-        'cache.headers'    => \Illuminate\Http\Middleware\SetCacheHeaders::class,
+        'auth'              => \App\Http\Middleware\Authenticate::class,
+        'verified'          => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'guest'             => \App\Http\Middleware\RedirectIfAuthenticated::class,
+        'throttle'          => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'signed'            => \Illuminate\Routing\Middleware\ValidateSignature::class,
+        'can'               => \Illuminate\Auth\Middleware\Authorize::class,
+        'password.confirm'  => \Illuminate\Auth\Middleware\RequirePassword::class,
+        'cache.headers'     => \Illuminate\Http\Middleware\SetCacheHeaders::class,
 
-        // 👇 qui il tuo middleware custom
+        // alias custom
         'is_admin' => \App\Http\Middleware\IsAdmin::class,
     ];
 }
