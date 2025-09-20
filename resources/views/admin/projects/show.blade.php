@@ -15,9 +15,5 @@
     <p><a href="{{ $project->link }}" target="_blank">Visita il progetto</a></p>
 @endif
 
-<a href="{{ route('projects.index') }}">Torna alla lista</a>
-
-@if(auth()->user()->is_admin)
-    <a href="{{ route('admin.projects.edit',$project) }}">Modifica</a>
-@endif
+<a href="{{ route('admin.projects.index') }}">Torna alla lista</a>
 @endsection
