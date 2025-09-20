@@ -1,66 +1,106 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Portfolio Progetti – Laravel Backoffice + Guest Area
+Descrizione
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Questo progetto è un portfolio interattivo sviluppato con Laravel 12 e pensato per mostrare competenze sia tecniche sia architetturali.
+L’applicazione implementa un sistema di gestione progetti con backoffice e livelli di accesso differenziati.
 
-## About Laravel
+L’obiettivo è dimostrare la padronanza di concetti chiave come:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+CRUD completo
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Autenticazione e autorizzazione multi-ruolo
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Middleware personalizzati
 
-## Learning Laravel
+Gestione seeders e popolamento DB
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Struttura chiara tra frontend guest e backend admin
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Ruoli e livelli di accesso
+👤 Guest (anonimo)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Può visualizzare liberamente la lista dei progetti.
 
-## Laravel Sponsors
+Non è necessaria alcuna registrazione.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Obiettivo: simulare la navigazione pubblica di un portfolio.
 
-### Premium Partners
+👥 User registrato
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Deve autenticarsi con email e password.
 
-## Contributing
+Può visualizzare i progetti.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Ha accesso a funzionalità aggiuntive, pensate per mostrare competenze avanzate:
 
-## Code of Conduct
+Sezione personale con CV scaricabile
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Possibilità di accedere a contenuti riservati
 
-## Security Vulnerabilities
+Form di contatto autenticato
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+👨‍💼 Admin
 
-## License
+Ha accesso al backoffice protetto.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Può creare, modificare ed eliminare progetti.
+
+Gestisce i contenuti mostrati agli altri ruoli.
+
+Accesso consentito solo agli utenti con campo is_admin = 1.
+
+Credenziali demo
+
+Per permettere una correzione/test immediata:
+
+Admin
+
+Email: admin@portfolio.it
+
+Password: Password123!
+
+User demo
+
+Email: user@portfolio.it
+
+Password: Password123!
+
+Guest
+
+Nessuna autenticazione richiesta.
+
+Tecnologie utilizzate
+
+Laravel 12 (framework backend)
+
+MySQL (database relazionale)
+
+Breeze + Bootstrap (autenticazione e interfaccia base)
+
+Seeder + Faker (popolamento dati fittizi)
+
+Architettura
+
+routes/web.php → definizione rotte pubbliche e protette
+
+app/Http/Controllers/Admin → gestione CRUD progetti
+
+app/Http/Middleware → middleware personalizzati per is_admin e is_user
+
+resources/views/guest → sezione pubblica/registrati
+
+resources/views/admin → backoffice CRUD
+
+Note didattiche
+
+Nella realtà un portfolio pubblico non richiederebbe login per la sola consultazione.
+
+Qui la gestione multi-ruolo è stata introdotta volutamente per dimostrare competenze avanzate in autenticazione/autorizzazione.
+
+In fase di colloquio questo approccio mostra di comprendere:
+
+Differenza tra autenticazione (chi sei) e autorizzazione (cosa puoi fare)
+
+Strutturazione di un sistema scalabile con ruoli multipli
+
+Gestione coerente di middleware e permessi
