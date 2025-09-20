@@ -11,4 +11,5 @@
         <a class="project-link" href="{{ route('projects.edit', $project->id) }}">modifica</a>
     </section>
 </div>
+ <button class="center-btn"><a href="{{ route('dashboard') }}">vai alla Dashboard</a></button>
 @endsection

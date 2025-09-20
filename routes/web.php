@@ -4,7 +4,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 
 use App\Http\Controllers\Admin\ProjectController;
-use GuzzleHttp\Middleware;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -24,18 +24,14 @@ Route::middleware('auth')->group(function () {
 });
 
 // Area admin
-Route::middleware(['auth', 'verified'])
-    ->name('admin.')
-    ->prefix('admin')
+Route::middleware(['auth','verified','is_admin'])
+    ->prefix('admin')->as('admin.')
     ->group(function () {
-        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-        Route::get('/profile', [DashboardController::class, 'profile'])->name('profile');
+        Route::get('/', fn () => to_route('admin.projects.index'))->name('dashboard');
+        Route::resource('projects', \App\Http\Controllers\Admin\ProjectController::class);
     });
 
 
-    Route::resource("projects", ProjectController::class)
-        ->Middleware(['auth, verified']);
-    
-
 require __DIR__.'/auth.php';
+
 
