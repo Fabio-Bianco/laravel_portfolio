@@ -8,28 +8,17 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
-    // NB: includo 'is_admin' nei fillable, altrimenti il seeder lancia MassAssignmentException
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'is_admin',
+        'name','email','password','is_admin',
     ];
 
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    protected $hidden = ['password','remember_token'];
 
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password'          => 'hashed',  // auto-hash sugli assign
-            'is_admin'          => 'boolean', // cast pulito in bool
-        ];
-    }
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'is_admin' => 'boolean',
+        'password' => 'hashed',
+    ];
 }

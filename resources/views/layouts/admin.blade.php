@@ -1,36 +1,27 @@
-{{-- Layout base admin back-office Portfolio --}}
 <!doctype html>
 <html lang="it">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title','Admin')</title>
-    @vite(['resources/sass/app.scss','resources/js/app.js'])
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>@yield('title','Admin')</title>
+  @vite(['resources/sass/app.scss','resources/js/app.js'])
+  @stack('head')
 </head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+<body class="bg-light">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="{{ route('admin.dashboard') }}">Portfolio Admin</a>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.projects.index') }}">Projects</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button class="btn btn-outline-light btn-sm" type="submit">Logout</button>
-                    </form>
-                </li>
-            </ul>
-        </div>
+      <a class="navbar-brand" href="{{ route('admin.dashboard') }}">Admin</a>
+      <div class="ms-auto d-flex gap-2">
+        <a href="{{ route('home') }}" class="btn btn-outline-light btn-sm">Portfolio pubblico</a>
+        <a href="{{ route('profile.show') }}" class="btn btn-outline-light btn-sm">Profilo</a>
+      </div>
     </div>
-</nav>
-<div class="container">
+  </nav>
+
+  <main class="container py-4">
     @include('partials.flash')
     @yield('content')
-</div>
+  </main>
+  @stack('scripts')
 </body>
 </html>

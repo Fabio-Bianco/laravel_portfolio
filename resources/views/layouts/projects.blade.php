@@ -34,11 +34,11 @@
     </div>
   </nav>
   <div class="container my-4">
-    @include('partials.flash')
     <h1 class="mb-3">@yield('title','Projects')</h1>
     @yield('content')
   </div>
 </body>
+</html>
 </html>
   </div>
 </body>

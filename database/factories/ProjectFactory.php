@@ -11,7 +11,7 @@ class ProjectFactory extends Factory
         return [
             'title'       => $this->faker->sentence(3),
             'description' => $this->faker->paragraph(),
-            'image_url'   => 'https://picsum.photos/400/200?random=' . rand(1, 1000),
+            'image_url'   => 'https://picsum.photos/seed/'.rand(1000,9999).'/600/400',
             'link'        => $this->faker->url(),
         ];
     }

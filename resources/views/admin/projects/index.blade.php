@@ -1,49 +1,69 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
-@section('title','Gestione progetti')
+@section('title','Admin • Projects')
 
 @section('content')
-<div class="container">
-    <h1 class="mb-3">Gestione Progetti (Admin)</h1>
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h3 m-0">Projects</h1>
+    <a href="{{ route('admin.projects.create') }}" class="btn btn-primary">+ Nuovo progetto</a>
+  </div>
 
-    <div class="mb-3">
-        <a href="{{ route('admin.projects.create') }}" class="btn btn-success">+ Aggiungi Progetto</a>
+  <div class="card">
+    <div class="table-responsive">
+      <table class="table table-striped align-middle mb-0">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Titolo</th>
+            <th>Immagine</th>
+            <th>Link</th>
+            <th class="text-end">Azioni</th>
+          </tr>
+        </thead>
+        <tbody>
+          @forelse ($projects as $p)
+            <tr>
+              <td>{{ $p->id }}</td>
+              <td>
+                <a href="{{ route('admin.projects.show', $p) }}">{{ $p->title }}</a>
+                @if($p->description)
+                  <div class="text-muted small" style="max-width:420px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+                    {{ \Illuminate\Support\Str::limit($p->description, 120) }}
+                  </div>
+                @endif
+              </td>
+              <td>
+                @if($p->image_url)
+                  <img src="{{ $p->image_url }}" alt="" style="height:42px;max-width:84px;object-fit:cover;">
+                @else
+                  <span class="text-muted">—</span>
+                @endif
+              </td>
+              <td>
+                @if($p->link)
+                  <a href="{{ $p->link }}" target="_blank" rel="noopener">Visita</a>
+                @else
+                  <span class="text-muted">—</span>
+                @endif
+              </td>
+              <td class="text-end">
+                <a href="{{ route('admin.projects.edit', $p) }}" class="btn btn-sm btn-outline-primary">Modifica</a>
+                <form action="{{ route('admin.projects.destroy', $p) }}" method="POST" class="d-inline"
+                      onsubmit="return confirm('Eliminare definitivamente questo progetto?');">
+                  @csrf @method('DELETE')
+                  <button class="btn btn-sm btn-outline-danger" type="submit">Elimina</button>
+                </form>
+              </td>
+            </tr>
+          @empty
+            <tr><td colspan="5" class="text-center text-muted py-4">Nessun progetto presente.</td></tr>
+          @endforelse
+        </tbody>
+      </table>
     </div>
 
-    <div class="row g-4">
-        @forelse ($projects as $project)
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="card h-100 shadow-sm">
-                    @if($project->image_url)
-                        <img src="{{ $project->image_url }}" class="card-img-top" alt="{{ $project->title }}">
-                    @else
-                        <img src="https://via.placeholder.com/600x400?text=No+Image" class="card-img-top" alt="placeholder">
-                    @endif
-
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">{{ $project->title }}</h5>
-                        <p class="card-text text-truncate">{{ $project->description }}</p>
-
-                        <div class="mt-auto d-flex justify-content-between">
-                            <a href="{{ route('admin.projects.show', $project) }}" class="btn btn-sm btn-outline-secondary">Dettagli</a>
-                            <a href="{{ route('admin.projects.edit', $project) }}" class="btn btn-sm btn-primary">Modifica</a>
-                            <form action="{{ route('admin.projects.destroy', $project) }}" method="POST" class="d-inline"
-                                  onsubmit="return confirm('Eliminare questo progetto?');">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-sm btn-danger" type="submit">Elimina</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @empty
-            <div class="col-12 text-center text-muted">Nessun progetto</div>
-        @endforelse
-    </div>
-
-    <div class="mt-4">
-        {{ $projects->links() }}
-    </div>
-</div>
+    @if($projects->hasPages())
+      <div class="card-footer">{{ $projects->links() }}</div>
+    @endif
+  </div>
 @endsection

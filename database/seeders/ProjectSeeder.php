@@ -1,5 +1,5 @@
 <?php
-// Popola 10 progetti finti per la vetrina
+
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
@@ -9,6 +9,6 @@ class ProjectSeeder extends Seeder
 {
     public function run(): void
     {
-        Project::factory()->count(10)->create();
+        Project::factory()->count(12)->create();
     }
 }

@@ -9,12 +9,12 @@ class ProjectsController extends Controller
 {
     public function index()
     {
-        $projects = Project::orderByDesc('id')->paginate(9);
-        return view('projects.index', compact('projects'));
+        $projects = Project::latest('id')->paginate(9);
+        return view('guest.index', compact('projects'));
     }
 
     public function show(Project $project)
     {
-        return view('projects.show', compact('project'));
+        return view('guest.projects.show', compact('project'));
     }
 }

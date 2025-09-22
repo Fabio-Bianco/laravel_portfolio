@@ -1,4 +1,4 @@
-@extends('layouts.projects')
+@extends('layouts.admin') 
 
 @section('title', 'Profilo personale')
 

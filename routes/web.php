@@ -1,25 +1,29 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Guest\ProjectsController;
-use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
-use App\Http\Middleware\isAdmin;
 
-// Home: manda alla vetrina pubblica (UX migliore per un portfolio)
-Route::get('/', fn () => to_route('projects.index'))->name('home');
+// -------------------- GUEST --------------------
+// Home: vetrina progetti
+Route::get('/', [ProjectsController::class, 'index'])->name('home');
 
-// ====== VETRINA PUBBLICA (GUEST) ======
-Route::get('/projects', [ProjectsController::class, 'index'])->name('projects.index');
+// Dettaglio progetto (usa id: evita mismatch con slug)
 Route::get('/projects/{project}', [ProjectsController::class, 'show'])->name('projects.show');
 
-// ====== BACKOFFICE ADMIN ======
-Route::middleware(['auth', isAdmin::class])
+// -------------------- ADMIN (protetta) --------------------
+Route::middleware(['auth', 'is_admin'])
     ->prefix('admin')->as('admin.')
     ->group(function () {
         Route::get('/', fn () => to_route('admin.projects.index'))->name('dashboard');
-        Route::resource('projects', AdminProjectController::class);
+        Route::resource('projects', ProjectController::class);
     });
 
+// -------------------- PROFILO (loggati) --------------------
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+});
 
-// ====== AUTENTICAZIONE (Breeze / Jetstream / Fortify) ======
-require __DIR__ . '/auth.php';
+// -------------------- AUTH --------------------
+require __DIR__.'/auth.php';

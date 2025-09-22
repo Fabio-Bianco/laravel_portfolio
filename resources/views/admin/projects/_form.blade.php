@@ -1,31 +1,35 @@
-{{-- Form parziale riutilizzato da create/edit --}}
+@csrf
 <div class="mb-3">
-    <label for="title" class="form-label">Titolo *</label>
-    <input type="text" name="title" id="title"
-           class="form-control @error('title') is-invalid @enderror"
-           value="{{ old('title', $project->title ?? '') }}" required>
-    @error('title') <div class="invalid-feedback">{{ $message }}</div> @enderror
+  <label for="title" class="form-label">Titolo *</label>
+  <input type="text" id="title" name="title" class="form-control @error('title') is-invalid @enderror"
+         value="{{ old('title', $project->title) }}" required maxlength="255">
+  @error('title') <div class="invalid-feedback">{{ $message }}</div> @enderror
 </div>
 
 <div class="mb-3">
-    <label for="description" class="form-label">Descrizione</label>
-    <textarea name="description" id="description" rows="4"
-              class="form-control @error('description') is-invalid @enderror">{{ old('description', $project->description ?? '') }}</textarea>
-    @error('description') <div class="invalid-feedback">{{ $message }}</div> @enderror
+  <label for="description" class="form-label">Descrizione</label>
+  <textarea id="description" name="description" rows="5"
+            class="form-control @error('description') is-invalid @enderror">{{ old('description', $project->description) }}</textarea>
+  @error('description') <div class="invalid-feedback">{{ $message }}</div> @enderror
 </div>
 
 <div class="mb-3">
-    <label for="image_url" class="form-label">Immagine (URL)</label>
-    <input type="text" name="image_url" id="image_url"
-           class="form-control @error('image_url') is-invalid @enderror"
-           value="{{ old('image_url', $project->image_url ?? '') }}">
-    @error('image_url') <div class="invalid-feedback">{{ $message }}</div> @enderror
+  <label for="image_url" class="form-label">URL immagine</label>
+  <input type="url" id="image_url" name="image_url"
+         class="form-control @error('image_url') is-invalid @enderror"
+         value="{{ old('image_url', $project->image_url) }}">
+  @error('image_url') <div class="invalid-feedback">{{ $message }}</div> @enderror
 </div>
 
 <div class="mb-3">
-    <label for="link" class="form-label">Link (URL)</label>
-    <input type="text" name="link" id="link"
-           class="form-control @error('link') is-invalid @enderror"
-           value="{{ old('link', $project->link ?? '') }}">
-    @error('link') <div class="invalid-feedback">{{ $message }}</div> @enderror
+  <label for="link" class="form-label">Link esterno</label>
+  <input type="url" id="link" name="link"
+         class="form-control @error('link') is-invalid @enderror"
+         value="{{ old('link', $project->link) }}">
+  @error('link') <div class="invalid-feedback">{{ $message }}</div> @enderror
+</div>
+
+<div class="d-flex gap-2">
+  <button class="btn btn-primary" type="submit">Salva</button>
+  <a class="btn btn-outline-secondary" href="{{ route('admin.projects.index') }}">Annulla</a>
 </div>

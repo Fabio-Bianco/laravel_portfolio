@@ -1,15 +1,14 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
-@section('title','Nuovo progetto')
+@section('title','Nuovo Progetto')
 
 @section('content')
-<div class="container">
-    <h1 class="mb-3">Nuovo Progetto</h1>
-    <form method="POST" action="{{ route('admin.projects.store') }}">
-        @csrf
-        @include('admin.projects._form')
-        <button type="submit" class="btn btn-success">Salva</button>
-        <a href="{{ route('admin.projects.index') }}" class="btn btn-secondary">Annulla</a>
-    </form>
-</div>
+  <h1 class="h3 mb-3">Nuovo progetto</h1>
+  <div class="card">
+    <div class="card-body">
+      <form action="{{ route('admin.projects.store') }}" method="POST">
+        @include('admin.projects._form', ['project' => $project, 'method' => 'POST'])
+      </form>
+    </div>
+  </div>
 @endsection
