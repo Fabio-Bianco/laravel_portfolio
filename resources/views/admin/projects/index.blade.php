@@ -1,63 +1,49 @@
 @extends('layouts.app')
 
+@section('title','Gestione progetti')
+
 @section('content')
 <div class="container">
-    <h1 class="mb-4">Lista Progetti</h1>
+    <h1 class="mb-3">Gestione Progetti (Admin)</h1>
 
-    {{-- Bottone per aggiungere un nuovo progetto --}}
-    <a href="{{ route('admin.projects.create') }}" class="btn btn-success mb-3">
-        + Aggiungi Progetto
-    </a>
+    <div class="mb-3">
+        <a href="{{ route('admin.projects.create') }}" class="btn btn-success">+ Aggiungi Progetto</a>
+    </div>
 
-    @if(session('status'))
-        <div class="alert alert-success">
-            {{ session('status') }}
-        </div>
-    @endif
+    <div class="row g-4">
+        @forelse ($projects as $project)
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm">
+                    @if($project->image_url)
+                        <img src="{{ $project->image_url }}" class="card-img-top" alt="{{ $project->title }}">
+                    @else
+                        <img src="https://via.placeholder.com/600x400?text=No+Image" class="card-img-top" alt="placeholder">
+                    @endif
 
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Titolo</th>
-                <th>Link</th>
-                <th>Azioni</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($projects as $project)
-                <tr>
-                    <td>{{ $project->id }}</td>
-                    <td>{{ $project->title }}</td>
-                    <td>
-                        @if($project->link)
-                            <a href="{{ $project->link }}" target="_blank">Visita</a>
-                        @else
-                            -
-                        @endif
-                    </td>
-                    <td>
-                        {{-- Bottone Modifica --}}
-                        <a href="{{ route('admin.projects.edit', $project) }}" class="btn btn-primary btn-sm">
-                            Modifica
-                        </a>
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">{{ $project->title }}</h5>
+                        <p class="card-text text-truncate">{{ $project->description }}</p>
 
-                        {{-- Bottone Elimina --}}
-                        <form action="{{ route('admin.projects.destroy', $project) }}" method="POST" style="display:inline-block;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm"
-                                onclick="return confirm('Sei sicuro di voler eliminare questo progetto?')">
-                                Elimina
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+                        <div class="mt-auto d-flex justify-content-between">
+                            <a href="{{ route('admin.projects.show', $project) }}" class="btn btn-sm btn-outline-secondary">Dettagli</a>
+                            <a href="{{ route('admin.projects.edit', $project) }}" class="btn btn-sm btn-primary">Modifica</a>
+                            <form action="{{ route('admin.projects.destroy', $project) }}" method="POST" class="d-inline"
+                                  onsubmit="return confirm('Eliminare questo progetto?');">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-sm btn-danger" type="submit">Elimina</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @empty
+            <div class="col-12 text-center text-muted">Nessun progetto</div>
+        @endforelse
+    </div>
 
-    {{-- Paginazione --}}
-    {{ $projects->links() }}
+    <div class="mt-4">
+        {{ $projects->links() }}
+    </div>
 </div>
 @endsection

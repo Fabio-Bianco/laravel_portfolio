@@ -1,5 +1,5 @@
 <?php
-// Seeder per 10 progetti Portfolio
+// Popola 10 progetti finti per la vetrina
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;

@@ -6,33 +6,74 @@ use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
 {
+    /**
+     * The application's HTTP middleware stack.
+     *
+     * These middleware are run during every request to your application.
+     *
+     * @var array
+     */
     protected $middleware = [
-        \Illuminate\Foundation\Http\Middleware\TrustHosts::class,
         \App\Http\Middleware\TrustProxies::class,
-        \Illuminate\Http\Middleware\HandleCors::class,
-        \App\Http\Middleware\PreventRequestsDuringMaintenance::class,
-        \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
-        \App\Http\Middleware\TrimStrings::class,
-        \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-        \Illuminate\Cookie\Middleware\EncryptCookies::class,
-        \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
-        \Illuminate\Session\Middleware\StartSession::class,
-        \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+        \App\Http\Middleware\RedirectIfAuthenticated::class,
+        \App\Http\Middleware\EncryptCookies::class,
+        \App\Http\Middleware\AddQueuedCookiesToResponse::class,
+        \App\Http\Middleware\StartSession::class,
+        \Illuminate\Session\Middleware\AuthenticateSession::class,
+        \App\Http\Middleware\SetCacheHeaders::class,
+        \App\Http\Middleware\ShareErrorsFromSession::class,
         \App\Http\Middleware\VerifyCsrfToken::class,
-        \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        \App\Http\Middleware\SubstituteBindings::class,
     ];
 
-    protected $middlewareAliases = [
-        'auth'              => \App\Http\Middleware\Authenticate::class,
-        'verified'          => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'guest'             => \App\Http\Middleware\RedirectIfAuthenticated::class,
-        'throttle'          => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'signed'            => \Illuminate\Routing\Middleware\ValidateSignature::class,
-        'can'               => \Illuminate\Auth\Middleware\Authorize::class,
-        'password.confirm'  => \Illuminate\Auth\Middleware\RequirePassword::class,
-        'cache.headers'     => \Illuminate\Http\Middleware\SetCacheHeaders::class,
+    /**
+     * The application's route middleware.
+     *
+     * These middleware may be assigned to groups or used individually.
+     *
+     * @var array
+     */
+    protected $routeMiddleware = [
+        'auth'     => \App\Http\Middleware\Authenticate::class,
+        'is_admin' => \App\Http\Middleware\IsAdmin::class,
+        'bindings' => \App\Http\Middleware\SubstituteBindings::class,
+        'can' => \App\Http\Middleware\Authorize::class,
+        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+    ];
 
-        // alias custom
+    /**
+     * The application's middleware groups.
+     *
+     * @var array
+     */
+    protected $middlewareGroups = [
+        'web' => [
+            \App\Http\Middleware\EncryptCookies::class,
+            \App\Http\Middleware\AddQueuedCookiesToResponse::class,
+            \App\Http\Middleware\StartSession::class,
+            \Illuminate\Session\Middleware\AuthenticateSession::class,
+            \App\Http\Middleware\SetCacheHeaders::class,
+            \App\Http\Middleware\ShareErrorsFromSession::class,
+            \App\Http\Middleware\VerifyCsrfToken::class,
+            \App\Http\Middleware\SubstituteBindings::class,
+        ],
+
+        'api' => [
+            'throttle:api',
+            'bindings',
+        ],
+    ];
+
+    /**
+     * The application's global HTTP middleware stack.
+     *
+     * These middleware are run during every request to your application.
+     *
+     * @var array
+     */
+    protected $middlewareAliases = [
+        'auth'     => \App\Http\Middleware\Authenticate::class,
         'is_admin' => \App\Http\Middleware\IsAdmin::class,
     ];
 }
+
