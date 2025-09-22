@@ -9,6 +9,7 @@ class Project extends Model
 {
     use HasFactory;
 
+    // Campi assegnabili via mass assignment
     protected $fillable = [
         'title',
         'description',

@@ -1,19 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Guest;
 
+use App\Http\Controllers\Controller;
 use App\Models\Project;
 
 class ProjectsController extends Controller
 {
-    // Lista progetti (lettura)
     public function index()
     {
-        $projects = Project::orderByDesc('id')->paginate(10);
+        $projects = Project::orderByDesc('id')->paginate(9);
         return view('projects.index', compact('projects'));
     }
 
-    // Dettaglio progetto (lettura)
     public function show(Project $project)
     {
         return view('projects.show', compact('project'));

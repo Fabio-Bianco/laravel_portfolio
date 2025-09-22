@@ -1,5 +1,5 @@
 <?php
-// Migrazione tabella projects
+// Tabella 'projects' per il portfolio (titolo, descrizione, immagine, link).
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -9,10 +9,12 @@ return new class extends Migration {
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('description')->nullable();
-            $table->string('image_url')->nullable();
-            $table->string('link')->nullable();
+
+            $table->string('title');               // Titolo obbligatorio
+            $table->text('description')->nullable(); // Descrizione testuale
+            $table->string('image_url')->nullable(); // URL immagine (placeholder se mancante)
+            $table->string('link')->nullable();      // Link esterno (GitHub, demo, ecc.)
+
             $table->timestamps();
         });
     }
