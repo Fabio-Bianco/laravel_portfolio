@@ -9,7 +9,182 @@ $light: #f8f9fa;
 $dark: #212529;
 
 @import "bootstrap/scss/bootstrap";
+@import "bootstrap-icons/font/bootstrap-icons.css";
 
 // Utility extra
 .card-title { margin-bottom: .4rem; }
 .navbar-brand { font-weight: 700; letter-spacing:.3px; }
+
+// Stili specifici pagina portfolio (guest/index)
+.portfolio-page {
+	a {
+		text-decoration: none;
+	}
+	a:hover, a:focus {
+		text-decoration: none; // mantiene i link non sottolineati su hover/focus
+	}
+}
+
+// Stili specifici pagina admin projects (admin/projects/index)
+.admin-projects-page {
+	// rimuovi sottolineatura e colore blu tipico dei link
+	a:not(.btn) {
+		text-decoration: none;
+		color: inherit; // usa il colore del testo corrente
+	}
+	a:not(.btn):hover,
+	a:not(.btn):focus {
+		text-decoration: none;
+		color: inherit;
+	}
+}
+
+// Clamp multi-riga con ellissi
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2; // standard (supporto limitato)
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ======================
+	 Tema chiaro/scuro
+	 ====================== */
+:root {
+	--bg-body: #f8f9fa;
+	--bg-card: #ffffff;
+	--text-body: #212529;
+	--text-muted: #6c757d;
+	--border-color: #dee2e6;
+	--text-heading: #111827; /* h1-h6 */
+	--text-link: #0d6efd;    /* link normali */
+	--text-link-hover: #0b5ed7;
+
+	/* Mappa variabili Bootstrap → coerenti col tema */
+	--bs-body-bg: var(--bg-body);
+	--bs-body-color: var(--text-body);
+	--bs-card-bg: var(--bg-card);
+	--bs-card-color: var(--text-body);
+	--bs-border-color: var(--border-color);
+}
+
+.theme-dark {
+	--bg-body: #0b0e11;
+	--bg-card: #151a21;
+	--text-body: #e9ecef;
+	--text-muted: #adb5bd;
+	--border-color: #2b323b;
+	--text-heading: #ffffff;
+	--text-link: #66b2ff;
+	--text-link-hover: #99ccff;
+
+	/* Sincronizza variabili Bootstrap in dark */
+	--bs-body-bg: var(--bg-body);
+	--bs-body-color: var(--text-body);
+	--bs-card-bg: var(--bg-card);
+	--bs-card-color: var(--text-body);
+	--bs-border-color: var(--border-color);
+}
+
+body {
+	background-color: var(--bg-body);
+	color: var(--text-body);
+}
+
+.card { background-color: var(--bg-card); border-color: var(--border-color); }
+.text-muted { color: var(--text-muted) !important; }
+
+/* Headings e link coerenti tra light/dark */
+h1, h2, h3, h4, h5, h6 { color: var(--text-heading); }
+a:not(.btn) { color: var(--text-link); }
+a:not(.btn):hover, a:not(.btn):focus { color: var(--text-link-hover); }
+
+/* Titoli card e navbar link */
+.card-title { color: var(--text-heading); }
+.navbar .navbar-brand { color: #fff; }
+.navbar .nav-link { color: rgba(255,255,255,.85); }
+.navbar .nav-link:hover, .navbar .nav-link:focus { color: #fff; }
+
+/* Outline buttons leggibili in dark mode */
+.theme-dark .btn-outline-primary {
+	color: #66b2ff;
+	border-color: #66b2ff;
+}
+.theme-dark .btn-outline-primary:hover,
+.theme-dark .btn-outline-primary:focus {
+	color: #0b1220;
+	background-color: #66b2ff;
+	border-color: #66b2ff;
+}
+
+.theme-dark .btn-outline-secondary {
+	color: #cbd5e1;
+	border-color: #94a3b8;
+}
+.theme-dark .btn-outline-secondary:hover,
+.theme-dark .btn-outline-secondary:focus {
+	color: #0b1220;
+	background-color: #cbd5e1;
+	border-color: #cbd5e1;
+}
+
+.theme-dark .btn-outline-danger {
+	color: #ff7b7b;
+	border-color: #ff7b7b;
+}
+.theme-dark .btn-outline-danger:hover,
+.theme-dark .btn-outline-danger:focus {
+	color: #0b1220;
+	background-color: #ff7b7b;
+	border-color: #ff7b7b;
+}
+
+.theme-dark .btn-outline-light {
+	color: #e5e7eb;
+	border-color: #e5e7eb;
+}
+.theme-dark .btn-outline-light:hover,
+.theme-dark .btn-outline-light:focus {
+	color: #0b1220;
+	background-color: #e5e7eb;
+	border-color: #e5e7eb;
+}
+
+/* Navbar adattiva al tema: sfondo e contrasto */
+.navbar.bg-dark { background-color: #111827 !important; }
+.theme-dark .navbar.bg-dark { background-color: #0b1220 !important; }
+.theme-dark .navbar .navbar-brand { color: #e5e7eb; }
+.theme-dark .navbar .nav-link { color: #cbd5e1; }
+.theme-dark .navbar .nav-link:hover, .theme-dark .navbar .nav-link:focus { color: #ffffff; }
+.navbar .btn-outline-light { --bs-btn-color:#f8fafc; --bs-btn-border-color:#f8fafc; --bs-btn-hover-bg:#f8fafc; --bs-btn-hover-color:#0b1220; }
+
+/* Pulsanti azioni dimensione uniforme */
+.btn-action {
+	min-width: 110px; /* stessa larghezza desktop */
+}
+@media (max-width: 767.98px) {
+	.btn-action { min-width: auto; }
+}
+
+/* Stile card globale: più strette e corte, bordi arrotondati, leggero rilievo */
+.card {
+	border-radius: 14px;
+	box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+.theme-dark .card { box-shadow: 0 8px 20px rgba(0,0,0,0.35); }
+img.card-img-top {
+	width: 100%;
+	height: clamp(220px, 34vh, 420px);
+	object-fit: cover;
+	display: block;
+}
+.card .card-body { padding: 0.9rem 1rem 1rem; }
+
+.portfolio-page .row {
+	justify-content: center;
+}
+
+/* Utility per object-fit cover su immagini dentro ratio */
+.object-fit-cover { object-fit: cover; }
+
