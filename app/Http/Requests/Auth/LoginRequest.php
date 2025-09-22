@@ -33,6 +33,19 @@ class LoginRequest extends FormRequest
     }
 
     /**
+     * Custom validation messages (IT)
+     */
+    public function messages(): array
+    {
+        return [
+            'email.required' => "Ops, l'indirizzo email non è valido.",
+            'email.email' => "Ops, l'indirizzo email non è valido.",
+            'password.required' => "Ops, l'indirizzo email non è valido.",
+            'password.string' => "Ops, l'indirizzo email non è valido.",
+        ];
+    }
+
+    /**
      * Attempt to authenticate the request's credentials.
      *
      * @throws \Illuminate\Validation\ValidationException

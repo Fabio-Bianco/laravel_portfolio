@@ -6,8 +6,17 @@ use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Guest\ProjectsController;
 
 // -------------------- GUEST --------------------
-// Home: vetrina progetti
-Route::get('/', [ProjectsController::class, 'index'])->name('home');
+// Splash: pagina iniziale
+Route::get('/', function () {
+    if (auth()->check()) {
+        return to_route('home');
+    }
+    return view('splash.index');
+})->name('splash');
+
+// Home: vetrina progetti (spostata su /portfolio ma mantiene il name 'home')
+Route::get('/portfolio', [ProjectsController::class, 'index'])->name('home');
+
 
 // Dettaglio progetto (usa id: evita mismatch con slug)
 Route::get('/projects/{project}', [ProjectsController::class, 'show'])->name('projects.show');
