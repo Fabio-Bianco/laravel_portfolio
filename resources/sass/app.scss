@@ -60,6 +60,7 @@ $dark: #212529;
 	--text-heading: #111827; /* h1-h6 */
 	--text-link: #0d6efd;    /* link normali */
 	--text-link-hover: #0b5ed7;
+	--bs-secondary-color: #6c757d; /* colore placeholder/light */
 
 	/* Mappa variabili Bootstrap → coerenti col tema */
 	--bs-body-bg: var(--bg-body);
@@ -70,21 +71,45 @@ $dark: #212529;
 }
 
 .theme-dark {
-	--bg-body: #0b0e11;
-	--bg-card: #151a21;
-	--text-body: #e9ecef;
-	--text-muted: #adb5bd;
-	--border-color: #2b323b;
-	--text-heading: #ffffff;
-	--text-link: #66b2ff;
-	--text-link-hover: #99ccff;
+		--bg-body: #0b0e11;
+		--bg-card: #151a21;
+		--text-body: #e9ecef;
+		--text-muted: #adb5bd;
+		--border-color: #2b323b;
+		--text-heading: #ffffff;
+		--text-link: #66b2ff;
+		--text-link-hover: #99ccff;
 
-	/* Sincronizza variabili Bootstrap in dark */
-	--bs-body-bg: var(--bg-body);
-	--bs-body-color: var(--text-body);
-	--bs-card-bg: var(--bg-card);
-	--bs-card-color: var(--text-body);
-	--bs-border-color: var(--border-color);
+		/* Variabili Bootstrap in dark */
+		--bs-body-bg: var(--bg-body);
+		--bs-body-color: var(--text-body);
+		--bs-card-bg: var(--bg-card);
+		--bs-card-color: var(--text-body);
+		--bs-border-color: var(--border-color);
+
+		/* Form in dark */
+		--bs-secondary-color: #cbd5e1; /* placeholder più leggibile */
+		--bs-form-control-bg: #0f141a;
+		--bs-form-control-color: var(--text-body);
+		--bs-form-control-border-color: var(--border-color);
+}
+
+/* Placeholder e campi form coerenti col tema */
+	::placeholder { color: var(--bs-secondary-color); opacity: .85; }
+	.form-control::placeholder { color: var(--bs-secondary-color); opacity: .85; }
+	.theme-dark .form-control::placeholder { color: var(--bs-secondary-color); opacity: .9; }
+	.form-floating > label { color: var(--text-body); opacity: .85; }
+	.theme-dark .form-floating > label { color: var(--text-body); opacity: .9; }
+.theme-dark .form-control {
+	background-color: var(--bs-form-control-bg);
+	color: var(--bs-form-control-color);
+	border-color: var(--bs-form-control-border-color);
+}
+.theme-dark .form-control:focus {
+	background-color: var(--bs-form-control-bg);
+	color: var(--bs-form-control-color);
+	border-color: #60a5fa;
+	box-shadow: 0 0 0 .25rem rgba(96,165,250,.15);
 }
 
 body {

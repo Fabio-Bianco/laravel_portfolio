@@ -17,8 +17,8 @@
       <div id="mainNav" class="collapse navbar-collapse">
         <ul class="navbar-nav me-auto"></ul>
         <ul class="navbar-nav ms-auto align-items-lg-center gap-2">
-          <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Portfolio pubblico</a></li>
           @auth
+            <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Portfolio pubblico</a></li>
             @if(auth()->user()->is_admin)
               <li class="nav-item"><a class="nav-link" href="{{ route('admin.projects.index') }}">Gestisci</a></li>
             @endif

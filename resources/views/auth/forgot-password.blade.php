@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+                <div class="card-header">Recupero password</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -15,17 +15,17 @@
                     @endif
 
                     <div class="mb-3">
-                        {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}                        
+                        Hai dimenticato la password? Inserisci la tua email e ti invieremo un link per reimpostarla.
                     </div>
 
                     <form method="POST" action="{{ route('password.email') }}">
                         @csrf
 
                         <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email') }}</label>
-
+                            <label for="email" class="col-md-4 col-form-label text-md-end visually-hidden">Email</label>
+                            
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="email" aria-label="Email">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -38,7 +38,7 @@
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Email Password Reset Link') }}
+                                    Invia link di reset
                                 </button>
                             </div>
                         </div>

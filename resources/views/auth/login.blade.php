@@ -25,7 +25,8 @@
           <form method="POST" action="{{ route('login') }}" novalidate>
             @csrf
 
-            <div class="form-floating mb-3">
+            <div class="mb-3">
+              <label for="email" class="visually-hidden">Email</label>
               <input
                 id="email"
                 type="email"
@@ -34,16 +35,17 @@
                 value="{{ old('email') }}"
                 required
                 autocomplete="email"
-                placeholder="name@example.com"
+                placeholder="email"
+                aria-label="Email"
                 autofocus
               >
-              <label for="email">{{ __('Email') }}</label>
               @error('email')
                 <div class="invalid-feedback">{{ $message }}</div>
               @enderror
             </div>
 
-            <div class="form-floating mb-3">
+            <div class="mb-3">
+              <label for="password" class="visually-hidden">Password</label>
               <input
                 id="password"
                 type="password"
@@ -51,9 +53,9 @@
                 class="form-control @error('password') is-invalid @enderror"
                 required
                 autocomplete="current-password"
-                placeholder="••••••••"
+                placeholder="password"
+                aria-label="Password"
               >
-              <label for="password">{{ __('Password') }}</label>
               @error('password')
                 <div class="invalid-feedback">{{ $message }}</div>
               @enderror
@@ -62,12 +64,12 @@
             <div class="d-flex justify-content-between align-items-center mb-4">
               <div class="form-check">
                 <input type="checkbox" class="form-check-input" id="remember" name="remember">
-                <label class="form-check-label" for="remember">{{ __('Remember me') }}</label>
+                <label class="form-check-label" for="remember">Ricordami</label>
               </div>
 
               @if (Route::has('password.request'))
                 <a class="link-secondary small" href="{{ route('password.request') }}">
-                  {{ __('Forgot your password?') }}
+                  Password dimenticata?
                 </a>
               @endif
             </div>
