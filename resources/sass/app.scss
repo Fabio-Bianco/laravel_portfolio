@@ -213,3 +213,21 @@ img.card-img-top {
 /* Utility per object-fit cover su immagini dentro ratio */
 .object-fit-cover { object-fit: cover; }
 
+/* Bio Offcanvas: FAB e dimensioni pannello */
+.bio-fab {
+	left: 18px; bottom: 20px;
+	border-radius: 999px; width: 56px; height: 56px;
+	display: grid; place-items: center; z-index:1050;
+}
+
+#bioOffcanvas { --bs-offcanvas-width: clamp(280px, 22vw, 360px); }
+
+/* Spinta layout su desktop quando un aside è aperto (riusata dall'Offcanvas Bio) */
+@media (min-width: 992px) {
+  body.drawer-left-open .container,
+  body.drawer-left-open .container-fluid {
+    margin-left: clamp(280px, 22vw, 360px);
+    transition: margin-left .25s ease;
+  }
+}
+

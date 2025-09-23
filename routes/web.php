@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Guest\ProjectsController;
+use App\Http\Controllers\ProfileBioController;
 
 // -------------------- GUEST --------------------
 // Splash: pagina iniziale
@@ -32,6 +33,11 @@ Route::middleware(['auth', 'is_admin'])
 // -------------------- PROFILO (loggati) --------------------
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
+    // Bio Offcanvas/Page
+    Route::get('/bio', [ProfileBioController::class, 'show'])->name('bio.show');
+    Route::patch('/bio', [ProfileBioController::class, 'update'])->name('bio.update');
 });
 
 // -------------------- AUTH --------------------
