@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -17,7 +18,8 @@ class ProjectController extends Controller
     public function create()
     {
         $project = new Project();
-        return view('admin.projects.create', compact('project'));
+        $categories = Category::orderBy('name')->pluck('name', 'id');
+        return view('admin.projects.create', compact('project', 'categories'));
     }
 
     public function store(Request $request)
@@ -37,7 +39,8 @@ class ProjectController extends Controller
 
     public function edit(Project $project)
     {
-        return view('admin.projects.edit', compact('project'));
+        $categories = Category::orderBy('name')->pluck('name', 'id');
+        return view('admin.projects.edit', compact('project', 'categories'));
     }
 
     public function update(Request $request, Project $project)
@@ -67,10 +70,12 @@ class ProjectController extends Controller
             'description' => ['nullable', 'string'],
             'image_url'   => ['nullable', 'url', 'max:255'],
             'link'        => ['nullable', 'url', 'max:255'],
+            'category_id' => ['nullable', 'exists:categories,id'],
         ], [
             'title.required' => 'Il titolo è obbligatorio.',
             'image_url.url'  => "Inserisci un URL valido per l'immagine.",
             'link.url'       => 'Inserisci un URL valido per il link esterno.',
+            'category_id.exists' => 'La categoria selezionata non è valida.',
         ]);
     }
 }

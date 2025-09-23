@@ -9,10 +9,16 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description'];
+    protected $fillable = ['name', 'description', 'slug'];
 
     public function projects()
     {
-        return $this->hasMany(Project::class);
+        return $this->hasMany(\App\Models\Project::class);
+    }
+
+    // Usa lo slug per il model binding implicito nelle route
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
     }
 }

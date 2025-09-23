@@ -4,7 +4,37 @@
 
 @section('content')
   <div class="portfolio-page">
-    <h1 class="h3 mb-3 text-start m-0">I miei progetti</h1>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h1 class="h3 m-0">
+        @isset($currentCategory)
+          Categoria: {{ $currentCategory->name }}
+        @else
+          I miei progetti
+        @endisset
+      </h1>
+      @isset($currentCategory)
+        <a class="btn btn-sm btn-outline-secondary" href="{{ route('home') }}">Tutte le categorie</a>
+      @endisset
+    </div>
+
+    @isset($allCategories)
+      <div class="mb-3">
+        <ul class="nav nav-pills flex-wrap gap-2">
+          <li class="nav-item">
+            <a href="{{ route('home') }}"
+               class="nav-link {{ !isset($currentCategory) ? 'active' : '' }}">Tutte</a>
+          </li>
+          @foreach($allCategories as $cat)
+            <li class="nav-item">
+              <a href="{{ route('projects.byCategory', $cat) }}"
+                 class="nav-link {{ (isset($currentCategory) && $currentCategory->id === $cat->id) ? 'active' : '' }}">
+                {{ $cat->name }}
+              </a>
+            </li>
+          @endforeach
+        </ul>
+      </div>
+    @endisset
 
     <div class="row g-3">
       @forelse($projects as $p)
@@ -16,6 +46,12 @@
               </div>
             @endif
             <div class="card-body d-flex flex-column">
+              @if($p->category)
+                <a href="{{ route('projects.byCategory', $p->category) }}"
+                   class="badge bg-secondary text-decoration-none align-self-start mb-2">
+                  {{ $p->category->name }}
+                </a>
+              @endif
               <h2 class="h5 card-title">{{ $p->title }}</h2>
               <p class="card-text text-muted mb-2">
                 <span class="desc-short line-clamp-2">{{ $p->description }}</span>

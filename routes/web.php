@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Guest\ProjectsController;
+use App\Http\Controllers\Guest\CategoriesController;
 use App\Http\Controllers\ProfileBioController;
 
 // -------------------- GUEST --------------------
@@ -17,10 +18,14 @@ Route::get('/', function () {
 
 // Home: vetrina progetti (spostata su /portfolio ma mantiene il name 'home')
 Route::get('/portfolio', [ProjectsController::class, 'index'])->name('home');
+// Pagina elenco categorie
+Route::get('/categories', [CategoriesController::class, 'index'])->name('categories.index');
+// Filtro per categoria (guest) via slug stringa, con redirect 301 da slug storici
+Route::get('/portfolio/category/{slug}', [ProjectsController::class, 'byCategorySlug'])->name('projects.byCategory');
 
 
-// Dettaglio progetto (usa id: evita mismatch con slug)
-Route::get('/projects/{project}', [ProjectsController::class, 'show'])->name('projects.show');
+// Dettaglio progetto: ora via slug
+Route::get('/projects/{project:slug}', [ProjectsController::class, 'show'])->name('projects.show');
 
 // -------------------- ADMIN (protetta) --------------------
 Route::middleware(['auth', 'is_admin'])

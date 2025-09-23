@@ -13,6 +13,10 @@
 
   <div class="card">
     <div class="card-body">
+      @if($project->category)
+        <p class="mb-1"><span class="badge bg-secondary">{{ $project->category->name }}</span></p>
+      @endif
+
       @if($project->image_url)
         <img src="{{ $project->image_url }}" alt="" class="mb-3 img-fluid" style="max-height:260px;object-fit:cover;">
       @endif

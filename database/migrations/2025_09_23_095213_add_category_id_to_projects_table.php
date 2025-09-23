@@ -12,13 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('projects', function (Blueprint $table) {
-            // Aggiungiamo la colonna category_id e la chiave esterna
+            // Se presente, rimuoviamo la vecchia colonna testuale "category"
+            if (Schema::hasColumn('projects', 'category')) {
+                $table->dropColumn('category');
+            }
 
-            //rimuoviamo la colonna category
-            $table->dropColumn('category');
-
-            //agiungiamo la colonna e la constrain
-            $table->foreignId('category_id')->constrained();
+            // Aggiungiamo la FK nullable su categories e impostiamo nullOnDelete
+            if (!Schema::hasColumn('projects', 'category_id')) {
+                $table->foreignId('category_id')
+                    ->nullable()
+                    ->constrained()
+                    ->nullOnDelete();
+            }
 
         
         });
@@ -30,10 +35,16 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('projects', function (Blueprint $table) {
-             $table->string('category');
+            // Ripristiniamo la colonna testuale semplice
+            if (!Schema::hasColumn('projects', 'category')) {
+                $table->string('category')->nullable();
+            }
 
-             $table->dropForeign('projects_category_id_foreign');
-             $table->dropColumn('category_id');
+            // Rimuoviamo in sicurezza la FK e la colonna category_id
+            if (Schema::hasColumn('projects', 'category_id')) {
+                // Nome indice generato da Laravel: projects_category_id_foreign
+                $table->dropConstrainedForeignId('category_id');
+            }
         });
     }
 };

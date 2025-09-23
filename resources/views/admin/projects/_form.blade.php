@@ -29,6 +29,25 @@
   @error('link') <div class="invalid-feedback">{{ $message }}</div> @enderror
 </div>
 
+<div class="mb-3">
+  <label for="category_id" class="form-label">Categoria</label>
+  <select id="category_id" name="category_id" class="form-select @error('category_id') is-invalid @enderror">
+    <option value="">Nessuna</option>
+    @isset($categories)
+      @foreach($categories as $id => $name)
+        <option value="{{ $id }}" @selected(old('category_id', $project->category_id) == $id)>{{ $name }}</option>
+      @endforeach
+    @endisset
+  </select>
+  @error('category_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
+  @if(!isset($categories) || $categories->isEmpty())
+    <div class="form-text">Nessuna categoria disponibile. Crea una categoria prima di associarla a un progetto.</div>
+  @endif
+  @if($project->category)
+    <div class="form-text">Categoria attuale: <strong>{{ $project->category?->name }}</strong></div>
+  @endif
+</div>
+
 <div class="d-flex gap-2">
   <button class="btn btn-primary" type="submit">Salva</button>
   <a class="btn btn-outline-secondary" href="{{ route('admin.projects.index') }}">Annulla</a>

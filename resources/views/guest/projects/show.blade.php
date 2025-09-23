@@ -7,7 +7,15 @@
 
   <div class="card">
     <div class="card-body">
-      <h1 class="h3 mb-3">{{ $project->title }}</h1>
+      <h1 class="h3 mb-1">{{ $project->title }}</h1>
+      @if($project->category)
+        <p class="mb-3">
+          <a href="{{ route('projects.byCategory', $project->category) }}"
+             class="badge bg-secondary text-decoration-none">
+            {{ $project->category->name }}
+          </a>
+        </p>
+      @endif
 
       @if($project->image_url)
         <img src="{{ $project->image_url }}" alt="{{ $project->title }}" class="mb-3 img-fluid" style="max-height:320px;object-fit:cover;">

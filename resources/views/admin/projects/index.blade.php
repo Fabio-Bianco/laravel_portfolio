@@ -43,6 +43,10 @@
                   </p>
                 @endif
 
+                @if($p->category)
+                  <span class="badge bg-secondary align-self-start mb-2">{{ $p->category->name }}</span>
+                @endif
+
                 <!-- Azioni mobile (icone) -->
                 <div class="mt-auto d-flex gap-2 align-items-center flex-wrap w-100 justify-content-end d-md-none">
                   <a href="{{ route('admin.projects.show', $p) }}" 
