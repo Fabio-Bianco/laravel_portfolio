@@ -4,10 +4,20 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Guest\ProjectsController;
+use App\Http\Controllers\ProfileBioController;
 
 // -------------------- GUEST --------------------
-// Home: vetrina progetti
-Route::get('/', [ProjectsController::class, 'index'])->name('home');
+// Splash: pagina iniziale
+Route::get('/', function () {
+    if (auth()->check()) {
+        return to_route('home');
+    }
+    return view('splash.index');
+})->name('splash');
+
+// Home: vetrina progetti (spostata su /portfolio ma mantiene il name 'home')
+Route::get('/portfolio', [ProjectsController::class, 'index'])->name('home');
+
 
 // Dettaglio progetto (usa id: evita mismatch con slug)
 Route::get('/projects/{project}', [ProjectsController::class, 'show'])->name('projects.show');
@@ -23,6 +33,11 @@ Route::middleware(['auth', 'is_admin'])
 // -------------------- PROFILO (loggati) --------------------
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
+    // Bio Offcanvas/Page
+    Route::get('/bio', [ProfileBioController::class, 'show'])->name('bio.show');
+    Route::patch('/bio', [ProfileBioController::class, 'update'])->name('bio.update');
 });
 
 // -------------------- AUTH --------------------

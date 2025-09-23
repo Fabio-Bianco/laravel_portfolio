@@ -1,7 +1,7 @@
 import './bootstrap';
-import '../sass/app.scss';
 
 import * as bootstrap from 'bootstrap';
+import './modules/bioOffcanvas';
 import.meta.glob([
     '../img/**'
 ])
@@ -162,5 +162,20 @@ if (document.readyState === 'loading') {
     applyTheme(nextMode === 'system' ? getSystemTheme() : nextMode);
   });
 })();
+
+// Splash -> Home: fade-in se arrivo dalla splash
+document.addEventListener('DOMContentLoaded', () => {
+  try {
+    if (sessionStorage.getItem('fromSplash') === '1') {
+      sessionStorage.removeItem('fromSplash');
+      const body = document.body;
+      body.style.opacity = '0';
+      body.style.transition = 'opacity .35s ease';
+      requestAnimationFrame(() => {
+        body.style.opacity = '1';
+      });
+    }
+  } catch (_) {}
+});
 
 //# sourceMappingURL=app.js.map

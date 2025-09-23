@@ -28,7 +28,12 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended('/'); // Cambia qui per reindirizzare alla root (che va su /login)
+        // Dopo il login: admin -> dashboard progetti; utente -> home portfolio
+        $fallback = $request->user()->is_admin
+            ? route('admin.projects.index')
+            : route('home');
+
+        return redirect()->intended($fallback);
     }
 
     /**

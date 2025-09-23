@@ -22,6 +22,12 @@
             <div class="alert alert-success mb-4">{{ session('status') }}</div>
           @endif
 
+          @if ($errors->any())
+            <div class="alert alert-danger mb-4" role="alert">
+              {{ $errors->first('email') ?? $errors->first('password') }}
+            </div>
+          @endif
+
           <form method="POST" action="{{ route('login') }}" novalidate>
             @csrf
 
@@ -39,9 +45,7 @@
                 aria-label="Email"
                 autofocus
               >
-              @error('email')
-                <div class="invalid-feedback">{{ $message }}</div>
-              @enderror
+              
             </div>
 
             <div class="mb-3">
@@ -56,9 +60,7 @@
                 placeholder="password"
                 aria-label="Password"
               >
-              @error('password')
-                <div class="invalid-feedback">{{ $message }}</div>
-              @enderror
+              
             </div>
 
             <div class="d-flex justify-content-between align-items-center mb-4">
@@ -80,11 +82,7 @@
           </form>
         </div>
 
-        <div class="card-footer bg-light-subtle text-center">
-          <span class="text-muted small">
-            <strong>Tip:</strong> usa le credenziali admin seedate se stai lavorando in locale.
-          </span>
-        </div>
+        
       </div>
 
       <div class="text-center mt-3">

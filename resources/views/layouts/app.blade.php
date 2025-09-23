@@ -49,6 +49,8 @@
       @yield('content')
     </div>
   </main>
+  {{-- Drawer profilo legacy rimosso in favore dell’Offcanvas Bio Bootstrap --}}
+  @include('partials.bio-offcanvas')
   @stack('scripts')
 </body>
 </html>
