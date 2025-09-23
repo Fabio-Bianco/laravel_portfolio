@@ -46,11 +46,12 @@
               </div>
             @endif
             <div class="card-body d-flex flex-column">
-              @if($p->category)
-                <a href="{{ route('projects.byCategory', $p->category) }}"
-                   class="badge bg-secondary text-decoration-none align-self-start mb-2">
-                  {{ $p->category->name }}
-                </a>
+              @if($p->categories && $p->categories->count())
+                <div class="d-flex gap-1 flex-wrap mb-2">
+                  @foreach($p->categories as $cat)
+                    <a href="{{ route('projects.byCategory', $cat) }}" class="badge bg-secondary text-decoration-none">{{ $cat->name }}</a>
+                  @endforeach
+                </div>
               @endif
               <h2 class="h5 card-title">{{ $p->title }}</h2>
               <p class="card-text text-muted mb-2">
@@ -58,7 +59,7 @@
                 <span id="desc-{{ $p->id }}" class="desc-full d-none">{{ $p->description }}</span>
               </p>
               <div class="mt-auto d-flex gap-2 justify-content-end">
-                <a class="btn btn-sm btn-outline-primary" href="{{ route('projects.show', $p) }}">Vedi</a>
+                <a class="btn btn-sm btn-outline-primary" href="{{ route('projects.show', $p->slug) }}">Vedi</a>
                 @if($p->link)
                   <a class="btn btn-sm btn-outline-secondary" href="{{ $p->link }}" target="_blank" rel="noopener">Esplora</a>
                 @endif

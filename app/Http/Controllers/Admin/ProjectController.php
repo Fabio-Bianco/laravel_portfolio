@@ -18,14 +18,20 @@ class ProjectController extends Controller
     public function create()
     {
         $project = new Project();
-        $categories = Category::orderBy('name')->pluck('name', 'id');
+        $categories = Category::orderBy('name')->get();
         return view('admin.projects.create', compact('project', 'categories'));
     }
 
     public function store(Request $request)
     {
         $data = $this->validateData($request);
+        $categoryIds = collect($data['categories'] ?? [])->filter()->all();
+        unset($data['categories']);
+
         $project = Project::create($data);
+        if (!empty($categoryIds)) {
+            $project->categories()->sync($categoryIds);
+        }
 
         return redirect()
             ->route('admin.projects.index')
@@ -39,14 +45,19 @@ class ProjectController extends Controller
 
     public function edit(Project $project)
     {
-        $categories = Category::orderBy('name')->pluck('name', 'id');
+        $project->load('categories');
+        $categories = Category::orderBy('name')->get();
         return view('admin.projects.edit', compact('project', 'categories'));
     }
 
     public function update(Request $request, Project $project)
     {
         $data = $this->validateData($request);
+        $categoryIds = collect($data['categories'] ?? [])->filter()->all();
+        unset($data['categories']);
+
         $project->update($data);
+        $project->categories()->sync($categoryIds);
 
         return redirect()
             ->route('admin.projects.index')
@@ -70,12 +81,13 @@ class ProjectController extends Controller
             'description' => ['nullable', 'string'],
             'image_url'   => ['nullable', 'url', 'max:255'],
             'link'        => ['nullable', 'url', 'max:255'],
-            'category_id' => ['nullable', 'exists:categories,id'],
+            'categories'   => ['nullable', 'array'],
+            'categories.*' => ['integer', 'exists:categories,id'],
         ], [
             'title.required' => 'Il titolo è obbligatorio.',
             'image_url.url'  => "Inserisci un URL valido per l'immagine.",
             'link.url'       => 'Inserisci un URL valido per il link esterno.',
-            'category_id.exists' => 'La categoria selezionata non è valida.',
+            'categories.*.exists' => 'Una delle categorie selezionate non è valida.',
         ]);
     }
 }

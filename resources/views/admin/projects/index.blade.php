@@ -43,8 +43,12 @@
                   </p>
                 @endif
 
-                @if($p->category)
-                  <span class="badge bg-secondary align-self-start mb-2">{{ $p->category->name }}</span>
+                @if($p->categories && $p->categories->count())
+                  <div class="d-flex gap-1 flex-wrap mb-2">
+                    @foreach($p->categories as $cat)
+                      <span class="badge bg-secondary">{{ $cat->name }}</span>
+                    @endforeach
+                  </div>
                 @endif
 
                 <!-- Azioni mobile (icone) -->

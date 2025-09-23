@@ -13,8 +13,12 @@
 
   <div class="card">
     <div class="card-body">
-      @if($project->category)
-        <p class="mb-1"><span class="badge bg-secondary">{{ $project->category->name }}</span></p>
+      @if($project->categories && $project->categories->count())
+        <p class="mb-2 d-flex flex-wrap gap-1">
+          @foreach($project->categories as $cat)
+            <span class="badge bg-secondary">{{ $cat->name }}</span>
+          @endforeach
+        </p>
       @endif
 
       @if($project->image_url)

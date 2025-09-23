@@ -11,21 +11,21 @@ class ProjectsController extends Controller
 {
     public function index()
     {
-        $projects = Project::with('category')->latest('id')->paginate(9);
+    $projects = Project::with('categories')->latest('id')->paginate(9);
         $allCategories = Category::orderBy('name')->get();
         return view('guest.index', compact('projects', 'allCategories'));
     }
 
     public function show(Project $project)
     {
-        $project->load('category');
+    $project->load('categories');
         return view('guest.projects.show', compact('project'));
     }
 
     public function byCategory(Category $category)
     {
-        $projects = Project::with('category')
-            ->where('category_id', $category->id)
+        $projects = Project::with('categories')
+            ->whereHas('categories', fn($q) => $q->where('categories.id', $category->id))
             ->latest('id')
             ->paginate(9)
             ->withQueryString();

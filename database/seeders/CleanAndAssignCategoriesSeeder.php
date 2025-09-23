@@ -11,7 +11,7 @@ class CleanAndAssignCategoriesSeeder extends Seeder
     public function run(): void
     {
         $allowed = [
-            'HTML', 'CSS', 'Javascript', 'PHP', 'Laravel', 'React.js', 'Node.js', 'Automazioni n8n',
+            'HTML', 'CSS', 'Javascript', 'PHP', 'Laravel', 'React.js', 'Node.js', 'Automazioni',
         ];
 
         // Mappa nome => id delle categorie consentite
@@ -21,20 +21,31 @@ class CleanAndAssignCategoriesSeeder extends Seeder
             return;
         }
 
-        $ids = $categories->pluck('id')->all();
+        $allowedIds = $categories->pluck('id')->all();
 
-        // Assegna una categoria valida a tutti i progetti senza categoria o con categoria non valida
-        Project::query()
-            ->whereNull('category_id')
-            ->orWhereNotIn('category_id', $ids)
-            ->each(function (Project $p) use ($ids) {
-                $p->category_id = $ids[array_rand($ids)];
-                $p->save();
-            });
+        // Per ogni progetto: rimuovi categorie non consentite, e se non ne rimangono, assegnane 1-3 consentite
+        Project::with('categories')->chunk(100, function ($chunk) use ($allowedIds) {
+            foreach ($chunk as $p) {
+                // Detach non consentite
+                $current = $p->categories->pluck('id')->all();
+                $toDetach = array_diff($current, $allowedIds);
+                if (!empty($toDetach)) {
+                    $p->categories()->detach($toDetach);
+                    $p->unsetRelation('categories');
+                    $p->load('categories');
+                }
+
+                // Se non ha categorie, assegnane alcune consentite
+                if ($p->categories->isEmpty() && !empty($allowedIds)) {
+                    $count = rand(1, min(3, count($allowedIds)));
+                    $pick = $allowedIds;
+                    shuffle($pick);
+                    $p->categories()->sync(array_slice($pick, 0, $count));
+                }
+            }
+        });
 
         // Elimina categorie non consentite (i progetti legati sono già stati riassegnati)
-        Category::query()
-            ->whereNotIn('name', $allowed)
-            ->delete();
+        Category::query()->whereNotIn('name', $allowed)->delete();
     }
 }

@@ -17,7 +17,7 @@
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">{{ $project->title }}</h5>
                         <p class="card-text text-truncate">{{ $project->description }}</p>
-                        <a href="{{ route('projects.show', $project) }}" class="btn btn-sm btn-outline-primary mt-auto">Dettagli</a>
+                        <a href="{{ route('projects.show', $project->slug) }}" class="btn btn-sm btn-outline-primary mt-auto">Dettagli</a>
                     </div>
                 </div>
             </div>

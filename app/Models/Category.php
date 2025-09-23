@@ -13,7 +13,7 @@ class Category extends Model
 
     public function projects()
     {
-        return $this->hasMany(\App\Models\Project::class);
+        return $this->belongsToMany(\App\Models\Project::class);
     }
 
     // Usa lo slug per il model binding implicito nelle route

@@ -14,13 +14,12 @@ class Project extends Model
         'description',
         'image_url',
         'link',
-        'category_id',
         'slug',
     ];
 
-    public function category()
+    public function categories()
     {
-        return $this->belongsTo(\App\Models\Category::class);
+        return $this->belongsToMany(\App\Models\Category::class);
     }
 
     public function getRouteKeyName(): string

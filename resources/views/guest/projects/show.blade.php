@@ -8,12 +8,11 @@
   <div class="card">
     <div class="card-body">
       <h1 class="h3 mb-1">{{ $project->title }}</h1>
-      @if($project->category)
-        <p class="mb-3">
-          <a href="{{ route('projects.byCategory', $project->category) }}"
-             class="badge bg-secondary text-decoration-none">
-            {{ $project->category->name }}
-          </a>
+      @if($project->categories && $project->categories->count())
+        <p class="mb-3 d-flex flex-wrap gap-1">
+          @foreach($project->categories as $cat)
+            <a href="{{ route('projects.byCategory', $cat) }}" class="badge bg-secondary text-decoration-none">{{ $cat->name }}</a>
+          @endforeach
         </p>
       @endif
 

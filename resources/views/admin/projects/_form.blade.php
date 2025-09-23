@@ -30,21 +30,22 @@
 </div>
 
 <div class="mb-3">
-  <label for="category_id" class="form-label">Categoria</label>
-  <select id="category_id" name="category_id" class="form-select @error('category_id') is-invalid @enderror">
-    <option value="">Nessuna</option>
+  <label for="categories" class="form-label">Categorie</label>
+  <select id="categories" name="categories[]" multiple size="6"
+          class="form-select @error('categories') is-invalid @enderror @error('categories.*') is-invalid @enderror">
     @isset($categories)
-      @foreach($categories as $id => $name)
-        <option value="{{ $id }}" @selected(old('category_id', $project->category_id) == $id)>{{ $name }}</option>
+      @php $selected = collect(old('categories', $project->categories->pluck('id')->all() ?? []))->map(fn($v)=>(int)$v)->all(); @endphp
+      @foreach($categories as $cat)
+        <option value="{{ $cat->id }}" @selected(in_array($cat->id, $selected, true))>{{ $cat->name }}</option>
       @endforeach
     @endisset
   </select>
-  @error('category_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
+  @error('categories') <div class="invalid-feedback">{{ $message }}</div> @enderror
+  @error('categories.*') <div class="invalid-feedback">{{ $message }}</div> @enderror
   @if(!isset($categories) || $categories->isEmpty())
     <div class="form-text">Nessuna categoria disponibile. Crea una categoria prima di associarla a un progetto.</div>
-  @endif
-  @if($project->category)
-    <div class="form-text">Categoria attuale: <strong>{{ $project->category?->name }}</strong></div>
+  @else
+    <div class="form-text">Tieni premuto Ctrl (Windows) o Cmd (Mac) per selezione multipla.</div>
   @endif
 </div>
 

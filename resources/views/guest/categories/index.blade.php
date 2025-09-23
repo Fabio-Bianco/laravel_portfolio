@@ -4,7 +4,7 @@
 
 @section('content')
   <div class="d-flex justify-content-between align-items-center mb-3">
-    <h1 class="h3 m-0">Categorie</h1>
+    <h1 class="h3 m-0">Work</h1>
     <a class="btn btn-sm btn-outline-secondary" href="{{ route('home') }}">Torna al portfolio</a>
   </div>
 
