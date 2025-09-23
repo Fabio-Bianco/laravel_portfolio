@@ -23,6 +23,7 @@ class ProjectTableSeeder extends Seeder
             $newProject->title = $faker->sentence(3);
             $newProject->description = $faker->paragraph();
             $newProject->image = 'https://via.placeholder.com/150';
+            
             $newProject->link = $faker->url();
             $newProject->save();
         }
