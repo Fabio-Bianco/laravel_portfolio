@@ -6,11 +6,37 @@
   <div class="admin-projects-page">
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h1 class="h3 m-0">I miei Progetti</h1>
-      <a href="{{ route('admin.projects.create') }}" class="btn btn-primary d-flex align-items-center gap-1">
-        <i class="bi bi-plus-lg"></i>
-        <span class="d-none d-sm-inline">Nuovo progetto</span>
-      </a>
+      <div class="d-flex gap-2">
+        <form action="{{ route('admin.import.github') }}" method="POST" class="d-flex gap-2 align-items-center">
+          @csrf
+          <input type="text" name="username" value="Fabio-Bianco" class="form-control form-control-sm" placeholder="GitHub username" style="width: 170px;">
+          <select name="visibility" class="form-select form-select-sm" style="width: 130px;">
+            <option value="public" selected>public</option>
+            <option value="private">private</option>
+            <option value="all">all</option>
+          </select>
+          <div class="form-check form-check-sm">
+            <input class="form-check-input" type="checkbox" value="1" id="includeForks" name="include_forks">
+            <label class="form-check-label small" for="includeForks">Forks</label>
+          </div>
+          <input type="text" name="topics" class="form-control form-control-sm" placeholder="topics csv" style="width: 160px;">
+          <button class="btn btn-sm btn-outline-secondary" type="submit" title="Import">
+            <i class="bi bi-cloud-download"></i>
+            <span class="d-none d-sm-inline">Import</span>
+          </button>
+        </form>
+        <a href="{{ route('admin.projects.create') }}" class="btn btn-primary d-flex align-items-center gap-1">
+          <i class="bi bi-plus-lg"></i>
+          <span class="d-none d-sm-inline">Nuovo progetto</span>
+        </a>
+      </div>
     </div>
+    @if(session('import_output'))
+      <details class="mb-3">
+        <summary class="small text-muted">Mostra output import</summary>
+        <pre class="small bg-body-tertiary border rounded p-2 mt-2">{{ trim(session('import_output')) }}</pre>
+      </details>
+    @endif
 <div class="container py-4">
   <div class="row g-3">
     @forelse ($projects as $p)

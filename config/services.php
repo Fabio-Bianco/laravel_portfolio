@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    'github' => [
+        // Token personale opzionale per aumentare rate limit o accedere a repo privati
+        'token' => env('GITHUB_TOKEN'),
+    ],
+
 ];

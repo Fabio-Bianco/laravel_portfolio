@@ -11,12 +11,15 @@ class ProjectsController extends Controller
 {
     public function index()
     {
-        $projects = Project::with(['technologies','type'])->latest('id')->paginate(9);
-            // Filtri combinati da querystring: ?technology=slug&type=slug
-            $technologySlug = request('technology');
-            $typeSlug = request('type');
+        // Filtri combinati da querystring: ?technology=slug&type=slug
+        $technologySlug = request('technology');
+        $typeSlug = request('type');
 
-            $query = Project::with(['technologies','type'])->latest('id');
+        $query = Project::with(['technologies','type'])
+            ->orderByDesc('updated_at_github')
+            ->orderByDesc('updated_at')
+            ->orderByDesc('created_at')
+            ->orderByDesc('id');
 
             $currentTechnology = null;
             if ($technologySlug) {
@@ -79,12 +82,15 @@ class ProjectsController extends Controller
     {
         $projects = Project::with(['technologies','type'])
             ->whereHas('technologies', fn($q) => $q->where('technologies.id', $technology->id))
-            ->latest('id')
+            ->orderByDesc('updated_at_github')
+            ->orderByDesc('updated_at')
+            ->orderByDesc('created_at')
+            ->orderByDesc('id')
             ->paginate(9)
             ->withQueryString();
 
         $allTechnologies = Technology::orderBy('name')->get();
-        $allTypes = Type::orderBy('name')->get();
+        $allTypes = Type::orderBy('sort_order')->orderBy('name')->get();
         return view('guest.index', [
             'projects' => $projects,
             'currentTechnology' => $technology,
@@ -106,12 +112,15 @@ class ProjectsController extends Controller
     {
         $projects = Project::with(['technologies','type'])
             ->where('type_id', $type->id)
-            ->latest('id')
+            ->orderByDesc('updated_at_github')
+            ->orderByDesc('updated_at')
+            ->orderByDesc('created_at')
+            ->orderByDesc('id')
             ->paginate(9)
             ->withQueryString();
 
         $allTechnologies = Technology::orderBy('name')->get();
-        $allTypes = Type::orderBy('name')->get();
+        $allTypes = Type::orderBy('sort_order')->orderBy('name')->get();
         return view('guest.index', [
             'projects' => $projects,
             'currentType' => $type,

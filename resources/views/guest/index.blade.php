@@ -96,6 +96,22 @@
                 <span class="desc-short line-clamp-2">{{ $p->description }}</span>
                 <span id="desc-{{ $p->id }}" class="desc-full d-none">{{ $p->description }}</span>
               </p>
+              @if(!is_null($p->stargazers_count) || !is_null($p->forks_count) || !is_null($p->watchers_count) || !is_null($p->updated_at_github))
+                <div class="mb-2 d-flex gap-2 align-items-center text-muted small">
+                  @if(!is_null($p->stargazers_count))
+                    <span title="Stars"><i class="bi bi-star-fill text-warning"></i> {{ $p->stargazers_count }}</span>
+                  @endif
+                  @if(!is_null($p->forks_count))
+                    <span title="Forks"><i class="bi bi-git"></i> {{ $p->forks_count }}</span>
+                  @endif
+                  @if(!is_null($p->watchers_count))
+                    <span title="Watchers"><i class="bi bi-eye"></i> {{ $p->watchers_count }}</span>
+                  @endif
+                  @if(!is_null($p->updated_at_github))
+                    <span class="ms-auto" title="Last updated">Aggiornato {{ $p->updated_at_github->diffForHumans() }}</span>
+                  @endif
+                </div>
+              @endif
               <div class="mt-auto d-flex gap-2 justify-content-end">
                 <a class="btn btn-sm btn-outline-primary" href="{{ route('projects.show', $p->slug) }}">Vedi</a>
                 @if($p->link)

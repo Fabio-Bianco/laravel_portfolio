@@ -14,8 +14,21 @@ class Project extends Model
         'description',
         'image_url',
         'link',
+        'github_url',
+        'demo_url',
         'slug',
         'type_id',
+        'stargazers_count',
+        'forks_count',
+        'watchers_count',
+        'updated_at_github',
+    ];
+
+    protected $casts = [
+        'updated_at_github' => 'datetime',
+        'stargazers_count' => 'integer',
+        'forks_count' => 'integer',
+        'watchers_count' => 'integer',
     ];
 
     

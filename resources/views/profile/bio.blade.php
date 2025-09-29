@@ -5,8 +5,7 @@
 @section('content')
 <div class="container py-4">
   <h1 class="h3 mb-4">Il mio profilo</h1>
-  @include('partials.bio-offcanvas')
-  <p class="text-muted">Clicca l’icona in basso per aprire l’offcanvas e modificare rapidamente i tuoi dati.</p>
+  <p class="text-muted">Clicca l’icona in basso a sinistra per aprire l’offcanvas e modificare rapidamente i tuoi dati.</p>
   <div class="card">
     <div class="card-body">
       <div class="mb-2"><strong>Nome:</strong> {{ $user->name }}</div>

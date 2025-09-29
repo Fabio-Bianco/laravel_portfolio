@@ -39,6 +39,24 @@
           @endif
         </dd>
 
+        <dt class="col-sm-3">GitHub</dt>
+        <dd class="col-sm-9">
+          @if($project->github_url)
+            <a href="{{ $project->github_url }}" target="_blank" rel="noopener">{{ $project->github_url }}</a>
+          @else
+            <span class="text-muted">—</span>
+          @endif
+        </dd>
+
+        <dt class="col-sm-3">Demo</dt>
+        <dd class="col-sm-9">
+          @if($project->demo_url)
+            <a href="{{ $project->demo_url }}" target="_blank" rel="noopener">{{ $project->demo_url }}</a>
+          @else
+            <span class="text-muted">—</span>
+          @endif
+        </dd>
+
         <dt class="col-sm-3">Descrizione</dt>
         <dd class="col-sm-9">{!! nl2br(e($project->description)) ?: '<span class="text-muted">—</span>' !!}</dd>
       </dl>

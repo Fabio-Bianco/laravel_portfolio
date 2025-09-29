@@ -38,12 +38,14 @@ Route::middleware(['auth', 'is_admin'])
         Route::resource('projects', ProjectController::class);
         Route::resource('technologies', TechnologyController::class);
         Route::resource('types', TypeController::class);
+        Route::post('import-github', [\App\Http\Controllers\Admin\ImportController::class, 'importGithub'])->name('import.github');
     });
 
 // -------------------- PROFILO (loggati) --------------------
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // Bio Offcanvas/Page
     Route::get('/bio', [ProfileBioController::class, 'show'])->name('bio.show');
@@ -52,3 +54,8 @@ Route::middleware('auth')->group(function () {
 
 // -------------------- AUTH --------------------
 require __DIR__.'/auth.php';
+
+// -------------------- DASHBOARD (per i test Breeze) --------------------
+Route::middleware('auth')->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');

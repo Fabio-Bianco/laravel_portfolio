@@ -18,17 +18,14 @@
 </button>
 
 <div class="offcanvas offcanvas-start" tabindex="-1" id="bioOffcanvas" aria-labelledby="bioOffcanvasLabel"
-  data-bs-backdrop="false" data-bs-keyboard="false" data-bs-scroll="true">
+  data-bs-backdrop="false" data-bs-keyboard="true" data-bs-scroll="true">
   <div class="offcanvas-header">
     <h5 class="offcanvas-title" id="bioOffcanvasLabel">Dati personali</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Chiudi"></button>
   </div>
 
   <div class="offcanvas-body">
     @auth
-      @if (session('status'))
-        <div class="alert alert-success">{{ session('status') }}</div>
-      @endif
-
       <form method="POST" action="{{ route('bio.update') }}" class="vstack gap-3">
         @csrf
         @method('PATCH')

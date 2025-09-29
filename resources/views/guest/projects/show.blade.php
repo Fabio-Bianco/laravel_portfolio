@@ -25,9 +25,36 @@
 
       <p class="mb-3">{{ $project->description }}</p>
 
-      @if($project->link)
-        <a href="{{ $project->link }}" class="btn btn-primary" target="_blank" rel="noopener">Visita il progetto</a>
+      @if(!is_null($project->stargazers_count) || !is_null($project->forks_count) || !is_null($project->watchers_count) || !is_null($project->updated_at_github))
+        <p class="mb-3 text-muted small d-flex gap-3 align-items-center">
+          @if(!is_null($project->stargazers_count))
+            <span title="Stars"><i class="bi bi-star-fill text-warning"></i> {{ $project->stargazers_count }}</span>
+          @endif
+          @if(!is_null($project->forks_count))
+            <span title="Forks"><i class="bi bi-git"></i> {{ $project->forks_count }}</span>
+          @endif
+          @if(!is_null($project->watchers_count))
+            <span title="Watchers"><i class="bi bi-eye"></i> {{ $project->watchers_count }}</span>
+          @endif
+          @if(!is_null($project->updated_at_github))
+            <span class="ms-auto" title="Last updated">Aggiornato {{ $project->updated_at_github->diffForHumans() }}</span>
+          @endif
+        </p>
       @endif
+
+      <div class="d-flex flex-wrap gap-2">
+        @if($project->link)
+          <a href="{{ $project->link }}" class="btn btn-primary" target="_blank" rel="noopener">Visita il progetto</a>
+        @endif
+        @if($project->github_url)
+          <a href="{{ $project->github_url }}" class="btn btn-outline-dark" target="_blank" rel="noopener">
+            <i class="bi bi-github me-1"></i> Codice su GitHub
+          </a>
+        @endif
+        @if($project->demo_url)
+          <a href="{{ $project->demo_url }}" class="btn btn-outline-secondary" target="_blank" rel="noopener">Demo</a>
+        @endif
+      </div>
     </div>
   </div>
 @endsection

@@ -84,6 +84,8 @@ class ProjectController extends Controller
             'description' => ['nullable', 'string'],
             'image_url'   => ['nullable', 'url', 'max:255'],
             'link'        => ['nullable', 'url', 'max:255'],
+            'github_url'  => ['nullable', 'url', 'max:255'],
+            'demo_url'    => ['nullable', 'url', 'max:255'],
             'type_id'     => ['nullable', 'integer', 'exists:types,id'],
             'technologies'   => ['nullable', 'array'],
             'technologies.*' => ['integer', 'exists:technologies,id'],
@@ -91,6 +93,8 @@ class ProjectController extends Controller
             'title.required' => 'Il titolo è obbligatorio.',
             'image_url.url'  => "Inserisci un URL valido per l'immagine.",
             'link.url'       => 'Inserisci un URL valido per il link esterno.',
+            'github_url.url' => 'Inserisci un URL valido per il repository GitHub.',
+            'demo_url.url'   => 'Inserisci un URL valido per la demo pubblica.',
             'type_id.exists' => 'Il tipo selezionato non è valido.',
             'technologies.*.exists' => 'Una delle tecnologie selezionate non è valida.',
         ]);
