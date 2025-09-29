@@ -25,13 +25,20 @@
           @isset($allTechnologies)
             <div class="col-12">
               <div class="d-flex align-items-center gap-2 flex-wrap">
-                <strong class="text-muted">Tecnologie:</strong>
-                <a href="{{ route('home') }}" class="badge rounded-pill {{ !isset($currentTechnology) ? 'bg-secondary' : 'bg-light text-dark' }} text-decoration-none">Tutte</a>
+                      <strong class="text-muted">Tecnologie:</strong>
+                      <a href="{{ route('home', array_filter(['type' => isset($currentType)?$currentType->slug:null])) }}" class="badge rounded-pill {{ !isset($currentTechnology) ? 'bg-secondary' : 'bg-light text-dark' }} text-decoration-none">Tutte
+                        @isset($technologyCounts)
+                          <span class="ms-1 badge bg-light text-dark">{{ $technologyCounts->sum() }}</span>
+                        @endisset
+                      </a>
                 @foreach($allTechnologies as $tech)
-                  <a href="{{ route('projects.byTechnology', $tech) }}"
-                     class="badge rounded-pill {{ (isset($currentTechnology) && $currentTechnology->id === $tech->id) ? 'bg-secondary' : 'bg-light text-dark' }} text-decoration-none">
-                    {{ $tech->name }}
-                  </a>
+                      <a href="{{ route('home', array_filter(['technology' => $tech->slug, 'type' => isset($currentType)?$currentType->slug:null])) }}"
+                         class="badge rounded-pill {{ (isset($currentTechnology) && $currentTechnology->id === $tech->id) ? 'bg-secondary' : 'bg-light text-dark' }} text-decoration-none">
+                        {{ $tech->name }}
+                        @isset($technologyCounts)
+                          <span class="ms-1 badge bg-light text-dark">{{ $technologyCounts[$tech->id] ?? 0 }}</span>
+                        @endisset
+                      </a>
                 @endforeach
               </div>
             </div>
@@ -40,12 +47,20 @@
             <div class="col-12">
               <div class="d-flex align-items-center gap-2 flex-wrap">
                 <strong class="text-muted">Tipi:</strong>
-                <a href="{{ route('home') }}" class="badge rounded-pill {{ !isset($currentType) ? 'bg-secondary' : 'bg-light text-dark' }} text-decoration-none">Tutti</a>
+                      <a href="{{ route('home', array_filter(['technology' => isset($currentTechnology)?$currentTechnology->slug:null])) }}" class="badge rounded-pill {{ !isset($currentType) ? 'bg-secondary' : 'bg-light text-dark' }} text-decoration-none">
+                        Tutti
+                        @isset($typeCounts)
+                          <span class="ms-1 badge bg-light text-dark">{{ $typeCounts->sum() }}</span>
+                        @endisset
+                      </a>
                 @foreach($allTypes as $t)
-                  <a href="{{ route('projects.byType', $t) }}"
-                     class="badge rounded-pill {{ (isset($currentType) && $currentType->id === $t->id) ? 'bg-secondary' : 'bg-light text-dark' }} text-decoration-none">
-                    {{ $t->name }}
-                  </a>
+                      <a href="{{ route('home', array_filter(['type' => $t->slug, 'technology' => isset($currentTechnology)?$currentTechnology->slug:null])) }}"
+                         class="badge rounded-pill {{ (isset($currentType) && $currentType->id === $t->id) ? 'bg-secondary' : 'bg-light text-dark' }} text-decoration-none">
+                        {{ $t->name }}
+                        @isset($typeCounts)
+                          <span class="ms-1 badge bg-light text-dark">{{ $typeCounts[$t->id] ?? 0 }}</span>
+                        @endisset
+                      </a>
                 @endforeach
               </div>
             </div>

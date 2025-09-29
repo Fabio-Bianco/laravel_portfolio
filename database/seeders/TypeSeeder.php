@@ -10,11 +10,16 @@ class TypeSeeder extends Seeder
 {
     public function run(): void
     {
-        $names = ['Frontend', 'Backend', 'Automazioni'];
-        foreach ($names as $name) {
-            Type::firstOrCreate(
-                ['name' => $name],
-                ['slug' => Str::slug($name)]
+        $ordered = [
+            ['name' => 'Frontend', 'sort_order' => 1],
+            ['name' => 'Backend',   'sort_order' => 2],
+            ['name' => 'Automazioni','sort_order' => 3],
+        ];
+
+        foreach ($ordered as $row) {
+            Type::updateOrCreate(
+                ['name' => $row['name']],
+                ['slug' => Str::slug($row['name']), 'sort_order' => $row['sort_order']]
             );
         }
     }

@@ -12,13 +12,61 @@ class ProjectsController extends Controller
     public function index()
     {
         $projects = Project::with(['technologies','type'])->latest('id')->paginate(9);
-        $allTechnologies = Technology::orderBy('name')->get();
-        $allTypes = Type::orderBy('name')->get();
-        return view('guest.index', [
-            'projects' => $projects,
-            'allTechnologies' => $allTechnologies,
-            'allTypes' => $allTypes,
-        ]);
+            // Filtri combinati da querystring: ?technology=slug&type=slug
+            $technologySlug = request('technology');
+            $typeSlug = request('type');
+
+            $query = Project::with(['technologies','type'])->latest('id');
+
+            $currentTechnology = null;
+            if ($technologySlug) {
+                $currentTechnology = Technology::where('slug', $technologySlug)->first();
+                if ($currentTechnology) {
+                    $query->whereHas('technologies', fn($q) => $q->where('technologies.id', $currentTechnology->id));
+                }
+            }
+
+            $currentType = null;
+            if ($typeSlug) {
+                $currentType = Type::where('slug', $typeSlug)->first();
+                if ($currentType) {
+                    $query->where('type_id', $currentType->id);
+                }
+            }
+
+            $projects = $query->paginate(9)->withQueryString();
+
+            // Liste ordinate e conteggi
+            $allTechnologies = Technology::orderBy('name')->get();
+            $allTypes = Type::orderBy('sort_order')->orderBy('name')->get();
+
+            // Contatori: numero progetti per ciascun filtro, rispettando l'altro filtro se presente
+            $technologyCounts = collect();
+            foreach ($allTechnologies as $tech) {
+                $countQ = Project::query();
+                if ($currentType) $countQ->where('type_id', $currentType->id);
+                $count = $countQ->whereHas('technologies', fn($q)=>$q->where('technologies.id',$tech->id))->count();
+                $technologyCounts->put($tech->id, $count);
+            }
+
+            $typeCounts = collect();
+            foreach ($allTypes as $t) {
+                $countQ = Project::query()->where('type_id', $t->id);
+                if ($currentTechnology) {
+                    $countQ->whereHas('technologies', fn($q)=>$q->where('technologies.id', $currentTechnology->id));
+                }
+                $typeCounts->put($t->id, $countQ->count());
+            }
+
+            return view('guest.index', [
+                'projects' => $projects,
+                'allTechnologies' => $allTechnologies,
+                'allTypes' => $allTypes,
+                'currentTechnology' => $currentTechnology,
+                'currentType' => $currentType,
+                'technologyCounts' => $technologyCounts,
+                'typeCounts' => $typeCounts,
+            ]);
     }
 
     public function show(Project $project)

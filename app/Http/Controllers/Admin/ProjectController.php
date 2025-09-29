@@ -19,7 +19,7 @@ class ProjectController extends Controller
     public function create()
     {
         $project = new Project();
-        $types = Type::orderBy('name')->get();
+    $types = Type::orderBy('sort_order')->orderBy('name')->get();
         $technologies = Technology::orderBy('name')->get();
     return view('admin.projects.create', compact('project', 'types', 'technologies'));
     }
@@ -48,7 +48,7 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
     $project->load(['technologies']);
-        $types = Type::orderBy('name')->get();
+    $types = Type::orderBy('sort_order')->orderBy('name')->get();
         $technologies = Technology::orderBy('name')->get();
     return view('admin.projects.edit', compact('project', 'types', 'technologies'));
     }

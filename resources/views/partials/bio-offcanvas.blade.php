@@ -6,7 +6,10 @@
   class="btn btn-primary position-fixed bio-fab"
   id="openBioOffcanvasBtn"
   type="button"
+  data-bs-toggle="offcanvas"
+  data-bs-target="#bioOffcanvas"
   aria-controls="bioOffcanvas"
+  aria-expanded="false"
   title="Dati personali"
 >
   <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
