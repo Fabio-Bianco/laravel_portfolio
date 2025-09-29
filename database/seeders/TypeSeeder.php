@@ -10,7 +10,7 @@ class TypeSeeder extends Seeder
 {
     public function run(): void
     {
-        $names = ['Web App', 'Library', 'CLI', 'API'];
+        $names = ['Frontend', 'Backend', 'Automazioni'];
         foreach ($names as $name) {
             Type::firstOrCreate(
                 ['name' => $name],

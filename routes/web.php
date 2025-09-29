@@ -8,6 +8,7 @@ use App\Http\Controllers\Guest\ProjectsController;
 use App\Http\Controllers\Admin\TechnologyController;
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\ProfileBioController;
+use App\Models\Type;
 
 // -------------------- GUEST --------------------
 // Splash: pagina iniziale
@@ -22,6 +23,8 @@ Route::get('/', function () {
 Route::get('/portfolio', [ProjectsController::class, 'index'])->name('home');
 // Filtro per tecnologia (guest) con model binding sullo slug
 Route::get('/portfolio/technology/{technology:slug}', [ProjectsController::class, 'byTechnology'])->name('projects.byTechnology');
+// Filtro per tipo (guest) con model binding sullo slug
+Route::get('/portfolio/type/{type:slug}', [ProjectsController::class, 'byType'])->name('projects.byType');
 
 
 // Dettaglio progetto: ora via slug

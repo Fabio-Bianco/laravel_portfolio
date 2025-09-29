@@ -6,35 +6,53 @@
   <div class="portfolio-page">
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h1 class="h3 m-0">
-        @isset($currentTechnology)
+        @if(isset($currentTechnology))
           Tecnologia: {{ $currentTechnology->name }}
+        @elseif(isset($currentType))
+          Tipo: {{ $currentType->name }}
         @else
           I miei progetti
-        @endisset
+        @endif
       </h1>
-      @isset($currentTechnology)
-        <a class="btn btn-sm btn-outline-secondary" href="{{ route('home') }}">Tutte le tecnologie</a>
-      @endisset
+      @if(isset($currentTechnology) || isset($currentType))
+        <a class="btn btn-sm btn-outline-secondary" href="{{ route('home') }}">Tutti i progetti</a>
+      @endif
     </div>
 
-    @isset($allTechnologies)
+    @if(isset($allTechnologies) || isset($allTypes))
       <div class="mb-3">
-        <ul class="nav nav-pills flex-wrap gap-2">
-          <li class="nav-item">
-            <a href="{{ route('home') }}"
-               class="nav-link {{ !isset($currentTechnology) ? 'active' : '' }}">Tutte</a>
-          </li>
-          @foreach($allTechnologies as $tech)
-            <li class="nav-item">
-              <a href="{{ route('projects.byTechnology', $tech) }}"
-                 class="nav-link {{ (isset($currentTechnology) && $currentTechnology->id === $tech->id) ? 'active' : '' }}">
-                {{ $tech->name }}
-              </a>
-            </li>
-          @endforeach
-        </ul>
+        <div class="row g-2">
+          @isset($allTechnologies)
+            <div class="col-12">
+              <div class="d-flex align-items-center gap-2 flex-wrap">
+                <strong class="text-muted">Tecnologie:</strong>
+                <a href="{{ route('home') }}" class="badge rounded-pill {{ !isset($currentTechnology) ? 'bg-secondary' : 'bg-light text-dark' }} text-decoration-none">Tutte</a>
+                @foreach($allTechnologies as $tech)
+                  <a href="{{ route('projects.byTechnology', $tech) }}"
+                     class="badge rounded-pill {{ (isset($currentTechnology) && $currentTechnology->id === $tech->id) ? 'bg-secondary' : 'bg-light text-dark' }} text-decoration-none">
+                    {{ $tech->name }}
+                  </a>
+                @endforeach
+              </div>
+            </div>
+          @endisset
+          @isset($allTypes)
+            <div class="col-12">
+              <div class="d-flex align-items-center gap-2 flex-wrap">
+                <strong class="text-muted">Tipi:</strong>
+                <a href="{{ route('home') }}" class="badge rounded-pill {{ !isset($currentType) ? 'bg-secondary' : 'bg-light text-dark' }} text-decoration-none">Tutti</a>
+                @foreach($allTypes as $t)
+                  <a href="{{ route('projects.byType', $t) }}"
+                     class="badge rounded-pill {{ (isset($currentType) && $currentType->id === $t->id) ? 'bg-secondary' : 'bg-light text-dark' }} text-decoration-none">
+                    {{ $t->name }}
+                  </a>
+                @endforeach
+              </div>
+            </div>
+          @endisset
+        </div>
       </div>
-    @endisset
+    @endif
 
     <div class="row g-3">
       @forelse($projects as $p)
@@ -51,6 +69,11 @@
                   @foreach($p->technologies as $tech)
                     <a href="{{ route('projects.byTechnology', $tech) }}" class="badge bg-info text-dark text-decoration-none">{{ $tech->name }}</a>
                   @endforeach
+                </div>
+              @endif
+              @if($p->type)
+                <div class="mb-2">
+                  <a href="{{ route('projects.byType', $p->type) }}" class="badge bg-primary text-decoration-none">{{ $p->type->name }}</a>
                 </div>
               @endif
               <h2 class="h5 card-title">{{ $p->title }}</h2>
