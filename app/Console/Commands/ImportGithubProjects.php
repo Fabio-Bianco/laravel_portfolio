@@ -93,9 +93,25 @@ class ImportGithubProjects extends Command
                     if (!$match) continue;
                 }
 
-                // Mappa language/topic -> Technology
+                // Mappa language/topic -> Technology, con euristiche anche su nome/descrizione
                 $techNames = collect($topics);
                 if ($language) $techNames = $techNames->prepend($language);
+
+                // Euristica: deduci tecnologie dal nome/descrizione repo
+                $nameDesc = Str::of(($title ?? '').' '.($description ?? ''))->lower()->toString();
+                $nameHints = collect();
+                if (Str::contains($nameDesc, 'react-native')) {
+                    $nameHints->push('react-native');
+                }
+                if (Str::contains($nameDesc, 'react')) {
+                    $nameHints->push('react');
+                }
+                if (Str::contains($nameDesc, ['nextjs','next.js',' next '])) {
+                    $nameHints->push('nextjs');
+                }
+                if ($nameHints->isNotEmpty()) {
+                    $techNames = $techNames->merge($nameHints);
+                }
                 $normalizedTechNames = $techNames
                     ->map(fn($n)=>Str::of($n)->trim()->lower())
                     ->map(function ($n) {
@@ -116,6 +132,14 @@ class ImportGithubProjects extends Command
                             'vuejs' => 'Vue.js',
                             'vue.js' => 'Vue.js',
                             'react' => 'React',
+                            'reactjs' => 'React',
+                            'react.js' => 'React',
+                            'react-native' => 'React Native',
+                            'reactnative' => 'React Native',
+                            'next' => 'Next.js',
+                            'nextjs' => 'Next.js',
+                            'next.js' => 'Next.js',
+                            'vitejs' => 'Vite',
                             'laravel' => 'Laravel',
                             'express' => 'Express',
                             'expressjs' => 'Express',
