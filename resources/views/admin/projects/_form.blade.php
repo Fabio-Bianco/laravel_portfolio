@@ -7,6 +7,26 @@
 </div>
 
 <div class="mb-3">
+  <label for="technologies" class="form-label">Tecnologie</label>
+  <select id="technologies" name="technologies[]" multiple size="6"
+          class="form-select @error('technologies') is-invalid @enderror @error('technologies.*') is-invalid @enderror">
+    @isset($technologies)
+      @php $techSelected = collect(old('technologies', $project->technologies->pluck('id')->all() ?? []))->map(fn($v)=>(int)$v)->all(); @endphp
+      @foreach($technologies as $tech)
+        <option value="{{ $tech->id }}" @selected(in_array($tech->id, $techSelected, true))>{{ $tech->name }}</option>
+      @endforeach
+    @endisset
+  </select>
+  @error('technologies') <div class="invalid-feedback">{{ $message }}</div> @enderror
+  @error('technologies.*') <div class="invalid-feedback">{{ $message }}</div> @enderror
+  @if(!isset($technologies) || $technologies->isEmpty())
+    <div class="form-text">Nessuna tecnologia disponibile. Crea una tecnologia prima di associarla a un progetto.</div>
+  @else
+    <div class="form-text">Tieni premuto Ctrl (Windows) o Cmd (Mac) per selezione multipla.</div>
+  @endif
+</div>
+
+<div class="mb-3">
   <label for="description" class="form-label">Descrizione</label>
   <textarea id="description" name="description" rows="5"
             class="form-control @error('description') is-invalid @enderror">{{ old('description', $project->description) }}</textarea>
@@ -30,24 +50,19 @@
 </div>
 
 <div class="mb-3">
-  <label for="categories" class="form-label">Categorie</label>
-  <select id="categories" name="categories[]" multiple size="6"
-          class="form-select @error('categories') is-invalid @enderror @error('categories.*') is-invalid @enderror">
-    @isset($categories)
-      @php $selected = collect(old('categories', $project->categories->pluck('id')->all() ?? []))->map(fn($v)=>(int)$v)->all(); @endphp
-      @foreach($categories as $cat)
-        <option value="{{ $cat->id }}" @selected(in_array($cat->id, $selected, true))>{{ $cat->name }}</option>
+  <label for="type_id" class="form-label">Tipo</label>
+  <select id="type_id" name="type_id" class="form-select @error('type_id') is-invalid @enderror">
+    <option value="">-- Nessun tipo --</option>
+    @isset($types)
+      @foreach($types as $t)
+        <option value="{{ $t->id }}" @selected((int)old('type_id', $project->type_id) === $t->id)>{{ $t->name }}</option>
       @endforeach
     @endisset
   </select>
-  @error('categories') <div class="invalid-feedback">{{ $message }}</div> @enderror
-  @error('categories.*') <div class="invalid-feedback">{{ $message }}</div> @enderror
-  @if(!isset($categories) || $categories->isEmpty())
-    <div class="form-text">Nessuna categoria disponibile. Crea una categoria prima di associarla a un progetto.</div>
-  @else
-    <div class="form-text">Tieni premuto Ctrl (Windows) o Cmd (Mac) per selezione multipla.</div>
-  @endif
+  @error('type_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
 </div>
+
+ 
 
 <div class="d-flex gap-2">
   <button class="btn btn-primary" type="submit">Salva</button>

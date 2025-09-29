@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
-use App\Models\Category;
+use App\Models\Type;
+use App\Models\Technology;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -18,19 +19,20 @@ class ProjectController extends Controller
     public function create()
     {
         $project = new Project();
-        $categories = Category::orderBy('name')->get();
-        return view('admin.projects.create', compact('project', 'categories'));
+        $types = Type::orderBy('name')->get();
+        $technologies = Technology::orderBy('name')->get();
+    return view('admin.projects.create', compact('project', 'types', 'technologies'));
     }
 
     public function store(Request $request)
     {
         $data = $this->validateData($request);
-        $categoryIds = collect($data['categories'] ?? [])->filter()->all();
-        unset($data['categories']);
+        $technologyIds = collect($data['technologies'] ?? [])->filter()->all();
+        unset($data['technologies']);
 
         $project = Project::create($data);
-        if (!empty($categoryIds)) {
-            $project->categories()->sync($categoryIds);
+        if (!empty($technologyIds)) {
+            $project->technologies()->sync($technologyIds);
         }
 
         return redirect()
@@ -45,19 +47,20 @@ class ProjectController extends Controller
 
     public function edit(Project $project)
     {
-        $project->load('categories');
-        $categories = Category::orderBy('name')->get();
-        return view('admin.projects.edit', compact('project', 'categories'));
+    $project->load(['technologies']);
+        $types = Type::orderBy('name')->get();
+        $technologies = Technology::orderBy('name')->get();
+    return view('admin.projects.edit', compact('project', 'types', 'technologies'));
     }
 
     public function update(Request $request, Project $project)
     {
         $data = $this->validateData($request);
-        $categoryIds = collect($data['categories'] ?? [])->filter()->all();
-        unset($data['categories']);
+        $technologyIds = collect($data['technologies'] ?? [])->filter()->all();
+        unset($data['technologies']);
 
         $project->update($data);
-        $project->categories()->sync($categoryIds);
+        $project->technologies()->sync($technologyIds);
 
         return redirect()
             ->route('admin.projects.index')
@@ -81,13 +84,15 @@ class ProjectController extends Controller
             'description' => ['nullable', 'string'],
             'image_url'   => ['nullable', 'url', 'max:255'],
             'link'        => ['nullable', 'url', 'max:255'],
-            'categories'   => ['nullable', 'array'],
-            'categories.*' => ['integer', 'exists:categories,id'],
+            'type_id'     => ['nullable', 'integer', 'exists:types,id'],
+            'technologies'   => ['nullable', 'array'],
+            'technologies.*' => ['integer', 'exists:technologies,id'],
         ], [
             'title.required' => 'Il titolo è obbligatorio.',
             'image_url.url'  => "Inserisci un URL valido per l'immagine.",
             'link.url'       => 'Inserisci un URL valido per il link esterno.',
-            'categories.*.exists' => 'Una delle categorie selezionate non è valida.',
+            'type_id.exists' => 'Il tipo selezionato non è valido.',
+            'technologies.*.exists' => 'Una delle tecnologie selezionate non è valida.',
         ]);
     }
 }

@@ -13,10 +13,14 @@
 
   <div class="card">
     <div class="card-body">
-      @if($project->categories && $project->categories->count())
+      @if($project->type)
+        <p class="mb-2"><span class="badge bg-primary">Tipo: {{ $project->type->name }}</span></p>
+      @endif
+      
+      @if($project->technologies && $project->technologies->count())
         <p class="mb-2 d-flex flex-wrap gap-1">
-          @foreach($project->categories as $cat)
-            <span class="badge bg-secondary">{{ $cat->name }}</span>
+          @foreach($project->technologies as $tech)
+            <span class="badge bg-info text-dark">{{ $tech->name }}</span>
           @endforeach
         </p>
       @endif

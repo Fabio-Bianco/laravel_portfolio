@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Guest\ProjectsController;
-use App\Http\Controllers\Guest\CategoriesController;
+// use App\Http\Controllers\Guest\CategoriesController; // legacy rimosso
+use App\Http\Controllers\Admin\TechnologyController;
+use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\ProfileBioController;
 
 // -------------------- GUEST --------------------
@@ -18,10 +20,8 @@ Route::get('/', function () {
 
 // Home: vetrina progetti (spostata su /portfolio ma mantiene il name 'home')
 Route::get('/portfolio', [ProjectsController::class, 'index'])->name('home');
-// Pagina elenco categorie
-Route::get('/categories', [CategoriesController::class, 'index'])->name('categories.index');
-// Filtro per categoria (guest) via slug stringa, con redirect 301 da slug storici
-Route::get('/portfolio/category/{slug}', [ProjectsController::class, 'byCategorySlug'])->name('projects.byCategory');
+// Filtro per tecnologia (guest) con model binding sullo slug
+Route::get('/portfolio/technology/{technology:slug}', [ProjectsController::class, 'byTechnology'])->name('projects.byTechnology');
 
 
 // Dettaglio progetto: ora via slug
@@ -33,6 +33,8 @@ Route::middleware(['auth', 'is_admin'])
     ->group(function () {
         Route::get('/', fn () => to_route('admin.projects.index'))->name('dashboard');
         Route::resource('projects', ProjectController::class);
+        Route::resource('technologies', TechnologyController::class);
+        Route::resource('types', TypeController::class);
     });
 
 // -------------------- PROFILO (loggati) --------------------

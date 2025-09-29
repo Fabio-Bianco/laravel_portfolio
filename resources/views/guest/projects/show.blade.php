@@ -8,10 +8,13 @@
   <div class="card">
     <div class="card-body">
       <h1 class="h3 mb-1">{{ $project->title }}</h1>
-      @if($project->categories && $project->categories->count())
+      @if($project->type)
+        <p class="mb-2"><span class="badge bg-primary">Tipo: {{ $project->type->name }}</span></p>
+      @endif
+      @if($project->technologies && $project->technologies->count())
         <p class="mb-3 d-flex flex-wrap gap-1">
-          @foreach($project->categories as $cat)
-            <a href="{{ route('projects.byCategory', $cat) }}" class="badge bg-secondary text-decoration-none">{{ $cat->name }}</a>
+          @foreach($project->technologies as $tech)
+            <a href="{{ route('projects.byTechnology', $tech) }}" class="badge bg-info text-dark text-decoration-none">{{ $tech->name }}</a>
           @endforeach
         </p>
       @endif

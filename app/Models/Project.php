@@ -15,11 +15,19 @@ class Project extends Model
         'image_url',
         'link',
         'slug',
+        'type_id',
     ];
 
-    public function categories()
+    
+
+    public function type()
     {
-        return $this->belongsToMany(\App\Models\Category::class);
+        return $this->belongsTo(\App\Models\Type::class);
+    }
+
+    public function technologies()
+    {
+        return $this->belongsToMany(\App\Models\Technology::class);
     }
 
     public function getRouteKeyName(): string

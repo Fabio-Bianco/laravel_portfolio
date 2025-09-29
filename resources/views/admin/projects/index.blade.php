@@ -43,10 +43,13 @@
                   </p>
                 @endif
 
-                @if($p->categories && $p->categories->count())
+                @if($p->type)
+                  <div class="mb-2"><span class="badge bg-primary">{{ $p->type->name }}</span></div>
+                @endif
+                @if($p->technologies && $p->technologies->count())
                   <div class="d-flex gap-1 flex-wrap mb-2">
-                    @foreach($p->categories as $cat)
-                      <span class="badge bg-secondary">{{ $cat->name }}</span>
+                    @foreach($p->technologies as $tech)
+                      <span class="badge bg-info text-dark">{{ $tech->name }}</span>
                     @endforeach
                   </div>
                 @endif

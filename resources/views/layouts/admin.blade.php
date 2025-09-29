@@ -17,7 +17,11 @@
       <div class="collapse navbar-collapse" id="adminNav">
         <ul class="navbar-nav ms-auto align-items-lg-center gap-2">
           <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Portfolio pubblico</a></li>
-          <li class="nav-item"><a class="nav-link" href="{{ route('admin.projects.index') }}">Gestisci</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ route('admin.projects.index') }}">Progetti</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ route('admin.technologies.index') }}">Tecnologie</a></li>
+          @if(Route::has('admin.types.index'))
+          <li class="nav-item"><a class="nav-link" href="{{ route('admin.types.index') }}">Tipi</a></li>
+          @endif
           <li class="nav-item"><a class="nav-link" href="{{ route('profile.show') }}">Profilo</a></li>
           <li class="nav-item d-flex align-items-center">@include('partials.theme-toggle')</li>
           <li class="nav-item">

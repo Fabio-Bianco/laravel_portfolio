@@ -6,29 +6,29 @@
   <div class="portfolio-page">
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h1 class="h3 m-0">
-        @isset($currentCategory)
-          Categoria: {{ $currentCategory->name }}
+        @isset($currentTechnology)
+          Tecnologia: {{ $currentTechnology->name }}
         @else
           I miei progetti
         @endisset
       </h1>
-      @isset($currentCategory)
-        <a class="btn btn-sm btn-outline-secondary" href="{{ route('home') }}">Tutte le categorie</a>
+      @isset($currentTechnology)
+        <a class="btn btn-sm btn-outline-secondary" href="{{ route('home') }}">Tutte le tecnologie</a>
       @endisset
     </div>
 
-    @isset($allCategories)
+    @isset($allTechnologies)
       <div class="mb-3">
         <ul class="nav nav-pills flex-wrap gap-2">
           <li class="nav-item">
             <a href="{{ route('home') }}"
-               class="nav-link {{ !isset($currentCategory) ? 'active' : '' }}">Tutte</a>
+               class="nav-link {{ !isset($currentTechnology) ? 'active' : '' }}">Tutte</a>
           </li>
-          @foreach($allCategories as $cat)
+          @foreach($allTechnologies as $tech)
             <li class="nav-item">
-              <a href="{{ route('projects.byCategory', $cat) }}"
-                 class="nav-link {{ (isset($currentCategory) && $currentCategory->id === $cat->id) ? 'active' : '' }}">
-                {{ $cat->name }}
+              <a href="{{ route('projects.byTechnology', $tech) }}"
+                 class="nav-link {{ (isset($currentTechnology) && $currentTechnology->id === $tech->id) ? 'active' : '' }}">
+                {{ $tech->name }}
               </a>
             </li>
           @endforeach
@@ -46,10 +46,10 @@
               </div>
             @endif
             <div class="card-body d-flex flex-column">
-              @if($p->categories && $p->categories->count())
+              @if($p->technologies && $p->technologies->count())
                 <div class="d-flex gap-1 flex-wrap mb-2">
-                  @foreach($p->categories as $cat)
-                    <a href="{{ route('projects.byCategory', $cat) }}" class="badge bg-secondary text-decoration-none">{{ $cat->name }}</a>
+                  @foreach($p->technologies as $tech)
+                    <a href="{{ route('projects.byTechnology', $tech) }}" class="badge bg-info text-dark text-decoration-none">{{ $tech->name }}</a>
                   @endforeach
                 </div>
               @endif

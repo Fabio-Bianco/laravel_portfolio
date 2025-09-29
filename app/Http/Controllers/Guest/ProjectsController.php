@@ -4,52 +4,45 @@ namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
-use App\Models\Category;
-use App\Models\CategorySlugRedirect;
+use App\Models\Technology;
 
 class ProjectsController extends Controller
 {
     public function index()
     {
-    $projects = Project::with('categories')->latest('id')->paginate(9);
-        $allCategories = Category::orderBy('name')->get();
-        return view('guest.index', compact('projects', 'allCategories'));
+        $projects = Project::with(['technologies','type'])->latest('id')->paginate(9);
+        $allTechnologies = Technology::orderBy('name')->get();
+        return view('guest.index', compact('projects', 'allTechnologies'));
     }
 
     public function show(Project $project)
     {
-    $project->load('categories');
+        $project->load(['technologies','type']);
         return view('guest.projects.show', compact('project'));
     }
 
-    public function byCategory(Category $category)
+    public function byTechnology(Technology $technology)
     {
-        $projects = Project::with('categories')
-            ->whereHas('categories', fn($q) => $q->where('categories.id', $category->id))
+        $projects = Project::with(['technologies','type'])
+            ->whereHas('technologies', fn($q) => $q->where('technologies.id', $technology->id))
             ->latest('id')
             ->paginate(9)
             ->withQueryString();
 
-        $allCategories = Category::orderBy('name')->get();
+        $allTechnologies = Technology::orderBy('name')->get();
         return view('guest.index', [
             'projects' => $projects,
-                'currentCategory' => $category,
-            'allCategories' => $allCategories,
+            'currentTechnology' => $technology,
+            'allTechnologies' => $allTechnologies,
         ]);
     }
 
-    public function byCategorySlug(string $slug)
+    public function byTechnologySlug(string $slug)
     {
-        // Prova slug corrente
-        $category = Category::where('slug', $slug)->first();
-        if (!$category) {
-            // Cerca slug storico e fai redirect 301 al nuovo slug
-            $redirect = CategorySlugRedirect::where('old_slug', $slug)->first();
-            if ($redirect && $redirect->category) {
-                return redirect()->route('projects.byCategory', $redirect->category->slug, 301);
-            }
+        $technology = Technology::where('slug', $slug)->first();
+        if (!$technology) {
             abort(404);
         }
-        return $this->byCategory($category);
+        return $this->byTechnology($technology);
     }
 }
