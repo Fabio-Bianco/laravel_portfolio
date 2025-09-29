@@ -23,6 +23,28 @@ $dark: #212529;
 	a:hover, a:focus {
 		text-decoration: none; // mantiene i link non sottolineati su hover/focus
 	}
+	/* Badge filtro Smart: alto contrasto e lettura facile */
+	.badge-filter {
+		--pill-bg: #e9ecef;
+		--pill-fg: #212529;
+		background-color: var(--pill-bg);
+		color: var(--pill-fg);
+		padding: .5rem .75rem;
+		border-radius: 999px;
+		line-height: 1;
+		font-weight: 600;
+		display: inline-flex;
+		align-items: center;
+		gap: .4rem;
+		border: 1px solid rgba(0,0,0,.05);
+	}
+	.badge-filter.is-active {
+		--pill-bg: #0d6efd;
+		--pill-fg: #fff;
+		border-color: #0d6efd;
+	}
+	.badge-filter .badge-count { background: rgba(0,0,0,.075); color: inherit; }
+	.is-active .badge-count { background: rgba(255,255,255,.2); }
 }
 
 // Stili specifici pagina admin projects (admin/projects/index)
@@ -47,6 +69,19 @@ $dark: #212529;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* Badge di Type con colori accessibili */
+.badge-type { font-weight: 600; border: 1px solid transparent; }
+.badge-type-frontend { background:#eff6ff; color:#0b4ea2; border-color:#bfdbfe; }
+.badge-type-backend { background:#ecfdf5; color:#065f46; border-color:#a7f3d0; }
+.badge-type-automazioni { background:#fef3c7; color:#92400e; border-color:#fde68a; }
+.theme-dark .badge-type-frontend { background:#1e3a8a; color:#dbeafe; border-color:#3b82f6; }
+.theme-dark .badge-type-backend { background:#064e3b; color:#d1fae5; border-color:#10b981; }
+.theme-dark .badge-type-automazioni { background:#92400e; color:#fffbeb; border-color:#fbbf24; }
+
+/* Badge tecnologia con palette neutra e contrasto */
+.badge-tech { background:#eef2f7; color:#1f2937; border:1px solid #e5e7eb; font-weight:500; }
+.theme-dark .badge-tech { background:#1f2937; color:#e5e7eb; border-color:#374151; }
 
 /* ======================
 	 Tema chiaro/scuro
@@ -205,6 +240,11 @@ img.card-img-top {
 	display: block;
 }
 .card .card-body { padding: 0.9rem 1rem 1rem; }
+
+/* Barra meta card: icone e spaziature */
+.card-meta { color: var(--text-muted); font-size: .9rem; display:flex; gap:.75rem; align-items:center; }
+.card-meta .ms-auto { margin-left:auto; }
+.card-meta i { opacity:.9; }
 
 .portfolio-page .row {
 	justify-content: center;

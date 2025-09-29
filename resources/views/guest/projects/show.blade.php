@@ -9,12 +9,24 @@
     <div class="card-body">
       <h1 class="h3 mb-1">{{ $project->title }}</h1>
       @if($project->type)
-        <p class="mb-2"><span class="badge bg-primary">Tipo: {{ $project->type->name }}</span></p>
+        @php($typeName = strtolower($project->type->name))
+        <p class="mb-2">
+          <a href="{{ route('projects.byType', $project->type) }}" class="badge badge-type badge-type-{{ $typeName === 'automazioni' ? 'automazioni' : ($typeName === 'backend' ? 'backend' : 'frontend') }} text-decoration-none">
+            @if($typeName === 'backend')
+              <i class="bi bi-cpu me-1" aria-hidden="true"></i>
+            @elseif($typeName === 'automazioni')
+              <i class="bi bi-gear me-1" aria-hidden="true"></i>
+            @else
+              <i class="bi bi-code-slash me-1" aria-hidden="true"></i>
+            @endif
+            {{ $project->type->name }}
+          </a>
+        </p>
       @endif
       @if($project->technologies && $project->technologies->count())
         <p class="mb-3 d-flex flex-wrap gap-1">
           @foreach($project->technologies as $tech)
-            <a href="{{ route('projects.byTechnology', $tech) }}" class="badge bg-info text-dark text-decoration-none">{{ $tech->name }}</a>
+            <a href="{{ route('projects.byTechnology', $tech) }}" class="badge badge-tech text-decoration-none" data-bs-toggle="tooltip" title="Tecnologia: {{ $tech->name }}">{{ $tech->name }}</a>
           @endforeach
         </p>
       @endif
@@ -26,7 +38,7 @@
       <p class="mb-3">{{ $project->description }}</p>
 
       @if(!is_null($project->stargazers_count) || !is_null($project->forks_count) || !is_null($project->watchers_count) || !is_null($project->updated_at_github))
-        <p class="mb-3 text-muted small d-flex gap-3 align-items-center">
+        <p class="mb-3 card-meta">
           @if(!is_null($project->stargazers_count))
             <span title="Stars"><i class="bi bi-star-fill text-warning"></i> {{ $project->stargazers_count }}</span>
           @endif

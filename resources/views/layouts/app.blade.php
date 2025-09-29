@@ -15,18 +15,23 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div id="mainNav" class="collapse navbar-collapse">
-        <ul class="navbar-nav me-auto"></ul>
         <ul class="navbar-nav ms-auto align-items-lg-center gap-2">
-          
+          {{-- Work prima fra le azioni --}}
+          <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Work</a></li>
+          {{-- Gestione (solo admin) --}}
           @auth
-            <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Portfolio pubblico</a></li>
             @if(auth()->user()->is_admin)
               <li class="nav-item"><a class="nav-link" href="{{ route('admin.projects.index') }}">Gestisci</a></li>
             @endif
-            <li class="nav-item"><a class="nav-link" href="{{ route('profile.show') }}">Profilo</a></li>
-            <li class="nav-item d-flex align-items-center">
-              @include('partials.theme-toggle')
-            </li>
+          @endauth
+          {{-- Profilo --}}
+          <li class="nav-item"><a class="nav-link" href="@auth{{ route('profile.show') }}@else{{ route('login') }}@endauth">Profilo</a></li>
+          {{-- Toggle tema --}}
+          <li class="nav-item d-flex align-items-center">
+            @include('partials.theme-toggle')
+          </li>
+          {{-- Login/Logout --}}
+          @auth
             <li class="nav-item">
               <form method="POST" action="{{ route('logout') }}" class="ms-lg-2">
                 @csrf
@@ -34,9 +39,6 @@
               </form>
             </li>
           @else
-            <li class="nav-item d-flex align-items-center">
-              @include('partials.theme-toggle')
-            </li>
             <li class="nav-item"><a class="btn btn-outline-light btn-sm" href="{{ route('login') }}">Login</a></li>
           @endauth
         </ul>

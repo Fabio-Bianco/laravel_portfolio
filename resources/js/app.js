@@ -178,4 +178,22 @@ document.addEventListener('DOMContentLoaded', () => {
   } catch (_) {}
 });
 
+// Tooltip Bootstrap per elementi con data-bs-toggle="tooltip"
+(function initBootstrapTooltips(){
+  try {
+    const els = Array.from(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    els.forEach((el) => {
+      try {
+        bootstrap.Tooltip.getOrCreateInstance(el, { container: 'body' });
+      } catch {}
+    });
+    // Re-init anche dopo navigazioni turbolenti (se usi inertia/turbolinks in futuro)
+    document.addEventListener('shown.bs.modal', () => {
+      els.forEach((el) => {
+        try { bootstrap.Tooltip.getOrCreateInstance(el, { container: 'body' }); } catch {}
+      });
+    });
+  } catch {}
+})();
+
 //# sourceMappingURL=app.js.map
