@@ -1,106 +1,121 @@
-Portfolio Progetti – Laravel Backoffice + Guest Area
-Descrizione
+## Laravel Portfolio – Backoffice + Guest Area
 
-Questo progetto è un portfolio interattivo sviluppato con Laravel 12 e pensato per mostrare competenze sia tecniche sia architetturali.
-L’applicazione implementa un sistema di gestione progetti con backoffice e livelli di accesso differenziati.
+Un portfolio interattivo basato su Laravel 12, con backoffice amministrativo e sezione pubblica filtrabile per Tipo e Tecnologia. Integra import da GitHub, badge accessibili, tema chiaro/scuro e pagina splash.
 
-L’obiettivo è dimostrare la padronanza di concetti chiave come:
+- Demo locale (splash): http://127.0.0.1:8010/
+- Rotta splash (nome): `splash` → `/`
+- Vetrina progetti (home): `home` → `/portfolio`
 
-CRUD completo
+---
 
-Autenticazione e autorizzazione multi-ruolo
+## Funzionalità principali
+- CRUD completo dei progetti (admin)
+- Tassonomia con Type (Frontend/Backend/Automazioni) e Technology (N:M)
+- Filtri ospite per Tipo e Tecnologia, con conteggi
+- Import progetti da GitHub via CLI e UI admin (stars/forks/watchers, updated_at_github)
+- Slug e route model binding per i dettagli progetto
+- Pagina Splash pubblica con tema chiaro/scuro e transizione
+- Bio Offcanvas, navbar “Work/Profilo”, badge ad alto contrasto
 
-Middleware personalizzati
+## Stack tecnico
+- PHP 8.2+, Laravel 12
+- MySQL (o SQLite in locale), Eloquent, Migrations/Seeders
+- Vite, Bootstrap 5, Bootstrap Icons, Sass
+- Breeze per l’autenticazione
 
-Gestione seeders e popolamento DB
+## Requisiti
+- PHP 8.2+, Composer
+- Node.js 18+ e npm
+- Database MySQL (consigliato) oppure SQLite
+- Opzionale: `GITHUB_TOKEN` per import con rate limit più alto
 
-Struttura chiara tra frontend guest e backend admin
+## Setup rapido
+1) Clona e installa dipendenze
+```powershell
+composer install
+npm install
+```
 
-Ruoli e livelli di accesso
-👤 Guest (anonimo)
+2) Configura l’ambiente
+```powershell
+copy .env.example .env
+php artisan key:generate
+```
+- Imposta il DB in `.env` (MySQL o SQLite)
+- Facoltativo: aggiungi `GITHUB_TOKEN=...` in `.env`
 
-Può visualizzare liberamente la lista dei progetti.
+3) Migrazioni e seed
+```powershell
+php artisan migrate --seed
+```
 
-Non è necessaria alcuna registrazione.
+4) Compila asset
+```powershell
+npm run build
+# oppure per sviluppo
+npm run dev
+```
 
-Obiettivo: simulare la navigazione pubblica di un portfolio.
+5) Avvia il server
+```powershell
+php artisan serve --host=127.0.0.1 --port=8010
+```
+Apri: http://127.0.0.1:8010/
 
-👥 User registrato
+## Credenziali demo
+- Admin
+  - Email: `admin@portfolio.it`
+  - Password: `Password123!`
+- Guest: nessuna autenticazione richiesta
 
-Deve autenticarsi con email e password.
+> Nota: il seeder `UserSeeder` garantisce la presenza dell’admin. La suite di test di autenticazione è verde.
 
-Può visualizzare i progetti.
+## Import da GitHub
+- Via CLI
+```powershell
+php artisan portfolio:import-github Fabio-Bianco --visibility=public --include-forks
+```
+Opzioni disponibili (estratto): `--include-forks`, `--private`, `--topics=csv`, `--visibility=public|private|all`.
 
-Ha accesso a funzionalità aggiuntive, pensate per mostrare competenze avanzate:
+- Via UI (admin)
+  - POST `admin/import-github` da form dedicato nella dashboard admin
+  - Mappa topics → Technology/Type; salva anche `stargazers_count`, `forks_count`, `watchers_count`, `updated_at_github`
 
-Sezione personale con CV scaricabile
+## Rotte principali
+- Splash (guest): `/` → `splash`
+- Portfolio (home): `/portfolio` → `home`
+- Filtri: `/portfolio/technology/{technology:slug}`, `/portfolio/type/{type:slug}`
+- Dettaglio: `/projects/{project:slug}`
+- Admin (protette): `/admin/*` (CRUD Projects/Technologies/Types, Import GitHub)
+- Profilo (loggati): `/profile`, `/bio`
 
-Possibilità di accedere a contenuti riservati
+## Accessibilità e UX
+- Badge Type/Technology con elevato contrasto (light/dark)
+- Navbar con voci “Work” (portfolio) e “Profilo” (login/profile)
+- Offcanvas Bio con tasti e focus management
+- Ordinamento progetti per “recency” (GitHub update → updated_at → created_at)
 
-Form di contatto autenticato
+## Splash page (cover)
+- URL locale: http://127.0.0.1:8010/
+- URL generico: `${APP_URL}/` (rotta `splash`)
 
-👨‍💼 Admin
+Suggerimento: usa uno screenshot della splash come immagine di copertina della card del repository. Puoi salvarlo in `public/img/cover-splash.png` e referenziarlo nel README:
+```markdown
+![Cover Splash](/img/cover-splash.png)
+```
 
-Ha accesso al backoffice protetto.
+## Struttura utile
+- `routes/web.php` → rotte guest/admin/profilo
+- `app/Console/Commands/ImportGithubProjects.php` → comando import GitHub
+- `app/Http/Controllers/Guest/ProjectsController.php` → lista/filtri/dettaglio
+- `app/Models/Project.php` → cast GitHub metadata e slug
+- `resources/views/guest/*` → viste pubbliche
+- `resources/sass/app.scss` → tema e componenti UI
 
-Può creare, modificare ed eliminare progetti.
+## Test
+Esegui l’intera suite:
+```powershell
+php artisan test --no-coverage
+```
 
-Gestisce i contenuti mostrati agli altri ruoli.
-
-Accesso consentito solo agli utenti con campo is_admin = 1.
-
-Credenziali demo
-
-Per permettere una correzione/test immediata:
-
-Admin
-
-Email: admin@portfolio.it
-
-Password: Password123!
-
-User demo
-
-Email: user@portfolio.it
-
-Password: Password123!
-
-Guest
-
-Nessuna autenticazione richiesta.
-
-Tecnologie utilizzate
-
-Laravel 12 (framework backend)
-
-MySQL (database relazionale)
-
-Breeze + Bootstrap (autenticazione e interfaccia base)
-
-Seeder + Faker (popolamento dati fittizi)
-
-Architettura
-
-routes/web.php → definizione rotte pubbliche e protette
-
-app/Http/Controllers/Admin → gestione CRUD progetti
-
-app/Http/Middleware → middleware personalizzati per is_admin e is_user
-
-resources/views/guest → sezione pubblica/registrati
-
-resources/views/admin → backoffice CRUD
-
-Note didattiche
-
-Nella realtà un portfolio pubblico non richiederebbe login per la sola consultazione.
-
-Qui la gestione multi-ruolo è stata introdotta volutamente per dimostrare competenze avanzate in autenticazione/autorizzazione.
-
-In fase di colloquio questo approccio mostra di comprendere:
-
-Differenza tra autenticazione (chi sei) e autorizzazione (cosa puoi fare)
-
-Strutturazione di un sistema scalabile con ruoli multipli
-
-Gestione coerente di middleware e permessi
+Tutti i test attesi sono verdi (autenticazione, profilo, routing di base).
