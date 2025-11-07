@@ -11,91 +11,89 @@ class ProjectsController extends Controller
 {
     public function index()
     {
-        // Filtri combinati da querystring: ?technology=slug&type=slug
-        $technologySlug = request('technology');
+        // Filtro solo per tipo: ?type=slug
         $typeSlug = request('type');
 
         $query = Project::with(['technologies','type'])
-            ->orderByDesc('updated_at_github')
-            ->orderByDesc('updated_at')
-            ->orderByDesc('created_at')
-            ->orderByDesc('id');
+            ->published()
+            ->ordered();
 
-            $currentTechnology = null;
-            if ($technologySlug) {
-                $currentTechnology = Technology::where('slug', $technologySlug)->first();
-                if ($currentTechnology) {
-                    $query->whereHas('technologies', fn($q) => $q->where('technologies.id', $currentTechnology->id));
-                }
+        $currentType = null;
+        if ($typeSlug) {
+            $currentType = Type::where('slug', $typeSlug)->first();
+            if ($currentType) {
+                $query->where('type_id', $currentType->id);
             }
+        }
 
-            $currentType = null;
-            if ($typeSlug) {
-                $currentType = Type::where('slug', $typeSlug)->first();
-                if ($currentType) {
-                    $query->where('type_id', $currentType->id);
-                }
-            }
+        $projects = $query->paginate(9)->withQueryString();
 
-            $projects = $query->paginate(9)->withQueryString();
+        // Liste ordinate e conteggi (solo progetti published)
+        $allTypes = Type::orderBy('sort_order')->orderBy('name')->get();
 
-            // Liste ordinate e conteggi
-            $allTechnologies = Technology::orderBy('name')->get();
-            $allTypes = Type::orderBy('sort_order')->orderBy('name')->get();
+        // Contatori: numero progetti per ciascun tipo
+        $typeCounts = collect();
+        foreach ($allTypes as $t) {
+            $count = Project::published()->where('type_id', $t->id)->count();
+            $typeCounts->put($t->id, $count);
+        }
 
-            // Contatori: numero progetti per ciascun filtro, rispettando l'altro filtro se presente
-            $technologyCounts = collect();
-            foreach ($allTechnologies as $tech) {
-                $countQ = Project::query();
-                if ($currentType) $countQ->where('type_id', $currentType->id);
-                $count = $countQ->whereHas('technologies', fn($q)=>$q->where('technologies.id',$tech->id))->count();
-                $technologyCounts->put($tech->id, $count);
-            }
-
-            $typeCounts = collect();
-            foreach ($allTypes as $t) {
-                $countQ = Project::query()->where('type_id', $t->id);
-                if ($currentTechnology) {
-                    $countQ->whereHas('technologies', fn($q)=>$q->where('technologies.id', $currentTechnology->id));
-                }
-                $typeCounts->put($t->id, $countQ->count());
-            }
-
-            return view('guest.index', [
-                'projects' => $projects,
-                'allTechnologies' => $allTechnologies,
-                'allTypes' => $allTypes,
-                'currentTechnology' => $currentTechnology,
-                'currentType' => $currentType,
-                'technologyCounts' => $technologyCounts,
-                'typeCounts' => $typeCounts,
-            ]);
+        return view('guest.index-minimal', [
+            'projects' => $projects,
+            'allTypes' => $allTypes,
+            'currentType' => $currentType,
+            'typeCounts' => $typeCounts,
+        ]);
     }
 
     public function show(Project $project)
     {
+        // Mostra anche progetti non pubblicati se sei admin, altrimenti solo published
+        if (!$project->is_published && (!auth()->check() || !auth()->user()->is_admin)) {
+            abort(404);
+        }
+        
         $project->load(['technologies','type']);
-        return view('guest.projects.show', compact('project'));
+        return view('guest.projects.show-minimal', compact('project'));
     }
 
     public function byTechnology(Technology $technology)
     {
         $projects = Project::with(['technologies','type'])
+            ->published()
             ->whereHas('technologies', fn($q) => $q->where('technologies.id', $technology->id))
-            ->orderByDesc('updated_at_github')
-            ->orderByDesc('updated_at')
-            ->orderByDesc('created_at')
-            ->orderByDesc('id')
+            ->ordered()
             ->paginate(9)
             ->withQueryString();
 
         $allTechnologies = Technology::orderBy('name')->get();
         $allTypes = Type::orderBy('sort_order')->orderBy('name')->get();
-        return view('guest.index', [
+        
+        // Calcola i contatori
+        $technologyCounts = collect();
+        foreach ($allTechnologies as $tech) {
+            $count = Project::published()
+                ->whereHas('technologies', fn($q)=>$q->where('technologies.id',$tech->id))
+                ->count();
+            $technologyCounts->put($tech->id, $count);
+        }
+
+        $typeCounts = collect();
+        foreach ($allTypes as $t) {
+            $count = Project::published()
+                ->where('type_id', $t->id)
+                ->whereHas('technologies', fn($q)=>$q->where('technologies.id', $technology->id))
+                ->count();
+            $typeCounts->put($t->id, $count);
+        }
+        
+        return view('guest.index-minimal', [
             'projects' => $projects,
             'currentTechnology' => $technology,
             'allTechnologies' => $allTechnologies,
             'allTypes' => $allTypes,
+            'technologyCounts' => $technologyCounts,
+            'typeCounts' => $typeCounts,
         ]);
     }
 
@@ -111,21 +109,28 @@ class ProjectsController extends Controller
     public function byType(Type $type)
     {
         $projects = Project::with(['technologies','type'])
+            ->published()
             ->where('type_id', $type->id)
-            ->orderByDesc('updated_at_github')
-            ->orderByDesc('updated_at')
-            ->orderByDesc('created_at')
-            ->orderByDesc('id')
+            ->ordered()
             ->paginate(9)
             ->withQueryString();
 
-        $allTechnologies = Technology::orderBy('name')->get();
         $allTypes = Type::orderBy('sort_order')->orderBy('name')->get();
-        return view('guest.index', [
+        
+        // Calcola i contatori
+        $typeCounts = collect();
+        foreach ($allTypes as $t) {
+            $count = Project::published()
+                ->where('type_id', $t->id)
+                ->count();
+            $typeCounts->put($t->id, $count);
+        }
+        
+        return view('guest.index-minimal', [
             'projects' => $projects,
             'currentType' => $type,
-            'allTechnologies' => $allTechnologies,
             'allTypes' => $allTypes,
+            'typeCounts' => $typeCounts,
         ]);
     }
 
@@ -136,5 +141,31 @@ class ProjectsController extends Controller
             abort(404);
         }
         return $this->byType($type);
+    }
+
+    public function featured()
+    {
+        $projects = Project::with(['technologies','type'])
+            ->featured()
+            ->orderBy('featured_order', 'asc')
+            ->orderBy('display_order', 'asc')
+            ->orderByDesc('updated_at_github')
+            ->paginate(9)
+            ->withQueryString();
+
+        $allTypes = Type::orderBy('sort_order')->orderBy('name')->get();
+        
+        $typeCounts = collect();
+        foreach ($allTypes as $t) {
+            $count = Project::published()->where('type_id', $t->id)->count();
+            $typeCounts->put($t->id, $count);
+        }
+        
+        return view('guest.index-minimal', [
+            'projects' => $projects,
+            'allTypes' => $allTypes,
+            'typeCounts' => $typeCounts,
+            'isFeatured' => true,
+        ]);
     }
 }

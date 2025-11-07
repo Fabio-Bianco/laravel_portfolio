@@ -6,7 +6,9 @@
   <div class="portfolio-page">
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h1 class="h3 m-0">
-        @if(isset($currentTechnology))
+        @if(isset($isFeatured) && $isFeatured)
+          <i class="bi bi-star-fill text-warning"></i> Progetti in Evidenza
+        @elseif(isset($currentTechnology))
           Tecnologia: {{ $currentTechnology->name }}
         @elseif(isset($currentType))
           Tipo: {{ $currentType->name }}
@@ -14,9 +16,16 @@
           I miei progetti
         @endif
       </h1>
-      @if(isset($currentTechnology) || isset($currentType))
-        <a class="btn btn-sm btn-outline-secondary" href="{{ route('home') }}">Tutti i progetti</a>
-      @endif
+      <div class="d-flex gap-2">
+        @if(!isset($isFeatured) || !$isFeatured)
+          <a class="btn btn-sm btn-warning" href="{{ route('projects.featured') }}">
+            <i class="bi bi-star-fill"></i> Featured
+          </a>
+        @endif
+        @if(isset($currentTechnology) || isset($currentType) || (isset($isFeatured) && $isFeatured))
+          <a class="btn btn-sm btn-outline-secondary" href="{{ route('home') }}">Tutti i progetti</a>
+        @endif
+      </div>
     </div>
 
     @if(isset($allTechnologies) || isset($allTypes))

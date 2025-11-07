@@ -18,7 +18,7 @@
           <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Portfolio pubblico</a></li>
           @auth
             @if(auth()->user()->is_admin)
-              <li class="nav-item"><a class="nav-link" href="{{ route('admin.projects.index') }}">Gestisci</a></li>
+              <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Gestisci</a></li>
             @endif
             <li class="nav-item"><a class="nav-link" href="{{ route('profile.show') }}">Profilo</a></li>
             <li class="nav-item">

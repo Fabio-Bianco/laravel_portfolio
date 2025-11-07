@@ -18,10 +18,10 @@
         <ul class="navbar-nav ms-auto align-items-lg-center gap-2">
           {{-- Work prima fra le azioni --}}
           <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Work</a></li>
-          {{-- Gestione (solo admin) --}}
+          {{-- Gestione: pagina pubblicati (solo admin) --}}
           @auth
             @if(auth()->user()->is_admin)
-              <li class="nav-item"><a class="nav-link" href="{{ route('admin.projects.index') }}">Gestisci</a></li>
+              <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Gestisci</a></li>
             @endif
           @endauth
           {{-- Profilo --}}

@@ -22,6 +22,7 @@
           @if(Route::has('admin.types.index'))
           <li class="nav-item"><a class="nav-link" href="{{ route('admin.types.index') }}">Tipi</a></li>
           @endif
+          <li class="nav-item"><a class="nav-link text-warning" href="{{ route('admin.debug.projects') }}">🧹 Debug</a></li>
           <li class="nav-item"><a class="nav-link" href="{{ route('profile.show') }}">Profilo</a></li>
           <li class="nav-item d-flex align-items-center">@include('partials.theme-toggle')</li>
           <li class="nav-item">

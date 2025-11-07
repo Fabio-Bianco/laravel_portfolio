@@ -77,6 +77,48 @@ class ProjectController extends Controller
             ->with('success', "Progetto «{$title}» eliminato.");
     }
 
+    /**
+     * Mostra la pagina cards per modifica rapida dei progetti pubblicati
+     */
+    public function cards()
+    {
+        $projects = Project::with(['technologies', 'type'])
+            ->published()
+            ->ordered()
+            ->paginate(12);
+        
+        return view('admin.projects.cards', compact('projects'));
+    }
+
+    /**
+     * Aggiornamento rapido di un singolo campo (title, image_url, link)
+     */
+    public function quickUpdate(Request $request, Project $project)
+    {
+        $field = $request->input('field');
+        $allowedFields = ['title', 'image_url', 'link'];
+        
+        if (!in_array($field, $allowedFields)) {
+            return back()->with('error', 'Campo non valido');
+        }
+        
+        $rules = [
+            'title' => ['required', 'string', 'max:255'],
+            'image_url' => ['nullable', 'url', 'max:255'],
+            'link' => ['nullable', 'url', 'max:255'],
+        ];
+        
+        $data = $request->validate([
+            $field => $rules[$field]
+        ]);
+        
+        $project->update($data);
+        
+        return redirect()
+            ->route('admin.projects.cards')
+            ->with('project_updated', $project->title);
+    }
+
     private function validateData(Request $request): array
     {
         return $request->validate([
@@ -89,6 +131,10 @@ class ProjectController extends Controller
             'type_id'     => ['nullable', 'integer', 'exists:types,id'],
             'technologies'   => ['nullable', 'array'],
             'technologies.*' => ['integer', 'exists:technologies,id'],
+            'is_published'   => ['nullable', 'boolean'],
+            'is_featured'    => ['nullable', 'boolean'],
+            'display_order'  => ['nullable', 'integer', 'min:0'],
+            'featured_order' => ['nullable', 'integer', 'min:0'],
         ], [
             'title.required' => 'Il titolo è obbligatorio.',
             'image_url.url'  => "Inserisci un URL valido per l'immagine.",
@@ -97,6 +143,8 @@ class ProjectController extends Controller
             'demo_url.url'   => 'Inserisci un URL valido per la demo pubblica.',
             'type_id.exists' => 'Il tipo selezionato non è valido.',
             'technologies.*.exists' => 'Una delle tecnologie selezionate non è valida.',
+            'display_order.min' => "L'ordine non può essere negativo.",
+            'featured_order.min' => "L'ordine featured non può essere negativo.",
         ]);
     }
 }

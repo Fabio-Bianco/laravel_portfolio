@@ -1,6 +1,6 @@
-@extends('layouts.admin')
+@extends('layouts.admin-sidebar')
 
-@section('title','Tecnologie')
+@section('page-title', 'Tecnologie')
 
 @section('content')
   <div class="d-flex justify-content-between align-items-center mb-3">

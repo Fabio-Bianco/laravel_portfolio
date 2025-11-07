@@ -78,6 +78,52 @@
   @error('type_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
 </div>
 
+<div class="row">
+  <div class="col-md-6">
+    <div class="mb-3">
+      <div class="form-check form-switch">
+        <input type="hidden" name="is_published" value="0">
+        <input class="form-check-input" type="checkbox" role="switch" id="is_published" name="is_published" value="1" @checked(old('is_published', $project->is_published ?? false))>
+        <label class="form-check-label" for="is_published">
+          <strong>Pubblicato</strong>
+          <small class="d-block text-muted">Visibile al pubblico nel portfolio</small>
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="mb-3">
+      <div class="form-check form-switch">
+        <input type="hidden" name="is_featured" value="0">
+        <input class="form-check-input" type="checkbox" role="switch" id="is_featured" name="is_featured" value="1" @checked(old('is_featured', $project->is_featured ?? false))>
+        <label class="form-check-label" for="is_featured">
+          <strong>In evidenza</strong>
+          <small class="d-block text-muted">Mostra nella sezione featured</small>
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="mb-3">
+      <label for="display_order" class="form-label">Ordine visualizzazione</label>
+      <input type="number" id="display_order" name="display_order" min="0" class="form-control @error('display_order') is-invalid @enderror" value="{{ old('display_order', $project->display_order ?? 0) }}">
+      <small class="form-text text-muted">0 = automatico (più recente). Usa 1, 2, 3... per ordinamento manuale</small>
+      @error('display_order') <div class="invalid-feedback">{{ $message }}</div> @enderror
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="mb-3">
+      <label for="featured_order" class="form-label">Ordine featured</label>
+      <input type="number" id="featured_order" name="featured_order" min="0" class="form-control @error('featured_order') is-invalid @enderror" value="{{ old('featured_order', $project->featured_order ?? 0) }}">
+      <small class="form-text text-muted">Ordine tra i progetti in evidenza (0 = automatico)</small>
+      @error('featured_order') <div class="invalid-feedback">{{ $message }}</div> @enderror
+    </div>
+  </div>
+</div>
+
  
 
 <div class="d-flex gap-2">

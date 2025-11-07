@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.admin-sidebar')
 
 @section('title','Nuovo Tipo')
 

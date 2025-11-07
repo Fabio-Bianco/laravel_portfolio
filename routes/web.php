@@ -4,58 +4,48 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Guest\ProjectsController;
-// use App\Http\Controllers\Guest\CategoriesController; // legacy rimosso
 use App\Http\Controllers\Admin\TechnologyController;
 use App\Http\Controllers\Admin\TypeController;
-use App\Http\Controllers\ProfileBioController;
-use App\Models\Type;
 
 // -------------------- GUEST --------------------
-// Splash: pagina iniziale
-Route::get('/', function () {
-    if (auth()->check()) {
-        return to_route('home');
-    }
-    return view('splash.index');
-})->name('splash');
+// Home: vetrina progetti
+Route::get('/', [ProjectsController::class, 'index'])->name('home');
 
-// Home: vetrina progetti (spostata su /portfolio ma mantiene il name 'home')
-Route::get('/portfolio', [ProjectsController::class, 'index'])->name('home');
-// Filtro per tecnologia (guest) con model binding sullo slug
-Route::get('/portfolio/technology/{technology:slug}', [ProjectsController::class, 'byTechnology'])->name('projects.byTechnology');
-// Filtro per tipo (guest) con model binding sullo slug
-Route::get('/portfolio/type/{type:slug}', [ProjectsController::class, 'byType'])->name('projects.byType');
-
-
-// Dettaglio progetto: ora via slug
-Route::get('/projects/{project:slug}', [ProjectsController::class, 'show'])->name('projects.show');
+// Dettaglio progetto
+Route::get('/project/{project:slug}', [ProjectsController::class, 'show'])->name('projects.show');
 
 // -------------------- ADMIN (protetta) --------------------
 Route::middleware(['auth', 'is_admin'])
     ->prefix('admin')->as('admin.')
     ->group(function () {
-        Route::get('/', fn () => to_route('admin.projects.index'))->name('dashboard');
+        // Dashboard -> redirect a cards
+        Route::get('/', fn () => to_route('admin.projects.cards'))->name('dashboard');
+        
+        // Gestione progetti
+        Route::get('projects/cards', [ProjectController::class, 'cards'])->name('projects.cards');
+        Route::patch('projects/{project}/quick-update', [ProjectController::class, 'quickUpdate'])->name('projects.quick-update');
+        
+        // Tutti i progetti (debug/bulk actions)
+        Route::get('projects/all', [\App\Http\Controllers\Admin\DebugController::class, 'projects'])->name('projects.all');
+        Route::post('projects/bulk-publish', [\App\Http\Controllers\Admin\DebugController::class, 'bulkPublish'])->name('projects.bulk-publish');
+        Route::post('projects/bulk-unpublish', [\App\Http\Controllers\Admin\DebugController::class, 'bulkUnpublish'])->name('projects.bulk-unpublish');
+        Route::delete('projects/bulk-delete', [\App\Http\Controllers\Admin\DebugController::class, 'bulkDelete'])->name('projects.bulk-delete');
+        
+        // Resource completa progetti (per edit/create singolo)
         Route::resource('projects', ProjectController::class);
+        
+        // Tecnologie e Tipi
         Route::resource('technologies', TechnologyController::class);
         Route::resource('types', TypeController::class);
+        
+        // Import GitHub
         Route::post('import-github', [\App\Http\Controllers\Admin\ImportController::class, 'importGithub'])->name('import.github');
+        
+        // Profilo personale admin
+        Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('profile', [ProfileController::class, 'update'])->name('profile.update');
     });
-
-// -------------------- PROFILO (loggati) --------------------
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-    // Bio Offcanvas/Page
-    Route::get('/bio', [ProfileBioController::class, 'show'])->name('bio.show');
-    Route::patch('/bio', [ProfileBioController::class, 'update'])->name('bio.update');
-});
 
 // -------------------- AUTH --------------------
 require __DIR__.'/auth.php';
 
-// -------------------- DASHBOARD (per i test Breeze) --------------------
-Route::middleware('auth')->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');

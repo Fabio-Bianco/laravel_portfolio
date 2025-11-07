@@ -223,6 +223,7 @@ class ImportGithubProjects extends Command
                     'forks_count' => $repo['forks_count'] ?? null,
                     'watchers_count' => $repo['watchers_count'] ?? null,
                     'updated_at_github' => isset($repo['updated_at']) ? \Carbon\Carbon::parse($repo['updated_at']) : null,
+                    'is_published' => false, // Importati come draft per revisione manuale
                 ];
 
                 $slugBase = Str::slug($title) ?: 'project';

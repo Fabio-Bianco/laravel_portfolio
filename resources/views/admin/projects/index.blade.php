@@ -1,6 +1,6 @@
-@extends('layouts.admin')
+@extends('layouts.admin-sidebar')
 
-@section('title','Admin • Projects')
+@section('page-title', 'Import GitHub')
 
 @section('content')
   <div class="admin-projects-page">
@@ -57,10 +57,18 @@
             <div class="d-flex">
               <!-- Colonna contenuti -->
               <div class="flex-grow-1 d-flex flex-column">
-                <h5 class="card-title">
+                <h5 class="card-title d-flex align-items-center gap-2">
                   <a href="{{ route('admin.projects.show', $p) }}" class="text-decoration-none">
                     {{ $p->title }}
                   </a>
+                  @if($p->is_featured)
+                    <i class="bi bi-star-fill text-warning" title="In evidenza"></i>
+                  @endif
+                  @if(!$p->is_published)
+                    <span class="badge bg-secondary">Draft</span>
+                  @else
+                    <i class="bi bi-eye-fill text-success" title="Pubblicato"></i>
+                  @endif
                 </h5>
 
                 @if($p->description)
