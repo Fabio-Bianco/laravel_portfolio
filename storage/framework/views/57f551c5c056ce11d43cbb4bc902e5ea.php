@@ -1,13 +1,9 @@
-
-
 <?php $__env->startSection('title', 'Portfolio'); ?>
 
 <?php $__env->startSection('content'); ?>
 <div class="guest-container">
   
-  <?php if(!isset($currentType) && (!isset($isFeatured) || !$isFeatured)): ?>
-    
-    
+  
     <section class="hero-section" id="hero" role="banner" aria-label="Hero section">
       <div class="hero-content">
         
@@ -246,6 +242,180 @@
     </section>
 
     
+    <section id="projects" class="projects-section" role="region" aria-labelledby="projects-heading">
+      <div class="section-header">
+        <span class="section-tag">My Work</span>
+        <h2 id="projects-heading" class="section-title">Featured Projects</h2>
+      </div>
+
+      
+      <?php if(isset($allTypes)): ?>
+        <div class="filters-section">
+          <div class="filter-group" style="justify-content: center;">
+            <a href="<?php echo e(route('home')); ?>" 
+               class="filter-chip <?php echo e(!isset($currentType) ? 'active' : ''); ?>">
+              Tutti
+              <?php if(isset($typeCounts)): ?>
+                <span class="count"><?php echo e($typeCounts->sum()); ?></span>
+              <?php endif; ?>
+            </a>
+            <?php $__currentLoopData = $allTypes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $t): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+              <?php
+                $count = $typeCounts[$t->id] ?? 0;
+              ?>
+              <?php if($count > 0): ?>
+                <a href="<?php echo e(route('home', ['type' => $t->slug])); ?>"
+                   class="filter-chip <?php echo e((isset($currentType) && $currentType->id === $t->id) ? 'active' : ''); ?>">
+                  <?php echo e($t->name); ?>
+
+                  <span class="count"><?php echo e($count); ?></span>
+                </a>
+              <?php endif; ?>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+          </div>
+        </div>
+      <?php endif; ?>
+
+      
+      <div class="stats-bar">
+        <span class="stat-item">
+          <strong><?php echo e($projects->total()); ?></strong> progetti
+        </span>
+        <?php if(isset($currentType) || (isset($isFeatured) && $isFeatured)): ?>
+          <span>•</span>
+          <a href="<?php echo e(route('home')); ?>" style="color: var(--color-accent); text-decoration: none;">
+            Mostra tutti
+          </a>
+        <?php endif; ?>
+        <?php if(!isset($isFeatured) || !$isFeatured): ?>
+          <?php
+            $featuredCount = \App\Models\Project::published()->featured()->count();
+          ?>
+          <?php if($featuredCount > 0): ?>
+            <span>•</span>
+            <a href="<?php echo e(route('projects.featured')); ?>" style="color: var(--color-accent); text-decoration: none;">
+              ⭐ Featured (<?php echo e($featuredCount); ?>)
+            </a>
+          <?php endif; ?>
+        <?php endif; ?>
+      </div>
+
+      
+      <div class="projects-grid">
+        <?php $__empty_1 = true; $__currentLoopData = $projects; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $project): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+          <article class="project-card">
+            
+            
+            <?php if($project->image_url): ?>
+              <div class="project-card-image">
+                <img src="<?php echo e($project->image_url); ?>" alt="<?php echo e($project->title); ?>">
+              </div>
+            <?php else: ?>
+              <?php
+                $gradients = [
+                  '#667eea 0%, #764ba2 100%',
+                  '#f093fb 0%, #f5576c 100%',
+                  '#4facfe 0%, #00f2fe 100%',
+                  '#43e97b 0%, #38f9d7 100%'
+                ];
+                $randomGradient = $gradients[array_rand($gradients)];
+              ?>
+              <div class="project-card-image" style="background: linear-gradient(135deg, <?php echo e($randomGradient); ?>);">
+                <div style="display: flex; align-items: center; justify-content: center; height: 100%; font-size: 3rem; color: white; opacity: 0.3;">
+                  <?php echo e(strtoupper(substr($project->title, 0, 1))); ?>
+
+                </div>
+              </div>
+            <?php endif; ?>
+            
+            <div class="project-card-body">
+              
+              
+              <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
+                <?php if($project->type): ?>
+                  <?php
+                    $typeName = strtolower($project->type->name);
+                    $badgeClass = 'frontend';
+                    if ($typeName === 'automazioni') $badgeClass = 'automazioni';
+                    elseif ($typeName === 'backend') $badgeClass = 'backend';
+                  ?>
+                  <span class="badge-type badge-type-<?php echo e($badgeClass); ?>">
+                    <?php echo e($project->type->name); ?>
+
+                  </span>
+                <?php endif; ?>
+                
+                <?php if($project->technologies && $project->technologies->count()): ?>
+                  <?php $__currentLoopData = $project->technologies->take(3); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tech): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <span class="badge-tech"><?php echo e($tech->name); ?></span>
+                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                  <?php if($project->technologies->count() > 3): ?>
+                    <span class="badge-tech" style="opacity: 0.7;">+<?php echo e($project->technologies->count() - 3); ?></span>
+                  <?php endif; ?>
+                <?php endif; ?>
+              </div>
+              
+              
+              <h2 class="project-card-title"><?php echo e($project->title); ?></h2>
+              
+              
+              <?php if($project->description): ?>
+                <p class="project-card-description"><?php echo e($project->description); ?></p>
+              <?php endif; ?>
+              
+              
+              <?php if(!is_null($project->stargazers_count) || !is_null($project->forks_count)): ?>
+                <div style="display: flex; gap: 1rem; margin-bottom: 1rem; color: var(--color-text-muted); font-size: 0.9rem;">
+                  <?php if(!is_null($project->stargazers_count)): ?>
+                    <span style="display: flex; align-items: center; gap: 0.35rem;">
+                      ⭐ <?php echo e($project->stargazers_count); ?>
+
+                    </span>
+                  <?php endif; ?>
+                  <?php if(!is_null($project->forks_count)): ?>
+                    <span style="display: flex; align-items: center; gap: 0.35rem;">
+                      🔀 <?php echo e($project->forks_count); ?>
+
+                    </span>
+                  <?php endif; ?>
+                </div>
+              <?php endif; ?>
+              
+              
+              <div style="margin-top: auto;">
+                <a href="<?php echo e(route('projects.show', $project->slug)); ?>" class="btn-primary-minimal" style="width: 100%; justify-content: center;">
+                  Vedi progetto
+                  <span style="font-size: 1.2rem;">→</span>
+                </a>
+              </div>
+              
+            </div>
+            
+          </article>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+          <div class="empty-state" style="grid-column: 1 / -1;">
+            <div class="empty-state-icon">📭</div>
+            <h3 style="margin-bottom: 0.5rem;">Nessun progetto trovato</h3>
+            <p class="text-muted">Prova a cambiare i filtri di ricerca</p>
+            <?php if(isset($currentType)): ?>
+              <a href="<?php echo e(route('home')); ?>" class="btn-minimal" style="margin-top: 1rem;">
+                Mostra tutti i progetti
+              </a>
+            <?php endif; ?>
+          </div>
+        <?php endif; ?>
+      </div>
+
+      
+      <?php if($projects->hasPages()): ?>
+        <div style="display: flex; justify-content: center;">
+          <?php echo e($projects->links()); ?>
+
+        </div>
+      <?php endif; ?>
+    </section>
+
+    
     <section class="contact-section" id="contact" role="region" aria-labelledby="contact-heading">
       <div class="section-header">
         <span class="section-tag">Get In Touch</span>
@@ -408,7 +578,11 @@
         </div>
       </div>
     </div>
-  </section>  
+  </section>
+
+
+
+  
   <footer class="site-footer" role="contentinfo">
     <div class="footer-content">
       <div class="footer-grid">
@@ -476,21 +650,62 @@
         
         
         <div class="footer-column">
-        <h4 class="footer-heading">Open Source</h4>
-        <p class="footer-text">
-          This portfolio is built with Laravel and is open source.
-        </p>
-        <a href="https://github.com/<?php echo e(config('app.owner_github')); ?>/laravel_portfolio" 
-           target="_blank" 
-           rel="noopener noreferrer"
-           class="footer-cta">
-          <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
-            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-          </svg>
-          View Source
-        </a>
+          <h4 class="footer-heading">Open Source & Accessibilità</h4>
+          <p class="footer-text">
+            Questo portfolio è costruito con Laravel ed è open source, progettato seguendo le linee guida WCAG 2.1 AA.
+          </p>
+          
+          <div class="accessibility-features">
+            <h5>Caratteristiche di Accessibilità:</h5>
+            <ul>
+              <li>
+                <span class="accessibility-icon" aria-hidden="true">🎯</span>
+                Navigazione da tastiera ottimizzata
+              </li>
+              <li>
+                <span class="accessibility-icon" aria-hidden="true">🔍</span>
+                Alto contrasto e leggibilità
+              </li>
+              <li>
+                <span class="accessibility-icon" aria-hidden="true">📱</span>
+                Design responsive
+              </li>
+              <li>
+                <span class="accessibility-icon" aria-hidden="true">⌨️</span>
+                Supporto screen reader
+              </li>
+              <li>
+                <span class="accessibility-icon" aria-hidden="true">🌙</span>
+                Modalità dark/light automatica
+              </li>
+            </ul>
+          </div>
+          
+          <div class="footer-cta-group">
+            <a href="https://github.com/<?php echo e(config('app.owner_github')); ?>/laravel_portfolio" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               class="footer-cta">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+              </svg>
+              Vedi Sorgente
+            </a>
+            <a href="#" 
+               onclick="toggleHighContrast(event)"
+               class="footer-cta contrast-toggle"
+               role="button"
+               aria-label="Attiva/disattiva modalità alto contrasto">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+              </svg>
+              Modalità Alto Contrasto
+            </a>
+          </div>
+        </div>
       </div>
-    </div>      
+      
+      
       <div class="footer-bottom">
         <p class="footer-copyright">
           &copy; <?php echo e(date('Y')); ?> <?php echo e(config('app.owner_name', 'Fabio Bianco')); ?>. All rights reserved.
@@ -501,199 +716,7 @@
       </div>
     </div>
   </footer>
-
-  <?php else: ?>
-    
-    <header style="margin-bottom: 3rem; text-align: center;">
-      <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">
-        <?php if(isset($isFeatured) && $isFeatured): ?>
-          ⭐ Progetti in Evidenza
-        <?php elseif(isset($currentType)): ?>
-          <?php echo e($currentType->name); ?>
-
-        <?php endif; ?>
-      </h1>
-      <p class="text-muted" style="font-size: 1.1rem;">
-        <?php if(isset($currentType)): ?>
-          Progetti <?php echo e(strtolower($currentType->name)); ?>
-
-        <?php else: ?>
-          I migliori progetti del portfolio
-        <?php endif; ?>
-      </p>
-    </header>
-  <?php endif; ?>
-
-  
-  <?php if(isset($allTypes)): ?>
-    <div class="filters-section">
-      <div class="filter-group" style="justify-content: center;">
-        <a href="<?php echo e(route('home')); ?>" 
-           class="filter-chip <?php echo e(!isset($currentType) ? 'active' : ''); ?>">
-          Tutti
-          <?php if(isset($typeCounts)): ?>
-            <span class="count"><?php echo e($typeCounts->sum()); ?></span>
-          <?php endif; ?>
-        </a>
-        <?php $__currentLoopData = $allTypes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $t): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-          <?php
-            $count = $typeCounts[$t->id] ?? 0;
-          ?>
-          <?php if($count > 0): ?>
-            <a href="<?php echo e(route('home', ['type' => $t->slug])); ?>"
-               class="filter-chip <?php echo e((isset($currentType) && $currentType->id === $t->id) ? 'active' : ''); ?>">
-              <?php echo e($t->name); ?>
-
-              <span class="count"><?php echo e($count); ?></span>
-            </a>
-          <?php endif; ?>
-        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-      </div>
-    </div>
-  <?php endif; ?>
-
-  
-  <div class="stats-bar">
-    <span class="stat-item">
-      <strong><?php echo e($projects->total()); ?></strong> progetti
-    </span>
-    <?php if(isset($currentType) || (isset($isFeatured) && $isFeatured)): ?>
-      <span>•</span>
-      <a href="<?php echo e(route('home')); ?>" style="color: var(--color-accent); text-decoration: none;">
-        Mostra tutti
-      </a>
-    <?php endif; ?>
-    <?php if(!isset($isFeatured) || !$isFeatured): ?>
-      <?php
-        $featuredCount = \App\Models\Project::published()->featured()->count();
-      ?>
-      <?php if($featuredCount > 0): ?>
-        <span>•</span>
-        <a href="<?php echo e(route('projects.featured')); ?>" style="color: var(--color-accent); text-decoration: none;">
-          ⭐ Featured (<?php echo e($featuredCount); ?>)
-        </a>
-      <?php endif; ?>
-    <?php endif; ?>
-  </div>
-
-  
-  <div id="projects" class="projects-grid">
-    <?php $__empty_1 = true; $__currentLoopData = $projects; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $project): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-      <article class="project-card">
-        
-        
-        <?php if($project->image_url): ?>
-          <div class="project-card-image">
-            <img src="<?php echo e($project->image_url); ?>" alt="<?php echo e($project->title); ?>">
-          </div>
-        <?php else: ?>
-          <?php
-            $gradients = [
-              '#667eea 0%, #764ba2 100%',
-              '#f093fb 0%, #f5576c 100%',
-              '#4facfe 0%, #00f2fe 100%',
-              '#43e97b 0%, #38f9d7 100%'
-            ];
-            $randomGradient = $gradients[array_rand($gradients)];
-          ?>
-          <div class="project-card-image" style="background: linear-gradient(135deg, <?php echo e($randomGradient); ?>);">
-            <div style="display: flex; align-items: center; justify-content: center; height: 100%; font-size: 3rem; color: white; opacity: 0.3;">
-              <?php echo e(strtoupper(substr($project->title, 0, 1))); ?>
-
-            </div>
-          </div>
-        <?php endif; ?>
-        
-        <div class="project-card-body">
-          
-          
-          <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
-            <?php if($project->type): ?>
-              <?php
-                $typeName = strtolower($project->type->name);
-                $badgeClass = 'frontend';
-                if ($typeName === 'automazioni') $badgeClass = 'automazioni';
-                elseif ($typeName === 'backend') $badgeClass = 'backend';
-              ?>
-              <span class="badge-type badge-type-<?php echo e($badgeClass); ?>">
-                <?php echo e($project->type->name); ?>
-
-              </span>
-            <?php endif; ?>
-            
-            <?php if($project->technologies && $project->technologies->count()): ?>
-              <?php $__currentLoopData = $project->technologies->take(3); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tech): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <span class="badge-tech"><?php echo e($tech->name); ?></span>
-              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-              <?php if($project->technologies->count() > 3): ?>
-                <span class="badge-tech" style="opacity: 0.7;">+<?php echo e($project->technologies->count() - 3); ?></span>
-              <?php endif; ?>
-            <?php endif; ?>
-          </div>
-          
-          
-          <h2 class="project-card-title"><?php echo e($project->title); ?></h2>
-          
-          
-          <?php if($project->description): ?>
-            <p class="project-card-description"><?php echo e($project->description); ?></p>
-          <?php endif; ?>
-          
-          
-          <?php if(!is_null($project->stargazers_count) || !is_null($project->forks_count)): ?>
-            <div style="display: flex; gap: 1rem; margin-bottom: 1rem; color: var(--color-text-muted); font-size: 0.9rem;">
-              <?php if(!is_null($project->stargazers_count)): ?>
-                <span style="display: flex; align-items: center; gap: 0.35rem;">
-                  ⭐ <?php echo e($project->stargazers_count); ?>
-
-                </span>
-              <?php endif; ?>
-              <?php if(!is_null($project->forks_count)): ?>
-                <span style="display: flex; align-items: center; gap: 0.35rem;">
-                  🔀 <?php echo e($project->forks_count); ?>
-
-                </span>
-              <?php endif; ?>
-            </div>
-          <?php endif; ?>
-          
-          
-          <div style="margin-top: auto;">
-            <a href="<?php echo e(route('projects.show', $project->slug)); ?>" class="btn-primary-minimal" style="width: 100%; justify-content: center;">
-              Vedi progetto
-              <span style="font-size: 1.2rem;">→</span>
-            </a>
-          </div>
-          
-        </div>
-        
-      </article>
-    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
-      <div class="empty-state" style="grid-column: 1 / -1;">
-        <div class="empty-state-icon">📭</div>
-        <h3 style="margin-bottom: 0.5rem;">Nessun progetto trovato</h3>
-        <p class="text-muted">Prova a cambiare i filtri di ricerca</p>
-        <?php if(isset($currentType)): ?>
-          <a href="<?php echo e(route('home')); ?>" class="btn-minimal" style="margin-top: 1rem;">
-            Mostra tutti i progetti
-          </a>
-        <?php endif; ?>
-      </div>
-    <?php endif; ?>
-  </div>
-
-  
-  <?php if($projects->hasPages()): ?>
-    <div style="display: flex; justify-content: center;">
-      <?php echo e($projects->links()); ?>
-
-    </div>
-  <?php endif; ?>
-
 </div>
-
-
 <?php $__env->stopSection(); ?>
-
 
 <?php echo $__env->make('layouts.guest-minimal', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\Users\Utente\Desktop\laravel_portfolio\resources\views/guest/index-minimal.blade.php ENDPATH**/ ?>

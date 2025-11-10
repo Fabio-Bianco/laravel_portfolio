@@ -5,9 +5,7 @@
 @section('content')
 <div class="guest-container">
   
-  @if(!isset($currentType) && (!isset($isFeatured) || !$isFeatured))
-    
-    {{-- ============================================
+  {{-- ============================================
          HERO SECTION - 2025 Best Practices
          - Semantic HTML5 con ARIA landmarks
          - Tagline professionale e value proposition
@@ -264,6 +262,176 @@
     </section>
 
     {{-- ============================================
+       PROJECTS SECTION
+      ============================================ --}}
+    <section id="projects" class="projects-section" role="region" aria-labelledby="projects-heading">
+      <div class="section-header">
+        <span class="section-tag">My Work</span>
+        <h2 id="projects-heading" class="section-title">Featured Projects</h2>
+      </div>
+
+      {{-- Filtri --}}
+      @if(isset($allTypes))
+        <div class="filters-section">
+          <div class="filter-group" style="justify-content: center;">
+            <a href="{{ route('home') }}" 
+               class="filter-chip {{ !isset($currentType) ? 'active' : '' }}">
+              Tutti
+              @isset($typeCounts)
+                <span class="count">{{ $typeCounts->sum() }}</span>
+              @endisset
+            </a>
+            @foreach($allTypes as $t)
+              @php
+                $count = $typeCounts[$t->id] ?? 0;
+              @endphp
+              @if($count > 0)
+                <a href="{{ route('home', ['type' => $t->slug]) }}"
+                   class="filter-chip {{ (isset($currentType) && $currentType->id === $t->id) ? 'active' : '' }}">
+                  {{ $t->name }}
+                  <span class="count">{{ $count }}</span>
+                </a>
+              @endif
+            @endforeach
+          </div>
+        </div>
+      @endif
+
+      {{-- Stats --}}
+      <div class="stats-bar">
+        <span class="stat-item">
+          <strong>{{ $projects->total() }}</strong> progetti
+        </span>
+        @if(isset($currentType) || (isset($isFeatured) && $isFeatured))
+          <span>•</span>
+          <a href="{{ route('home') }}" style="color: var(--color-accent); text-decoration: none;">
+            Mostra tutti
+          </a>
+        @endif
+        @if(!isset($isFeatured) || !$isFeatured)
+          @php
+            $featuredCount = \App\Models\Project::published()->featured()->count();
+          @endphp
+          @if($featuredCount > 0)
+            <span>•</span>
+            <a href="{{ route('projects.featured') }}" style="color: var(--color-accent); text-decoration: none;">
+              ⭐ Featured ({{ $featuredCount }})
+            </a>
+          @endif
+        @endif
+      </div>
+
+      {{-- Projects Grid --}}
+      <div class="projects-grid">
+        @forelse($projects as $project)
+          <article class="project-card">
+            
+            {{-- Image --}}
+            @if($project->image_url)
+              <div class="project-card-image">
+                <img src="{{ $project->image_url }}" alt="{{ $project->title }}">
+              </div>
+            @else
+              @php
+                $gradients = [
+                  '#667eea 0%, #764ba2 100%',
+                  '#f093fb 0%, #f5576c 100%',
+                  '#4facfe 0%, #00f2fe 100%',
+                  '#43e97b 0%, #38f9d7 100%'
+                ];
+                $randomGradient = $gradients[array_rand($gradients)];
+              @endphp
+              <div class="project-card-image" style="background: linear-gradient(135deg, {{ $randomGradient }});">
+                <div style="display: flex; align-items: center; justify-content: center; height: 100%; font-size: 3rem; color: white; opacity: 0.3;">
+                  {{ strtoupper(substr($project->title, 0, 1)) }}
+                </div>
+              </div>
+            @endif
+            
+            <div class="project-card-body">
+              
+              {{-- Meta badges --}}
+              <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
+                @if($project->type)
+                  @php
+                    $typeName = strtolower($project->type->name);
+                    $badgeClass = 'frontend';
+                    if ($typeName === 'automazioni') $badgeClass = 'automazioni';
+                    elseif ($typeName === 'backend') $badgeClass = 'backend';
+                  @endphp
+                  <span class="badge-type badge-type-{{ $badgeClass }}">
+                    {{ $project->type->name }}
+                  </span>
+                @endif
+                
+                @if($project->technologies && $project->technologies->count())
+                  @foreach($project->technologies->take(3) as $tech)
+                    <span class="badge-tech">{{ $tech->name }}</span>
+                  @endforeach
+                  @if($project->technologies->count() > 3)
+                    <span class="badge-tech" style="opacity: 0.7;">+{{ $project->technologies->count() - 3 }}</span>
+                  @endif
+                @endif
+              </div>
+              
+              {{-- Title --}}
+              <h2 class="project-card-title">{{ $project->title }}</h2>
+              
+              {{-- Description --}}
+              @if($project->description)
+                <p class="project-card-description">{{ $project->description }}</p>
+              @endif
+              
+              {{-- Meta info --}}
+              @if(!is_null($project->stargazers_count) || !is_null($project->forks_count))
+                <div style="display: flex; gap: 1rem; margin-bottom: 1rem; color: var(--color-text-muted); font-size: 0.9rem;">
+                  @if(!is_null($project->stargazers_count))
+                    <span style="display: flex; align-items: center; gap: 0.35rem;">
+                      ⭐ {{ $project->stargazers_count }}
+                    </span>
+                  @endif
+                  @if(!is_null($project->forks_count))
+                    <span style="display: flex; align-items: center; gap: 0.35rem;">
+                      🔀 {{ $project->forks_count }}
+                    </span>
+                  @endif
+                </div>
+              @endif
+              
+              {{-- Action --}}
+              <div style="margin-top: auto;">
+                <a href="{{ route('projects.show', $project->slug) }}" class="btn-primary-minimal" style="width: 100%; justify-content: center;">
+                  Vedi progetto
+                  <span style="font-size: 1.2rem;">→</span>
+                </a>
+              </div>
+              
+            </div>
+            
+          </article>
+        @empty
+          <div class="empty-state" style="grid-column: 1 / -1;">
+            <div class="empty-state-icon">📭</div>
+            <h3 style="margin-bottom: 0.5rem;">Nessun progetto trovato</h3>
+            <p class="text-muted">Prova a cambiare i filtri di ricerca</p>
+            @if(isset($currentType))
+              <a href="{{ route('home') }}" class="btn-minimal" style="margin-top: 1rem;">
+                Mostra tutti i progetti
+              </a>
+            @endif
+          </div>
+        @endforelse
+      </div>
+
+      {{-- Pagination --}}
+      @if($projects->hasPages())
+        <div style="display: flex; justify-content: center;">
+          {{ $projects->links() }}
+        </div>
+      @endif
+    </section>
+
+    {{-- ============================================
          CONTACT SECTION - Form funzionante
            - Form con validazione lato client
            - Campi accessibili WCAG 2.1 AA
@@ -432,7 +600,11 @@
         </div>
       </div>
     </div>
-  </section>  {{-- ============================================
+  </section>
+
+
+
+  {{-- ============================================
        FOOTER - Professional & Complete
        - Copyright
        - Quick links to sections
@@ -505,23 +677,64 @@
           </ul>
         </div>
         
-        {{-- Open Source --}}
+        {{-- Open Source & Accessibility --}}
         <div class="footer-column">
-        <h4 class="footer-heading">Open Source</h4>
-        <p class="footer-text">
-          This portfolio is built with Laravel and is open source.
-        </p>
-        <a href="https://github.com/{{ config('app.owner_github') }}/laravel_portfolio" 
-           target="_blank" 
-           rel="noopener noreferrer"
-           class="footer-cta">
-          <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
-            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-          </svg>
-          View Source
-        </a>
+          <h4 class="footer-heading">Open Source & Accessibilità</h4>
+          <p class="footer-text">
+            Questo portfolio è costruito con Laravel ed è open source, progettato seguendo le linee guida WCAG 2.1 AA.
+          </p>
+          
+          <div class="accessibility-features">
+            <h5>Caratteristiche di Accessibilità:</h5>
+            <ul>
+              <li>
+                <span class="accessibility-icon" aria-hidden="true">🎯</span>
+                Navigazione da tastiera ottimizzata
+              </li>
+              <li>
+                <span class="accessibility-icon" aria-hidden="true">🔍</span>
+                Alto contrasto e leggibilità
+              </li>
+              <li>
+                <span class="accessibility-icon" aria-hidden="true">📱</span>
+                Design responsive
+              </li>
+              <li>
+                <span class="accessibility-icon" aria-hidden="true">⌨️</span>
+                Supporto screen reader
+              </li>
+              <li>
+                <span class="accessibility-icon" aria-hidden="true">🌙</span>
+                Modalità dark/light automatica
+              </li>
+            </ul>
+          </div>
+          
+          <div class="footer-cta-group">
+            <a href="https://github.com/{{ config('app.owner_github') }}/laravel_portfolio" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               class="footer-cta">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+              </svg>
+              Vedi Sorgente
+            </a>
+            <a href="#" 
+               onclick="toggleHighContrast(event)"
+               class="footer-cta contrast-toggle"
+               role="button"
+               aria-label="Attiva/disattiva modalità alto contrasto">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+              </svg>
+              Modalità Alto Contrasto
+            </a>
+          </div>
+        </div>
       </div>
-    </div>      {{-- Copyright Bar --}}
+      
+      {{-- Copyright Bar --}}
       <div class="footer-bottom">
         <p class="footer-copyright">
           &copy; {{ date('Y') }} {{ config('app.owner_name', 'Fabio Bianco') }}. All rights reserved.
@@ -532,189 +745,5 @@
       </div>
     </div>
   </footer>
-
-  @else
-    {{-- Filtered header for category pages --}}
-    <header style="margin-bottom: 3rem; text-align: center;">
-      <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">
-        @if(isset($isFeatured) && $isFeatured)
-          ⭐ Progetti in Evidenza
-        @elseif(isset($currentType))
-          {{ $currentType->name }}
-        @endif
-      </h1>
-      <p class="text-muted" style="font-size: 1.1rem;">
-        @if(isset($currentType))
-          Progetti {{ strtolower($currentType->name) }}
-        @else
-          I migliori progetti del portfolio
-        @endif
-      </p>
-    </header>
-  @endif
-
-  {{-- Filtri --}}
-  @if(isset($allTypes))
-    <div class="filters-section">
-      <div class="filter-group" style="justify-content: center;">
-        <a href="{{ route('home') }}" 
-           class="filter-chip {{ !isset($currentType) ? 'active' : '' }}">
-          Tutti
-          @isset($typeCounts)
-            <span class="count">{{ $typeCounts->sum() }}</span>
-          @endisset
-        </a>
-        @foreach($allTypes as $t)
-          @php
-            $count = $typeCounts[$t->id] ?? 0;
-          @endphp
-          @if($count > 0)
-            <a href="{{ route('home', ['type' => $t->slug]) }}"
-               class="filter-chip {{ (isset($currentType) && $currentType->id === $t->id) ? 'active' : '' }}">
-              {{ $t->name }}
-              <span class="count">{{ $count }}</span>
-            </a>
-          @endif
-        @endforeach
-      </div>
-    </div>
-  @endif
-
-  {{-- Stats --}}
-  <div class="stats-bar">
-    <span class="stat-item">
-      <strong>{{ $projects->total() }}</strong> progetti
-    </span>
-    @if(isset($currentType) || (isset($isFeatured) && $isFeatured))
-      <span>•</span>
-      <a href="{{ route('home') }}" style="color: var(--color-accent); text-decoration: none;">
-        Mostra tutti
-      </a>
-    @endif
-    @if(!isset($isFeatured) || !$isFeatured)
-      @php
-        $featuredCount = \App\Models\Project::published()->featured()->count();
-      @endphp
-      @if($featuredCount > 0)
-        <span>•</span>
-        <a href="{{ route('projects.featured') }}" style="color: var(--color-accent); text-decoration: none;">
-          ⭐ Featured ({{ $featuredCount }})
-        </a>
-      @endif
-    @endif
-  </div>
-
-  {{-- Projects Grid --}}
-  <div id="projects" class="projects-grid">
-    @forelse($projects as $project)
-      <article class="project-card">
-        
-        {{-- Image --}}
-        @if($project->image_url)
-          <div class="project-card-image">
-            <img src="{{ $project->image_url }}" alt="{{ $project->title }}">
-          </div>
-        @else
-          @php
-            $gradients = [
-              '#667eea 0%, #764ba2 100%',
-              '#f093fb 0%, #f5576c 100%',
-              '#4facfe 0%, #00f2fe 100%',
-              '#43e97b 0%, #38f9d7 100%'
-            ];
-            $randomGradient = $gradients[array_rand($gradients)];
-          @endphp
-          <div class="project-card-image" style="background: linear-gradient(135deg, {{ $randomGradient }});">
-            <div style="display: flex; align-items: center; justify-content: center; height: 100%; font-size: 3rem; color: white; opacity: 0.3;">
-              {{ strtoupper(substr($project->title, 0, 1)) }}
-            </div>
-          </div>
-        @endif
-        
-        <div class="project-card-body">
-          
-          {{-- Meta badges --}}
-          <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
-            @if($project->type)
-              @php
-                $typeName = strtolower($project->type->name);
-                $badgeClass = 'frontend';
-                if ($typeName === 'automazioni') $badgeClass = 'automazioni';
-                elseif ($typeName === 'backend') $badgeClass = 'backend';
-              @endphp
-              <span class="badge-type badge-type-{{ $badgeClass }}">
-                {{ $project->type->name }}
-              </span>
-            @endif
-            
-            @if($project->technologies && $project->technologies->count())
-              @foreach($project->technologies->take(3) as $tech)
-                <span class="badge-tech">{{ $tech->name }}</span>
-              @endforeach
-              @if($project->technologies->count() > 3)
-                <span class="badge-tech" style="opacity: 0.7;">+{{ $project->technologies->count() - 3 }}</span>
-              @endif
-            @endif
-          </div>
-          
-          {{-- Title --}}
-          <h2 class="project-card-title">{{ $project->title }}</h2>
-          
-          {{-- Description --}}
-          @if($project->description)
-            <p class="project-card-description">{{ $project->description }}</p>
-          @endif
-          
-          {{-- Meta info --}}
-          @if(!is_null($project->stargazers_count) || !is_null($project->forks_count))
-            <div style="display: flex; gap: 1rem; margin-bottom: 1rem; color: var(--color-text-muted); font-size: 0.9rem;">
-              @if(!is_null($project->stargazers_count))
-                <span style="display: flex; align-items: center; gap: 0.35rem;">
-                  ⭐ {{ $project->stargazers_count }}
-                </span>
-              @endif
-              @if(!is_null($project->forks_count))
-                <span style="display: flex; align-items: center; gap: 0.35rem;">
-                  🔀 {{ $project->forks_count }}
-                </span>
-              @endif
-            </div>
-          @endif
-          
-          {{-- Action --}}
-          <div style="margin-top: auto;">
-            <a href="{{ route('projects.show', $project->slug) }}" class="btn-primary-minimal" style="width: 100%; justify-content: center;">
-              Vedi progetto
-              <span style="font-size: 1.2rem;">→</span>
-            </a>
-          </div>
-          
-        </div>
-        
-      </article>
-    @empty
-      <div class="empty-state" style="grid-column: 1 / -1;">
-        <div class="empty-state-icon">📭</div>
-        <h3 style="margin-bottom: 0.5rem;">Nessun progetto trovato</h3>
-        <p class="text-muted">Prova a cambiare i filtri di ricerca</p>
-        @if(isset($currentType))
-          <a href="{{ route('home') }}" class="btn-minimal" style="margin-top: 1rem;">
-            Mostra tutti i progetti
-          </a>
-        @endif
-      </div>
-    @endforelse
-  </div>
-
-  {{-- Pagination --}}
-  @if($projects->hasPages())
-    <div style="display: flex; justify-content: center;">
-      {{ $projects->links() }}
-    </div>
-  @endif
-
 </div>
-{{-- END guest-container --}}
-
 @endsection
-

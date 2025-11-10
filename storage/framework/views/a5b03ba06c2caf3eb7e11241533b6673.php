@@ -1,9 +1,9 @@
 
-<nav class="main-nav" id="mainNav" role="navigation" aria-label="Main navigation">
+<nav class="main-nav" id="mainNav" role="navigation" aria-label="Menu principale">
   <div class="nav-container">
     
-    <a href="#hero" class="nav-brand" onclick="event.preventDefault(); document.getElementById('hero').scrollIntoView({behavior: 'smooth'});" aria-label="Home">
-      <span class="brand-text"><?php echo e(auth()->user()->name ?? 'FB'); ?></span>
+    <a href="<?php echo e(route('home')); ?>" class="nav-brand" aria-label="Home">
+      <span class="brand-text"><?php echo e(config('app.owner_name', 'FB')); ?></span>
     </a>
     
     
@@ -99,49 +99,63 @@
       });
     }
     
-    /**
-     * Scroll spy - Update active link based on scroll position
-     */
-    const sections = document.querySelectorAll('section[id]');
-    const navLinksElements = document.querySelectorAll('.nav-link');
+  /**
+   * Scroll spy - Update active link based on scroll position with improved performance
+   */
+  const sections = document.querySelectorAll('section[id]');
+  const navLinksElements = document.querySelectorAll('.nav-link');
+  let lastKnownScrollPosition = 0;
+  let ticking = false;
+  
+  function updateActiveLink() {
+    const scrollPosition = window.scrollY;
+    let currentSection = '';
+    const navOffset = 100; // Offset per il menu fisso
     
-    function updateActiveLink() {
-      let currentSection = '';
-      
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        
-        if (window.scrollY >= (sectionTop - 200)) {
-          currentSection = section.getAttribute('id');
-        }
-      });
-      
-      navLinksElements.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('data-section') === currentSection) {
-          link.classList.add('active');
-        }
-      });
+    // Ottimizzazione: memorizziamo le altezze delle sezioni
+    const sectionPositions = Array.from(sections).map(section => ({
+      id: section.id,
+      top: section.offsetTop - navOffset,
+      bottom: section.offsetTop + section.clientHeight - navOffset
+    }));
+    
+    // Troviamo la sezione attiva
+    for (let i = 0; i < sectionPositions.length; i++) {
+      const { id, top, bottom } = sectionPositions[i];
+      if (scrollPosition >= top && scrollPosition < bottom) {
+        currentSection = id;
+        break;
+      }
     }
     
-    // Update on scroll (throttled)
-    let scrollTimeout;
-    window.addEventListener('scroll', function() {
-      if (scrollTimeout) {
-        window.cancelAnimationFrame(scrollTimeout);
-      }
-      scrollTimeout = window.requestAnimationFrame(function() {
-        updateActiveLink();
+    // Gestione fine pagina
+    if (!currentSection && window.innerHeight + scrollPosition >= document.documentElement.scrollHeight - navOffset) {
+      currentSection = sections[sections.length - 1]?.id;
+    }
+    
+    // Update active state
+    navLinksElements.forEach(link => {
+      const section = link.getAttribute('data-section');
+      link.classList.toggle('active', section === currentSection);
+      link.setAttribute('aria-current', section === currentSection ? 'page' : 'false');
+    });
+  }    // Throttled scroll handler
+    window.addEventListener('scroll', () => {
+      lastKnownScrollPosition = window.scrollY;
+      
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateActiveLink();
+          
+          // Add shadow to navbar on scroll with reduced reflow
+          const nav = document.getElementById('mainNav');
+          nav.classList.toggle('scrolled', lastKnownScrollPosition > 100);
+          
+          ticking = false;
+        });
         
-        // Add shadow to navbar on scroll
-        const nav = document.getElementById('mainNav');
-        if (window.scrollY > 100) {
-          nav.classList.add('scrolled');
-        } else {
-          nav.classList.remove('scrolled');
-        }
-      });
+        ticking = true;
+      }
     });
     
     // Initial check

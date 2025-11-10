@@ -37,6 +37,8 @@
   @stack('head')
 </head>
 <body>
+  {{-- Skip Link for Accessibility --}}
+  <a href="#main-content" class="skip-link">Salta al contenuto principale</a>
   
   {{-- Main Navigation --}}
   @include('partials.main-nav')
@@ -51,12 +53,28 @@
   @include('partials.contacts-widget')
   
   {{-- Main Content --}}
-  @yield('content')
+  <main id="main-content" role="main">
+    @yield('content')
+  </main>
   
   {{-- Theme Toggle --}}
-  <div class="theme-toggle-guest" id="themeToggle">
+  <div class="theme-toggle-guest" id="themeToggle" aria-label="Cambia tema">
     @include('partials.theme-toggle')
   </div>
+  
+  {{-- Accessibility Script --}}
+  <script>
+    // Gestione accessibilità da tastiera
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Tab') {
+        document.body.classList.add('keyboard-nav');
+      }
+    });
+    
+    document.addEventListener('mousedown', function() {
+      document.body.classList.remove('keyboard-nav');
+    });
+  </script>
   
   @stack('scripts')
   
