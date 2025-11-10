@@ -1,6 +1,6 @@
 @extends('layouts.admin-sidebar') 
 
-@section('title','Dashboard Admin')
+@section('title','Dashboard b_bot Portfolio')
 
 @section('content')
 <h1>Dashboard Admin</h1>

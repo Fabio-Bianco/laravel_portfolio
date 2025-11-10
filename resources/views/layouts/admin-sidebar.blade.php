@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>@yield('title', 'Admin') • {{ config('app.name') }}</title>
+  <title>@yield('title', 'b_bot Portfolio') • {{ config('app.name') }}</title>
   
   @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/css/admin-sidebar.css'])
   
@@ -198,7 +198,7 @@
     {{-- Sidebar --}}
     <aside class="admin-sidebar">
       <div class="admin-sidebar-header">
-        <h4>⚙️ Admin Panel</h4>
+        <h4>⚙️ b_bot Portfolio</h4>
         <small class="text-muted d-block mt-1">{{ auth()->user()->name }}</small>
       </div>
       

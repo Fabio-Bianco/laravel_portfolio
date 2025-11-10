@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Guest\ProjectsController;
 use App\Http\Controllers\Admin\TechnologyController;
 use App\Http\Controllers\Admin\TypeController;
+use App\Http\Controllers\ContactController;
 
 // -------------------- GUEST --------------------
 // Home: vetrina progetti
@@ -13,6 +14,9 @@ Route::get('/', [ProjectsController::class, 'index'])->name('home');
 
 // Dettaglio progetto
 Route::get('/project/{project:slug}', [ProjectsController::class, 'show'])->name('projects.show');
+
+// Contact form submission
+Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
 
 // -------------------- ADMIN (protetta) --------------------
 Route::middleware(['auth', 'is_admin'])

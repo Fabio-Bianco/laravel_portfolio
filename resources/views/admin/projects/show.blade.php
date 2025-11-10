@@ -1,6 +1,6 @@
 @extends('layouts.admin-sidebar')
 
-@section('title','Admin • Dettaglio Progetto')
+@section('title','b_bot Portfolio • Dettaglio Progetto')
 
 @section('content')
   <div class="d-flex justify-content-between align-items-center mb-3">

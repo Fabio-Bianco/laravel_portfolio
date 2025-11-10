@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function openBio() {
     if (bioSidebar) {
       bioSidebar.classList.add('active');
+      document.body.classList.add('bio-open');
       document.body.style.overflow = 'hidden';
     }
   }
@@ -26,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function closeBio() {
     if (bioSidebar) {
       bioSidebar.classList.remove('active');
+      document.body.classList.remove('bio-open');
       document.body.style.overflow = '';
     }
   }

@@ -12,7 +12,7 @@ class UserSeeder extends Seeder
         User::updateOrCreate(
             ['email' => 'admin@portfolio.it'],
             [
-                'name' => 'Admin',
+                'name' => 'b_bot Portfolio',
                 'password' => 'Password123!', // cast "hashed" in model
                 'is_admin' => true,
                 'email_verified_at' => now(),
