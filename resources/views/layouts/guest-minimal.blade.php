@@ -5,21 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
   {{-- SEO Meta Tags --}}
-  <title>@yield('title', 'Portfolio') • {{ auth()->user()->name ?? 'Fabio Bianco' }} - Full Stack Developer</title>
-  <meta name="description" content="Portfolio di {{ auth()->user()->name ?? 'Fabio Bianco' }} - Full Stack Developer specializzato in Laravel, React e JavaScript. Scopri i miei progetti e contattami per collaborazioni.">
-  <meta name="author" content="{{ auth()->user()->name ?? 'Fabio Bianco' }}">
+  <title>@yield('title', 'Portfolio') • {{ config('app.owner_name') }} - Full Stack Developer</title>
+  <meta name="description" content="Portfolio di {{ config('app.owner_name') }} - Full Stack Developer specializzato in Laravel, React e JavaScript. Scopri i miei progetti e contattami per collaborazioni.">
+  <meta name="author" content="{{ config('app.owner_name') }}">
   <meta name="keywords" content="full stack developer, laravel, react, javascript, php, web development, portfolio">
   
   {{-- Open Graph Meta Tags --}}
-  <meta property="og:title" content="{{ auth()->user()->name ?? 'Fabio Bianco' }} - Full Stack Developer Portfolio">
+  <meta property="og:title" content="{{ config('app.owner_name') }} - Full Stack Developer Portfolio">
   <meta property="og:description" content="Scopri i miei progetti e competenze nel web development. Specializzato in Laravel, React e JavaScript.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ url('/') }}">
-  <meta property="og:site_name" content="{{ auth()->user()->name ?? 'Fabio Bianco' }} Portfolio">
+  <meta property="og:site_name" content="{{ config('app.owner_name') }} Portfolio">
   
   {{-- Twitter Card Meta Tags --}}
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{{ auth()->user()->name ?? 'Fabio Bianco' }} - Full Stack Developer">
+  <meta name="twitter:title" content="{{ config('app.owner_name') }} - Full Stack Developer">
   <meta name="twitter:description" content="Portfolio di progetti web con Laravel, React e JavaScript">
   
   {{-- Canonical URL --}}

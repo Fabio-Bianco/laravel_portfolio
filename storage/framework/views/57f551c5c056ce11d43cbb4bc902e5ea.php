@@ -1,39 +1,32 @@
-@extends('layouts.guest-minimal')
 
-@section('title', 'Portfolio')
 
-@section('content')
+<?php $__env->startSection('title', 'Portfolio'); ?>
+
+<?php $__env->startSection('content'); ?>
 <div class="guest-container">
   
-  @if(!isset($currentType) && (!isset($isFeatured) || !$isFeatured))
+  <?php if(!isset($currentType) && (!isset($isFeatured) || !$isFeatured)): ?>
     
-    {{-- ============================================
-         HERO SECTION - 2025 Best Practices
-         - Semantic HTML5 con ARIA landmarks
-         - Tagline professionale e value proposition
-         - Multiple CTA con chiara gerarchia visiva
-         - Social proof integrato
-         - Mobile-first responsive
-        ============================================ --}}
+    
     <section class="hero-section" id="hero" role="banner" aria-label="Hero section">
       <div class="hero-content">
-        {{-- Intro Tag --}}
+        
         <div class="hero-tag" role="note" aria-label="Introduzione professionale">
           <span class="hero-tag-icon" aria-hidden="true">👋</span>
           <span>Hi, I'm</span>
         </div>
         
-        {{-- Main Title con gradient --}}
-        <h1 class="hero-title">{{ config('app.owner_name', 'Fabio Bianco') }}</h1>
         
-        {{-- Ruolo + Tagline professionale --}}
+        <h1 class="hero-title"><?php echo e(config('app.owner_name', 'Fabio Bianco')); ?></h1>
+        
+        
         <p class="hero-subtitle">Full Stack Developer</p>
         <p class="hero-tagline">
           Building modern web applications with clean code and user-centric design. 
           Specialized in <strong>Laravel</strong>, <strong>React</strong>, and <strong>JavaScript</strong>.
         </p>
         
-        {{-- Call-to-Action buttons --}}
+        
         <div class="hero-cta" role="group" aria-label="Azioni principali">
           <a href="#projects" 
              class="btn-hero btn-hero-primary" 
@@ -55,31 +48,31 @@
           </a>
         </div>
         
-        {{-- Social Proof / Stats rapide --}}
+        
         <div class="hero-stats" role="region" aria-label="Statistiche portfolio">
-          @php
+          <?php
             $totalProjects = \App\Models\Project::published()->count();
             $featuredCount = \App\Models\Project::published()->featured()->count();
             $techCount = \App\Models\Technology::count();
-          @endphp
+          ?>
           <div class="hero-stat-item">
-            <strong class="hero-stat-value">{{ $totalProjects }}+</strong>
+            <strong class="hero-stat-value"><?php echo e($totalProjects); ?>+</strong>
             <span class="hero-stat-label">Projects</span>
           </div>
           <div class="hero-stat-divider" aria-hidden="true"></div>
           <div class="hero-stat-item">
-            <strong class="hero-stat-value">{{ $techCount }}+</strong>
+            <strong class="hero-stat-value"><?php echo e($techCount); ?>+</strong>
             <span class="hero-stat-label">Technologies</span>
           </div>
           <div class="hero-stat-divider" aria-hidden="true"></div>
           <div class="hero-stat-item">
-            <strong class="hero-stat-value">{{ $featuredCount }}</strong>
+            <strong class="hero-stat-value"><?php echo e($featuredCount); ?></strong>
             <span class="hero-stat-label">Featured</span>
           </div>
         </div>
       </div>
       
-      {{-- Scroll Indicator --}}
+      
       <div class="scroll-indicator" aria-hidden="true">
         <span class="scroll-text">Scroll down</span>
         <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16" class="scroll-arrow">
@@ -88,13 +81,7 @@
       </div>
     </section>
 
-    {{-- ============================================
-         ABOUT ME SECTION - Public Bio
-         - Problem-solving oriented bio
-         - Umana ma professionale
-         - Avatar/foto con lazy loading
-         - Personal stats cards
-        ============================================ --}}
+    
     <section class="about-section" id="about" role="region" aria-labelledby="about-heading">
       <div class="section-header">
         <span class="section-tag">Who I Am</span>
@@ -104,7 +91,7 @@
       <div class="about-content">
         <div class="about-text">
           <p class="about-intro">
-            Hi! I'm <strong>{{ config('app.owner_name', 'Fabio Bianco') }}</strong>, a passionate Full Stack Developer 
+            Hi! I'm <strong><?php echo e(config('app.owner_name', 'Fabio Bianco')); ?></strong>, a passionate Full Stack Developer 
             who turns complex problems into elegant, user-friendly solutions.
           </p>
           <p>
@@ -122,8 +109,9 @@
         <div class="about-avatar">
           <div class="avatar-container">
             <div class="avatar-image">
-              {{-- simplified: removed auth() from guest view --}}
-              {{ strtoupper(substr(config('app.owner_name', 'FB'), 0, 2)) }}
+              
+              <?php echo e(strtoupper(substr(config('app.owner_name', 'FB'), 0, 2))); ?>
+
             </div>
             <div class="avatar-status" aria-label="Available for work">
               <span class="status-dot"></span>
@@ -134,13 +122,7 @@
       </div>
     </section>
 
-    {{-- ============================================
-         SKILLS SECTION - Structured & Categorized
-         - Frontend / Backend / Tools
-         - SVG icons + skill level
-         - Grid layout responsive
-         - Lazy loading per performance
-        ============================================ --}}
+    
     <section class="skills-section" id="skills" role="region" aria-labelledby="skills-heading">
       <div class="section-header">
         <span class="section-tag">What I Do</span>
@@ -151,7 +133,7 @@
       </div>
       
       <div class="skills-grid">
-        {{-- Frontend Skills --}}
+        
         <div class="skill-category">
           <div class="skill-category-header">
             <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
@@ -188,7 +170,7 @@
           </div>
         </div>
         
-        {{-- Backend Skills --}}
+        
         <div class="skill-category">
           <div class="skill-category-header">
             <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
@@ -225,7 +207,7 @@
           </div>
         </div>
         
-        {{-- Tools & Others --}}
+        
         <div class="skill-category">
           <div class="skill-category-header">
             <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
@@ -263,14 +245,7 @@
       </div>
     </section>
 
-    {{-- ============================================
-         CONTACT SECTION - Form funzionante
-           - Form con validazione lato client
-           - Campi accessibili WCAG 2.1 AA
-           - Error handling visivo
-           - Success message
-           - Alternative contact methods
-          ============================================ --}}
+    
     <section class="contact-section" id="contact" role="region" aria-labelledby="contact-heading">
       <div class="section-header">
         <span class="section-tag">Get In Touch</span>
@@ -281,17 +256,17 @@
       </div>
       
       <div class="contact-content">
-        {{-- Contact Form --}}
+        
         <div class="contact-form-wrapper">
           <form class="contact-form" 
                 id="contactForm" 
-                action="{{ route('contact.send') }}" 
+                action="<?php echo e(route('contact.send')); ?>" 
                 method="POST"
                 novalidate
                 aria-label="Contact form">
-            @csrf
+            <?php echo csrf_field(); ?>
             
-            {{-- Nome --}}
+            
             <div class="form-group">
               <label for="contact-name" class="form-label">
                 Your Name <span class="required" aria-label="required">*</span>
@@ -308,7 +283,7 @@
               <span class="form-error" id="name-error" role="alert"></span>
             </div>
             
-            {{-- Email --}}
+            
             <div class="form-group">
               <label for="contact-email" class="form-label">
                 Your Email <span class="required" aria-label="required">*</span>
@@ -325,7 +300,7 @@
               <span class="form-error" id="email-error" role="alert"></span>
             </div>
             
-            {{-- Oggetto --}}
+            
             <div class="form-group">
               <label for="contact-subject" class="form-label">
                 Subject <span class="required" aria-label="required">*</span>
@@ -341,7 +316,7 @@
               <span class="form-error" id="subject-error" role="alert"></span>
             </div>
             
-            {{-- Messaggio --}}
+            
             <div class="form-group">
               <label for="contact-message" class="form-label">
                 Message <span class="required" aria-label="required">*</span>
@@ -357,7 +332,7 @@
               <span class="form-error" id="message-error" role="alert"></span>
             </div>
             
-            {{-- Submit Button --}}
+            
             <button type="submit" 
                     class="btn-submit" 
                     id="submitBtn"
@@ -375,7 +350,7 @@
               </svg>
             </button>
             
-            {{-- Success/Error Messages --}}
+            
             <div class="form-message form-success" id="successMessage" style="display: none;" role="alert">
               <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
                 <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
@@ -391,7 +366,7 @@
           </form>
         </div>
         
-        {{-- Alternative Contact Info --}}
+        
         <div class="contact-info">
           <div class="contact-info-card">
             <div class="contact-info-icon">
@@ -400,8 +375,9 @@
               </svg>
           </div>
           <h3>Email</h3>
-          <a href="mailto:{{ config('app.owner_email') }}" class="contact-link">
-            {{ config('app.owner_email') }}
+          <a href="mailto:<?php echo e(config('app.owner_email')); ?>" class="contact-link">
+            <?php echo e(config('app.owner_email')); ?>
+
           </a>
         </div>          <div class="contact-info-card">
             <div class="contact-info-icon">
@@ -410,11 +386,11 @@
               </svg>
           </div>
           <h3>GitHub</h3>
-          <a href="https://github.com/{{ config('app.owner_github') }}" 
+          <a href="https://github.com/<?php echo e(config('app.owner_github')); ?>" 
              target="_blank" 
              rel="noopener noreferrer"
              class="contact-link">
-            @{{ config('app.owner_github') }}
+            {{ config('app.owner_github') }}
           </a>
         </div>          <div class="contact-info-card">
             <div class="contact-info-icon">
@@ -423,7 +399,7 @@
               </svg>
           </div>
           <h3>LinkedIn</h3>
-          <a href="https://www.linkedin.com/in/{{ config('app.owner_linkedin') }}/" 
+          <a href="https://www.linkedin.com/in/<?php echo e(config('app.owner_linkedin')); ?>/" 
              target="_blank" 
              rel="noopener noreferrer"
              class="contact-link">
@@ -432,25 +408,18 @@
         </div>
       </div>
     </div>
-  </section>  {{-- ============================================
-       FOOTER - Professional & Complete
-       - Copyright
-       - Quick links to sections
-       - Social links
-       - Link to GitHub repo
-       - Dark mode compatible
-      ============================================ --}}
+  </section>  
   <footer class="site-footer" role="contentinfo">
     <div class="footer-content">
       <div class="footer-grid">
-        {{-- Brand Column --}}
+        
         <div class="footer-column">
-          <h3 class="footer-brand">{{ config('app.owner_name', 'Fabio Bianco') }}</h3>
+          <h3 class="footer-brand"><?php echo e(config('app.owner_name', 'Fabio Bianco')); ?></h3>
           <p class="footer-tagline">
             Full Stack Developer crafting modern web experiences with passion and precision.
           </p>
           <div class="footer-social">
-            <a href="https://github.com/{{ config('app.owner_github') }}" 
+            <a href="https://github.com/<?php echo e(config('app.owner_github')); ?>" 
                target="_blank" 
                rel="noopener noreferrer"
                class="social-link"
@@ -459,7 +428,7 @@
                 <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
               </svg>
             </a>
-            <a href="https://www.linkedin.com/in/{{ config('app.owner_linkedin') }}/" 
+            <a href="https://www.linkedin.com/in/<?php echo e(config('app.owner_linkedin')); ?>/" 
                target="_blank" 
                rel="noopener noreferrer"
                class="social-link"
@@ -468,7 +437,7 @@
                 <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
             </svg>
           </a>
-          <a href="mailto:{{ config('app.owner_email') }}" 
+          <a href="mailto:<?php echo e(config('app.owner_email')); ?>" 
              class="social-link"
              aria-label="Email contact">
             <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
@@ -476,7 +445,7 @@
             </svg>
           </a>
         </div>
-      </div>        {{-- Quick Links --}}
+      </div>        
         <div class="footer-column">
           <h4 class="footer-heading">Quick Links</h4>
           <ul class="footer-links">
@@ -488,30 +457,30 @@
           </ul>
         </div>
         
-        {{-- Projects Links --}}
+        
         <div class="footer-column">
           <h4 class="footer-heading">Explore</h4>
           <ul class="footer-links">
-            <li><a href="{{ route('home') }}">All Projects</a></li>
-            @php
+            <li><a href="<?php echo e(route('home')); ?>">All Projects</a></li>
+            <?php
               $featuredCount = \App\Models\Project::published()->featured()->count();
-            @endphp
-            @if($featuredCount > 0)
-              <li><a href="{{ route('projects.featured') }}">Featured Work</a></li>
-            @endif
-            @if(auth()->check())
-              <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-            @endif
+            ?>
+            <?php if($featuredCount > 0): ?>
+              <li><a href="<?php echo e(route('projects.featured')); ?>">Featured Work</a></li>
+            <?php endif; ?>
+            <?php if(auth()->check()): ?>
+              <li><a href="<?php echo e(route('admin.dashboard')); ?>">Dashboard</a></li>
+            <?php endif; ?>
           </ul>
         </div>
         
-        {{-- Open Source --}}
+        
         <div class="footer-column">
         <h4 class="footer-heading">Open Source</h4>
         <p class="footer-text">
           This portfolio is built with Laravel and is open source.
         </p>
-        <a href="https://github.com/{{ config('app.owner_github') }}/laravel_portfolio" 
+        <a href="https://github.com/<?php echo e(config('app.owner_github')); ?>/laravel_portfolio" 
            target="_blank" 
            rel="noopener noreferrer"
            class="footer-cta">
@@ -521,10 +490,10 @@
           View Source
         </a>
       </div>
-    </div>      {{-- Copyright Bar --}}
+    </div>      
       <div class="footer-bottom">
         <p class="footer-copyright">
-          &copy; {{ date('Y') }} {{ config('app.owner_name', 'Fabio Bianco') }}. All rights reserved.
+          &copy; <?php echo e(date('Y')); ?> <?php echo e(config('app.owner_name', 'Fabio Bianco')); ?>. All rights reserved.
         </p>
         <p class="footer-tech">
           Built with <span style="color: #ff2d20;">❤</span> using Laravel & Vite
@@ -533,89 +502,92 @@
     </div>
   </footer>
 
-  @else
-    {{-- Filtered header for category pages --}}
+  <?php else: ?>
+    
     <header style="margin-bottom: 3rem; text-align: center;">
       <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">
-        @if(isset($isFeatured) && $isFeatured)
+        <?php if(isset($isFeatured) && $isFeatured): ?>
           ⭐ Progetti in Evidenza
-        @elseif(isset($currentType))
-          {{ $currentType->name }}
-        @endif
+        <?php elseif(isset($currentType)): ?>
+          <?php echo e($currentType->name); ?>
+
+        <?php endif; ?>
       </h1>
       <p class="text-muted" style="font-size: 1.1rem;">
-        @if(isset($currentType))
-          Progetti {{ strtolower($currentType->name) }}
-        @else
+        <?php if(isset($currentType)): ?>
+          Progetti <?php echo e(strtolower($currentType->name)); ?>
+
+        <?php else: ?>
           I migliori progetti del portfolio
-        @endif
+        <?php endif; ?>
       </p>
     </header>
-  @endif
+  <?php endif; ?>
 
-  {{-- Filtri --}}
-  @if(isset($allTypes))
+  
+  <?php if(isset($allTypes)): ?>
     <div class="filters-section">
       <div class="filter-group" style="justify-content: center;">
-        <a href="{{ route('home') }}" 
-           class="filter-chip {{ !isset($currentType) ? 'active' : '' }}">
+        <a href="<?php echo e(route('home')); ?>" 
+           class="filter-chip <?php echo e(!isset($currentType) ? 'active' : ''); ?>">
           Tutti
-          @isset($typeCounts)
-            <span class="count">{{ $typeCounts->sum() }}</span>
-          @endisset
+          <?php if(isset($typeCounts)): ?>
+            <span class="count"><?php echo e($typeCounts->sum()); ?></span>
+          <?php endif; ?>
         </a>
-        @foreach($allTypes as $t)
-          @php
+        <?php $__currentLoopData = $allTypes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $t): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+          <?php
             $count = $typeCounts[$t->id] ?? 0;
-          @endphp
-          @if($count > 0)
-            <a href="{{ route('home', ['type' => $t->slug]) }}"
-               class="filter-chip {{ (isset($currentType) && $currentType->id === $t->id) ? 'active' : '' }}">
-              {{ $t->name }}
-              <span class="count">{{ $count }}</span>
+          ?>
+          <?php if($count > 0): ?>
+            <a href="<?php echo e(route('home', ['type' => $t->slug])); ?>"
+               class="filter-chip <?php echo e((isset($currentType) && $currentType->id === $t->id) ? 'active' : ''); ?>">
+              <?php echo e($t->name); ?>
+
+              <span class="count"><?php echo e($count); ?></span>
             </a>
-          @endif
-        @endforeach
+          <?php endif; ?>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
       </div>
     </div>
-  @endif
+  <?php endif; ?>
 
-  {{-- Stats --}}
+  
   <div class="stats-bar">
     <span class="stat-item">
-      <strong>{{ $projects->total() }}</strong> progetti
+      <strong><?php echo e($projects->total()); ?></strong> progetti
     </span>
-    @if(isset($currentType) || (isset($isFeatured) && $isFeatured))
+    <?php if(isset($currentType) || (isset($isFeatured) && $isFeatured)): ?>
       <span>•</span>
-      <a href="{{ route('home') }}" style="color: var(--color-accent); text-decoration: none;">
+      <a href="<?php echo e(route('home')); ?>" style="color: var(--color-accent); text-decoration: none;">
         Mostra tutti
       </a>
-    @endif
-    @if(!isset($isFeatured) || !$isFeatured)
-      @php
+    <?php endif; ?>
+    <?php if(!isset($isFeatured) || !$isFeatured): ?>
+      <?php
         $featuredCount = \App\Models\Project::published()->featured()->count();
-      @endphp
-      @if($featuredCount > 0)
+      ?>
+      <?php if($featuredCount > 0): ?>
         <span>•</span>
-        <a href="{{ route('projects.featured') }}" style="color: var(--color-accent); text-decoration: none;">
-          ⭐ Featured ({{ $featuredCount }})
+        <a href="<?php echo e(route('projects.featured')); ?>" style="color: var(--color-accent); text-decoration: none;">
+          ⭐ Featured (<?php echo e($featuredCount); ?>)
         </a>
-      @endif
-    @endif
+      <?php endif; ?>
+    <?php endif; ?>
   </div>
 
-  {{-- Projects Grid --}}
+  
   <div id="projects" class="projects-grid">
-    @forelse($projects as $project)
+    <?php $__empty_1 = true; $__currentLoopData = $projects; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $project): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
       <article class="project-card">
         
-        {{-- Image --}}
-        @if($project->image_url)
+        
+        <?php if($project->image_url): ?>
           <div class="project-card-image">
-            <img src="{{ $project->image_url }}" alt="{{ $project->title }}">
+            <img src="<?php echo e($project->image_url); ?>" alt="<?php echo e($project->title); ?>">
           </div>
-        @else
-          @php
+        <?php else: ?>
+          <?php
             $gradients = [
               '#667eea 0%, #764ba2 100%',
               '#f093fb 0%, #f5576c 100%',
@@ -623,67 +595,71 @@
               '#43e97b 0%, #38f9d7 100%'
             ];
             $randomGradient = $gradients[array_rand($gradients)];
-          @endphp
-          <div class="project-card-image" style="background: linear-gradient(135deg, {{ $randomGradient }});">
+          ?>
+          <div class="project-card-image" style="background: linear-gradient(135deg, <?php echo e($randomGradient); ?>);">
             <div style="display: flex; align-items: center; justify-content: center; height: 100%; font-size: 3rem; color: white; opacity: 0.3;">
-              {{ strtoupper(substr($project->title, 0, 1)) }}
+              <?php echo e(strtoupper(substr($project->title, 0, 1))); ?>
+
             </div>
           </div>
-        @endif
+        <?php endif; ?>
         
         <div class="project-card-body">
           
-          {{-- Meta badges --}}
+          
           <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
-            @if($project->type)
-              @php
+            <?php if($project->type): ?>
+              <?php
                 $typeName = strtolower($project->type->name);
                 $badgeClass = 'frontend';
                 if ($typeName === 'automazioni') $badgeClass = 'automazioni';
                 elseif ($typeName === 'backend') $badgeClass = 'backend';
-              @endphp
-              <span class="badge-type badge-type-{{ $badgeClass }}">
-                {{ $project->type->name }}
+              ?>
+              <span class="badge-type badge-type-<?php echo e($badgeClass); ?>">
+                <?php echo e($project->type->name); ?>
+
               </span>
-            @endif
+            <?php endif; ?>
             
-            @if($project->technologies && $project->technologies->count())
-              @foreach($project->technologies->take(3) as $tech)
-                <span class="badge-tech">{{ $tech->name }}</span>
-              @endforeach
-              @if($project->technologies->count() > 3)
-                <span class="badge-tech" style="opacity: 0.7;">+{{ $project->technologies->count() - 3 }}</span>
-              @endif
-            @endif
+            <?php if($project->technologies && $project->technologies->count()): ?>
+              <?php $__currentLoopData = $project->technologies->take(3); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tech): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <span class="badge-tech"><?php echo e($tech->name); ?></span>
+              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+              <?php if($project->technologies->count() > 3): ?>
+                <span class="badge-tech" style="opacity: 0.7;">+<?php echo e($project->technologies->count() - 3); ?></span>
+              <?php endif; ?>
+            <?php endif; ?>
           </div>
           
-          {{-- Title --}}
-          <h2 class="project-card-title">{{ $project->title }}</h2>
           
-          {{-- Description --}}
-          @if($project->description)
-            <p class="project-card-description">{{ $project->description }}</p>
-          @endif
+          <h2 class="project-card-title"><?php echo e($project->title); ?></h2>
           
-          {{-- Meta info --}}
-          @if(!is_null($project->stargazers_count) || !is_null($project->forks_count))
+          
+          <?php if($project->description): ?>
+            <p class="project-card-description"><?php echo e($project->description); ?></p>
+          <?php endif; ?>
+          
+          
+          <?php if(!is_null($project->stargazers_count) || !is_null($project->forks_count)): ?>
             <div style="display: flex; gap: 1rem; margin-bottom: 1rem; color: var(--color-text-muted); font-size: 0.9rem;">
-              @if(!is_null($project->stargazers_count))
+              <?php if(!is_null($project->stargazers_count)): ?>
                 <span style="display: flex; align-items: center; gap: 0.35rem;">
-                  ⭐ {{ $project->stargazers_count }}
+                  ⭐ <?php echo e($project->stargazers_count); ?>
+
                 </span>
-              @endif
-              @if(!is_null($project->forks_count))
+              <?php endif; ?>
+              <?php if(!is_null($project->forks_count)): ?>
                 <span style="display: flex; align-items: center; gap: 0.35rem;">
-                  🔀 {{ $project->forks_count }}
+                  🔀 <?php echo e($project->forks_count); ?>
+
                 </span>
-              @endif
+              <?php endif; ?>
             </div>
-          @endif
+          <?php endif; ?>
           
-          {{-- Action --}}
+          
           <div style="margin-top: auto;">
-            <a href="{{ route('projects.show', $project->slug) }}" class="btn-primary-minimal" style="width: 100%; justify-content: center;">
+            <a href="<?php echo e(route('projects.show', $project->slug)); ?>" class="btn-primary-minimal" style="width: 100%; justify-content: center;">
               Vedi progetto
               <span style="font-size: 1.2rem;">→</span>
             </a>
@@ -692,29 +668,32 @@
         </div>
         
       </article>
-    @empty
+    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
       <div class="empty-state" style="grid-column: 1 / -1;">
         <div class="empty-state-icon">📭</div>
         <h3 style="margin-bottom: 0.5rem;">Nessun progetto trovato</h3>
         <p class="text-muted">Prova a cambiare i filtri di ricerca</p>
-        @if(isset($currentType))
-          <a href="{{ route('home') }}" class="btn-minimal" style="margin-top: 1rem;">
+        <?php if(isset($currentType)): ?>
+          <a href="<?php echo e(route('home')); ?>" class="btn-minimal" style="margin-top: 1rem;">
             Mostra tutti i progetti
           </a>
-        @endif
+        <?php endif; ?>
       </div>
-    @endforelse
+    <?php endif; ?>
   </div>
 
-  {{-- Pagination --}}
-  @if($projects->hasPages())
+  
+  <?php if($projects->hasPages()): ?>
     <div style="display: flex; justify-content: center;">
-      {{ $projects->links() }}
+      <?php echo e($projects->links()); ?>
+
     </div>
-  @endif
+  <?php endif; ?>
 
 </div>
-{{-- END guest-container --}}
 
-@endsection
 
+<?php $__env->stopSection(); ?>
+
+
+<?php echo $__env->make('layouts.guest-minimal', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\Users\Utente\Desktop\laravel_portfolio\resources\views/guest/index-minimal.blade.php ENDPATH**/ ?>

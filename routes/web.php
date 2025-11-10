@@ -9,6 +9,9 @@ use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\ContactController;
 
 // -------------------- GUEST --------------------
+// Test route
+Route::get('/test-minimal', fn() => view('test-minimal'))->name('test.minimal');
+
 // Home: vetrina progetti
 Route::get('/', [ProjectsController::class, 'index'])->name('home');
 

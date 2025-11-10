@@ -14,6 +14,12 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
+    
+    // Portfolio owner info (simplified: no auth() calls in guest views)
+    'owner_name' => env('OWNER_NAME', 'Fabio Bianco'),
+    'owner_email' => env('OWNER_EMAIL', 'fabio@example.com'),
+    'owner_github' => env('OWNER_GITHUB', 'Fabio-Bianco'),
+    'owner_linkedin' => env('OWNER_LINKEDIN', 'fabio-bianco-008a0b118'),
 
     /*
     |--------------------------------------------------------------------------
