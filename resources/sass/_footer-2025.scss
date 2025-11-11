@@ -1,0 +1,145 @@
+// Footer 2025 Edition
+.footer {
+    position: relative;
+    margin-top: 5rem;
+    padding: 4rem 0 2rem;
+    
+    // Modern gradient separator
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+            90deg,
+            var(--bs-primary-rgb, #0d6efd) 0%,
+            rgba(var(--bs-primary-rgb), 0.1) 100%
+        );
+        opacity: 0.8;
+        transition: opacity 0.3s ease;
+    }
+
+    // Dark mode awareness
+    @media (prefers-color-scheme: dark) {
+        &::before {
+            opacity: 0.15;
+        }
+    }
+
+    // Social links with modern hover effects
+    .social-links {
+        .social-link {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 12px;
+            color: var(--bs-body-color);
+            background: rgba(var(--bs-primary-rgb), 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            
+            &:hover, &:focus {
+                color: var(--bs-primary);
+                background: rgba(var(--bs-primary-rgb), 0.15);
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(var(--bs-primary-rgb), 0.15);
+            }
+
+            &:active {
+                transform: translateY(0);
+            }
+
+            i {
+                font-size: 1.25rem;
+                transition: transform 0.2s ease;
+            }
+
+            &:hover i {
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    // Modern navigation links
+    .footer-nav {
+        .footer-link {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 0;
+            color: var(--bs-secondary-color);
+            text-decoration: none;
+            transition: all 0.2s ease;
+
+            i {
+                margin-right: 0.75rem;
+                font-size: 1.1rem;
+                opacity: 0.75;
+                transition: transform 0.2s ease;
+            }
+
+            &:hover, &:focus {
+                color: var(--bs-primary);
+
+                i {
+                    transform: translateX(2px);
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    // Responsive optimizations
+    @media (max-width: 768px) {
+        margin-top: 3rem;
+        padding: 3rem 0 1.5rem;
+
+        .social-links {
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .footer-subtitle {
+            margin-top: 1.5rem;
+        }
+
+        .copyright-text {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+    }
+
+    // Enhanced typography
+    .footer-subtitle {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: var(--bs-primary);
+        letter-spacing: 0.5px;
+    }
+
+    // Copyright bar modernization
+    .copyright-bar {
+        position: relative;
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(var(--bs-primary-rgb), 0.1);
+
+        .heart-icon {
+            display: inline-block;
+            animation: heartbeat 1.5s ease infinite;
+        }
+    }
+}
+
+// Heartbeat animation
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    14% { transform: scale(1.1); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.1); }
+    70% { transform: scale(1); }
+}

@@ -56,6 +56,9 @@
   <main id="main-content" role="main">
     @yield('content')
   </main>
+
+  {{-- Footer --}}
+  @include('partials.footer')
   
   {{-- Theme Toggle --}}
   <div class="theme-toggle-guest" id="themeToggle" aria-label="Cambia tema">

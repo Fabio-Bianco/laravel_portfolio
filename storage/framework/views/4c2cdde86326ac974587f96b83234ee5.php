@@ -56,6 +56,9 @@
   <main id="main-content" role="main">
     <?php echo $__env->yieldContent('content'); ?>
   </main>
+
+  
+  <?php echo $__env->make('partials.footer', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
   
   
   <div class="theme-toggle-guest" id="themeToggle" aria-label="Cambia tema">
