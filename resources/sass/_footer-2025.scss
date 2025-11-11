@@ -9,22 +9,28 @@
         content: '';
         position: absolute;
         top: 0;
-        left: 0;
-        right: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 95%;
+        max-width: 1200px;
         height: 1px;
         background: linear-gradient(
             90deg,
-            var(--bs-primary-rgb, #0d6efd) 0%,
-            rgba(var(--bs-primary-rgb), 0.1) 100%
+            transparent,
+            rgba(var(--bs-primary-rgb, 13, 110, 253), 0.35) 15%,
+            rgba(var(--bs-primary-rgb, 13, 110, 253), 0.55) 50%,
+            rgba(var(--bs-primary-rgb, 13, 110, 253), 0.35) 85%,
+            transparent
         );
-        opacity: 0.8;
+        box-shadow: 0 0 8px rgba(var(--bs-primary-rgb, 13, 110, 253), 0.15);
+        opacity: 1;
         transition: opacity 0.3s ease;
     }
 
     // Dark mode awareness
     @media (prefers-color-scheme: dark) {
         &::before {
-            opacity: 0.15;
+            opacity: 0.75;
         }
     }
 

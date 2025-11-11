@@ -17,6 +17,40 @@ $dark: #212529;
 .card-title { margin-bottom: .4rem; }
 .navbar-brand { font-weight: 700; letter-spacing:.3px; }
 
+// Linea sottile elegante sotto navbar
+.navbar {
+	position: relative;
+	
+	&::after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 1px;
+		background: linear-gradient(
+			90deg,
+			transparent,
+			rgba(255, 255, 255, 0.15) 20%,
+			rgba(255, 255, 255, 0.15) 80%,
+			transparent
+		);
+		opacity: 0.7;
+	}
+}
+
+// Variante per tema scuro
+.theme-dark .navbar::after {
+	background: linear-gradient(
+		90deg,
+		transparent,
+		rgba(255, 255, 255, 0.1) 20%,
+		rgba(255, 255, 255, 0.1) 80%,
+		transparent
+	);
+	opacity: 0.5;
+}
+
 // Stili specifici pagina portfolio (guest/index)
 .portfolio-page {
 	a {
