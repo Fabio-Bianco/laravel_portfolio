@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ==================== Footer Entrance Animation ====================
     const observeFooterElements = () => {
-        const footerElements = document.querySelectorAll('.stat-card, .footer-nav, .newsletter-form');
+        const footerElements = document.querySelectorAll('.feature-card, .footer-nav, .newsletter-form');
         
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry, index) => {
@@ -243,48 +243,29 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000);
     }
 
-    // ==================== Stat Counter Animation ====================
-    const animateCounters = () => {
-        const statValues = document.querySelectorAll('.stat-value');
+    // ==================== Feature Icons Stagger Animation ====================
+    const animateFeatureIcons = () => {
+        const featureIcons = document.querySelectorAll('.feature-icon');
         
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
+            entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
-                    const target = entry.target;
-                    const text = target.textContent;
-                    const hasPlus = text.includes('+');
-                    const number = parseInt(text.replace(/\D/g, ''));
-                    
-                    if (!isNaN(number) && number > 0) {
-                        animateNumber(target, 0, number, 2000, hasPlus);
-                    }
-                    
-                    observer.unobserve(target);
+                    setTimeout(() => {
+                        entry.target.style.animation = `fadeInScale 0.5s ease forwards`;
+                    }, index * 150);
+                    observer.unobserve(entry.target);
                 }
             });
         }, { threshold: 0.5 });
 
-        statValues.forEach(el => observer.observe(el));
+        featureIcons.forEach(el => {
+            el.style.opacity = '0';
+            observer.observe(el);
+        });
     };
 
-    function animateNumber(element, start, end, duration, hasPlus = false) {
-        const range = end - start;
-        const increment = range / (duration / 16);
-        let current = start;
-        
-        const timer = setInterval(() => {
-            current += increment;
-            if (current >= end) {
-                element.textContent = end + (hasPlus ? '+' : '');
-                clearInterval(timer);
-            } else {
-                element.textContent = Math.floor(current) + (hasPlus ? '+' : '');
-            }
-        }, 16);
-    }
-
-    // Initialize counter animation
-    animateCounters();
+    // Initialize feature icons animation
+    animateFeatureIcons();
 
     // ==================== Keyboard Navigation Enhancement ====================
     document.addEventListener('keydown', (e) => {

@@ -1,40 +1,39 @@
 {{-- Footer Component 2025 - Complete Edition --}}
 <footer class="footer" role="contentinfo">
     <div class="container">
-        {{-- Trust Indicators / Stats Bar --}}
-        <div class="footer-stats">
+        {{-- Features / Tech Highlights Bar --}}
+        <div class="footer-features">
             <div class="row g-3 text-center">
                 <div class="col-6 col-md-3">
-                    <div class="stat-card">
-                        <i class="bi bi-code-slash stat-icon"></i>
-                        <div class="stat-value">{{ \App\Models\Project::published()->count() }}+</div>
-                        <div class="stat-label">Projects Completed</div>
+                    <div class="feature-card">
+                        <i class="bi bi-lightning-charge feature-icon"></i>
+                        <div class="feature-title">Fast & Responsive</div>
+                        <div class="feature-label">Optimized Performance</div>
                     </div>
                 </div>
                 <div class="col-6 col-md-3">
-                    <div class="stat-card">
-                        <i class="bi bi-stack stat-icon"></i>
-                        <div class="stat-value">{{ \App\Models\Technology::count() }}+</div>
-                        <div class="stat-label">Technologies</div>
+                    <div class="feature-card">
+                        <i class="bi bi-palette feature-icon"></i>
+                        <div class="feature-title">Modern Design</div>
+                        <div class="feature-label">Clean UI/UX</div>
                     </div>
                 </div>
                 <div class="col-6 col-md-3">
-                    <div class="stat-card">
-                        <i class="bi bi-calendar-check stat-icon"></i>
-                        @php
-                            $startYear = 2020; // Configure your start year
-                            $yearsExperience = date('Y') - $startYear;
-                        @endphp
-                        <div class="stat-value">{{ $yearsExperience }}+</div>
-                        <div class="stat-label">Years Experience</div>
+                    <div class="feature-card">
+                        <i class="bi bi-universal-access-circle feature-icon"></i>
+                        <div class="feature-title">WCAG 2.1 AA</div>
+                        <div class="feature-label">Accessible Design</div>
                     </div>
                 </div>
                 <div class="col-6 col-md-3">
-                    <div class="stat-card">
-                        <i class="bi bi-github stat-icon"></i>
-                        <div class="stat-value">Open</div>
-                        <div class="stat-label">Source</div>
-                    </div>
+                    <a href="https://github.com/{{ config('services.github.username') }}/laravel_portfolio" 
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="feature-card feature-card-link">
+                        <i class="bi bi-github feature-icon"></i>
+                        <div class="feature-title">Open Source</div>
+                        <div class="feature-label">View on GitHub</div>
+                    </a>
                 </div>
             </div>
         </div>

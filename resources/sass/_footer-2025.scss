@@ -141,55 +141,93 @@
     }
 }
 
-// Trust Indicators / Stats Section
-.footer-stats {
+// Features / Tech Highlights Section
+.footer-features {
     padding: 3rem 0;
     background: linear-gradient(135deg, rgba(var(--bs-primary-rgb), 0.03) 0%, rgba(var(--bs-primary-rgb), 0.01) 100%);
     border-bottom: 1px solid rgba(var(--bs-primary-rgb), 0.1);
     margin-bottom: 3rem;
 
-    .stat-card {
+    .feature-card {
         padding: 1.5rem;
         border-radius: 16px;
         background: rgba(255, 255, 255, 0.5);
         backdrop-filter: blur(10px);
         border: 1px solid rgba(var(--bs-primary-rgb), 0.1);
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: block;
+        text-decoration: none;
+        color: inherit;
 
         &:hover {
             transform: translateY(-5px);
             box-shadow: 0 12px 24px rgba(var(--bs-primary-rgb), 0.12);
             border-color: rgba(var(--bs-primary-rgb), 0.3);
+
+            .feature-icon {
+                transform: scale(1.1);
+                color: var(--bs-primary);
+            }
         }
 
-        .stat-icon {
-            font-size: 2rem;
+        .feature-icon {
+            font-size: 2.5rem;
             color: var(--bs-primary);
             margin-bottom: 0.75rem;
             display: block;
-            animation: float 3s ease-in-out infinite;
+            transition: all 0.3s ease;
+            opacity: 0.9;
         }
 
-        .stat-value {
-            font-size: 2rem;
+        .feature-title {
+            font-size: 1.1rem;
             font-weight: 700;
             color: var(--text-heading, var(--bs-body-color));
-            line-height: 1;
+            line-height: 1.2;
             margin-bottom: 0.5rem;
         }
 
-        .stat-label {
+        .feature-label {
             font-size: 0.875rem;
             color: var(--text-muted, var(--bs-secondary-color));
             font-weight: 500;
         }
-    }
 
-    // Stagger animation delay
-    .stat-card:nth-child(1) .stat-icon { animation-delay: 0s; }
-    .stat-card:nth-child(2) .stat-icon { animation-delay: 0.2s; }
-    .stat-card:nth-child(3) .stat-icon { animation-delay: 0.4s; }
-    .stat-card:nth-child(4) .stat-icon { animation-delay: 0.6s; }
+        // GitHub link special styling
+        &.feature-card-link {
+            position: relative;
+            overflow: hidden;
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(var(--bs-primary-rgb), 0.1), transparent);
+                transition: left 0.5s ease;
+            }
+
+            &:hover::before {
+                left: 100%;
+            }
+
+            &:hover {
+                background: rgba(var(--bs-primary-rgb), 0.08);
+                
+                .feature-icon {
+                    animation: githubPulse 0.6s ease;
+                }
+            }
+        }
+    }
+}
+
+// GitHub pulse animation
+@keyframes githubPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
 }
 
 // Main Footer Content
@@ -446,10 +484,25 @@
     }
 }
 
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 0.9;
+        transform: scale(1);
+    }
+}
+
 // Dark Mode Adaptations
 @media (prefers-color-scheme: dark) {
-    .footer-stats .stat-card {
+    .footer-features .feature-card {
         background: rgba(255, 255, 255, 0.05);
+        
+        &:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
     }
 
     .newsletter-form .newsletter-input {
@@ -459,6 +512,22 @@
 
     .accessibility-badge {
         background: rgba(34, 197, 94, 0.15);
+    }
+}
+
+// Explicit dark theme class support
+.theme-dark {
+    .footer-features .feature-card {
+        background: rgba(255, 255, 255, 0.05);
+        
+        &:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+    }
+
+    .newsletter-form .newsletter-input {
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--bs-body-color);
     }
 }
 
@@ -557,19 +626,19 @@
 
 // Responsive Optimizations
 @media (max-width: 768px) {
-    .footer-stats {
+    .footer-features {
         padding: 2rem 0;
         margin-bottom: 2rem;
 
-        .stat-card {
+        .feature-card {
             padding: 1rem;
 
-            .stat-value {
-                font-size: 1.5rem;
+            .feature-title {
+                font-size: 0.95rem;
             }
 
-            .stat-icon {
-                font-size: 1.5rem;
+            .feature-icon {
+                font-size: 2rem;
             }
         }
     }
