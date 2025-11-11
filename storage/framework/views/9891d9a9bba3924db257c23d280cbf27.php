@@ -25,10 +25,10 @@
                            id="name" 
                            name="name" 
                            class="form-control" 
-                           placeholder="Il tuo nome completo"
+                           placeholder="Your full name"
                            data-validate="name"
                            required>
-                    <label for="name" class="form-label">Nome Completo</label>
+                    <label for="name" class="form-label">Full Name</label>
                     <i class="bi bi-check-circle-fill validation-icon"></i>
                 </div>
                 
@@ -39,10 +39,10 @@
                            id="email" 
                            name="email" 
                            class="form-control" 
-                           placeholder="nome@esempio.com"
+                           placeholder="name@example.com"
                            data-validate="email"
                            required>
-                    <label for="email" class="form-label">Indirizzo Email</label>
+                    <label for="email" class="form-label">Email Address</label>
                     <i class="bi bi-check-circle-fill validation-icon"></i>
                 </div>
                 
@@ -52,18 +52,18 @@
                     <textarea id="message" 
                              name="message" 
                              class="form-control" 
-                             placeholder="Descrivi il tuo progetto o problema..."
+                             placeholder="Describe your project or problem..."
                              rows="6"
                              data-validate="message"
                              required></textarea>
-                    <label for="message" class="form-label">Messaggio</label>
+                    <label for="message" class="form-label">Message</label>
                     <i class="bi bi-check-circle-fill validation-icon"></i>
                 </div>
                 
                 
                 <button type="submit" class="btn-primary" id="submitBtn">
                     <div class="btn-loader"></div>
-                    <span class="btn-text">Invia Messaggio</span>
+                    <span class="btn-text">Send Message</span>
                 </button>
 
                 

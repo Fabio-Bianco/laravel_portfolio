@@ -13,15 +13,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const validators = {
         name: {
             regex: /^[a-zA-ZÀ-ÿ\s'-]{2,50}$/,
-            message: 'Inserisci un nome valido (2-50 caratteri)'
+            message: 'Please enter a valid name (2-50 characters)'
         },
         email: {
             regex: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-            message: 'Inserisci un indirizzo email valido'
+            message: 'Please enter a valid email address'
         },
         message: {
             minLength: 20,
-            message: 'Il messaggio deve contenere almeno 20 caratteri'
+            message: 'Message must be at least 20 characters long'
         }
     };
 
@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Validazione finale
         if (!validateForm()) {
-            showError('Completa tutti i campi correttamente prima di inviare.');
+            showError('Please complete all fields correctly before submitting.');
             return;
         }
 
@@ -199,11 +199,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 showSuccess();
                 resetForm();
             } else {
-                showError(data.message || 'Si è verificato un errore. Riprova più tardi.');
+                showError(data.message || 'An error occurred. Please try again later.');
             }
         } catch (error) {
-            console.error('Errore invio form:', error);
-            showError('Errore di connessione. Controlla la tua rete e riprova.');
+            console.error('Form submission error:', error);
+            showError('Connection error. Please check your network and try again.');
         } finally {
             hideLoadingState();
         }
