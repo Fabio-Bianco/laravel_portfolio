@@ -3,6 +3,7 @@ import './bootstrap';
 import * as bootstrap from 'bootstrap';
 import './modules/bioOffcanvas';
 import './contact-validation';
+import './footer-enhanced';
 import.meta.glob([
     '../img/**'
 ])
