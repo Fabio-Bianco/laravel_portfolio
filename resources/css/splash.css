@@ -1,0 +1,147 @@
+/* Splash Page Styles - Auto Dark/Light Mode */
+
+/* Default (Light Mode) */
+:root {
+  --splash-bg: #ffffff;
+  --splash-text: #1a1a1a;
+  --splash-badge-bg: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  --splash-badge-border: rgba(59, 130, 246, 0.4);
+  --splash-badge-shadow: rgba(59, 130, 246, 0.15);
+  --splash-text-muted: #495057;
+  --splash-focus: #8b5cf6;
+}
+
+/* Dark Mode - Auto Detection */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --splash-bg: #000;
+    --splash-text: #fff;
+    --splash-badge-bg: #111;
+    --splash-badge-border: #333;
+    --splash-badge-shadow: rgba(255, 255, 255, 0.05);
+    --splash-text-muted: #bbb;
+    --splash-focus: #888;
+  }
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--splash-bg);
+  color: var(--splash-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.splash-wrap {
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.splash-wrap.is-visible {
+  opacity: 1;
+}
+
+.splash-wrap.is-leaving {
+  opacity: 0;
+}
+
+.logo-link {
+  text-decoration: none !important;
+  color: inherit;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.logo-link:hover,
+.logo-link:focus,
+.logo-link:active {
+  text-decoration: none !important;
+}
+
+.logo-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: var(--splash-badge-bg);
+  border: 2px solid var(--splash-badge-border);
+  box-shadow: 0 0 0 6px var(--splash-badge-shadow) inset;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.3s ease, border-color 0.3s ease;
+  text-decoration: none !important;
+}
+
+.badge-text {
+  font-weight: 700;
+  font-size: 36px;
+  letter-spacing: 0.5px;
+  color: #fff;
+  text-decoration: none !important;
+}
+
+.badge-label {
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  color: #fff;
+  opacity: 0.85;
+  text-decoration: none !important;
+  text-transform: lowercase;
+}
+
+/* Light Mode Badge - Solid gradient background with white text */
+@media (prefers-color-scheme: light) {
+  .logo-badge {
+    background: var(--splash-badge-bg);
+    border-color: var(--splash-badge-border);
+    box-shadow: 0 0 0 6px var(--splash-badge-shadow) inset,
+                0 4px 12px rgba(59, 130, 246, 0.2);
+  }
+  
+  .badge-text,
+  .badge-label {
+    color: #fff;
+  }
+  
+  .logo-link:hover .logo-badge {
+    box-shadow: 0 0 0 8px rgba(59, 130, 246, 0.2) inset,
+                0 6px 16px rgba(59, 130, 246, 0.35);
+  }
+}
+
+/* Dark Mode Badge */
+@media (prefers-color-scheme: dark) {
+  .badge-text,
+  .badge-label {
+    color: #fff;
+  }
+  
+  .logo-link:hover .logo-badge {
+    box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.07) inset;
+  }
+}
+
+.logo-link:hover .logo-badge {
+  transform: scale(1.03);
+}
+
+.logo-link:hover .logo-text {
+  color: var(--splash-text);
+}
+
+.logo-link:focus-visible {
+  outline: 2px dashed var(--splash-focus);
+  outline-offset: 6px;
+  border-radius: 999px;
+}
