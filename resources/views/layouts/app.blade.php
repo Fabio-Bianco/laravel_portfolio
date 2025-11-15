@@ -12,17 +12,17 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
       <a class="navbar-brand" href="{{ route('home') }}">Portfolio</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-label="Apri/chiudi menu">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div id="mainNav" class="collapse navbar-collapse">
         <ul class="navbar-nav ms-auto align-items-lg-center gap-2">
-          {{-- Work prima fra le azioni --}}
-          <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Work</a></li>
-          {{-- Gestione: pagina pubblicati (solo admin) --}}
+          {{-- Home --}}
+          <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
+          {{-- Area Admin (solo per amministratori) --}}
           @auth
             @if(auth()->user()->is_admin)
-              <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Gestisci</a></li>
+              <li class="nav-item"><a class="nav-link" href="{{ route('admin.projects.index') }}">Admin</a></li>
             @endif
           @endauth
           {{-- Profilo --}}
@@ -49,8 +49,7 @@
       @yield('content')
     </div>
   </main>
-  {{-- Drawer profilo legacy rimosso in favore dell’Offcanvas Bio Bootstrap --}}
-  @include('partials.bio-offcanvas')
+  
   @stack('scripts')
 </body>
 </html>

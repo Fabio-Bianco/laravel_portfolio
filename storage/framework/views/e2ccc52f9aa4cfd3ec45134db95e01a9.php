@@ -7,22 +7,22 @@
                 <div class="col-6 col-md-3">
                     <div class="feature-card">
                         <i class="bi bi-lightning-charge feature-icon"></i>
-                        <div class="feature-title">Fast & Responsive</div>
-                        <div class="feature-label">Optimized Performance</div>
+                        <div class="feature-title">Veloce & Reattivo</div>
+                        <div class="feature-label">Prestazioni Ottimizzate</div>
                     </div>
                 </div>
                 <div class="col-6 col-md-3">
                     <div class="feature-card">
                         <i class="bi bi-palette feature-icon"></i>
-                        <div class="feature-title">Modern Design</div>
-                        <div class="feature-label">Clean UI/UX</div>
+                        <div class="feature-title">Design Moderno</div>
+                        <div class="feature-label">UI/UX Pulita</div>
                     </div>
                 </div>
                 <div class="col-6 col-md-3">
                     <div class="feature-card">
                         <i class="bi bi-universal-access-circle feature-icon"></i>
                         <div class="feature-title">WCAG 2.1 AA</div>
-                        <div class="feature-label">Accessible Design</div>
+                        <div class="feature-label">Design Accessibile</div>
                     </div>
                 </div>
                 <div class="col-6 col-md-3">
@@ -32,7 +32,7 @@
                        class="feature-card feature-card-link">
                         <i class="bi bi-github feature-icon"></i>
                         <div class="feature-title">Open Source</div>
-                        <div class="feature-label">View on GitHub</div>
+                        <div class="feature-label">Vedi su GitHub</div>
                     </a>
                 </div>
             </div>
@@ -43,7 +43,7 @@
             
             <div class="col-12 col-lg-4">
                 <h5 class="footer-heading"><?php echo e(config('app.owner_name')); ?></h5>
-                <p class="footer-description">Full Stack Developer specialized in modern and scalable web solutions. Passionate about clean code, performance, and accessibility.</p>
+                <p class="footer-description">Full Stack Developer specializzato in soluzioni web moderne e scalabili. Appassionato di codice pulito, performance e accessibilità.</p>
                 
                 
                 <div class="d-flex gap-3 social-links mb-4">
@@ -51,7 +51,7 @@
                        target="_blank" 
                        rel="noopener noreferrer"
                        class="social-link"
-                       aria-label="Visit my GitHub profile"
+                       aria-label="Visita il mio profilo GitHub"
                        data-tooltip="GitHub">
                         <i class="bi bi-github"></i>
                     </a>
@@ -59,13 +59,13 @@
                        target="_blank"
                        rel="noopener noreferrer" 
                        class="social-link"
-                       aria-label="Connect with me on LinkedIn"
+                       aria-label="Connettiti con me su LinkedIn"
                        data-tooltip="LinkedIn">
                         <i class="bi bi-linkedin"></i>
                     </a>
                     <a href="mailto:<?php echo e(config('app.owner_email')); ?>"
                        class="social-link"
-                       aria-label="Send me an email"
+                       aria-label="Inviami un'email"
                        data-tooltip="Email">
                         <i class="bi bi-envelope"></i>
                     </a>
@@ -74,16 +74,16 @@
 
             
             <div class="col-12 col-md-6 col-lg-4">
-                <h5 class="footer-heading">Quick Links</h5>
+                <h5 class="footer-heading">Link Rapidi</h5>
                 <div class="row g-4">
                     
                     <div class="col-6">
                         <h6 class="footer-subtitle">Portfolio</h6>
                         <ul class="list-unstyled footer-nav">
                             <li>
-                                <a href="<?php echo e(route('home')); ?>" class="footer-link" title="View all portfolio projects">
+                                <a href="<?php echo e(route('home')); ?>" class="footer-link" title="Vedi tutti i progetti del portfolio">
                                     <i class="bi bi-collection"></i>
-                                    <span>All Projects</span>
+                                    <span>Tutti i Progetti</span>
                                 </a>
                             </li>
                             <?php
@@ -91,16 +91,16 @@
                             ?>
                             <?php if($featuredCount > 0): ?>
                             <li>
-                                <a href="<?php echo e(route('projects.featured')); ?>" class="footer-link" title="Discover featured projects">
+                                <a href="<?php echo e(route('projects.featured')); ?>" class="footer-link" title="Scopri i progetti in evidenza">
                                     <i class="bi bi-star"></i>
-                                    <span>Featured</span>
+                                    <span>In Evidenza</span>
                                 </a>
                             </li>
                             <?php endif; ?>
                             <li>
-                                <a href="#about" class="footer-link smooth-scroll" title="Learn more about me">
+                                <a href="#about" class="footer-link smooth-scroll" title="Scopri di più su di me">
                                     <i class="bi bi-person"></i>
-                                    <span>About Me</span>
+                                    <span>Chi Sono</span>
                                 </a>
                             </li>
                         </ul>
@@ -108,18 +108,18 @@
                     
                     
                     <div class="col-6">
-                        <h6 class="footer-subtitle">Sections</h6>
+                        <h6 class="footer-subtitle">Sezioni</h6>
                         <ul class="list-unstyled footer-nav">
                             <li>
-                                <a href="#skills" class="footer-link smooth-scroll" title="Explore my technical skills">
+                                <a href="#skills" class="footer-link smooth-scroll" title="Esplora le mie competenze tecniche">
                                     <i class="bi bi-tools"></i>
-                                    <span>Skills</span>
+                                    <span>Competenze</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#contact" class="footer-link smooth-scroll" title="Let's talk about your project">
+                                <a href="#contact" class="footer-link smooth-scroll" title="Parliamo del tuo progetto">
                                     <i class="bi bi-envelope"></i>
-                                    <span>Contact</span>
+                                    <span>Contatti</span>
                                 </a>
                             </li>
                             <li>
@@ -127,9 +127,9 @@
                                    class="footer-link"
                                    target="_blank"
                                    rel="noopener noreferrer"
-                                   title="View source code">
+                                   title="Visualizza il codice sorgente">
                                     <i class="bi bi-code-slash"></i>
-                                    <span>Source Code</span>
+                                    <span>Codice Sorgente</span>
                                 </a>
                             </li>
                         </ul>
@@ -139,8 +139,8 @@
 
             
             <div class="col-12 col-md-6 col-lg-4">
-                <h5 class="footer-heading">Stay Connected</h5>
-                <p class="footer-description mb-3">Get notified about new projects and updates.</p>
+                <h5 class="footer-heading">Resta Connesso</h5>
+                <p class="footer-description mb-3">Ricevi notifiche su nuovi progetti e aggiornamenti.</p>
                 
                 
                 <form class="newsletter-form" id="newsletterForm" action="#" method="POST">
@@ -148,16 +148,16 @@
                     <div class="input-group">
                         <input type="email" 
                                class="form-control newsletter-input" 
-                               placeholder="your@email.com" 
-                               aria-label="Email address for newsletter"
+                               placeholder="tua@email.com" 
+                               aria-label="Indirizzo email per la newsletter"
                                required>
-                        <button class="btn btn-primary newsletter-btn" type="submit" aria-label="Subscribe to newsletter">
+                        <button class="btn btn-primary newsletter-btn" type="submit" aria-label="Iscriviti alla newsletter">
                             <i class="bi bi-send"></i>
                         </button>
                     </div>
                     <small class="form-text text-muted d-block mt-2">
                         <i class="bi bi-shield-check me-1"></i>
-                        No spam, unsubscribe anytime.
+                        Niente spam, cancellati quando vuoi.
                     </small>
                 </form>
 
@@ -166,7 +166,7 @@
                     <i class="bi bi-universal-access-circle"></i>
                     <div class="badge-text">
                         <strong>WCAG 2.1 AA</strong>
-                        <span>Accessible Design</span>
+                        <span>Design Accessibile</span>
                     </div>
                 </div>
             </div>
@@ -177,7 +177,7 @@
             <div class="row align-items-center">
                 <div class="col-md-6 mb-3 mb-md-0">
                     <p class="mb-0 copyright-text">
-                        &copy; <?php echo e(date('Y')); ?> <?php echo e(config('app.owner_name')); ?>. All rights reserved.
+                        &copy; <?php echo e(date('Y')); ?> <?php echo e(config('app.owner_name')); ?>. Tutti i diritti riservati.
                     </p>
                 </div>
                 <div class="col-md-6 text-md-end">
@@ -187,7 +187,7 @@
                         <a href="#" class="legal-link" data-bs-toggle="modal" data-bs-target="#cookieModal">Cookie Policy</a>
                         <span class="legal-separator">•</span>
                         <span class="text-muted">
-                            Built with <i class="bi bi-heart-fill text-danger mx-1 heart-icon"></i> Laravel & Vite
+                            Realizzato con <i class="bi bi-heart-fill text-danger mx-1 heart-icon"></i> Laravel & Vite
                         </span>
                     </div>
                 </div>
@@ -198,8 +198,8 @@
     
     <button id="backToTop" 
             class="back-to-top" 
-            aria-label="Scroll back to top"
-            title="Back to top">
+            aria-label="Torna in cima"
+            title="Torna su">
         <i class="bi bi-arrow-up"></i>
     </button>
     
@@ -211,27 +211,27 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="privacyModalLabel">
-                    <i class="bi bi-shield-lock me-2"></i>Privacy Policy
+                    <i class="bi bi-shield-lock me-2"></i>Informativa sulla Privacy
                 </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi"></button>
             </div>
             <div class="modal-body">
-                <h6>Information We Collect</h6>
-                <p>When you contact us through the contact form, we collect your name, email address, and message content to respond to your inquiry.</p>
+                <h6>Informazioni che Raccogliamo</h6>
+                <p>Quando ci contatti attraverso il modulo di contatto, raccogliamo il tuo nome, indirizzo email e il contenuto del messaggio per rispondere alla tua richiesta.</p>
                 
-                <h6>How We Use Your Information</h6>
-                <p>We use the information you provide solely to respond to your questions and project inquiries. We do not share your personal information with third parties.</p>
+                <h6>Come Usiamo le Tue Informazioni</h6>
+                <p>Utilizziamo le informazioni fornite esclusivamente per rispondere alle tue domande e richieste di progetto. Non condividiamo le tue informazioni personali con terze parti.</p>
                 
-                <h6>Data Security</h6>
-                <p>We implement appropriate security measures to protect your personal information from unauthorized access or disclosure.</p>
+                <h6>Sicurezza dei Dati</h6>
+                <p>Implementiamo misure di sicurezza appropriate per proteggere le tue informazioni personali da accessi o divulgazioni non autorizzate.</p>
                 
-                <h6>Your Rights</h6>
-                <p>You have the right to request access to, correction of, or deletion of your personal data at any time by contacting us at <?php echo e(config('app.owner_email')); ?>.</p>
+                <h6>I Tuoi Diritti</h6>
+                <p>Hai il diritto di richiedere l'accesso, la correzione o la cancellazione dei tuoi dati personali in qualsiasi momento contattandoci a <?php echo e(config('app.owner_email')); ?>.</p>
                 
-                <p class="text-muted mb-0"><small>Last updated: <?php echo e(date('F Y')); ?></small></p>
+                <p class="text-muted mb-0"><small>Ultimo aggiornamento: <?php echo e(date('F Y')); ?></small></p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
             </div>
         </div>
     </div>
@@ -243,28 +243,28 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="cookieModalLabel">
-                    <i class="bi bi-cookie me-2"></i>Cookie Policy
+                    <i class="bi bi-cookie me-2"></i>Informativa sui Cookie
                 </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi"></button>
             </div>
             <div class="modal-body">
-                <h6>What Are Cookies</h6>
-                <p>Cookies are small text files stored on your device when you visit our website. They help us provide a better user experience.</p>
+                <h6>Cosa Sono i Cookie</h6>
+                <p>I cookie sono piccoli file di testo memorizzati sul tuo dispositivo quando visiti il nostro sito web. Ci aiutano a fornire una migliore esperienza utente.</p>
                 
-                <h6>How We Use Cookies</h6>
-                <p><strong>Essential Cookies:</strong> These cookies are necessary for the website to function properly, including theme preferences and session management.</p>
-                <p><strong>Analytics Cookies:</strong> We may use analytics tools to understand how visitors interact with our website, helping us improve the user experience.</p>
+                <h6>Come Utilizziamo i Cookie</h6>
+                <p><strong>Cookie Essenziali:</strong> Questi cookie sono necessari per il corretto funzionamento del sito web, incluse le preferenze di tema e la gestione delle sessioni.</p>
+                <p><strong>Cookie Analitici:</strong> Potremmo utilizzare strumenti di analisi per capire come i visitatori interagiscono con il nostro sito web, aiutandoci a migliorare l'esperienza utente.</p>
                 
-                <h6>Managing Cookies</h6>
-                <p>You can control and/or delete cookies as you wish through your browser settings. However, removing cookies may affect the functionality of the website.</p>
+                <h6>Gestione dei Cookie</h6>
+                <p>Puoi controllare e/o eliminare i cookie come desideri attraverso le impostazioni del tuo browser. Tuttavia, la rimozione dei cookie potrebbe influire sulla funzionalità del sito web.</p>
                 
-                <h6>Third-Party Cookies</h6>
-                <p>This website may use third-party services (such as GitHub for repository information) that may set their own cookies.</p>
+                <h6>Cookie di Terze Parti</h6>
+                <p>Questo sito web potrebbe utilizzare servizi di terze parti (come GitHub per le informazioni sui repository) che potrebbero impostare i propri cookie.</p>
                 
-                <p class="text-muted mb-0"><small>Last updated: <?php echo e(date('F Y')); ?></small></p>
+                <p class="text-muted mb-0"><small>Ultimo aggiornamento: <?php echo e(date('F Y')); ?></small></p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
             </div>
         </div>
     </div>

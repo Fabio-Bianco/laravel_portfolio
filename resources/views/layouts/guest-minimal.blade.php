@@ -46,9 +46,6 @@
   {{-- Bio Sidebar Component --}}
   @include('partials.bio-sidebar')
   
-  {{-- Bio Toggle Button --}}
-  @include('partials.bio-toggle')
-  
   {{-- Contacts Widget Component --}}
   @include('partials.contacts-widget')
   

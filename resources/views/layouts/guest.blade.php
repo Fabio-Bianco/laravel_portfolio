@@ -23,7 +23,7 @@
                 <a class="navbar-brand" href="{{ route('home') }}">
                     Portfolio
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Apri/chiudi menu">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 

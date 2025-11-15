@@ -1,10 +1,10 @@
 {{-- Contact Section 2025 --}}
 <section class="contact-section" id="contact" role="region" aria-labelledby="contact-heading">
     <div class="section-header">
-        <span class="section-tag">Get In Touch</span>
-        <h2 id="contact-heading" class="section-title">Let's Work Together</h2>
+        <span class="section-tag">Mettiti in Contatto</span>
+        <h2 id="contact-heading" class="section-title">Lavoriamo Insieme</h2>
         <p class="section-description">
-            Have a project in mind? Let's discuss how I can help bring your ideas to life.
+            Hai un progetto in mente? Discutiamo di come posso aiutarti a dare vita alle tue idee.
         </p>
     </div>
     
@@ -22,13 +22,13 @@
                 {{-- Nome --}}
                 <div class="form-group">
                     <label for="contact-name" class="form-label">
-                        Your Name <span class="required" aria-label="required">*</span>
+                        Il Tuo Nome <span class="required" aria-label="obbligatorio">*</span>
                     </label>
                     <input type="text" 
                            id="contact-name" 
                            name="name" 
                            class="form-input" 
-                           placeholder="John Doe"
+                           placeholder="Mario Rossi"
                            required
                            aria-required="true"
                            aria-describedby="name-error"
@@ -39,13 +39,13 @@
                 {{-- Email --}}
                 <div class="form-group">
                     <label for="contact-email" class="form-label">
-                        Your Email <span class="required" aria-label="required">*</span>
+                        La Tua Email <span class="required" aria-label="obbligatorio">*</span>
                     </label>
                     <input type="email" 
                            id="contact-email" 
                            name="email" 
                            class="form-input" 
-                           placeholder="john@example.com"
+                           placeholder="mario@esempio.com"
                            required
                            aria-required="true"
                            aria-describedby="email-error"
@@ -56,12 +56,12 @@
                 {{-- Messaggio --}}
                 <div class="form-group">
                     <label for="contact-message" class="form-label">
-                        Message <span class="required" aria-label="required">*</span>
+                        Messaggio <span class="required" aria-label="obbligatorio">*</span>
                     </label>
                     <textarea id="contact-message" 
                             name="message" 
                             class="form-input form-textarea" 
-                            placeholder="Tell me about your project..."
+                            placeholder="Raccontami del tuo progetto..."
                             rows="5"
                             required
                             aria-required="true"
@@ -73,8 +73,8 @@
                 <button type="submit" 
                         class="btn-submit" 
                         id="submitBtn"
-                        aria-label="Send message">
-                    <span class="btn-text">Send Message</span>
+                        aria-label="Invia messaggio">
+                    <span class="btn-text">Invia Messaggio</span>
                     <span class="btn-loading" style="display: none;" aria-hidden="true">
                         <svg class="spinner" width="20" height="20" viewBox="0 0 24 24" fill="none">
                             <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" opacity="0.25"/>

@@ -62,24 +62,24 @@
           @endphp
           <div class="hero-stat-item">
             <strong class="hero-stat-value">{{ $totalProjects }}+</strong>
-            <span class="hero-stat-label">Projects</span>
+            <span class="hero-stat-label">Progetti</span>
           </div>
           <div class="hero-stat-divider" aria-hidden="true"></div>
           <div class="hero-stat-item">
             <strong class="hero-stat-value">{{ $techCount }}+</strong>
-            <span class="hero-stat-label">Technologies</span>
+            <span class="hero-stat-label">Tecnologie</span>
           </div>
           <div class="hero-stat-divider" aria-hidden="true"></div>
           <div class="hero-stat-item">
             <strong class="hero-stat-value">{{ $featuredCount }}</strong>
-            <span class="hero-stat-label">Featured</span>
+            <span class="hero-stat-label">In Evidenza</span>
           </div>
         </div>
       </div>
       
       {{-- Scroll Indicator --}}
       <div class="scroll-indicator" aria-hidden="true">
-        <span class="scroll-text">Scroll down</span>
+        <span class="scroll-text">Scorri giù</span>
         <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16" class="scroll-arrow">
           <path fill-rule="evenodd" d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67z"/>
         </svg>
@@ -95,25 +95,25 @@
         ============================================ --}}
     <section class="about-section" id="about" role="region" aria-labelledby="about-heading">
       <div class="section-header">
-        <span class="section-tag">Who I Am</span>
-        <h2 id="about-heading" class="section-title">About Me</h2>
+        <span class="section-tag">Chi Sono</span>
+        <h2 id="about-heading" class="section-title">Chi Sono</h2>
       </div>
       
       <div class="about-content">
         <div class="about-text">
           <p class="about-intro">
-            Hi! I'm <strong>{{ config('app.owner_name', 'Fabio Bianco') }}</strong>, a passionate Full Stack Developer 
-            who turns complex problems into elegant, user-friendly solutions.
+            Ciao! Sono <strong>{{ config('app.owner_name', 'Fabio Bianco') }}</strong>, un Full Stack Developer appassionato 
+            che trasforma problemi complessi in soluzioni eleganti e user-friendly.
           </p>
           <p>
-            With expertise in <strong>Laravel</strong>, <strong>React</strong>, and modern JavaScript, 
-            I build scalable web applications that prioritize both performance and user experience. 
-            I believe in writing clean, maintainable code and staying updated with the latest web technologies.
+            Con esperienza in <strong>Laravel</strong>, <strong>React</strong> e JavaScript moderno, 
+            creo applicazioni web scalabili che danno priorità sia alle prestazioni che all'esperienza utente. 
+            Credo nel codice pulito e manutenibile, e mi mantengo aggiornato con le ultime tecnologie web.
           </p>
           <p>
-            When I'm not coding, I'm exploring new frameworks, contributing to open-source projects, 
-            or sharing knowledge with the developer community. Always eager to take on new challenges 
-            and collaborate on innovative projects.
+            Quando non programmo, esploro nuovi framework, contribuisco a progetti open-source 
+            o condivido conoscenze con la community degli sviluppatori. Sempre pronto ad affrontare nuove sfide 
+            e collaborare su progetti innovativi.
           </p>
         </div>
         
@@ -125,7 +125,7 @@
             </div>
             <div class="avatar-status" aria-label="Available for work">
               <span class="status-dot"></span>
-              <span class="status-text">Available for work</span>
+              <span class="status-text">Disponibile per lavori</span>
             </div>
           </div>
         </div>
@@ -141,10 +141,10 @@
         ============================================ --}}
     <section class="skills-section" id="skills" role="region" aria-labelledby="skills-heading">
       <div class="section-header">
-        <span class="section-tag">What I Do</span>
-        <h2 id="skills-heading" class="section-title">Skills & Technologies</h2>
+        <span class="section-tag">Cosa Faccio</span>
+        <h2 id="skills-heading" class="section-title">Competenze & Tecnologie</h2>
         <p class="section-description">
-          A comprehensive toolkit for building modern, scalable web applications
+          Un toolkit completo per creare applicazioni web moderne e scalabili
         </p>
       </div>
       
@@ -266,8 +266,8 @@
       ============================================ --}}
     <section id="projects" class="projects-section" role="region" aria-labelledby="projects-heading">
       <div class="section-header">
-        <span class="section-tag">My Work</span>
-        <h2 id="projects-heading" class="section-title">Featured Projects</h2>
+        <span class="section-tag">Il Mio Lavoro</span>
+        <h2 id="projects-heading" class="section-title">Progetti in Evidenza</h2>
       </div>
 
       {{-- Filtri --}}
@@ -305,7 +305,7 @@
         @if(isset($currentType) || (isset($isFeatured) && $isFeatured))
           <span>•</span>
           <a href="{{ route('home') }}" style="color: var(--color-accent); text-decoration: none;">
-            Mostra tutti
+            Tutti i progetti
           </a>
         @endif
         @if(!isset($isFeatured) || !$isFeatured)
@@ -315,7 +315,7 @@
           @if($featuredCount > 0)
             <span>•</span>
             <a href="{{ route('projects.featured') }}" style="color: var(--color-accent); text-decoration: none;">
-              ⭐ Featured ({{ $featuredCount }})
+              ⭐ In Evidenza ({{ $featuredCount }})
             </a>
           @endif
         @endif

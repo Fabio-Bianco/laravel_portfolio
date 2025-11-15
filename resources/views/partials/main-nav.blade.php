@@ -18,32 +18,32 @@
          class="nav-link" 
          onclick="event.preventDefault(); scrollToSection('about', this)"
          data-section="about">
-        About
+        Chi Sono
       </a>
       <a href="#skills" 
          class="nav-link" 
          onclick="event.preventDefault(); scrollToSection('skills', this)"
          data-section="skills">
-        Skills
+        Competenze
       </a>
       <a href="#projects" 
          class="nav-link" 
          onclick="event.preventDefault(); scrollToSection('projects', this)"
          data-section="projects">
-        Projects
+        Progetti
       </a>
       <a href="#contact" 
          class="nav-link" 
          onclick="event.preventDefault(); scrollToSection('contact', this)"
          data-section="contact">
-        Contact
+        Contatti
       </a>
     </div>
     
     {{-- Mobile Menu Toggle --}}
     <button class="nav-toggle" 
             id="navToggle" 
-            aria-label="Toggle navigation menu"
+            aria-label="Apri/chiudi menu di navigazione"
             aria-expanded="false"
             aria-controls="navLinks">
       <span class="nav-toggle-icon"></span>

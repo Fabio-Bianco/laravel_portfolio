@@ -47,9 +47,6 @@
   <?php echo $__env->make('partials.bio-sidebar', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
   
   
-  <?php echo $__env->make('partials.bio-toggle', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-  
-  
   <?php echo $__env->make('partials.contacts-widget', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
   
   
