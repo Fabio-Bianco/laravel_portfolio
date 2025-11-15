@@ -28,7 +28,7 @@
   {{-- Assets --}}
   @vite([
     'resources/sass/app.scss', 
-    'resources/js/app.js', 
+    'resources/js/app.js',
     'resources/css/guest-minimal.css', 
     'resources/js/guest-bio-sidebar.js',
     'resources/js/contact-form.js'
@@ -59,11 +59,6 @@
 
   {{-- Footer --}}
   @include('partials.footer')
-  
-  {{-- Theme Toggle --}}
-  <div class="theme-toggle-guest" id="themeToggle" aria-label="Cambia tema">
-    @include('partials.theme-toggle')
-  </div>
   
   {{-- Accessibility Script --}}
   <script>

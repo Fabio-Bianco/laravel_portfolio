@@ -107,64 +107,6 @@ if (document.readyState === 'loading') {
   });
 })();
 
-// Tema chiaro/scuro con persistenza
-(function initThemeToggle(){
-  const storageKey = 'theme'; // 'light' | 'dark' | 'system'
-
-  const systemMedia = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
-  const getSystemTheme = () => (systemMedia && systemMedia.matches ? 'dark' : 'light');
-
-  const getEffectiveTheme = () => {
-    const saved = localStorage.getItem(storageKey);
-    if (!saved || saved === 'system') return getSystemTheme();
-    return saved; // 'light' | 'dark'
-  };
-
-  const applyTheme = (theme) => {
-    const body = document.body;
-    if (theme === 'dark') body.classList.add('theme-dark');
-    else body.classList.remove('theme-dark');
-
-    const btn = document.getElementById('themeToggleBtn');
-    const icon = btn?.querySelector('i');
-    if (btn && icon) {
-      if (theme === 'dark') {
-        icon.className = 'bi bi-brightness-high';
-        btn.setAttribute('title','Tema chiaro');
-        btn.setAttribute('aria-label','Passa al tema chiaro');
-      } else {
-        icon.className = 'bi bi-moon-stars';
-        btn.setAttribute('title','Tema scuro');
-        btn.setAttribute('aria-label','Passa al tema scuro');
-      }
-    }
-  };
-
-  // Iniziale: preferenze utente o sistema
-  applyTheme(getEffectiveTheme());
-
-  // Ascolta cambi di tema di sistema quando non c'è override esplicito
-  systemMedia?.addEventListener?.('change', () => {
-    const saved = localStorage.getItem(storageKey);
-    if (!saved || saved === 'system') applyTheme(getSystemTheme());
-  });
-
-  // Click toggle: alterna tra 'system' -> dark -> light -> system
-  document.addEventListener('click', (e) => {
-    const btn = e.target.closest('#themeToggleBtn');
-    if (!btn) return;
-    const saved = localStorage.getItem(storageKey) || 'system';
-    let nextMode;
-    if (saved === 'system') nextMode = getEffectiveTheme() === 'dark' ? 'light' : 'dark';
-    else if (saved === 'dark') nextMode = 'light';
-    else if (saved === 'light') nextMode = 'system';
-    else nextMode = 'system';
-
-    localStorage.setItem(storageKey, nextMode);
-    applyTheme(nextMode === 'system' ? getSystemTheme() : nextMode);
-  });
-})();
-
 // Splash -> Home: fade-in se arrivo dalla splash
 document.addEventListener('DOMContentLoaded', () => {
   try {

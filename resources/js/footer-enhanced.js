@@ -104,65 +104,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // ==================== Theme Switcher in Footer ====================
-    const themeToggleBtnFooter = document.getElementById('themeToggleBtnFooter');
-    
-    if (themeToggleBtnFooter) {
-        // Sync with main theme toggle
-        const updateFooterThemeButton = (theme) => {
-            const icon = themeToggleBtnFooter.querySelector('i');
-            const text = themeToggleBtnFooter.querySelector('.theme-text');
-            
-            if (theme === 'dark') {
-                icon.className = 'bi bi-brightness-high';
-                if (text) text.textContent = 'Light Mode';
-            } else {
-                icon.className = 'bi bi-moon-stars';
-                if (text) text.textContent = 'Dark Mode';
-            }
-        };
-
-        // Initial state
-        const currentTheme = document.body.classList.contains('theme-dark') ? 'dark' : 'light';
-        updateFooterThemeButton(currentTheme);
-
-        // Click handler
-        themeToggleBtnFooter.addEventListener('click', () => {
-            // Trigger main theme toggle
-            const mainThemeBtn = document.getElementById('themeToggleBtn');
-            if (mainThemeBtn) {
-                mainThemeBtn.click();
-                
-                // Update footer button after a short delay
-                setTimeout(() => {
-                    const newTheme = document.body.classList.contains('theme-dark') ? 'dark' : 'light';
-                    updateFooterThemeButton(newTheme);
-                }, 100);
-            } else {
-                // Fallback if main button doesn't exist
-                document.body.classList.toggle('theme-dark');
-                const newTheme = document.body.classList.contains('theme-dark') ? 'dark' : 'light';
-                updateFooterThemeButton(newTheme);
-                localStorage.setItem('theme', newTheme);
-            }
-        });
-
-        // Listen for theme changes from main toggle
-        const observer = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-                if (mutation.attributeName === 'class') {
-                    const theme = document.body.classList.contains('theme-dark') ? 'dark' : 'light';
-                    updateFooterThemeButton(theme);
-                }
-            });
-        });
-
-        observer.observe(document.body, {
-            attributes: true,
-            attributeFilter: ['class']
-        });
-    }
-
     // ==================== Footer Entrance Animation ====================
     const observeFooterElements = () => {
         const footerElements = document.querySelectorAll('.feature-card, .footer-nav, .newsletter-form');

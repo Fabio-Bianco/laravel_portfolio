@@ -70,15 +70,6 @@
                         <i class="bi bi-envelope"></i>
                     </a>
                 </div>
-
-                {{-- Theme Switcher --}}
-                <div class="theme-switcher-footer">
-                    <span class="theme-label">Theme:</span>
-                    <button id="themeToggleBtnFooter" class="theme-toggle-btn" aria-label="Toggle theme">
-                        <i class="bi bi-moon-stars"></i>
-                        <span class="theme-text">Dark Mode</span>
-                    </button>
-                </div>
             </div>
 
             {{-- Navigation & Links --}}
@@ -204,13 +195,14 @@
         </div>
     </div>
 
-    {{-- Back to Top Button --}}
+    {{-- Back to Top Button (unico elemento fisso) --}}
     <button id="backToTop" 
             class="back-to-top" 
             aria-label="Scroll back to top"
             title="Back to top">
         <i class="bi bi-arrow-up"></i>
     </button>
+    {{-- Rimosso vecchio toggle tema sotto il pulsante torna su --}}
 </footer>
 
 {{-- Privacy Policy Modal --}}

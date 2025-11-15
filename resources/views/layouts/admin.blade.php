@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>@yield('title','b_bot Portfolio')</title>
+  
   @vite(['resources/sass/app.scss','resources/js/app.js'])
   @stack('head')
 </head>
@@ -24,7 +25,6 @@
           @endif
           <li class="nav-item"><a class="nav-link text-warning" href="{{ route('admin.debug.projects') }}">🧹 Debug</a></li>
           <li class="nav-item"><a class="nav-link" href="{{ route('profile.show') }}">Profilo</a></li>
-          <li class="nav-item d-flex align-items-center">@include('partials.theme-toggle')</li>
           <li class="nav-item">
             <form method="POST" action="{{ route('logout') }}" class="d-inline">
               @csrf

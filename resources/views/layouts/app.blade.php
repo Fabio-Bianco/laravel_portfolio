@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>@yield('title', config('app.name'))</title>
+  
   @vite(['resources/sass/app.scss','resources/js/app.js'])
   @stack('head')
 </head>
@@ -26,10 +27,6 @@
           @endauth
           {{-- Profilo --}}
           <li class="nav-item"><a class="nav-link" href="@auth{{ route('profile.show') }}@else{{ route('login') }}@endauth">Profilo</a></li>
-          {{-- Toggle tema --}}
-          <li class="nav-item d-flex align-items-center">
-            @include('partials.theme-toggle')
-          </li>
           {{-- Login/Logout --}}
           @auth
             <li class="nav-item">

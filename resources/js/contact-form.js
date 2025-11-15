@@ -6,19 +6,35 @@
 document.addEventListener('DOMContentLoaded', function() {
   const form = document.getElementById('contactForm');
   
-  if (!form) return; // Exit if form doesn't exist on page
+  if (!form) {
+    console.log('ℹ️ Contact form not present on this page');
+    return; // Exit if form doesn't exist on page
+  }
   
   const submitBtn = document.getElementById('submitBtn');
-  const btnText = submitBtn.querySelector('.btn-text');
-  const btnLoading = submitBtn.querySelector('.btn-loading');
   const successMessage = document.getElementById('successMessage');
   const errorMessage = document.getElementById('errorMessage');
+  
+  // Guard: Check if all required elements exist
+  if (!submitBtn || !successMessage || !errorMessage) {
+    console.warn('⚠️ Contact form: Missing required elements');
+    return;
+  }
+  
+  const btnText = submitBtn.querySelector('.btn-text');
+  const btnLoading = submitBtn.querySelector('.btn-loading');
   
   // Form fields
   const nameInput = document.getElementById('contact-name');
   const emailInput = document.getElementById('contact-email');
   const subjectInput = document.getElementById('contact-subject');
   const messageInput = document.getElementById('contact-message');
+  
+  // Guard: Check if all form fields exist
+  if (!nameInput || !emailInput || !subjectInput || !messageInput) {
+    console.warn('⚠️ Contact form: Missing form fields');
+    return;
+  }
   
   /**
    * Validation Rules

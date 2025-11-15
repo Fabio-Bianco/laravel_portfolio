@@ -27,13 +27,6 @@
         transition: opacity 0.3s ease;
     }
 
-    // Dark mode awareness
-    @media (prefers-color-scheme: dark) {
-        &::before {
-            opacity: 0.75;
-        }
-    }
-
     // Social links with modern hover effects
     .social-links {
         .social-link {
@@ -328,34 +321,6 @@
         color: var(--text-body, var(--bs-body-color));
     }
 
-    .theme-toggle-btn {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem 1rem;
-        background: var(--bs-primary);
-        color: white;
-        border: none;
-        border-radius: 8px;
-        font-size: 0.875rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-        &:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(var(--bs-primary-rgb), 0.3);
-        }
-
-        i {
-            font-size: 1rem;
-            transition: transform 0.3s ease;
-        }
-
-        &:hover i {
-            transform: rotate(20deg);
-        }
-    }
 }
 
 // Legal Links
@@ -495,42 +460,6 @@
     }
 }
 
-// Dark Mode Adaptations
-@media (prefers-color-scheme: dark) {
-    .footer-features .feature-card {
-        background: rgba(255, 255, 255, 0.05);
-        
-        &:hover {
-            background: rgba(255, 255, 255, 0.08);
-        }
-    }
-
-    .newsletter-form .newsletter-input {
-        background: rgba(255, 255, 255, 0.05);
-        color: var(--bs-body-color);
-    }
-
-    .accessibility-badge {
-        background: rgba(34, 197, 94, 0.15);
-    }
-}
-
-// Explicit dark theme class support
-.theme-dark {
-    .footer-features .feature-card {
-        background: rgba(255, 255, 255, 0.05);
-        
-        &:hover {
-            background: rgba(255, 255, 255, 0.08);
-        }
-    }
-
-    .newsletter-form .newsletter-input {
-        background: rgba(255, 255, 255, 0.05);
-        color: var(--bs-body-color);
-    }
-}
-
 // Social Tooltip Styling
 .social-link {
     position: relative;
@@ -657,14 +586,6 @@
     .legal-links {
         font-size: 0.85rem;
         gap: 0.5rem;
-    }
-
-    .theme-switcher-footer {
-        justify-content: center;
-        
-        .theme-text {
-            display: none;
-        }
     }
 
     .newsletter-form {

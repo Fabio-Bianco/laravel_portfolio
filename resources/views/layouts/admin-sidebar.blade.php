@@ -291,8 +291,6 @@
         </div>
         
         <div class="admin-user-menu">
-          @include('partials.theme-toggle')
-          
           <a href="{{ route('profile.show') }}" class="btn btn-sm btn-outline-secondary">
             👤 Profilo
           </a>

@@ -28,7 +28,7 @@
   
   <?php echo app('Illuminate\Foundation\Vite')([
     'resources/sass/app.scss', 
-    'resources/js/app.js', 
+    'resources/js/app.js',
     'resources/css/guest-minimal.css', 
     'resources/js/guest-bio-sidebar.js',
     'resources/js/contact-form.js'
@@ -59,11 +59,6 @@
 
   
   <?php echo $__env->make('partials.footer', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-  
-  
-  <div class="theme-toggle-guest" id="themeToggle" aria-label="Cambia tema">
-    <?php echo $__env->make('partials.theme-toggle', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-  </div>
   
   
   <script>

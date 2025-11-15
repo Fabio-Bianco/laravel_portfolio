@@ -70,15 +70,6 @@
                         <i class="bi bi-envelope"></i>
                     </a>
                 </div>
-
-                
-                <div class="theme-switcher-footer">
-                    <span class="theme-label">Theme:</span>
-                    <button id="themeToggleBtnFooter" class="theme-toggle-btn" aria-label="Toggle theme">
-                        <i class="bi bi-moon-stars"></i>
-                        <span class="theme-text">Dark Mode</span>
-                    </button>
-                </div>
             </div>
 
             
@@ -211,6 +202,7 @@
             title="Back to top">
         <i class="bi bi-arrow-up"></i>
     </button>
+    
 </footer>
 
 

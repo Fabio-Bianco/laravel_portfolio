@@ -33,9 +33,6 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto align-items-md-center gap-2">
-                        <li class="nav-item d-flex align-items-center">
-                            @include('partials.theme-toggle')
-                        </li>
                         <li class="nav-item">
                             <a class="btn btn-outline-light btn-sm" href="{{ route('login') }}">Login</a>
                         </li>
