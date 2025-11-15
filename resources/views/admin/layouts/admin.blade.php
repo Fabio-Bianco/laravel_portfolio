@@ -37,7 +37,7 @@
   </nav>
 
   <main class="container py-4">
-    @include('partials.flash')
+    @include('shared.partials.flash')
     @yield('content')
   </main>
   

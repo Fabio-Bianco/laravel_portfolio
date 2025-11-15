@@ -41,13 +41,13 @@
   <a href="#main-content" class="skip-link">Salta al contenuto principale</a>
   
   
-  <?php echo $__env->make('partials.main-nav', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+  <?php echo $__env->make('guest.partials.main-nav', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
   
   
-  <?php echo $__env->make('partials.bio-sidebar', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+  <?php echo $__env->make('guest.partials.bio-sidebar', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
   
   
-  <?php echo $__env->make('partials.contacts-widget', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+  <?php echo $__env->make('guest.partials.contacts-widget', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
   
   
   <main id="main-content" role="main">
@@ -55,7 +55,7 @@
   </main>
 
   
-  <?php echo $__env->make('partials.footer', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+  <?php echo $__env->make('guest.partials.footer', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
   
   
   <script>
@@ -75,5 +75,4 @@
   
 </body>
 </html>
-
-<?php /**PATH C:\Users\Utente\Desktop\laravel_portfolio\resources\views/layouts/guest-minimal.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\Users\Utente\Desktop\laravel_portfolio\resources\views/guest/layouts/guest-minimal.blade.php ENDPATH**/ ?>

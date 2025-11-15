@@ -1,4 +1,4 @@
-@extends('layouts.guest-minimal')
+@extends('guest.layouts.guest-minimal')
 
 @section('title', $project->title)
 

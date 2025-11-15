@@ -22,4 +22,4 @@
     </a>
   </div>
 </div>
-<?php /**PATH C:\Users\Utente\Desktop\laravel_portfolio\resources\views/partials/contacts-widget.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\Users\Utente\Desktop\laravel_portfolio\resources\views/guest/partials/contacts-widget.blade.php ENDPATH**/ ?>

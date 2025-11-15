@@ -32,4 +32,4 @@
     </div>
   </div>
   <div class="bio-overlay" id="bioOverlay"></div>
-</div><?php /**PATH C:\Users\Utente\Desktop\laravel_portfolio\resources\views/partials/bio-sidebar.blade.php ENDPATH**/ ?>
+</div><?php /**PATH C:\Users\Utente\Desktop\laravel_portfolio\resources\views/guest/partials/bio-sidebar.blade.php ENDPATH**/ ?>

@@ -268,4 +268,4 @@
             </div>
         </div>
     </div>
-</div><?php /**PATH C:\Users\Utente\Desktop\laravel_portfolio\resources\views/partials/footer.blade.php ENDPATH**/ ?>
+</div><?php /**PATH C:\Users\Utente\Desktop\laravel_portfolio\resources\views/guest/partials/footer.blade.php ENDPATH**/ ?>

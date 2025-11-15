@@ -162,4 +162,4 @@
     updateActiveLink();
   });
 </script>
-<?php /**PATH C:\Users\Utente\Desktop\laravel_portfolio\resources\views/partials/main-nav.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\Users\Utente\Desktop\laravel_portfolio\resources\views/guest/partials/main-nav.blade.php ENDPATH**/ ?>

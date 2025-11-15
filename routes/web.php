@@ -12,8 +12,11 @@ use App\Http\Controllers\ContactController;
 // Test route
 Route::get('/test-minimal', fn() => view('test-minimal'))->name('test.minimal');
 
-// Home: vetrina progetti
-Route::get('/', [ProjectsController::class, 'index'])->name('home');
+// Splash page (landing)
+Route::get('/', [\App\Http\Controllers\Guest\SplashController::class, 'index'])->name('splash');
+
+// Portfolio: vetrina progetti
+Route::get('/portfolio', [ProjectsController::class, 'index'])->name('home');
 
 // Dettaglio progetto
 Route::get('/project/{project:slug}', [ProjectsController::class, 'show'])->name('projects.show');

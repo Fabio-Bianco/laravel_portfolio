@@ -10,6 +10,7 @@
   @stack('head')
 </head>
 <body>
+  <style>
     :root {
       --sidebar-width: 260px;
       --sidebar-bg: #1a1d20;
@@ -192,6 +193,8 @@
     /* Dark mode adjustments */
     [data-bs-theme="dark"] .admin-content {
       background: #212529;
+    }
+  </style>
   
   <div class="admin-wrapper">
     

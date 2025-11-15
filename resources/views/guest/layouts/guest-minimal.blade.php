@@ -41,13 +41,13 @@
   <a href="#main-content" class="skip-link">Salta al contenuto principale</a>
   
   {{-- Main Navigation --}}
-  @include('partials.main-nav')
+  @include('guest.partials.main-nav')
   
   {{-- Bio Sidebar Component --}}
-  @include('partials.bio-sidebar')
+  @include('guest.partials.bio-sidebar')
   
   {{-- Contacts Widget Component --}}
-  @include('partials.contacts-widget')
+  @include('guest.partials.contacts-widget')
   
   {{-- Main Content --}}
   <main id="main-content" role="main">
@@ -55,7 +55,7 @@
   </main>
 
   {{-- Footer --}}
-  @include('partials.footer')
+  @include('guest.partials.footer')
   
   {{-- Accessibility Script --}}
   <script>
@@ -75,4 +75,3 @@
   
 </body>
 </html>
-

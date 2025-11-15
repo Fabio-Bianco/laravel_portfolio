@@ -1,4 +1,4 @@
-@extends('layouts.admin-sidebar')
+@extends('admin.layouts.admin-sidebar')
 
 @section('title','Dettaglio tecnologia')
 
