@@ -45,28 +45,10 @@
         </div>
         
         
-        <div class="hero-stats" role="region" aria-label="Statistiche portfolio">
-          <?php
-            $totalProjects = \App\Models\Project::published()->count();
-            $featuredCount = \App\Models\Project::published()->featured()->count();
-            $techCount = \App\Models\Technology::count();
-          ?>
-          <div class="hero-stat-item">
-            <strong class="hero-stat-value"><?php echo e($totalProjects); ?>+</strong>
-            <span class="hero-stat-label">Progetti</span>
-          </div>
-          <div class="hero-stat-divider" aria-hidden="true"></div>
-          <div class="hero-stat-item">
-            <strong class="hero-stat-value"><?php echo e($techCount); ?>+</strong>
-            <span class="hero-stat-label">Tecnologie</span>
-          </div>
-          <div class="hero-stat-divider" aria-hidden="true"></div>
-          <div class="hero-stat-item">
-            <strong class="hero-stat-value"><?php echo e($featuredCount); ?></strong>
-            <span class="hero-stat-label">In Evidenza</span>
-          </div>
-        </div>
       </div>
+      
+      
+      <div class="hero-gradient-bg" aria-hidden="true"></div>
       
       
       <div class="scroll-indicator" 
@@ -314,7 +296,14 @@
             
             <?php if($project->image_url): ?>
               <div class="project-card-image">
-                <img src="<?php echo e($project->image_url); ?>" alt="<?php echo e($project->title); ?>">
+                <img 
+                  src="<?php echo e($project->image_url); ?>" 
+                  alt="<?php echo e($project->title); ?>"
+                  loading="lazy"
+                  width="800"
+                  height="450"
+                  class="project-image"
+                >
               </div>
             <?php else: ?>
               <?php

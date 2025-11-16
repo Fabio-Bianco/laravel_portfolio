@@ -285,13 +285,14 @@ h1, h2, h3, h4, h5, h6 {
 /* Hero Section - 2025 Modern Design */
 .hero-section {
   text-align: center;
-  padding: calc(6rem + 70px) 0 4rem; /* Added navbar height offset */
+  padding: calc(4rem + 70px) 0 6rem; /* Added navbar height offset */
   position: relative;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 @media (max-width: 768px) {
@@ -301,9 +302,32 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* Animated Gradient Background */
+.hero-gradient-bg {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: 
+    radial-gradient(circle at 30% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 70% 50%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
+  animation: gradientShift 15s ease infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@keyframes gradientShift {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-10%, 10%) rotate(5deg); }
+}
+
 .hero-content {
   max-width: 800px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 .hero-tag {
@@ -357,7 +381,7 @@ h1, h2, h3, h4, h5, h6 {
 .hero-tagline {
   font-size: clamp(1rem, 2vw, 1.25rem);
   color: var(--color-text-muted);
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
   line-height: 1.6;
   max-width: 600px;
   margin-left: auto;
@@ -450,44 +474,7 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: var(--shadow-md);
 }
 
-/* Hero Stats */
-.hero-stats {
-  display: flex;
-  gap: 2rem;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  padding: 2rem 0;
-  animation: fadeInUp 0.6s ease 0.5s backwards;
-}
-
-.hero-stat-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.25rem;
-}
-
-.hero-stat-value {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--color-accent);
-  line-height: 1;
-}
-
-.hero-stat-label {
-  font-size: 0.9rem;
-  color: var(--color-text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  font-weight: 500;
-}
-
-.hero-stat-divider {
-  width: 1px;
-  height: 40px;
-  background: var(--color-border);
-}
+/* Hero Stats - Removed from hero, now only in projects section */
 
 /* Scroll Indicator */
 .scroll-indicator {
@@ -601,8 +588,10 @@ h1, h2, h3, h4, h5, h6 {
   ============================================ */
 .about-section {
   padding: 6rem 0;
+  margin-top: 3rem;
   background: var(--color-surface);
-  margin: 0 -1.5rem;
+  margin-left: -1.5rem;
+  margin-right: -1.5rem;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
 }
@@ -735,6 +724,15 @@ h1, h2, h3, h4, h5, h6 {
   ============================================ */
 .skills-section {
   padding: 6rem 0;
+  margin-top: 3rem;
+}
+
+/* ============================================
+   PROJECTS SECTION
+  ============================================ */
+.projects-section {
+  padding: 6rem 0;
+  margin-top: 3rem;
 }
 
 .skills-grid {
@@ -936,7 +934,6 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow-md);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -944,7 +941,16 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
 }
 
-.project-card::before {
+.project-card-image {
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  background: var(--gradient-primary);
+  position: relative;
+  cursor: pointer;
+}
+
+/* Accent border top - appare al hover */
+.project-card-image::before {
   content: '';
   position: absolute;
   top: 0;
@@ -953,48 +959,49 @@ h1, h2, h3, h4, h5, h6 {
   height: 4px;
   background: var(--gradient-accent);
   transform: scaleX(0);
-  transition: transform 0.4s ease;
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2;
 }
 
-.project-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-xl);
-  border-color: var(--color-accent);
-}
-
-.project-card:hover::before {
+.project-card-image:hover::before {
   transform: scaleX(1);
 }
 
-.project-card-image {
-  aspect-ratio: 16/9;
-  overflow: hidden;
-  background: var(--gradient-primary);
-  position: relative;
-}
-
+/* Overlay gradient scuro - appare al hover */
 .project-card-image::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.4) 100%);
+  background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.5) 100%);
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.4s ease;
+  z-index: 1;
 }
 
-.project-card:hover .project-card-image::after {
+.project-card-image:hover::after {
   opacity: 1;
 }
 
+/* Image zoom effect */
 .project-card-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
 }
 
-.project-card:hover .project-card-image img {
-  transform: scale(1.05);
+.project-card-image:hover img {
+  transform: scale(1.08);
+}
+
+/* Glow effect sottile */
+.project-card-image:hover {
+  box-shadow: 
+    0 0 0 1px rgba(59, 130, 246, 0.1),
+    0 0 24px rgba(59, 130, 246, 0.12),
+    0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .project-card-body {

@@ -49,8 +49,12 @@
     {{-- Hero Image --}}
     @if($project->image_url)
       <div style="margin-bottom: 2rem; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-lg);">
-        <img src="{{ $project->image_url }}" 
+        <img 
+             src="{{ $project->image_url }}" 
              alt="{{ $project->title }}" 
+             loading="lazy"
+             width="900"
+             height="506"
              style="width: 100%; height: auto; display: block;">
       </div>
     @endif
