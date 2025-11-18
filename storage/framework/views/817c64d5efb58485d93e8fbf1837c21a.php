@@ -152,34 +152,30 @@
         <div class="skill-category-minimal">
           <h3 class="skill-category-title">Backend</h3>
           <div class="skill-icons-grid">
-            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'php', 'size' => 48], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'laravel', 'size' => 48], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'mysql', 'size' => 48], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'rest-api', 'size' => 48], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'php', 'size' => 48, 'title' => 'PHP'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'laravel', 'size' => 48, 'title' => 'Laravel'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'mysql', 'size' => 48, 'title' => 'MySQL'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'node', 'size' => 48, 'title' => 'Node.js'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
           </div>
-        </div>
-        
-        
+        </div>        
         <div class="skill-category-minimal">
           <h3 class="skill-category-title">Frontend</h3>
           <div class="skill-icons-grid">
-            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'javascript', 'size' => 48], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'react', 'size' => 48], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'html5', 'size' => 48], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'css3', 'size' => 48], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'tailwind', 'size' => 48], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'javascript', 'size' => 48, 'title' => 'JavaScript'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'react', 'size' => 48, 'title' => 'React'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'html5', 'size' => 48, 'title' => 'HTML5'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'css3', 'size' => 48, 'title' => 'CSS3'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'tailwind', 'size' => 48, 'title' => 'Tailwind CSS'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
           </div>
-        </div>
-        
-        
+        </div>        
         <div class="skill-category-minimal">
           <h3 class="skill-category-title">Tools & DevOps</h3>
           <div class="skill-icons-grid">
-            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'git', 'size' => 48], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'github', 'size' => 48], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'vscode', 'size' => 48], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'npm', 'size' => 48], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'postman', 'size' => 48], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'git', 'size' => 48, 'title' => 'Git'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'github', 'size' => 48, 'title' => 'GitHub'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'vscode', 'size' => 48, 'title' => 'VS Code'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'npm', 'size' => 48, 'title' => 'NPM'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'postman', 'size' => 48, 'title' => 'Postman'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
           </div>
         </div>
       </div>

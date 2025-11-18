@@ -175,7 +175,7 @@
             @include('guest.partials.tech-icons', ['icon' => 'php', 'size' => 48, 'title' => 'PHP'])
             @include('guest.partials.tech-icons', ['icon' => 'laravel', 'size' => 48, 'title' => 'Laravel'])
             @include('guest.partials.tech-icons', ['icon' => 'mysql', 'size' => 48, 'title' => 'MySQL'])
-            @include('guest.partials.tech-icons', ['icon' => 'rest-api', 'size' => 48, 'title' => 'REST API'])
+            @include('guest.partials.tech-icons', ['icon' => 'node', 'size' => 48, 'title' => 'Node.js'])
           </div>
         </div>        {{-- Frontend --}}
         <div class="skill-category-minimal">
