@@ -13,7 +13,7 @@
         <p class="hero-subtitle">Full Stack Developer Jr</p>
         <p class="hero-tagline">
           Creo applicazioni web moderne con codice pulito e design centrato sull'utente. 
-          Specializzato in <strong>Laravel</strong>, <strong>React</strong> e <strong>JavaScript</strong>.
+          Specializzato in <strong>JavaScript</strong>, <strong>React</strong> e <strong>PHP</strong>, <strong>Laravel</strong>.
         </p>
         
         

@@ -294,6 +294,17 @@ body {
     outline: 2px solid var(--color-accent);
     outline-offset: 2px;
   }
+  
+  // Light mode styling
+  [data-bs-theme="light"] & {
+    background: rgba(0, 0, 0, 0.06);
+    border-color: rgba(0, 0, 0, 0.08);
+    color: rgba(0, 0, 0, 0.85);
+    
+    &:hover {
+      background: rgba(0, 0, 0, 0.1);
+    }
+  }
 }
 
 .theme-options-menu {
