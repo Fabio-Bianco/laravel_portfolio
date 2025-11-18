@@ -63,6 +63,11 @@
         }
     }
 
+[data-bs-theme="dark"] .social-link {
+    color: #e2e8f0 !important;
+    background: rgba(59, 130, 246, 0.15) !important;
+}
+
     // Modern navigation links
     .footer-nav {
         .footer-link {
@@ -90,6 +95,10 @@
             }
         }
     }
+
+[data-bs-theme="dark"] .footer-link {
+    color: #e2e8f0 !important;
+}
 
     // Responsive optimizations
     @media (max-width: 768px) {
@@ -185,6 +194,24 @@
             color: var(--text-muted, var(--bs-secondary-color));
             font-weight: 500;
         }
+    }
+}
+
+[data-bs-theme="dark"] .feature-icon {
+    color: #3b82f6 !important;
+    opacity: 1 !important;
+}
+
+[data-bs-theme="dark"] .feature-title {
+    color: #f1f5f9 !important;
+}
+
+[data-bs-theme="dark"] .feature-label {
+    color: #cbd5e1 !important;
+}
+
+.footer-features {
+    .feature-card {
 
         // GitHub link special styling
         &.feature-card-link {
@@ -236,10 +263,15 @@
     letter-spacing: -0.5px;
 }
 
+[data-bs-theme="dark"] .footer-description,
 .footer-description {
     color: var(--text-muted, var(--bs-secondary-color));
     line-height: 1.7;
     margin-bottom: 1.5rem;
+}
+
+[data-bs-theme="dark"] .footer-description {
+    color: #e2e8f0 !important;
 }
 
 // Newsletter Form
@@ -255,6 +287,16 @@
         &:focus {
             border-color: var(--bs-primary);
             box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.1);
+        }
+        
+        [data-bs-theme="dark"] & {
+            background: #1e293b !important;
+            color: #e2e8f0 !important;
+            border-color: #334155 !important;
+            
+            &::placeholder {
+                color: #94a3b8 !important;
+            }
         }
     }
 
@@ -366,6 +408,10 @@
         color: var(--text-muted, var(--bs-secondary-color));
         opacity: 0.5;
     }
+}
+
+[data-bs-theme="dark"] .legal-link {
+    color: #cbd5e1 !important;
 }
 
 // Back to Top Button

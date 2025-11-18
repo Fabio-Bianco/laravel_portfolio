@@ -9,6 +9,9 @@
 @import "bootstrap/scss/bootstrap";
 @import "bootstrap-icons/font/bootstrap-icons.css";
 
+// Portfolio Guest Layout (ex guest-minimal.css)
+@import "portfolio-guest";
+
 // Custom Components
 @import "footer-2025";
 @import "contact-modern";
@@ -196,6 +199,34 @@ img.card-img-top {
   body.drawer-left-open .container-fluid {
     margin-left: clamp(280px, 22vw, 360px);
     transition: margin-left .25s ease;
+  }
+}
+
+// ==================================================
+// DARK MODE BOOTSTRAP VARIABLES
+// ==================================================
+[data-bs-theme="dark"] {
+  --bs-body-color: #e2e8f0;
+  --bs-body-bg: #0f172a;
+  --bs-secondary-color: #94a3b8;
+  --bs-border-color: #334155;
+  --text-muted: #94a3b8;
+  --text-body: #e2e8f0;
+  --text-heading: #f1f5f9;
+  --bg-card: #1e293b;
+  --bg-body: #0f172a;
+  --border-color: #334155;
+  
+  // Form controls
+  .form-control,
+  .form-select {
+    background-color: #1e293b;
+    border-color: #334155;
+    color: #e2e8f0;
+    
+    &::placeholder {
+      color: #94a3b8;
+    }
   }
 }
 

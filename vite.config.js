@@ -9,8 +9,7 @@ export default defineConfig({
                 'resources/sass/app.scss',
                 'resources/js/app.js',
                 
-                // Guest Area
-                'resources/css/guest/guest-minimal.css',
+                // Guest Area (guest-minimal.css ora in app.scss)
                 'resources/css/guest/accessibility.css',
                 'resources/js/guest/app.js',
                 'resources/js/guest/bio-sidebar.js',

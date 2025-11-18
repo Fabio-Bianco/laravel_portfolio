@@ -1479,7 +1479,7 @@ body.bio-open .contacts-widget {
 
 .form-input {
   padding: 0.875rem 1.25rem;
-  background: var(--color-bg);
+  background: var(--color-surface);
   border: 2px solid var(--color-border);
   border-radius: var(--radius-sm);
   font-size: 1rem;
@@ -1496,7 +1496,7 @@ body.bio-open .contacts-widget {
 
 .form-input::placeholder {
   color: var(--color-text-muted);
-  opacity: 0.6;
+  opacity: 0.8;
 }
 
 .form-input.error {
@@ -1698,7 +1698,7 @@ body.bio-open .contacts-widget {
 
 .footer-tagline {
   font-size: 0.95rem;
-  color: var(--color-text-muted);
+  color: var(--color-text);
   line-height: 1.6;
   margin-bottom: 0.5rem;
 }
@@ -1712,7 +1712,7 @@ body.bio-open .contacts-widget {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: var(--color-bg);
+  background: var(--color-surface);
   border: 2px solid var(--color-border);
   display: flex;
   align-items: center;
@@ -1725,7 +1725,7 @@ body.bio-open .contacts-widget {
 .social-link:hover {
   background: var(--color-accent);
   border-color: var(--color-accent);
-  color: var(--color-bg);
+  color: #ffffff;
   transform: translateY(-3px);
   box-shadow: var(--shadow-md);
 }
@@ -1747,7 +1747,7 @@ body.bio-open .contacts-widget {
 }
 
 .footer-links a {
-  color: var(--color-text-muted);
+  color: var(--color-text);
   text-decoration: none;
   font-size: 0.95rem;
   transition: all 0.3s ease;
@@ -1761,7 +1761,7 @@ body.bio-open .contacts-widget {
 
 .footer-text {
   font-size: 0.95rem;
-  color: var(--color-text-muted);
+  color: var(--color-text);
   line-height: 1.6;
   margin-bottom: 0.5rem;
 }

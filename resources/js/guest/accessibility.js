@@ -25,16 +25,6 @@ function handleReduceMotion() {
   document.documentElement.classList.toggle('reduce-motion', prefersReducedMotion);
 }
 
-// Gestore font-size
-function adjustFontSize(direction) {
-  const root = document.documentElement;
-  const currentSize = parseFloat(getComputedStyle(root).fontSize);
-  const newSize = direction === 'increase' ? currentSize * 1.1 : currentSize * 0.9;
-  
-  root.style.fontSize = `${newSize}px`;
-  localStorage.setItem('fontSize', newSize);
-}
-
 // Keyboard Navigation Enhancement
 function handleKeyboardNavigation(event) {
   if (event.key === 'Tab') {
@@ -50,26 +40,12 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.classList.add('high-contrast');
   }
   
-  const savedFontSize = localStorage.getItem('fontSize');
-  if (savedFontSize) {
-    document.documentElement.style.fontSize = `${savedFontSize}px`;
-  }
-  
   // Event Listeners
   window.matchMedia('(prefers-reduced-motion: reduce)').addListener(handleReduceMotion);
   document.addEventListener('keydown', handleKeyboardNavigation);
   
   // Inizializza stato iniziale
   handleReduceMotion();
-  
-  // Aggiungi controlli dimensione testo
-  const controls = `
-    <div class="text-size-controls" role="group" aria-label="Controlli dimensione testo">
-      <button onclick="adjustFontSize('decrease')" aria-label="Riduci dimensione testo">A-</button>
-      <button onclick="adjustFontSize('increase')" aria-label="Aumenta dimensione testo">A+</button>
-    </div>
-  `;
-  document.body.insertAdjacentHTML('beforeend', controls);
 });
 
 // Announcer per screen reader
