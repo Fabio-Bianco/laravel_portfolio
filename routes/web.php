@@ -9,14 +9,18 @@ use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\ContactController;
 
 // -------------------- GUEST --------------------
-// Test route
-Route::get('/test-minimal', fn() => view('test-minimal'))->name('test.minimal');
 
-// Splash page (landing)
-Route::get('/', [\App\Http\Controllers\Guest\SplashController::class, 'index'])->name('splash');
+// Splash page (landing) - DISABILITATA per SEO/performance
+// Future feature: riabilitare solo se necessario per personal branding
+// Route::get('/', [\App\Http\Controllers\Guest\SplashController::class, 'index'])->name('splash');
 
-// Portfolio: vetrina progetti
-Route::get('/portfolio', [ProjectsController::class, 'index'])->name('home');
+// Home diretta: portfolio senza friction
+Route::get('/', [ProjectsController::class, 'index'])->name('home');
+
+// Portfolio: alias per retrocompatibilità (redirect alla home)
+Route::get('/portfolio', function () {
+    return redirect()->route('home', [], 301);
+});
 
 // Dettaglio progetto
 Route::get('/project/{project:slug}', [ProjectsController::class, 'show'])->name('projects.show');

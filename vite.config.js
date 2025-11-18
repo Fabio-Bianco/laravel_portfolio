@@ -5,17 +5,27 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
+                // Global
                 'resources/sass/app.scss',
                 'resources/js/app.js',
-                'resources/css/guest-minimal.css',
-                'resources/css/accessibility.css',
-                'resources/css/splash.css',
-                'resources/js/guest-bio-sidebar.js',
-                'resources/js/contact-form.js',
-                'resources/js/accessibility.js',
-                'resources/js/splash.js',
-                'resources/css/admin-sidebar.css',
-                'resources/js/admin-projects-bulk.js',
+                
+                // Guest Area
+                'resources/css/guest/guest-minimal.css',
+                'resources/css/guest/accessibility.css',
+                'resources/js/guest/app.js',
+                'resources/js/guest/bio-sidebar.js',
+                'resources/js/guest/contact-form.js',
+                'resources/js/guest/contact-validation.js',
+                'resources/js/guest/accessibility.js',
+                'resources/js/guest/footer-enhanced.js',
+                
+                // Admin Area
+                'resources/css/admin/admin-sidebar.css',
+                'resources/js/admin/projects-bulk.js',
+                
+                // Future Features (disabled)
+                // 'future/splash.css',
+                // 'future/splash.js',
             ],
             refresh: true,
         }),

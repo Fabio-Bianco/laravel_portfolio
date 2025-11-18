@@ -1,9 +1,18 @@
-import './bootstrap';
+/**
+ * Guest Area Entry Point
+ * Imports all guest-specific modules and features
+ */
 
+import '../bootstrap';
 import * as bootstrap from 'bootstrap';
-// Guest modules sono ora in guest/app.js - questo è il file base condiviso
+import './contact-validation';
+import './footer-enhanced';
+import './accessibility';
+// Bio sidebar è caricato separatamente nel layout
+
+// Import images
 import.meta.glob([
-    '../img/**'
+    '../../img/**'
 ])
 
 // Toggle per "Leggi di più" nelle card del portfolio (guest)

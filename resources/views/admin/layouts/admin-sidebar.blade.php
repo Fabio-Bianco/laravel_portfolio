@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>@yield('title', 'b_bot Portfolio') • {{ config('app.name') }}</title>
   
-  @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/css/admin-sidebar.css'])
+  @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/css/admin/admin-sidebar.css'])
   
   @stack('head')
 </head>

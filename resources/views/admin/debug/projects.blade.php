@@ -141,7 +141,7 @@
 </form>
 
 @push('head')
-  @vite(['resources/js/admin-projects-bulk.js'])
+  @vite(['resources/js/admin/projects-bulk.js'])
 @endpush
 
 @endsection

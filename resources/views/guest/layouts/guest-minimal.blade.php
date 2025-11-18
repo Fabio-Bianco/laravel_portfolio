@@ -28,10 +28,11 @@
   {{-- Assets --}}
   @vite([
     'resources/sass/app.scss', 
-    'resources/js/app.js',
-    'resources/css/guest-minimal.css', 
-    'resources/js/guest-bio-sidebar.js',
-    'resources/js/contact-form.js'
+    'resources/css/guest/guest-minimal.css',
+    'resources/css/guest/accessibility.css',
+    'resources/js/guest/app.js',
+    'resources/js/guest/bio-sidebar.js',
+    'resources/js/guest/contact-form.js'
   ])
   
   @stack('head')

@@ -1,6 +1,13 @@
-/* Splash Page Styles - Auto Dark/Light Mode */
+/* ============================================
+   SPLASH PAGE STYLES - DISABILITATO
+   Feature commentata per SEO/performance
+   Riabilitare solo se necessario per personal branding
+   ============================================ */
 
-/* Default (Light Mode) */
+/*
+/* Splash Page Styles - Auto Dark/Light Mode *\/
+
+/* Default (Light Mode) *\/
 :root {
   --splash-bg: #ffffff;
   --splash-text: #1a1a1a;
@@ -11,7 +18,7 @@
   --splash-focus: #8b5cf6;
 }
 
-/* Dark Mode - Auto Detection */
+
 @media (prefers-color-scheme: dark) {
   :root {
     --splash-bg: #000;
@@ -100,7 +107,7 @@ body {
   text-transform: lowercase;
 }
 
-/* Light Mode Badge - Solid gradient background with white text */
+
 @media (prefers-color-scheme: light) {
   .logo-badge {
     background: var(--splash-badge-bg);
@@ -120,7 +127,6 @@ body {
   }
 }
 
-/* Dark Mode Badge */
 @media (prefers-color-scheme: dark) {
   .badge-text,
   .badge-label {
@@ -145,3 +151,6 @@ body {
   outline-offset: 6px;
   border-radius: 999px;
 }
+/* Splash Page Styles - Auto Dark/Light Mode */
+
+ /* Default (Light Mode) */
