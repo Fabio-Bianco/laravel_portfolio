@@ -15,12 +15,6 @@
         ============================================ --}}
     <section class="hero-section" id="hero" role="banner" aria-label="Hero section">
       <div class="hero-content">
-        {{-- Intro Tag --}}
-        <div class="hero-tag" role="note" aria-label="Introduzione professionale">
-          <span class="hero-tag-icon" aria-hidden="true">👋</span>
-          <span>Ciao, sono</span>
-        </div>
-        
         {{-- Main Title con gradient --}}
         <h1 class="hero-title">{{ config('app.owner_name', 'Fabio Bianco') }}</h1>
         
@@ -90,7 +84,7 @@
       <div class="about-content">
         <div class="about-text">
           <p class="about-intro">
-            Ciao! Sono <strong>{{ config('app.owner_name', 'Fabio Bianco') }}</strong>, un Full Stack Developer appassionato 
+            Sono <strong>{{ config('app.owner_name', 'Fabio Bianco') }}</strong>, un Full Stack Developer appassionato 
             che trasforma problemi complessi in soluzioni eleganti e user-friendly.
           </p>
           <p>
@@ -148,25 +142,38 @@
           </div>
           <div class="skill-list">
             <div class="skill-item">
-              <span class="skill-name">JavaScript (ES6+)</span>
+              <span class="skill-name">
+                @include('guest.partials.tech-icons', ['icon' => 'javascript'])
+                JavaScript (ES6+)
+              </span>
               <div class="skill-level" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
                 <div class="skill-level-fill" style="width: 90%"></div>
               </div>
             </div>
             <div class="skill-item">
-              <span class="skill-name">React</span>
+              <span class="skill-name">
+                @include('guest.partials.tech-icons', ['icon' => 'react'])
+                React
+              </span>
               <div class="skill-level" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
                 <div class="skill-level-fill" style="width: 85%"></div>
               </div>
             </div>
             <div class="skill-item">
-              <span class="skill-name">HTML5 / CSS3</span>
+              <span class="skill-name">
+                @include('guest.partials.tech-icons', ['icon' => 'html5'])
+                @include('guest.partials.tech-icons', ['icon' => 'css3'])
+                HTML5 / CSS3
+              </span>
               <div class="skill-level" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">
                 <div class="skill-level-fill" style="width: 95%"></div>
               </div>
             </div>
             <div class="skill-item">
-              <span class="skill-name">Tailwind CSS</span>
+              <span class="skill-name">
+                @include('guest.partials.tech-icons', ['icon' => 'tailwind'])
+                Tailwind CSS
+              </span>
               <div class="skill-level" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
                 <div class="skill-level-fill" style="width: 80%"></div>
               </div>
@@ -185,25 +192,37 @@
           </div>
           <div class="skill-list">
             <div class="skill-item">
-              <span class="skill-name">PHP</span>
+              <span class="skill-name">
+                @include('guest.partials.tech-icons', ['icon' => 'php'])
+                PHP
+              </span>
               <div class="skill-level" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
                 <div class="skill-level-fill" style="width: 90%"></div>
               </div>
             </div>
             <div class="skill-item">
-              <span class="skill-name">Laravel</span>
+              <span class="skill-name">
+                @include('guest.partials.tech-icons', ['icon' => 'laravel'])
+                Laravel
+              </span>
               <div class="skill-level" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">
                 <div class="skill-level-fill" style="width: 95%"></div>
               </div>
             </div>
             <div class="skill-item">
-              <span class="skill-name">MySQL</span>
+              <span class="skill-name">
+                @include('guest.partials.tech-icons', ['icon' => 'mysql'])
+                MySQL
+              </span>
               <div class="skill-level" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
                 <div class="skill-level-fill" style="width: 85%"></div>
               </div>
             </div>
             <div class="skill-item">
-              <span class="skill-name">REST API</span>
+              <span class="skill-name">
+                @include('guest.partials.tech-icons', ['icon' => 'rest-api'])
+                REST API
+              </span>
               <div class="skill-level" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
                 <div class="skill-level-fill" style="width: 90%"></div>
               </div>
@@ -221,25 +240,38 @@
           </div>
           <div class="skill-list">
             <div class="skill-item">
-              <span class="skill-name">Git & GitHub</span>
+              <span class="skill-name">
+                @include('guest.partials.tech-icons', ['icon' => 'git'])
+                @include('guest.partials.tech-icons', ['icon' => 'github'])
+                Git & GitHub
+              </span>
               <div class="skill-level" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
                 <div class="skill-level-fill" style="width: 90%"></div>
               </div>
             </div>
             <div class="skill-item">
-              <span class="skill-name">VS Code</span>
+              <span class="skill-name">
+                @include('guest.partials.tech-icons', ['icon' => 'vscode'])
+                VS Code
+              </span>
               <div class="skill-level" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">
                 <div class="skill-level-fill" style="width: 95%"></div>
               </div>
             </div>
             <div class="skill-item">
-              <span class="skill-name">Composer / npm</span>
+              <span class="skill-name">
+                @include('guest.partials.tech-icons', ['icon' => 'npm'])
+                Composer / npm
+              </span>
               <div class="skill-level" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
                 <div class="skill-level-fill" style="width: 85%"></div>
               </div>
             </div>
             <div class="skill-item">
-              <span class="skill-name">Postman / API Testing</span>
+              <span class="skill-name">
+                @include('guest.partials.tech-icons', ['icon' => 'postman'])
+                Postman / API Testing
+              </span>
               <div class="skill-level" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
                 <div class="skill-level-fill" style="width: 80%"></div>
               </div>

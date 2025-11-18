@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+  <title><?php echo $__env->yieldContent('title', 'Portfolio'); ?> • <?php echo e(config('app.owner_name')); ?> - Full Stack Developer</title>
+  <meta name="description" content="Portfolio di <?php echo e(config('app.owner_name')); ?> - Full Stack Developer specializzato in Laravel, React e JavaScript. Scopri i miei progetti e contattami per collaborazioni.">
+  <meta name="author" content="<?php echo e(config('app.owner_name')); ?>">
+  <meta name="keywords" content="full stack developer, laravel, react, javascript, php, web development, portfolio">
+  
+  
+  <meta property="og:title" content="<?php echo e(config('app.owner_name')); ?> - Full Stack Developer Portfolio">
+  <meta property="og:description" content="Scopri i miei progetti e competenze nel web development. Specializzato in Laravel, React e JavaScript.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="<?php echo e(url('/')); ?>">
+  <meta property="og:site_name" content="<?php echo e(config('app.owner_name')); ?> Portfolio">
+  
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="<?php echo e(config('app.owner_name')); ?> - Full Stack Developer">
+  <meta name="twitter:description" content="Portfolio di progetti web con Laravel, React e JavaScript">
+  
+  
+  <link rel="canonical" href="<?php echo e(url()->current()); ?>">
+  
+  
+  <?php echo app('Illuminate\Foundation\Vite')([
+    'resources/sass/app.scss', 
+    'resources/js/app.js',
+    'resources/css/guest-minimal.css', 
+    'resources/js/guest-bio-sidebar.js',
+    'resources/js/contact-form.js'
+  ]); ?>
+  
+  <?php echo $__env->yieldPushContent('head'); ?>
+</head>
+<body>
+  
+  <a href="#main-content" class="skip-link">Salta al contenuto principale</a>
+  
+  
+  <?php echo $__env->make('guest.partials.main-nav', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+  
+  
+  <?php echo $__env->make('guest.partials.bio-sidebar', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+  
+  
+  <?php echo $__env->make('guest.partials.contacts-widget', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+  
+  
+  <main id="main-content" role="main">
+    <?php echo $__env->yieldContent('content'); ?>
+  </main>
+
+  
+  <?php echo $__env->make('guest.partials.footer', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+  
+  
+  <script>
+    // Gestione accessibilità da tastiera
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Tab') {
+        document.body.classList.add('keyboard-nav');
+      }
+    });
+    
+    document.addEventListener('mousedown', function() {
+      document.body.classList.remove('keyboard-nav');
+    });
+  </script>
+  
+  <?php echo $__env->yieldPushContent('scripts'); ?>
+  
+</body>
+</html>
+<?php /**PATH C:\Users\Utente\Desktop\my_project\laravel_portfolio\resources\views/guest/layouts/guest-minimal.blade.php ENDPATH**/ ?>
