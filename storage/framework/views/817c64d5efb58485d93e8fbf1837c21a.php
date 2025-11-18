@@ -9,12 +9,6 @@
         
         <div class="hero-content">
           
-          <div class="hero-badge">
-            <span class="badge-dot"></span>
-            <span class="badge-text">Disponibile per nuovi progetti</span>
-          </div>
-          
-          
           <h1 class="hero-title">
             <span class="title-highlight"><?php echo e(config('app.owner_name', 'Fabio Bianco')); ?></span>
             <small style="display: block; font-size: 0.35em; font-weight: 400; opacity: 0.5; margin-top: 0.5rem; letter-spacing: 0.15em;">aka b_bot</small>

@@ -46,9 +46,6 @@
   {{-- Bio Sidebar Component --}}
   @include('guest.partials.bio-sidebar')
   
-  {{-- Contacts Widget Component --}}
-  @include('guest.partials.contacts-widget')
-  
   {{-- Main Content --}}
   <main id="main-content" role="main">
     @yield('content')

@@ -17,12 +17,6 @@
       <div class="hero-container">
         {{-- Left Side: Content --}}
         <div class="hero-content">
-          {{-- Badge --}}
-          <div class="hero-badge">
-            <span class="badge-dot"></span>
-            <span class="badge-text">Disponibile per nuovi progetti</span>
-          </div>
-          
           {{-- Main Title --}}
           <h1 class="hero-title">
             <span class="title-highlight">{{ config('app.owner_name', 'Fabio Bianco') }}</span>

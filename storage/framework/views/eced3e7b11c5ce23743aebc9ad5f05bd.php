@@ -47,9 +47,6 @@
   <?php echo $__env->make('guest.partials.bio-sidebar', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
   
   
-  <?php echo $__env->make('guest.partials.contacts-widget', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-  
-  
   <main id="main-content" role="main">
     <?php echo $__env->yieldContent('content'); ?>
   </main>
