@@ -1,41 +1,53 @@
-{{-- Ultra Modern Floating Navigation - 2025 Design --}}
-<nav class="nav-modern" id="mainNav" role="navigation" aria-label="Menu principale">
-  <div class="nav-floating">
-    {{-- Logo / Brand con Icon --}}
-    <a href="{{ route('home') }}" class="brand-modern" aria-label="Home">
-      <div class="brand-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-          <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-        </svg>
-      </div>
-      <span class="brand-name">{{ config('app.owner_name', 'Portfolio') }}</span>
-    </a>
+{{-- Vertical Sidebar Navigation - 2025 Design --}}
+<nav class="sidebar-nav" id="sidebarNav" role="navigation" aria-label="Menu principale">
+  <div class="sidebar-inner">
     
-    {{-- Navigation Links --}}
-    <div class="nav-menu" id="navLinks" role="list">
-      <a href="#hero" class="nav-item active" data-section="hero" aria-current="page">Home</a>
-      <a href="#about" class="nav-item" data-section="about" aria-current="false">About</a>
-      <a href="#skills" class="nav-item" data-section="skills" aria-current="false">Skills</a>
-      <a href="#projects" class="nav-item" data-section="projects" aria-current="false">Work</a>
-      <a href="#contact" class="nav-item" data-section="contact" aria-current="false">Contact</a>
-    </div>
-    
-    {{-- Actions Group: Theme + Mobile Toggle --}}
-    <div class="nav-actions">
-      @include('guest.partials.theme-switcher-inline')
+    {{-- Navigation Icons --}}
+    <div class="sidebar-links" id="sidebarLinks" role="list">
+      <a href="#hero" class="sidebar-item active" data-section="hero" aria-current="page" title="Home">
+        @include('guest.partials.tech-icons', ['icon' => 'sidebar-home', 'size' => 24])
+        <span class="sidebar-label">Home</span>
+      </a>
       
-      <button class="menu-toggle" 
-              id="navToggle" 
-              aria-label="Menu"
-              aria-expanded="false"
-              aria-controls="navLinks">
-        <span class="menu-line"></span>
-        <span class="menu-line"></span>
-      </button>
+      <a href="#about" class="sidebar-item" data-section="about" aria-current="false" title="About">
+        @include('guest.partials.tech-icons', ['icon' => 'sidebar-user', 'size' => 24])
+        <span class="sidebar-label">About</span>
+      </a>
+      
+      <a href="#skills" class="sidebar-item" data-section="skills" aria-current="false" title="Skills">
+        @include('guest.partials.tech-icons', ['icon' => 'sidebar-code', 'size' => 24])
+        <span class="sidebar-label">Skills</span>
+      </a>
+      
+      <a href="#projects" class="sidebar-item" data-section="projects" aria-current="false" title="Work">
+        @include('guest.partials.tech-icons', ['icon' => 'sidebar-briefcase', 'size' => 24])
+        <span class="sidebar-label">Work</span>
+      </a>
+      
+      <a href="#contact" class="sidebar-item" data-section="contact" aria-current="false" title="Contact">
+        @include('guest.partials.tech-icons', ['icon' => 'sidebar-mail', 'size' => 24])
+        <span class="sidebar-label">Contact</span>
+      </a>
     </div>
+    
+    {{-- Theme Switcher in fondo --}}
+    <div class="sidebar-footer">
+      @include('guest.partials.theme-switcher-inline')
+    </div>
+    
   </div>
 </nav>
 
+{{-- Mobile Toggle Button --}}
+<button class="sidebar-toggle" 
+        id="sidebarToggle" 
+        aria-label="Apri/Chiudi Menu"
+        aria-expanded="false"
+        aria-controls="sidebarNav">
+  <span class="toggle-line"></span>
+  <span class="toggle-line"></span>
+  <span class="toggle-line"></span>
+</button>
+
 {{-- Mobile Backdrop Overlay --}}
-<div class="nav-backdrop" id="navBackdrop"></div>
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>

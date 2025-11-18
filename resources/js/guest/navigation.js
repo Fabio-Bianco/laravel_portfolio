@@ -1,16 +1,16 @@
 /**
- * Navigation - 2025 Best Practices
+ * Sidebar Navigation - 2025 Best Practices
  * - Intersection Observer API per scroll spy
  * - Event delegation
  * - Focus management
  * - Progressive enhancement
  */
 document.addEventListener('DOMContentLoaded', () => {
-  const nav = document.getElementById('mainNav');
-  const navLinks = document.getElementById('navLinks');
-  const navToggle = document.getElementById('navToggle');
-  const navBackdrop = document.getElementById('navBackdrop');
-  const navLinksElements = document.querySelectorAll('.nav-item');
+  const sidebar = document.getElementById('sidebarNav');
+  const sidebarLinks = document.getElementById('sidebarLinks');
+  const sidebarToggle = document.getElementById('sidebarToggle');
+  const sidebarBackdrop = document.getElementById('sidebarBackdrop');
+  const sidebarItems = document.querySelectorAll('.sidebar-item');
   
   // Scroll alla home al caricamento della pagina
   if ('scrollRestoration' in history) {
@@ -19,8 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
   window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   
   // Event delegation per navigazione smooth
-  navLinks?.addEventListener('click', (e) => {
-    const link = e.target.closest('.nav-item');
+  sidebarLinks?.addEventListener('click', (e) => {
+    const link = e.target.closest('.sidebar-item');
     if (!link) return;
     
     e.preventDefault();
@@ -30,57 +30,55 @@ document.addEventListener('DOMContentLoaded', () => {
     if (section) {
       section.scrollIntoView({ behavior: 'smooth', block: 'start' });
       
-      // Chiudi menu mobile
-      if (navLinks.classList.contains('active')) {
-        closeMenu();
+      // Chiudi sidebar mobile
+      if (sidebar?.classList.contains('active')) {
+        closeSidebar();
       }
     }
   });
   
-  // Toggle menu mobile
-  navToggle?.addEventListener('click', () => {
-    const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+  // Toggle sidebar mobile
+  sidebarToggle?.addEventListener('click', () => {
+    const isExpanded = sidebarToggle.getAttribute('aria-expanded') === 'true';
     
     if (isExpanded) {
-      closeMenu();
+      closeSidebar();
     } else {
-      openMenu();
+      openSidebar();
     }
   });
   
-  // Funzioni menu
-  function openMenu() {
-    navToggle?.classList.add('active');
-    navLinks?.classList.add('active');
-    navBackdrop?.classList.add('active');
-    navToggle?.setAttribute('aria-expanded', 'true');
+  // Funzioni sidebar
+  function openSidebar() {
+    sidebar?.classList.add('active');
+    sidebarBackdrop?.classList.add('active');
+    sidebarToggle?.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
     
     // Focus trap
-    const firstLink = navLinks?.querySelector('.nav-item');
+    const firstLink = sidebar?.querySelector('.sidebar-item');
     firstLink?.focus();
   }
   
-  function closeMenu() {
-    navToggle?.classList.remove('active');
-    navLinks?.classList.remove('active');
-    navBackdrop?.classList.remove('active');
-    navToggle?.setAttribute('aria-expanded', 'false');
+  function closeSidebar() {
+    sidebar?.classList.remove('active');
+    sidebarBackdrop?.classList.remove('active');
+    sidebarToggle?.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
   }
   
-  // Chiudi menu cliccando sul backdrop
-  navBackdrop?.addEventListener('click', () => {
-    if (navLinks?.classList.contains('active')) {
-      closeMenu();
+  // Chiudi sidebar cliccando sul backdrop
+  sidebarBackdrop?.addEventListener('click', () => {
+    if (sidebar?.classList.contains('active')) {
+      closeSidebar();
     }
   });
   
-  // Chiudi menu con ESC
+  // Chiudi sidebar con ESC
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && navLinks?.classList.contains('active')) {
-      closeMenu();
-      navToggle?.focus();
+    if (e.key === 'Escape' && sidebar?.classList.contains('active')) {
+      closeSidebar();
+      sidebarToggle?.focus();
     }
   });
   
@@ -96,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (entry.isIntersecting) {
         const id = entry.target.id;
         
-        navLinksElements.forEach(link => {
+        sidebarItems.forEach(link => {
           const isActive = link.dataset.section === id;
           link.classList.toggle('active', isActive);
           link.setAttribute('aria-current', isActive ? 'page' : 'false');
@@ -109,15 +107,4 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('section[id]').forEach(section => {
     observer.observe(section);
   });
-  
-  // Navbar shadow on scroll - requestAnimationFrame throttling
-  let scrollTimeout;
-  window.addEventListener('scroll', () => {
-    if (scrollTimeout) return;
-    
-    scrollTimeout = requestAnimationFrame(() => {
-      nav?.classList.toggle('scrolled', window.scrollY > 100);
-      scrollTimeout = null;
-    });
-  }, { passive: true });
 });
