@@ -172,34 +172,30 @@
         <div class="skill-category-minimal">
           <h3 class="skill-category-title">Backend</h3>
           <div class="skill-icons-grid">
-            @include('guest.partials.tech-icons', ['icon' => 'php', 'size' => 48])
-            @include('guest.partials.tech-icons', ['icon' => 'laravel', 'size' => 48])
-            @include('guest.partials.tech-icons', ['icon' => 'mysql', 'size' => 48])
-            @include('guest.partials.tech-icons', ['icon' => 'rest-api', 'size' => 48])
+            @include('guest.partials.tech-icons', ['icon' => 'php', 'size' => 48, 'title' => 'PHP'])
+            @include('guest.partials.tech-icons', ['icon' => 'laravel', 'size' => 48, 'title' => 'Laravel'])
+            @include('guest.partials.tech-icons', ['icon' => 'mysql', 'size' => 48, 'title' => 'MySQL'])
+            @include('guest.partials.tech-icons', ['icon' => 'rest-api', 'size' => 48, 'title' => 'REST API'])
           </div>
-        </div>
-        
-        {{-- Frontend --}}
+        </div>        {{-- Frontend --}}
         <div class="skill-category-minimal">
           <h3 class="skill-category-title">Frontend</h3>
           <div class="skill-icons-grid">
-            @include('guest.partials.tech-icons', ['icon' => 'javascript', 'size' => 48])
-            @include('guest.partials.tech-icons', ['icon' => 'react', 'size' => 48])
-            @include('guest.partials.tech-icons', ['icon' => 'html5', 'size' => 48])
-            @include('guest.partials.tech-icons', ['icon' => 'css3', 'size' => 48])
-            @include('guest.partials.tech-icons', ['icon' => 'tailwind', 'size' => 48])
+            @include('guest.partials.tech-icons', ['icon' => 'javascript', 'size' => 48, 'title' => 'JavaScript'])
+            @include('guest.partials.tech-icons', ['icon' => 'react', 'size' => 48, 'title' => 'React'])
+            @include('guest.partials.tech-icons', ['icon' => 'html5', 'size' => 48, 'title' => 'HTML5'])
+            @include('guest.partials.tech-icons', ['icon' => 'css3', 'size' => 48, 'title' => 'CSS3'])
+            @include('guest.partials.tech-icons', ['icon' => 'tailwind', 'size' => 48, 'title' => 'Tailwind CSS'])
           </div>
-        </div>
-        
-        {{-- Tools & DevOps --}}
+        </div>        {{-- Tools & DevOps --}}
         <div class="skill-category-minimal">
           <h3 class="skill-category-title">Tools & DevOps</h3>
           <div class="skill-icons-grid">
-            @include('guest.partials.tech-icons', ['icon' => 'git', 'size' => 48])
-            @include('guest.partials.tech-icons', ['icon' => 'github', 'size' => 48])
-            @include('guest.partials.tech-icons', ['icon' => 'vscode', 'size' => 48])
-            @include('guest.partials.tech-icons', ['icon' => 'npm', 'size' => 48])
-            @include('guest.partials.tech-icons', ['icon' => 'postman', 'size' => 48])
+            @include('guest.partials.tech-icons', ['icon' => 'git', 'size' => 48, 'title' => 'Git'])
+            @include('guest.partials.tech-icons', ['icon' => 'github', 'size' => 48, 'title' => 'GitHub'])
+            @include('guest.partials.tech-icons', ['icon' => 'vscode', 'size' => 48, 'title' => 'VS Code'])
+            @include('guest.partials.tech-icons', ['icon' => 'npm', 'size' => 48, 'title' => 'NPM'])
+            @include('guest.partials.tech-icons', ['icon' => 'postman', 'size' => 48, 'title' => 'Postman'])
           </div>
         </div>
       </div>

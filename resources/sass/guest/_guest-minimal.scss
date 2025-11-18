@@ -747,6 +747,17 @@ h1, h2, h3, h4, h5, h6 {
   z-index: -2;
   pointer-events: none;
   filter: blur(0px);
+  
+  [data-bs-theme="light"] & {
+    background: 
+      radial-gradient(circle at 25% 40%, rgba(59, 130, 246, 0.06) 0%, transparent 40%),
+      radial-gradient(circle at 75% 60%, rgba(139, 92, 246, 0.06) 0%, transparent 40%),
+      radial-gradient(circle at 50% 80%, rgba(236, 72, 153, 0.04) 0%, transparent 35%),
+      linear-gradient(135deg, 
+        rgba(248, 250, 252, 1) 0%, 
+        rgba(241, 245, 249, 1) 50%, 
+        rgba(236, 241, 247, 1) 100%);
+  }
 }
 
 @keyframes gradientShift {
@@ -812,6 +823,10 @@ h1, h2, h3, h4, h5, h6 {
   text-align: left;
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
   
+  [data-bs-theme="light"] & {
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+  }
+  
   @media (max-width: 968px) {
     text-align: center;
   }
@@ -837,6 +852,10 @@ h1, h2, h3, h4, h5, h6 {
   text-align: left;
   text-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
   
+  [data-bs-theme="light"] & {
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.04);
+  }
+  
   @media (max-width: 968px) {
     text-align: center;
   }
@@ -857,6 +876,11 @@ h1, h2, h3, h4, h5, h6 {
   text-align: left;
   text-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
   opacity: 0.95;
+  
+  [data-bs-theme="light"] & {
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.03);
+    opacity: 0.9;
+  }
   
   @media (max-width: 968px) {
     text-align: center;
@@ -909,12 +933,27 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   z-index: 10;
   
+  [data-bs-theme="light"] & {
+    background: rgba(30, 30, 40, 0.95);
+    box-shadow: 
+      0 30px 80px rgba(0, 0, 0, 0.15),
+      0 10px 40px rgba(0, 0, 0, 0.1),
+      0 0 0 1px rgba(0, 0, 0, 0.1);
+  }
+  
   &:hover {
     transform: translateY(-5px);
     box-shadow: 
       0 35px 90px rgba(0, 0, 0, 0.7),
       0 15px 50px rgba(0, 0, 0, 0.5),
       0 0 0 1px rgba(255, 255, 255, 0.15);
+    
+    [data-bs-theme="light"] & {
+      box-shadow: 
+        0 35px 90px rgba(0, 0, 0, 0.2),
+        0 15px 50px rgba(0, 0, 0, 0.15),
+        0 0 0 1px rgba(0, 0, 0, 0.15);
+    }
   }
 }
 
@@ -1005,6 +1044,16 @@ h1, h2, h3, h4, h5, h6 {
   pointer-events: none;
   z-index: -1;
   mix-blend-mode: screen;
+  
+  [data-bs-theme="light"] & {
+    background: radial-gradient(circle at 30% 30%, 
+      rgba(var(--color-accent-rgb), 0.08) 0%, 
+      rgba(var(--color-accent-rgb), 0.04) 40%,
+      transparent 70%);
+    filter: blur(50px);
+    opacity: 0.4;
+    mix-blend-mode: multiply;
+  }
 }
 
 .glass-orb-1 {
@@ -1446,11 +1495,83 @@ h1, h2, h3, h4, h5, h6 {
   svg {
     opacity: 0.85;
     transition: none;
+    
+    [data-bs-theme="light"] & {
+      opacity: 0.95;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
+    }
+  }
+  
+  // GitHub icon - dark color for light mode
+  .github-icon path {
+    [data-bs-theme="light"] & {
+      fill: #24292F !important;
+    }
   }
   
   @media (max-width: 768px) {
     grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
     gap: 2rem;
+  }
+}
+
+// Tech Icon Tooltip Wrapper
+.tech-icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: help;
+  position: relative;
+  
+  &:hover::after {
+    content: attr(title);
+    position: absolute;
+    bottom: calc(100% + 0.5rem);
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.5rem 0.875rem;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 500;
+    white-space: nowrap;
+    border-radius: 6px;
+    pointer-events: none;
+    z-index: 1000;
+    animation: tooltipFadeIn 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    
+    [data-bs-theme="light"] & {
+      background: rgba(0, 0, 0, 0.85);
+    }
+  }
+  
+  &:hover::before {
+    content: '';
+    position: absolute;
+    bottom: calc(100% + 0.125rem);
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: rgba(0, 0, 0, 0.9);
+    pointer-events: none;
+    z-index: 1001;
+    animation: tooltipFadeIn 0.2s ease;
+    
+    [data-bs-theme="light"] & {
+      border-top-color: rgba(0, 0, 0, 0.85);
+    }
+  }
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
   }
 }
 
