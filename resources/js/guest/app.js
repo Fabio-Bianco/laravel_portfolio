@@ -5,9 +5,56 @@
 
 import '../bootstrap';
 import * as bootstrap from 'bootstrap';
+import Alpine from 'alpinejs';
 import './contact-validation';
 import './footer-enhanced';
 import './accessibility';
+
+// Alpine.js - Inizializzazione componenti
+window.Alpine = Alpine;
+
+// Dark Mode Component - PRIMA di Alpine.start()
+Alpine.data('darkMode', () => ({
+  theme: localStorage.getItem('portfolio-theme') || 'auto',
+  
+  init() {
+    this.applyTheme();
+    
+    window.matchMedia('(prefers-color-scheme: dark)')
+      .addEventListener('change', () => {
+        if (this.theme === 'auto') {
+          this.applyTheme();
+        }
+      });
+    
+    console.log('🎨 Theme Switcher initialized:', this.theme);
+  },
+  
+  setTheme(newTheme) {
+    this.theme = newTheme;
+    localStorage.setItem('portfolio-theme', this.theme);
+    this.applyTheme();
+    console.log('🎨 Theme changed to:', newTheme);
+  },
+  
+  isActive(themeName) {
+    return this.theme === themeName;
+  },
+  
+  applyTheme() {
+    const html = document.documentElement;
+    
+    if (this.theme === 'auto') {
+      html.removeAttribute('data-bs-theme');
+    } else {
+      html.setAttribute('data-bs-theme', this.theme);
+    }
+  }
+}));
+
+// Start Alpine
+Alpine.start();
+
 // Bio sidebar è caricato separatamente nel layout
 
 // Import images

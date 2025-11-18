@@ -45,7 +45,7 @@
 
   <main class="py-4">
     <div class="@yield('container_class','container')">
-      @include('partials.flash')
+      @include('shared.partials.flash')
       @yield('content')
     </div>
   </main>

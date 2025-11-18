@@ -31,7 +31,7 @@
     'resources/js/guest/app.js',
     'resources/js/guest/bio-sidebar.js',
     'resources/js/guest/contact-form.js',
-    'resources/js/guest/theme-switcher.js'
+    'resources/js/guest/navigation.js'
   ])
   
   @stack('head')
@@ -48,9 +48,6 @@
   
   {{-- Contacts Widget Component --}}
   @include('guest.partials.contacts-widget')
-  
-  {{-- Theme Switcher Component --}}
-  @include('guest.partials.theme-switcher')
   
   {{-- Main Content --}}
   <main id="main-content" role="main">

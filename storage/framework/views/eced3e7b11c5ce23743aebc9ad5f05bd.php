@@ -31,7 +31,7 @@
     'resources/js/guest/app.js',
     'resources/js/guest/bio-sidebar.js',
     'resources/js/guest/contact-form.js',
-    'resources/js/guest/theme-switcher.js'
+    'resources/js/guest/navigation.js'
   ]); ?>
   
   <?php echo $__env->yieldPushContent('head'); ?>
@@ -48,9 +48,6 @@
   
   
   <?php echo $__env->make('guest.partials.contacts-widget', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-  
-  
-  <?php echo $__env->make('guest.partials.theme-switcher', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
   
   
   <main id="main-content" role="main">

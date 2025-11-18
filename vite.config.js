@@ -11,6 +11,7 @@ export default defineConfig({
                 
                 // Guest Area JS
                 'resources/js/guest/app.js',
+                'resources/js/guest/navigation.js',
                 'resources/js/guest/bio-sidebar.js',
                 'resources/js/guest/contact-form.js',
                 'resources/js/guest/contact-validation.js',

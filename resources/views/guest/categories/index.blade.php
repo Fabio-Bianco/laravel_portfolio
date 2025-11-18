@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('guest.layouts.guest-minimal')
 
 @section('title','Categorie')
 
