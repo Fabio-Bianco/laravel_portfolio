@@ -202,9 +202,9 @@
               </div>
               <div class="learning-info">
                 <h3 class="learning-name">Python</h3>
-                <p class="learning-desc">FastAPI, Django, Data Science</p>
+                <p class="learning-desc">Backend, Automation, Data Processing</p>
                 <div class="learning-progress">
-                  <div class="progress-bar" style="width: 40%"></div>
+                  <div class="progress-bar" style="width: 35%"></div>
                 </div>
               </div>
             </div>
@@ -218,9 +218,9 @@
               </div>
               <div class="learning-info">
                 <h3 class="learning-name">TypeScript</h3>
-                <p class="learning-desc">Advanced Patterns, Generics</p>
+                <p class="learning-desc">Type Safety, Advanced Patterns</p>
                 <div class="learning-progress">
-                  <div class="progress-bar" style="width: 60%"></div>
+                  <div class="progress-bar" style="width: 45%"></div>
                 </div>
               </div>
             </div>
@@ -234,9 +234,9 @@
               </div>
               <div class="learning-info">
                 <h3 class="learning-name">Go</h3>
-                <p class="learning-desc">Microservices, Concurrency</p>
+                <p class="learning-desc">Microservices, Performance</p>
                 <div class="learning-progress">
-                  <div class="progress-bar" style="width: 30%"></div>
+                  <div class="progress-bar" style="width: 25%"></div>
                 </div>
               </div>
             </div>
@@ -250,9 +250,73 @@
               </div>
               <div class="learning-info">
                 <h3 class="learning-name">Docker</h3>
-                <p class="learning-desc">Kubernetes, Container Orchestration</p>
+                <p class="learning-desc">Containerization, DevOps</p>
                 <div class="learning-progress">
-                  <div class="progress-bar" style="width: 50%"></div>
+                  <div class="progress-bar" style="width: 40%"></div>
+                </div>
+              </div>
+            </div>
+
+            
+            <div class="learning-card">
+              <div class="learning-icon">
+                <svg viewBox="0 0 24 24" width="40" height="40">
+                  <path fill="#4169E1" d="M23.5594 14.7228a.5269.5269 0 0 0-.0563-.1191c-.139-.2632-.4768-.3418-.7805-.1779a.2332.2332 0 0 0-.1357.1314c-.1703.4966-.5747.7283-1.2245.7283-1.3878 0-2.8878-.614-4.2863-1.1785-1.2485-.5035-2.542-1.0247-3.7173-1.0247-.8128 0-1.5222.2809-2.0995.8349-1.8825 1.8062-2.6292 1.8894-3.0872 1.8894-.266 0-.3836-.0691-.4376-.1411-.1411-.1869-.0495-.5149.2077-.7957 1.3363-1.4545 2.2769-2.6193 2.7949-3.4653.8858-1.4474 1.022-2.6562.3949-3.4992-.5673-.7608-1.5637-.9198-2.6736-.7283-1.0683.1869-2.3187.6364-3.5116 1.0674-1.2783.4622-2.6062.9419-3.7327.9119a6.6664 6.6664 0 0 1-.9586-.0936 2.5064 2.5064 0 0 0-.3266-.056c-.2657 0-.5395.1335-.7449.364-.2895.3247-.4005.74-.2936 1.1076.0316.1092.139.2673.5562.2673.2301 0 .5068-.0632.8379-.1349 1.3812-.2976 3.2664-.7031 4.7625-.0495.4313.1885.819.4307 1.1831.6615.7449.4737 1.4197.9029 2.4857.9029.9624 0 2.0141-.3765 3.1215-.7529 1.1036-.3753 2.2434-.7638 3.292-.7638.7588 0 1.4050.1883 1.9216.5597.5249.3779.8182.8931.8182 1.4429 0 .493-.1681.8825-.4997 1.1577-.1962.1619-.4504.2738-.7344.323-.495.0866-.8972.0495-1.2006-.1123a.5511.5511 0 0 0-.282-.0769.4366.4366 0 0 0-.2921.1335c-.2929.2918-.2232.7355.1369 1.0976.195.1957.4595.3373.7662.4102a2.0463 2.0463 0 0 0 .5914.0866c.438 0 .9085-.114 1.3917-.338.3489-.162.6542-.3686.9073-.6136.5608-.5417.8665-1.2552.8665-2.0141-.0001-.9984-.4408-1.8543-1.2743-2.4756z"/>
+                </svg>
+              </div>
+              <div class="learning-info">
+                <h3 class="learning-name">PostgreSQL</h3>
+                <p class="learning-desc">Advanced Queries, Performance Tuning</p>
+                <div class="learning-progress">
+                  <div class="progress-bar" style="width: 30%"></div>
+                </div>
+              </div>
+            </div>
+
+            
+            <div class="learning-card">
+              <div class="learning-icon">
+                <svg viewBox="0 0 24 24" width="40" height="40">
+                  <path fill="#47A248" d="M17.193 9.555c-1.264-5.58-4.252-7.414-4.573-8.115-.28-.394-.53-.954-.735-1.44-.036.495-.055.685-.523 1.184-.723.566-4.438 3.682-4.74 10.02-.282 5.912 4.27 9.435 4.888 9.884l.07.05A73.49 73.49 0 0111.91 24h.481c.114-1.032.284-2.056.51-3.07.417-.296.604-.463.85-.693a11.342 11.342 0 003.639-8.464c.01-.814-.103-1.662-.197-2.218zm-5.336 8.195s0-8.291.275-8.29c.213 0 .49 10.695.49 10.695-.381-.045-.765-1.76-.765-2.405z"/>
+                </svg>
+              </div>
+              <div class="learning-info">
+                <h3 class="learning-name">MongoDB</h3>
+                <p class="learning-desc">NoSQL, Document Database</p>
+                <div class="learning-progress">
+                  <div class="progress-bar" style="width: 35%"></div>
+                </div>
+              </div>
+            </div>
+
+            
+            <div class="learning-card">
+              <div class="learning-icon">
+                <svg viewBox="0 0 24 24" width="40" height="40">
+                  <path fill="#007396" d="M8.851 18.56s-.917.534.653.714c1.902.218 2.874.187 4.969-.211 0 0 .552.346 1.321.646-4.699 2.013-10.633-.118-6.943-1.149M8.276 15.933s-1.028.761.542.924c2.032.209 3.636.227 6.413-.308 0 0 .384.389.987.602-5.679 1.661-12.007.13-7.942-1.218M13.116 11.475c1.158 1.333-.304 2.533-.304 2.533s2.939-1.518 1.589-3.418c-1.261-1.772-2.228-2.652 3.007-5.688 0-.001-8.216 2.051-4.292 6.573M19.33 20.504s.679.559-.747.991c-2.712.822-11.288 1.069-13.669.033-.856-.373.75-.89 1.254-.998.527-.114.828-.093.828-.093-.953-.671-6.156 1.317-2.643 1.887 9.58 1.553 17.462-.7 14.977-1.82M9.292 13.21s-4.362 1.036-1.544 1.412c1.189.159 3.561.123 5.77-.062 1.806-.152 3.618-.477 3.618-.477s-.637.272-1.098.587c-4.429 1.165-12.986.623-10.522-.568 2.082-1.006 3.776-.892 3.776-.892M17.116 17.584c4.503-2.34 2.421-4.589.968-4.285-.355.074-.515.138-.515.138s.132-.207.385-.297c2.875-1.011 5.086 2.981-.928 4.562 0-.001.07-.062.09-.118M14.401 0s2.494 2.494-2.365 6.33c-3.896 3.077-.888 4.832-.001 6.836-2.274-2.053-3.943-3.858-2.824-5.539 1.644-2.469 6.197-3.665 5.19-7.627M9.734 23.924c4.322.277 10.959-.153 11.116-2.198 0 0-.302.775-3.572 1.391-3.688.694-8.239.613-10.937.168 0-.001.553.457 3.393.639"/>
+                </svg>
+              </div>
+              <div class="learning-info">
+                <h3 class="learning-name">Java</h3>
+                <p class="learning-desc">Spring Boot, Enterprise Applications</p>
+                <div class="learning-progress">
+                  <div class="progress-bar" style="width: 20%"></div>
+                </div>
+              </div>
+            </div>
+
+            
+            <div class="learning-card">
+              <div class="learning-icon">
+                <svg viewBox="0 0 24 24" width="40" height="40">
+                  <path fill="#DD0031" d="M9.931 12.645h4.138l-2.07-4.908m0-7.737L.68 3.982l1.726 14.771L12 24l9.596-5.242L23.32 3.984 11.999.001zm7.064 18.31l-2.096-1.218-4.898 2.717v-2.73l-4.011-2.346 1.356-8.131 4.655 11.088 7.064-4.13v4.75l-2.07 1.218z"/>
+                </svg>
+              </div>
+              <div class="learning-info">
+                <h3 class="learning-name">Angular</h3>
+                <p class="learning-desc">TypeScript Framework, SPA Development</p>
+                <div class="learning-progress">
+                  <div class="progress-bar" style="width: 30%"></div>
                 </div>
               </div>
             </div>
