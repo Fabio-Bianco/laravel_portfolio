@@ -5,21 +5,20 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                // Global
+                // Global SCSS (includes guest, admin, accessibility)
                 'resources/sass/app.scss',
                 'resources/js/app.js',
                 
-                // Guest Area (guest-minimal.css ora in app.scss)
-                'resources/css/guest/accessibility.css',
+                // Guest Area JS
                 'resources/js/guest/app.js',
                 'resources/js/guest/bio-sidebar.js',
                 'resources/js/guest/contact-form.js',
                 'resources/js/guest/contact-validation.js',
                 'resources/js/guest/accessibility.js',
                 'resources/js/guest/footer-enhanced.js',
+                'resources/js/guest/theme-switcher.js',
                 
-                // Admin Area
-                'resources/css/admin/admin-sidebar.css',
+                // Admin Area JS
                 'resources/js/admin/projects-bulk.js',
                 
                 // Future Features (disabled)

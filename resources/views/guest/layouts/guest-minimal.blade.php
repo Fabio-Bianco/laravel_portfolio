@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="it" data-bs-theme="dark">
+<html lang="it">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,13 +25,13 @@
   {{-- Canonical URL --}}
   <link rel="canonical" href="{{ url()->current() }}">
   
-  {{-- Assets --}}
+  {{-- Assets (accessibility.css ora incluso in app.scss) --}}
   @vite([
     'resources/sass/app.scss',
-    'resources/css/guest/accessibility.css',
     'resources/js/guest/app.js',
     'resources/js/guest/bio-sidebar.js',
-    'resources/js/guest/contact-form.js'
+    'resources/js/guest/contact-form.js',
+    'resources/js/guest/theme-switcher.js'
   ])
   
   @stack('head')
@@ -48,6 +48,9 @@
   
   {{-- Contacts Widget Component --}}
   @include('guest.partials.contacts-widget')
+  
+  {{-- Theme Switcher Component --}}
+  @include('guest.partials.theme-switcher')
   
   {{-- Main Content --}}
   <main id="main-content" role="main">

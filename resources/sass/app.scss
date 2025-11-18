@@ -1,5 +1,6 @@
 /**
  * Main SCSS Entry Point
+ * Unified SCSS System - Organized Structure
  */
 
 // Bootstrap Overrides
@@ -9,10 +10,13 @@
 @import "bootstrap/scss/bootstrap";
 @import "bootstrap-icons/font/bootstrap-icons.css";
 
-// Portfolio Guest Layout (ex guest-minimal.css)
-@import "portfolio-guest";
+// Guest Area (portfolio-guest includes guest-minimal + accessibility)
+@import "guest/portfolio-guest";
 
-// Custom Components
+// Admin Area
+@import "admin/admin-sidebar";
+
+// Shared Components
 @import "footer-2025";
 @import "contact-modern";
 

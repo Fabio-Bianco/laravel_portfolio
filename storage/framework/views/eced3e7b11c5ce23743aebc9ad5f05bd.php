@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="it" data-bs-theme="dark">
+<html lang="it">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,10 +28,10 @@
   
   <?php echo app('Illuminate\Foundation\Vite')([
     'resources/sass/app.scss',
-    'resources/css/guest/accessibility.css',
     'resources/js/guest/app.js',
     'resources/js/guest/bio-sidebar.js',
-    'resources/js/guest/contact-form.js'
+    'resources/js/guest/contact-form.js',
+    'resources/js/guest/theme-switcher.js'
   ]); ?>
   
   <?php echo $__env->yieldPushContent('head'); ?>
@@ -48,6 +48,9 @@
   
   
   <?php echo $__env->make('guest.partials.contacts-widget', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+  
+  
+  <?php echo $__env->make('guest.partials.theme-switcher', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
   
   
   <main id="main-content" role="main">
