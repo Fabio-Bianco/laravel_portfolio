@@ -147,152 +147,39 @@
         </p>
       </div>
       
-      <div class="skills-grid">
+      <div class="skills-minimal-grid">
         
-        <div class="skill-category">
-          <div class="skill-category-header">
-            <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
-              <path d="M0 1.5A1.5 1.5 0 0 1 1.5 0h13A1.5 1.5 0 0 1 16 1.5v9A1.5 1.5 0 0 1 14.5 12h-13A1.5 1.5 0 0 1 0 10.5v-9zM1.5 1a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-13z"/>
-              <path d="M2 2h12v8H2V2z"/>
-            </svg>
-            <h3>Frontend</h3>
-          </div>
-          <div class="skill-list">
-            <div class="skill-item">
-              <span class="skill-name">
-                <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'javascript'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-                JavaScript (ES6+)
-              </span>
-              <div class="skill-level" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
-                <div class="skill-level-fill" style="width: 90%"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <span class="skill-name">
-                <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'react'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-                React
-              </span>
-              <div class="skill-level" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-                <div class="skill-level-fill" style="width: 85%"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <span class="skill-name">
-                <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'html5'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-                <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'css3'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-                HTML5 / CSS3
-              </span>
-              <div class="skill-level" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">
-                <div class="skill-level-fill" style="width: 95%"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <span class="skill-name">
-                <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'tailwind'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-                Tailwind CSS
-              </span>
-              <div class="skill-level" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
-                <div class="skill-level-fill" style="width: 80%"></div>
-              </div>
-            </div>
+        <div class="skill-category-minimal">
+          <h3 class="skill-category-title">Backend</h3>
+          <div class="skill-icons-grid">
+            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'php', 'size' => 48], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'laravel', 'size' => 48], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'mysql', 'size' => 48], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'rest-api', 'size' => 48], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
           </div>
         </div>
         
         
-        <div class="skill-category">
-          <div class="skill-category-header">
-            <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
-              <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h11A1.5 1.5 0 0 1 15 2.5v11a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 13.5v-11z"/>
-              <path fill="white" d="M2.5 2a.5.5 0 0 0-.5.5v11a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5v-11a.5.5 0 0 0-.5-.5h-11z"/>
-            </svg>
-            <h3>Backend</h3>
-          </div>
-          <div class="skill-list">
-            <div class="skill-item">
-              <span class="skill-name">
-                <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'php'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-                PHP
-              </span>
-              <div class="skill-level" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
-                <div class="skill-level-fill" style="width: 90%"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <span class="skill-name">
-                <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'laravel'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-                Laravel
-              </span>
-              <div class="skill-level" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">
-                <div class="skill-level-fill" style="width: 95%"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <span class="skill-name">
-                <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'mysql'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-                MySQL
-              </span>
-              <div class="skill-level" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-                <div class="skill-level-fill" style="width: 85%"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <span class="skill-name">
-                <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'rest-api'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-                REST API
-              </span>
-              <div class="skill-level" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
-                <div class="skill-level-fill" style="width: 90%"></div>
-              </div>
-            </div>
+        <div class="skill-category-minimal">
+          <h3 class="skill-category-title">Frontend</h3>
+          <div class="skill-icons-grid">
+            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'javascript', 'size' => 48], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'react', 'size' => 48], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'html5', 'size' => 48], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'css3', 'size' => 48], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'tailwind', 'size' => 48], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
           </div>
         </div>
         
         
-        <div class="skill-category">
-          <div class="skill-category-header">
-            <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
-              <path d="M1 0 0 1l2.2 3.081a1 1 0 0 0 .815.419h.07a1 1 0 0 1 .708.293l2.675 2.675-2.617 2.654A3.003 3.003 0 0 0 0 13a3 3 0 1 0 5.878-.851l2.654-2.617.968.968-.305.914a1 1 0 0 0 .242 1.023l3.27 3.27a.997.997 0 0 0 1.414 0l1.586-1.586a.997.997 0 0 0 0-1.414l-3.27-3.27a1 1 0 0 0-1.023-.242L10.5 9.5l-.96-.96 2.68-2.643A3.005 3.005 0 0 0 16 3c0-.269-.035-.53-.102-.777l-2.14 2.141L12 4l-.364-1.757L13.777.102a3 3 0 0 0-3.675 3.68L7.462 6.46 4.793 3.793a1 1 0 0 1-.293-.707v-.071a1 1 0 0 0-.419-.814L1 0z"/>
-            </svg>
-            <h3>Tools & DevOps</h3>
-          </div>
-          <div class="skill-list">
-            <div class="skill-item">
-              <span class="skill-name">
-                <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'git'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-                <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'github'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-                Git & GitHub
-              </span>
-              <div class="skill-level" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
-                <div class="skill-level-fill" style="width: 90%"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <span class="skill-name">
-                <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'vscode'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-                VS Code
-              </span>
-              <div class="skill-level" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">
-                <div class="skill-level-fill" style="width: 95%"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <span class="skill-name">
-                <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'npm'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-                Composer / npm
-              </span>
-              <div class="skill-level" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-                <div class="skill-level-fill" style="width: 85%"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <span class="skill-name">
-                <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'postman'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-                Postman / API Testing
-              </span>
-              <div class="skill-level" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
-                <div class="skill-level-fill" style="width: 80%"></div>
-              </div>
-            </div>
+        <div class="skill-category-minimal">
+          <h3 class="skill-category-title">Tools & DevOps</h3>
+          <div class="skill-icons-grid">
+            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'git', 'size' => 48], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'github', 'size' => 48], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'vscode', 'size' => 48], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'npm', 'size' => 48], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'postman', 'size' => 48], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
           </div>
         </div>
       </div>
