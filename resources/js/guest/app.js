@@ -16,6 +16,7 @@ window.Alpine = Alpine;
 // Dark Mode Component - PRIMA di Alpine.start()
 Alpine.data('darkMode', () => ({
   theme: localStorage.getItem('portfolio-theme') || 'auto',
+  expanded: false,
   
   init() {
     this.applyTheme();

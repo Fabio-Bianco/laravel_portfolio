@@ -241,12 +241,18 @@ body {
   }
 }
 
+// Alpine.js x-cloak directive
+[x-cloak] {
+  display: none !important;
+}
+
 // Theme Switcher Collapsible
 .theme-switcher-inline {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 
 .theme-toggle-btn {
@@ -304,23 +310,24 @@ body {
 
 .theme-options-menu {
   position: absolute;
-  bottom: calc(100% + 0.5rem);
+  bottom: calc(100% + 0.75rem);
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
   padding: 0.5rem;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 12px;
   box-shadow: 
-    0 8px 24px -4px rgba(0, 0, 0, 0.12),
-    0 4px 12px -2px rgba(0, 0, 0, 0.08);
-  min-width: 140px;
-  z-index: 100;
+    0 12px 32px -8px rgba(0, 0, 0, 0.18),
+    0 6px 16px -4px rgba(0, 0, 0, 0.12),
+    0 0 0 1px rgba(255, 255, 255, 0.3) inset;
+  min-width: 150px;
+  z-index: 1000;
   
   @media (prefers-color-scheme: dark) {
     background: rgba(26, 29, 35, 0.95);
@@ -379,23 +386,6 @@ body {
   &:focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: -2px;
-  }
-}
-
-// Focus per accessibilità
-  &:focus-visible {
-    outline: 2px solid var(--color-accent);
-    outline-offset: 2px;
-  }
-  
-  @media (max-width: 768px) {
-    width: 36px;
-    height: 36px;
-    
-    .theme-icon-inline {
-      width: 18px;
-      height: 18px;
-    }
   }
 }
 

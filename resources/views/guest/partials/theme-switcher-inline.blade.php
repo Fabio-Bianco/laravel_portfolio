@@ -1,13 +1,10 @@
 {{-- Theme Switcher con Collapsible - Alpine.js Powered --}}
 <div 
-  x-data="{ 
-    ...darkMode, 
-    expanded: false 
-  }" 
+  x-data="{ theme: localStorage.getItem('portfolio-theme') || 'auto', expanded: false, setTheme(t) { this.theme = t; localStorage.setItem('portfolio-theme', t); (t === 'auto') ? document.documentElement.removeAttribute('data-bs-theme') : document.documentElement.setAttribute('data-bs-theme', t); }, isActive(t) { return this.theme === t; } }"
+  x-init="(theme === 'auto') ? document.documentElement.removeAttribute('data-bs-theme') : document.documentElement.setAttribute('data-bs-theme', theme)"
   class="theme-switcher-inline" 
   role="region" 
-  aria-label="Cambia tema"
-  x-cloak>
+  aria-label="Cambia tema">
   
   {{-- Bottone principale mostra tema corrente --}}
   <button 
@@ -49,7 +46,7 @@
     
     {{-- Light --}}
     <button 
-      @click="setTheme('light'); expanded = false" 
+      @click.prevent="setTheme('light'); expanded = false" 
       class="theme-option"
       :class="{ 'active': isActive('light') }"
       :aria-checked="isActive('light')"
@@ -65,7 +62,7 @@
     
     {{-- Auto --}}
     <button 
-      @click="setTheme('auto'); expanded = false" 
+      @click.prevent="setTheme('auto'); expanded = false" 
       class="theme-option"
       :class="{ 'active': isActive('auto') }"
       :aria-checked="isActive('auto')"
@@ -81,7 +78,7 @@
     
     {{-- Dark --}}
     <button 
-      @click="setTheme('dark'); expanded = false" 
+      @click.prevent="setTheme('dark'); expanded = false" 
       class="theme-option"
       :class="{ 'active': isActive('dark') }"
       :aria-checked="isActive('dark')"
