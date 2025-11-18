@@ -192,24 +192,26 @@
       <?php if(isset($allTypes)): ?>
         <div class="filters-section">
           <div class="filter-group" style="justify-content: center;">
-            <a href="<?php echo e(route('home')); ?>" 
-               class="filter-chip <?php echo e(!isset($currentType) ? 'active' : ''); ?>">
+            <button type="button"
+                    data-filter="all"
+                    class="filter-chip <?php echo e(!isset($currentType) ? 'active' : ''); ?>">
               Tutti
               <?php if(isset($typeCounts)): ?>
                 <span class="count"><?php echo e($typeCounts->sum()); ?></span>
               <?php endif; ?>
-            </a>
+            </button>
             <?php $__currentLoopData = $allTypes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $t): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
               <?php
                 $count = $typeCounts[$t->id] ?? 0;
               ?>
               <?php if($count > 0): ?>
-                <a href="<?php echo e(route('home', ['type' => $t->slug])); ?>"
-                   class="filter-chip <?php echo e((isset($currentType) && $currentType->id === $t->id) ? 'active' : ''); ?>">
+                <button type="button"
+                        data-filter="<?php echo e($t->slug); ?>"
+                        class="filter-chip <?php echo e((isset($currentType) && $currentType->id === $t->id) ? 'active' : ''); ?>">
                   <?php echo e($t->name); ?>
 
                   <span class="count"><?php echo e($count); ?></span>
-                </a>
+                </button>
               <?php endif; ?>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
           </div>
@@ -243,7 +245,7 @@
       
       <div class="projects-grid">
         <?php $__empty_1 = true; $__currentLoopData = $projects; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $project): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-          <article class="project-card">
+          <article class="project-card" data-type="<?php echo e($project->type ? $project->type->slug : ''); ?>">
             
             
             <?php if($project->image_url): ?>

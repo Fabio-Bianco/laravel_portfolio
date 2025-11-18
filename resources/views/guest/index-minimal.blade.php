@@ -214,23 +214,25 @@
       @if(isset($allTypes))
         <div class="filters-section">
           <div class="filter-group" style="justify-content: center;">
-            <a href="{{ route('home') }}" 
-               class="filter-chip {{ !isset($currentType) ? 'active' : '' }}">
+            <button type="button"
+                    data-filter="all"
+                    class="filter-chip {{ !isset($currentType) ? 'active' : '' }}">
               Tutti
               @isset($typeCounts)
                 <span class="count">{{ $typeCounts->sum() }}</span>
               @endisset
-            </a>
+            </button>
             @foreach($allTypes as $t)
               @php
                 $count = $typeCounts[$t->id] ?? 0;
               @endphp
               @if($count > 0)
-                <a href="{{ route('home', ['type' => $t->slug]) }}"
-                   class="filter-chip {{ (isset($currentType) && $currentType->id === $t->id) ? 'active' : '' }}">
+                <button type="button"
+                        data-filter="{{ $t->slug }}"
+                        class="filter-chip {{ (isset($currentType) && $currentType->id === $t->id) ? 'active' : '' }}">
                   {{ $t->name }}
                   <span class="count">{{ $count }}</span>
-                </a>
+                </button>
               @endif
             @endforeach
           </div>
@@ -264,7 +266,7 @@
       {{-- Projects Grid --}}
       <div class="projects-grid">
         @forelse($projects as $project)
-          <article class="project-card">
+          <article class="project-card" data-type="{{ $project->type ? $project->type->slug : '' }}">
             
             {{-- Image --}}
             @if($project->image_url)

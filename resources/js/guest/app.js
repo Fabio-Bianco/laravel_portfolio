@@ -9,6 +9,7 @@ import Alpine from 'alpinejs';
 import './contact-validation';
 import './footer-enhanced';
 import './accessibility';
+import '../project-filters';
 
 // Alpine.js - Inizializzazione componenti
 window.Alpine = Alpine;

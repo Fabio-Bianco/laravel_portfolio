@@ -6,6 +6,9 @@ import.meta.glob([
     '../img/**'
 ])
 
+// Dynamic project filters
+import './project-filters';
+
 // Toggle per "Leggi di più" nelle card del portfolio (guest)
 document.addEventListener('click', (e) => {
   const btn = e.target.closest('.read-more');

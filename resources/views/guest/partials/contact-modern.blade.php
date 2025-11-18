@@ -10,13 +10,12 @@
             </p>
         </div>
 
-        {{-- Contact Form Wrapper --}}
-        <div class="contact-wrapper">
-            <form class="contact-form" 
-                  id="contactForm" 
-                  action="{{ route('contact.send') }}" 
-                  method="POST">
-                @csrf
+        {{-- Contact Form --}}
+        <form class="contact-form" 
+              id="contactForm" 
+              action="{{ route('contact.send') }}" 
+              method="POST">
+            @csrf
                 
                 {{-- Name --}}
                 <div class="form-group">
@@ -81,7 +80,6 @@
                     </svg>
                     <span>Si è verificato un errore. Riprova più tardi.</span>
                 </div>
-            </form>
-        </div>
+        </form>
     </div>
 </section>

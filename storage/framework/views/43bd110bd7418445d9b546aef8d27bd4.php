@@ -11,12 +11,11 @@
         </div>
 
         
-        <div class="contact-wrapper">
-            <form class="contact-form" 
-                  id="contactForm" 
-                  action="<?php echo e(route('contact.send')); ?>" 
-                  method="POST">
-                <?php echo csrf_field(); ?>
+        <form class="contact-form" 
+              id="contactForm" 
+              action="<?php echo e(route('contact.send')); ?>" 
+              method="POST">
+            <?php echo csrf_field(); ?>
                 
                 
                 <div class="form-group">
@@ -81,8 +80,7 @@
                     </svg>
                     <span>Si è verificato un errore. Riprova più tardi.</span>
                 </div>
-            </form>
-        </div>
+        </form>
     </div>
 </section>
 <?php /**PATH C:\Users\Utente\Desktop\my_project\laravel_portfolio\resources\views/guest/partials/contact-modern.blade.php ENDPATH**/ ?>
