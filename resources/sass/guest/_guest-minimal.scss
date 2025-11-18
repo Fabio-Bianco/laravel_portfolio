@@ -56,6 +56,7 @@
   display: flex;
   align-items: center;
   gap: 2rem;
+  flex: 1; // Permette al contenitore di espandersi
 }
 
 .nav-link {
@@ -882,9 +883,15 @@ h1, h2, h3, h4, h5, h6 {
   height: 100%;
   display: flex;
   flex-direction: column;
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   position: relative;
   animation: fadeInUp 0.5s ease backwards;
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-accent);
+  }
 
   @for $i from 1 through 6 {
     &:nth-child(#{$i}) {
@@ -918,10 +925,21 @@ h1, h2, h3, h4, h5, h6 {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.5) 100%);
+    background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.3) 100%);
     opacity: 0;
     transition: opacity 0.4s ease;
     z-index: 1;
+  }
+
+  // Light mode specific overlay
+  @media (prefers-color-scheme: light) {
+    &::after {
+      background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.15) 100%);
+    }
+  }
+
+  :root:not([data-bs-theme="dark"]) &::after {
+    background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.15) 100%);
   }
 
   &:hover {
@@ -938,8 +956,8 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     box-shadow: 
-      0 0 0 1px rgba(59, 130, 246, 0.1),
-      0 0 24px rgba(59, 130, 246, 0.12),
+      0 0 0 1px rgba(var(--color-accent-rgb), 0.1),
+      0 0 24px rgba(var(--color-accent-rgb), 0.12),
       0 4px 12px rgba(0, 0, 0, 0.15);
   }
 

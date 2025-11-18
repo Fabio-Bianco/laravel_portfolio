@@ -58,6 +58,7 @@
 	a:hover, a:focus {
 		text-decoration: none; // mantiene i link non sottolineati su hover/focus
 	}
+	
 	/* Badge filtro Smart: alto contrasto e lettura facile */
 	.badge-filter {
 		--pill-bg: #e9ecef;
@@ -71,15 +72,52 @@
 		display: inline-flex;
 		align-items: center;
 		gap: .4rem;
-		border: 1px solid rgba(0,0,0,.05);
+		border: 1px solid rgba(0,0,0,.08);
+		transition: all 0.2s ease;
 	}
+	
+	// Dark mode badge filter
+	@media (prefers-color-scheme: dark) {
+		.badge-filter {
+			--pill-bg: #2d3139;
+			--pill-fg: #e6edf3;
+			border-color: rgba(255,255,255,.1);
+		}
+	}
+	
+	[data-bs-theme="dark"] .badge-filter {
+		--pill-bg: #2d3139;
+		--pill-fg: #e6edf3;
+		border-color: rgba(255,255,255,.1);
+	}
+	
 	.badge-filter.is-active {
-		--pill-bg: #0d6efd;
+		--pill-bg: var(--color-accent);
 		--pill-fg: #fff;
-		border-color: #0d6efd;
+		border-color: var(--color-accent);
+		box-shadow: var(--shadow-glow);
 	}
-	.badge-filter .badge-count { background: rgba(0,0,0,.075); color: inherit; }
-	.is-active .badge-count { background: rgba(255,255,255,.2); }
+	
+	.badge-filter .badge-count { 
+		background: rgba(0,0,0,.075); 
+		color: inherit;
+		padding: .15rem .4rem;
+		border-radius: 999px;
+	}
+	
+	@media (prefers-color-scheme: dark) {
+		.badge-filter .badge-count { 
+			background: rgba(255,255,255,.1); 
+		}
+	}
+	
+	[data-bs-theme="dark"] .badge-filter .badge-count { 
+		background: rgba(255,255,255,.1); 
+	}
+	
+	.is-active .badge-count { 
+		background: rgba(255,255,255,.25); 
+	}
 }
 
 // Stili specifici pagina admin projects (admin/projects/index)
@@ -108,21 +146,89 @@
 // ==================================================
 // CUSTOM BADGE STYLES (Portfolio-specific)
 // ==================================================
-// Badge Type con colori accessibili (light mode)
+// Badge Type con colori accessibili
 .badge-type { 
   font-weight: 600; 
-  border: 1px solid transparent; 
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
 }
-.badge-type-frontend { background:#eff6ff; color:#0b4ea2; border-color:#bfdbfe; }
-.badge-type-backend { background:#ecfdf5; color:#065f46; border-color:#a7f3d0; }
-.badge-type-automazioni { background:#fef3c7; color:#92400e; border-color:#fde68a; }
+
+// Light mode badges (default e explicit)
+:root .badge-type-frontend,
+[data-bs-theme="light"] .badge-type-frontend { 
+  background:#e0f2fe; 
+  color:#0369a1; 
+  border-color:#bae6fd; 
+}
+:root .badge-type-backend,
+[data-bs-theme="light"] .badge-type-backend { 
+  background:#d1fae5; 
+  color:#047857; 
+  border-color:#a7f3d0; 
+}
+:root .badge-type-automazioni,
+[data-bs-theme="light"] .badge-type-automazioni { 
+  background:#fef3c7; 
+  color:#92400e; 
+  border-color:#fde68a; 
+}
+
+// Dark mode badges (media query + explicit)
+@media (prefers-color-scheme: dark) {
+  :root:not([data-bs-theme="light"]) .badge-type-frontend { 
+    background:rgba(236, 72, 153, 0.15); 
+    color:#f9a8d4; 
+    border-color:rgba(236, 72, 153, 0.3); 
+  }
+  :root:not([data-bs-theme="light"]) .badge-type-backend { 
+    background:rgba(139, 92, 246, 0.15); 
+    color:#c4b5fd; 
+    border-color:rgba(139, 92, 246, 0.3); 
+  }
+  :root:not([data-bs-theme="light"]) .badge-type-automazioni { 
+    background:rgba(34, 197, 94, 0.15); 
+    color:#86efac; 
+    border-color:rgba(34, 197, 94, 0.3); 
+  }
+}
+
+[data-bs-theme="dark"] .badge-type-frontend { 
+  background:rgba(236, 72, 153, 0.15); 
+  color:#f9a8d4; 
+  border-color:rgba(236, 72, 153, 0.3); 
+}
+[data-bs-theme="dark"] .badge-type-backend { 
+  background:rgba(139, 92, 246, 0.15); 
+  color:#c4b5fd; 
+  border-color:rgba(139, 92, 246, 0.3); 
+}
+[data-bs-theme="dark"] .badge-type-automazioni { 
+  background:rgba(34, 197, 94, 0.15); 
+  color:#86efac; 
+  border-color:rgba(34, 197, 94, 0.3); 
+}
 
 // Badge tecnologia con palette neutra
 .badge-tech { 
-  background:#eef2f7; 
-  color:#1f2937; 
-  border:1px solid #e5e7eb; 
-  font-weight:500; 
+  background:#e9ecef; 
+  color:#495057; 
+  border:1px solid #ced4da; 
+  font-weight:500;
+  transition: all 0.2s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-bs-theme="light"]) .badge-tech { 
+    background:rgba(59, 130, 246, 0.1); 
+    color:#93c5fd; 
+    border-color:rgba(59, 130, 246, 0.2); 
+  }
+}
+
+[data-bs-theme="dark"] .badge-tech { 
+  background:rgba(59, 130, 246, 0.1); 
+  color:#93c5fd; 
+  border-color:rgba(59, 130, 246, 0.2); 
 }
 
 // ==================================================

@@ -1,67 +1,72 @@
 /**
- * Theme Switcher - Light/Dark Mode Toggle
- * Salva la preferenza in localStorage e applica il tema
+ * Theme Switcher - Alpine.js Component
+ * Gestisce auto/light/dark mode con localStorage e preferenze sistema
  */
 
-document.addEventListener('DOMContentLoaded', function() {
-  const html = document.documentElement;
-  const themeOptions = document.querySelectorAll('.theme-option');
-  const THEME_KEY = 'portfolio-theme';
+import Alpine from 'alpinejs';
+
+// 🌙 Dark Mode Toggle Component
+Alpine.data('darkMode', () => ({
+  theme: localStorage.getItem('portfolio-theme') || 'auto', // auto | light | dark
   
-  // Recupera il tema salvato o usa 'dark' come default
-  const getStoredTheme = () => localStorage.getItem(THEME_KEY) || 'dark';
-  
-  // Salva il tema nel localStorage
-  const setStoredTheme = (theme) => localStorage.setItem(THEME_KEY, theme);
-  
-  // Applica il tema al documento
-  const setTheme = (theme) => {
-    html.setAttribute('data-bs-theme', theme);
+  init() {
+    this.applyTheme();
     
-    // Aggiorna lo stato dei pulsanti
-    themeOptions.forEach(option => {
-      const isActive = option.dataset.theme === theme;
-      option.classList.toggle('active', isActive);
-      option.setAttribute('aria-checked', isActive);
-    });
+    // Rileva cambio preferenza sistema
+    window.matchMedia('(prefers-color-scheme: dark)')
+      .addEventListener('change', (e) => {
+        if (this.theme === 'auto') {
+          this.applyTheme();
+        }
+      });
     
-    // Salva la preferenza
-    setStoredTheme(theme);
+    console.log('🎨 Alpine Theme Switcher initialized:', this.theme);
+  },
+  
+  setTheme(newTheme) {
+    this.theme = newTheme;
+    localStorage.setItem('portfolio-theme', this.theme);
+    this.applyTheme();
     
     // Dispatcha evento custom per altre parti dell'app
     window.dispatchEvent(new CustomEvent('themechange', { 
-      detail: { theme } 
+      detail: { theme: this.theme } 
     }));
-  };
+  },
   
-  // Inizializza con il tema salvato
-  const currentTheme = getStoredTheme();
-  setTheme(currentTheme);
+  isActive(themeName) {
+    return this.theme === themeName;
+  },
   
-  // Gestisci i click sui pulsanti
-  themeOptions.forEach(option => {
-    option.addEventListener('click', () => {
-      const theme = option.dataset.theme;
-      setTheme(theme);
-      
-      // Feedback visivo
-      option.style.transform = 'scale(0.95)';
-      setTimeout(() => {
-        option.style.transform = '';
-      }, 150);
-    });
-  });
+  applyTheme() {
+    const html = document.documentElement;
+    
+    if (this.theme === 'auto') {
+      // Rimuovi attributo per usare prefers-color-scheme
+      html.removeAttribute('data-bs-theme');
+    } else {
+      // Forza il tema scelto
+      html.setAttribute('data-bs-theme', this.theme);
+    }
+  },
   
-  // Ascolta i cambiamenti di preferenza del sistema (opzionale)
-  const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+  get label() {
+    const labels = {
+      'auto': 'Auto',
+      'light': 'Chiaro',
+      'dark': 'Scuro'
+    };
+    return labels[this.theme];
+  },
   
-  // Solo se l'utente non ha mai scelto manualmente
-  if (!localStorage.getItem(THEME_KEY)) {
-    mediaQuery.addEventListener('change', (e) => {
-      const systemTheme = e.matches ? 'dark' : 'light';
-      setTheme(systemTheme);
-    });
+  get icon() {
+    const icons = {
+      'auto': 'bi-circle-half',
+      'light': 'bi-sun-fill',
+      'dark': 'bi-moon-stars-fill'
+    };
+    return icons[this.theme];
   }
-  
-  console.log('🎨 Theme switcher initialized:', currentTheme);
-});
+}));
+
+// Alpine verrà avviato da bootstrap.js

@@ -38,6 +38,9 @@
          data-section="contact">
         Contatti
       </a>
+      
+      {{-- Theme Switcher inline nella nav --}}
+      @include('guest.partials.theme-switcher-inline')
     </div>
     
     {{-- Mobile Menu Toggle --}}

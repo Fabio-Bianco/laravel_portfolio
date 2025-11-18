@@ -38,6 +38,9 @@
          data-section="contact">
         Contatti
       </a>
+      
+      
+      <?php echo $__env->make('guest.partials.theme-switcher-inline', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
     </div>
     
     
