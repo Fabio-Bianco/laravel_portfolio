@@ -37,7 +37,12 @@ class ProfileController extends Controller
 
         $user->fill($data)->save();
 
-        return redirect()->route('admin.profile.edit')->with('success', 'Profilo aggiornato con successo.');
+        // Redirect appropriato: admin vs normal user
+        if ($user->is_admin && request()->route()->getName() === 'admin.profile.update') {
+            return redirect()->route('admin.profile.edit')->with('success', 'Profilo aggiornato con successo.');
+        }
+        
+        return redirect()->route('profile.show')->with('success', 'Profilo aggiornato con successo.');
     }
 
     public function destroy(Request $request)

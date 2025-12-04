@@ -10,12 +10,15 @@ class TechnologySeeder extends Seeder
 {
     public function run(): void
     {
-        $names = ['HTML', 'CSS', 'JavaScript', 'PHP', 'Laravel', 'React.js', 'Node.js'];
-        foreach ($names as $name) {
-            Technology::firstOrCreate(
-                ['name' => $name],
-                ['slug' => Str::slug($name)]
-            );
-        }
+        // SEEDER VUOTO - Nessuna tecnologia precaricata
+        // Le tecnologie verranno aggiunte manualmente tramite:
+        // - php artisan learning:manage add
+        // - Interfaccia admin (se implementata)
+        // - Inserimento diretto nel database
+        
+        $technologies = []; // Array vuoto - nessuna tecnologia di default
+        
+        // Non creare alcuna tecnologia automaticamente
+        // Le sezioni Frontend, Backend, Dev-Tools rimarranno vuote
     }
 }

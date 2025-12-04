@@ -11,7 +11,7 @@ class CleanAndAssignCategoriesSeeder extends Seeder
     public function run(): void
     {
         $allowed = [
-            'HTML', 'CSS', 'Javascript', 'PHP', 'Laravel', 'React.js', 'Node.js', 'Automazioni',
+           
         ];
 
         // Mappa nome => id delle categorie consentite

@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>@yield('title', config('app.name'))</title>
   
+  {{-- DevIcons CDN per icone tecnologie --}}
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+  
   @vite(['resources/sass/app.scss','resources/js/app.js'])
   @stack('head')
 </head>

@@ -9,6 +9,9 @@ import.meta.glob([
 // Dynamic project filters
 import './project-filters';
 
+// Skills tabs interactive functionality
+import './skills-tabs';
+
 // Toggle per "Leggi di più" nelle card del portfolio (guest)
 document.addEventListener('click', (e) => {
   const btn = e.target.closest('.read-more');

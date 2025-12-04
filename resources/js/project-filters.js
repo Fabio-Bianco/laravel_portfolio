@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
   
-  console.log('Type counts loaded:', typeCounts);
+
 
   filterChips.forEach(chip => {
     chip.addEventListener('click', function(e) {

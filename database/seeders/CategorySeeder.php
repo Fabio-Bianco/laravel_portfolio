@@ -11,14 +11,7 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         $names = [
-            'HTML',
-            'CSS',
-            'Javascript',
-            'PHP',
-            'Laravel',
-            'React.js',
-            'Node.js',
-            'Automazioni',
+
         ];
 
         foreach ($names as $name) {
