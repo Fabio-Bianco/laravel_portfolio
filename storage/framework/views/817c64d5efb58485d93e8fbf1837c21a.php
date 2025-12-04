@@ -196,8 +196,8 @@
             <div class="skills-grid">
               <?php $__currentLoopData = $technologiesByCategory['frontend'] ?? []; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tech): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="skill-card">
-                  <?php if(isset($iconMapping[$tech->name])): ?>
-                    <i class="<?php echo e($iconMapping[$tech->name]); ?> skill-icon" aria-hidden="true"></i>
+                  <?php if($tech->logo): ?>
+                    <i class="<?php echo e($tech->logo); ?> skill-icon" aria-hidden="true"></i>
                   <?php else: ?>
                     <div class="skill-icon skill-icon-fallback"><?php echo e(strtoupper(substr($tech->name, 0, 1))); ?></div>
                   <?php endif; ?>
@@ -215,8 +215,8 @@
             <div class="skills-grid">
               <?php $__currentLoopData = $technologiesByCategory['backend'] ?? []; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tech): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="skill-card">
-                  <?php if(isset($iconMapping[$tech->name])): ?>
-                    <i class="<?php echo e($iconMapping[$tech->name]); ?> skill-icon" aria-hidden="true"></i>
+                  <?php if($tech->logo): ?>
+                    <i class="<?php echo e($tech->logo); ?> skill-icon" aria-hidden="true"></i>
                   <?php else: ?>
                     <div class="skill-icon skill-icon-fallback"><?php echo e(strtoupper(substr($tech->name, 0, 1))); ?></div>
                   <?php endif; ?>
@@ -234,8 +234,8 @@
             <div class="skills-grid">
               <?php $__currentLoopData = $technologiesByCategory['dev-tools'] ?? []; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tech): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="skill-card">
-                  <?php if(isset($iconMapping[$tech->name])): ?>
-                    <i class="<?php echo e($iconMapping[$tech->name]); ?> skill-icon" aria-hidden="true"></i>
+                  <?php if($tech->logo): ?>
+                    <i class="<?php echo e($tech->logo); ?> skill-icon" aria-hidden="true"></i>
                   <?php else: ?>
                     <div class="skill-icon skill-icon-fallback"><?php echo e(strtoupper(substr($tech->name, 0, 1))); ?></div>
                   <?php endif; ?>
@@ -254,8 +254,8 @@
             <div class="skills-grid">
               <?php $__currentLoopData = $learningTechnologies; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tech): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="skill-card learning-card">
-                  <?php if(isset($iconMapping[$tech->name])): ?>
-                    <i class="<?php echo e($iconMapping[$tech->name]); ?> skill-icon" aria-hidden="true"></i>
+                  <?php if($tech->logo): ?>
+                    <i class="<?php echo e($tech->logo); ?> skill-icon" aria-hidden="true"></i>
                   <?php else: ?>
                     <div class="skill-icon skill-icon-fallback"><?php echo e(strtoupper(substr($tech->name, 0, 1))); ?></div>
                   <?php endif; ?>
@@ -350,8 +350,8 @@
                 <?php if($technologies->count() > 0): ?>
                   <?php $__currentLoopData = $technologies; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tech): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="skill-card learning-card">
-                      <?php if(isset($iconMapping[$tech->name])): ?>
-                        <i class="<?php echo e($iconMapping[$tech->name]); ?> skill-icon" aria-hidden="true"></i>
+                      <?php if($tech->logo): ?>
+                        <i class="<?php echo e($tech->logo); ?> skill-icon" aria-hidden="true"></i>
                       <?php else: ?>
                         <div class="skill-icon skill-icon-fallback"><?php echo e(strtoupper(substr($tech->name, 0, 1))); ?></div>
                       <?php endif; ?>
@@ -362,9 +362,7 @@
                 <?php else: ?>
                   
                   <div class="empty-learning-state">
-                    <div class="empty-icon">📚</div>
-                    <p>Nessuna tecnologia in studio per questa categoria</p>
-                    <small class="text-muted">Le tecnologie verranno popolate dinamicamente</small>
+
                   </div>
                 <?php endif; ?>
               </div>

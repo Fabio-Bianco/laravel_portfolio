@@ -29,7 +29,6 @@
   @vite([
     'resources/sass/app.scss',
     'resources/js/guest/app.js',
-    'resources/js/guest/bio-sidebar.js',
     'resources/js/guest/contact-form.js',
     'resources/js/guest/navigation.js'
   ])
@@ -43,8 +42,7 @@
   {{-- Main Navigation --}}
   @include('guest.partials.main-nav')
   
-  {{-- Bio Sidebar Component --}}
-  @include('guest.partials.bio-sidebar')
+
   
   {{-- Main Content --}}
   <main id="main-content" role="main">

@@ -29,7 +29,6 @@
   <?php echo app('Illuminate\Foundation\Vite')([
     'resources/sass/app.scss',
     'resources/js/guest/app.js',
-    'resources/js/guest/bio-sidebar.js',
     'resources/js/guest/contact-form.js',
     'resources/js/guest/navigation.js'
   ]); ?>
@@ -43,8 +42,7 @@
   
   <?php echo $__env->make('guest.partials.main-nav', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
   
-  
-  <?php echo $__env->make('guest.partials.bio-sidebar', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+
   
   
   <main id="main-content" role="main">

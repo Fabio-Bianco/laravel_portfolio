@@ -207,8 +207,8 @@
             <div class="skills-grid">
               @foreach($technologiesByCategory['frontend'] ?? [] as $tech)
                 <div class="skill-card">
-                  @if(isset($iconMapping[$tech->name]))
-                    <i class="{{ $iconMapping[$tech->name] }} skill-icon" aria-hidden="true"></i>
+                  @if($tech->logo)
+                    <i class="{{ $tech->logo }} skill-icon" aria-hidden="true"></i>
                   @else
                     <div class="skill-icon skill-icon-fallback">{{ strtoupper(substr($tech->name, 0, 1)) }}</div>
                   @endif
@@ -226,8 +226,8 @@
             <div class="skills-grid">
               @foreach($technologiesByCategory['backend'] ?? [] as $tech)
                 <div class="skill-card">
-                  @if(isset($iconMapping[$tech->name]))
-                    <i class="{{ $iconMapping[$tech->name] }} skill-icon" aria-hidden="true"></i>
+                  @if($tech->logo)
+                    <i class="{{ $tech->logo }} skill-icon" aria-hidden="true"></i>
                   @else
                     <div class="skill-icon skill-icon-fallback">{{ strtoupper(substr($tech->name, 0, 1)) }}</div>
                   @endif
@@ -245,8 +245,8 @@
             <div class="skills-grid">
               @foreach($technologiesByCategory['dev-tools'] ?? [] as $tech)
                 <div class="skill-card">
-                  @if(isset($iconMapping[$tech->name]))
-                    <i class="{{ $iconMapping[$tech->name] }} skill-icon" aria-hidden="true"></i>
+                  @if($tech->logo)
+                    <i class="{{ $tech->logo }} skill-icon" aria-hidden="true"></i>
                   @else
                     <div class="skill-icon skill-icon-fallback">{{ strtoupper(substr($tech->name, 0, 1)) }}</div>
                   @endif
@@ -265,8 +265,8 @@
             <div class="skills-grid">
               @foreach($learningTechnologies as $tech)
                 <div class="skill-card learning-card">
-                  @if(isset($iconMapping[$tech->name]))
-                    <i class="{{ $iconMapping[$tech->name] }} skill-icon" aria-hidden="true"></i>
+                  @if($tech->logo)
+                    <i class="{{ $tech->logo }} skill-icon" aria-hidden="true"></i>
                   @else
                     <div class="skill-icon skill-icon-fallback">{{ strtoupper(substr($tech->name, 0, 1)) }}</div>
                   @endif
@@ -362,8 +362,8 @@
                 @if($technologies->count() > 0)
                   @foreach($technologies as $tech)
                     <div class="skill-card learning-card">
-                      @if(isset($iconMapping[$tech->name]))
-                        <i class="{{ $iconMapping[$tech->name] }} skill-icon" aria-hidden="true"></i>
+                      @if($tech->logo)
+                        <i class="{{ $tech->logo }} skill-icon" aria-hidden="true"></i>
                       @else
                         <div class="skill-icon skill-icon-fallback">{{ strtoupper(substr($tech->name, 0, 1)) }}</div>
                       @endif

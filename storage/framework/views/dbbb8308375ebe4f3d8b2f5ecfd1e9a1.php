@@ -9,10 +9,7 @@
         <span class="sidebar-label">Home</span>
       </a>
       
-      <a href="#about" class="sidebar-item" data-section="about" aria-current="false" title="About">
-        <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'sidebar-user', 'size' => 24], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-        <span class="sidebar-label">About</span>
-      </a>
+
       
       <a href="#skills" class="sidebar-item" data-section="skills" aria-current="false" title="Skills">
         <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'sidebar-code', 'size' => 24], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>

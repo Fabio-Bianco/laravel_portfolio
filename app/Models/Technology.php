@@ -9,7 +9,7 @@ class Technology extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'slug', 'category'];
+    protected $fillable = ['name', 'slug', 'category', 'logo'];
 
     protected $casts = [
         'category' => 'string',

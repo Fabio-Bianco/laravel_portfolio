@@ -9,10 +9,7 @@
         <span class="sidebar-label">Home</span>
       </a>
       
-      <a href="#about" class="sidebar-item" data-section="about" aria-current="false" title="About">
-        @include('guest.partials.tech-icons', ['icon' => 'sidebar-user', 'size' => 24])
-        <span class="sidebar-label">About</span>
-      </a>
+
       
       <a href="#skills" class="sidebar-item" data-section="skills" aria-current="false" title="Skills">
         @include('guest.partials.tech-icons', ['icon' => 'sidebar-code', 'size' => 24])
