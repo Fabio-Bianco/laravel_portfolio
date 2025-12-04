@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
+use App\Helpers\IconHelper;
 use App\Models\Project;
 use App\Models\Technology;
 use App\Models\Type;
@@ -26,7 +27,7 @@ class ProjectsController extends Controller
             }
         }
 
-        $projects = $query->paginate(9)->withQueryString();
+        $projects = $query->paginate(3)->withQueryString();
 
         // Liste ordinate e conteggi (solo progetti published)
         $allTypes = Type::orderBy('sort_order')->orderBy('name')->get();
@@ -64,6 +65,7 @@ class ProjectsController extends Controller
             'technologiesByCategory' => $technologiesByCategory,
             'learningTechnologies' => $learningTechnologies,
             'bioParagraphs' => $bioParagraphs,
+            'iconHelper' => new IconHelper(),
         ]);
     }
 
@@ -125,6 +127,7 @@ class ProjectsController extends Controller
             'typeCounts' => $typeCounts,
             'technologiesByCategory' => $technologiesByCategory,
             'learningTechnologies' => $learningTechnologies,
+            'iconHelper' => new IconHelper(),
         ]);
     }
 
@@ -173,6 +176,7 @@ class ProjectsController extends Controller
             'typeCounts' => $typeCounts,
             'technologiesByCategory' => $technologiesByCategory,
             'learningTechnologies' => $learningTechnologies,
+            'iconHelper' => new IconHelper(),
         ]);
     }
 
@@ -230,6 +234,7 @@ class ProjectsController extends Controller
             'technologiesByCategory' => $technologiesByCategory,
             'learningTechnologies' => $learningTechnologies,
             'bioParagraphs' => $bioParagraphs,
+            'iconHelper' => new IconHelper(),
             'isFeatured' => true,
         ]);
     }

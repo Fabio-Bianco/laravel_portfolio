@@ -5,111 +5,11 @@
 @section('content')
 <div class="guest-container">
   
-  {{-- ============================================
-         HERO SECTION - Split Screen Modern Design
-         - Text content on left
-         - 3D visual on right with parallax effect
-         - Glassmorphism accents
-         - Smooth animations
-         - Mobile responsive (stacks vertically)
-        ============================================ --}}
-    <section class="hero-section" id="hero" role="banner" aria-label="Hero section">
-      <div class="hero-container">
-        {{-- Left Side: Content --}}
-        <div class="hero-content">
-          {{-- Main Title --}}
-          <h1 class="hero-title">
-            <span class="title-highlight">{{ config('app.owner_name', 'Fabio Bianco') }}</span>
-            <small style="display: block; font-size: 0.35em; font-weight: 400; opacity: 0.5; margin-top: 0.5rem; letter-spacing: 0.15em;">aka b_bot</small>
-          </h1>
-          
-          {{-- Subtitle with typing effect placeholder --}}
-          <p class="hero-subtitle">
-            Full Stack Developer Jr
-          </p>
-          
-          {{-- Tagline --}}
-          <p class="hero-tagline">
-            Creo applicazioni web moderne con codice pulito e design centrato sull'utente. 
-            Specializzato in <strong>Laravel</strong>, <strong>React</strong> e <strong>JavaScript</strong>.
-          </p>
-          
-          {{-- CTA Buttons --}}
-          <div class="hero-cta" role="group" aria-label="Azioni principali">
-            <a href="#projects" 
-               class="btn-hero btn-hero-primary" 
-               onclick="event.preventDefault(); document.getElementById('projects').scrollIntoView({behavior: 'smooth'});"
-               aria-label="Esplora i miei progetti">
-              <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
-                <path d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2l-2.218-.887zm3.564 1.426L5.596 5 8 5.961 14.154 3.5l-2.404-.961zm3.25 1.7-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923l6.5 2.6zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464L7.443.184z"/>
-              </svg>
-              <span>Vedi i Progetti</span>
-            </a>
-            <a href="#contact" 
-               class="btn-hero btn-hero-secondary" 
-               onclick="event.preventDefault(); document.getElementById('contact').scrollIntoView({behavior: 'smooth'});"
-               aria-label="Contattami">
-              <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
-                <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
-              </svg>
-              <span>Contattami</span>
-            </a>
-          </div>
-        </div>
-        
-        {{-- Right Side: Code Visual Placeholder --}}
-        <div class="hero-visual">
-          <div class="hero-code-display">
-            <div class="code-window">
-              <div class="code-header">
-                <span class="code-dot" style="background: #ff5f56;"></span>
-                <span class="code-dot" style="background: #ffbd2e;"></span>
-                <span class="code-dot" style="background: #27c93f;"></span>
-                <span class="code-title">portfolio.php</span>
-              </div>
-              <div class="code-content">
-                <div class="code-line"><span class="code-keyword">class</span> <span class="code-class">Developer</span> <span class="code-bracket">{</span></div>
-                <div class="code-line">  <span class="code-keyword">public function</span> <span class="code-function">build</span>() {</div>
-                <div class="code-line">    <span class="code-keyword">return</span> [</div>
-                <div class="code-line">      <span class="code-string">'passion'</span> => <span class="code-value">true</span>,</div>
-                <div class="code-line">      <span class="code-string">'code'</span> => <span class="code-string">'clean'</span>,</div>
-                <div class="code-line">      <span class="code-string">'coffee'</span> => <span class="code-value">Infinity</span></div>
-                <div class="code-line">    ];</div>
-                <div class="code-line">  }</div>
-                <div class="code-line"><span class="code-bracket">}</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      {{-- Animated Gradient Background --}}
-      <div class="hero-gradient-bg" aria-hidden="true"></div>
-      
-      {{-- Glassmorphism decorative orbs - Full viewport --}}
-      <div class="glass-orb glass-orb-1" aria-hidden="true"></div>
-      <div class="glass-orb glass-orb-2" aria-hidden="true"></div>
-      
-      {{-- Scroll Indicator --}}
-      <div class="scroll-indicator" 
-           role="button" 
-           tabindex="0"
-           onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'});"
-           onkeypress="if(event.key === 'Enter') document.getElementById('projects').scrollIntoView({behavior: 'smooth'});"
-           aria-label="Scorri alla sezione progetti"
-           style="cursor: pointer;">
-        <span class="scroll-text">Scorri giù</span>
-        <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16" class="scroll-arrow">
-          <path fill-rule="evenodd" d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67z"/>
-        </svg>
-      </div>
-    </section>
-
-
-
-    {{-- ============================================
-         SKILLS SECTION - Competenze e Tecnologie
-        ============================================ --}}
+  {{-- Hero Section Component --}}
+  @include('guest.components.hero-section')
+  {{-- ============================================================================================
+         SKILLS SECTION - Competenze e Tecnologie inserire qui i linhuaggi con include e  un partial a parte  con un foglio a parte 
+      =========================================================================================== --}}
     <section class="skills-section" id="skills" role="region" aria-labelledby="skills-heading">
       <div class="section-header">
         <span class="section-tag">Le Mie Competenze</span>
@@ -175,25 +75,7 @@
               </div>
             </button>
             
-            @if(count($learningTechnologies) > 0)
-            <button type="button" 
-                    class="skills-tab" 
-                    role="tab" 
-                    aria-selected="false" 
-                    aria-controls="learning-panel" 
-                    id="learning-tab" 
-                    data-category="learning">
-              <div class="tab-icon">
-                <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                  <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
-                </svg>
-              </div>
-              <div class="tab-content">
-                <span class="tab-title">Sto Imparando</span>
-                <span class="tab-count">{{ count($learningTechnologies) }}</span>
-              </div>
-            </button>
-            @endif
+          
           </div>
         </div>
         
@@ -281,9 +163,9 @@
       </div>
     </section>
 
-    {{-- ============================================
-         LEARNING TECHNOLOGIES SECTION - Separate Modern Design
-        ============================================ --}}
+    {{-- ============================================================================================
+         LEARNING TECHNOLOGIES SECTION - Separate Modern Design  inserire qui i linhuaggi con include e  un partial a parte  con un foglio a parte 
+        =========================================================================================== --}}
     <section class="skills-section learning-section" id="learning-technologies" role="region" aria-labelledby="learning-heading">
       <div class="section-header">
         <span class="section-tag">Crescita Continua</span>
@@ -390,28 +272,7 @@
     {{-- ============================================
        PROJECTS SECTION - Simplified
       ============================================ --}}
-    <section id="projects" class="simple-section">
-      <div class="container">
-        <h2>I Miei Progetti</h2>
-        <p>Una selezione dei progetti su cui ho lavorato</p>
-        
-        <div class="projects-simple-grid">
-          @forelse($projects->take(6) as $project)
-            <div class="project-simple-card">
-              <h3>{{ $project->title }}</h3>
-              @if($project->description)
-                <p>{{ Str::limit($project->description, 100) }}</p>
-              @endif
-              @if($project->github_url)
-                <a href="{{ $project->github_url }}" target="_blank">Vedi su GitHub →</a>
-              @endif
-            </div>
-          @empty
-            <p>Nessun progetto disponibile</p>
-          @endforelse
-        </div>
-      </div>
-    </section>
+    @include('guest.partials.projects-section') {{-- Sezione progetti --}} 
 
     {{-- Modern Contact Section --}}
     @include('guest.partials.contact-modern')
