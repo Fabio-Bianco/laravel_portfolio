@@ -10,13 +10,12 @@
     
     <div class="projects-grid">
       <?php $__empty_1 = true; $__currentLoopData = $projects; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $project): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-        <div class="project-placeholder">
-          <?php echo e($project->title ?? 'Project Name'); ?> (TODO: Card Component)
-        </div>
+        <?php echo $__env->make('guest.components.project-card', ['project' => $project], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
       <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
         <div class="empty-projects-state">
           <div class="empty-icon">💼</div>
           <p>Nessun progetto da mostrare</p>
+          <small class="text-muted">I progetti verranno visualizzati qui</small>
         </div>
       <?php endif; ?>
     </div>

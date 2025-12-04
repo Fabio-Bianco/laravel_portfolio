@@ -39,8 +39,8 @@
   {{-- Skip Link for Accessibility --}}
   <a href="#main-content" class="skip-link">Salta al contenuto principale</a>
   
-  {{-- Main Navigation --}}
-  @include('guest.partials.main-nav')
+  {{-- Sidebar Navigation Component --}}
+  @include('guest.components.sidebar-nav')
   
 
   
@@ -49,8 +49,8 @@
     @yield('content')
   </main>
 
-  {{-- Footer --}}
-  @include('guest.partials.footer')
+  {{-- Footer Component --}}
+  @include('guest.components.footer-component')
   
   {{-- Accessibility Script --}}
   <script>

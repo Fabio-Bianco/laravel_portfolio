@@ -40,7 +40,7 @@
   <a href="#main-content" class="skip-link">Salta al contenuto principale</a>
   
   
-  <?php echo $__env->make('guest.partials.main-nav', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+  <?php echo $__env->make('guest.components.sidebar-nav', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
   
 
   
@@ -50,7 +50,7 @@
   </main>
 
   
-  <?php echo $__env->make('guest.partials.footer', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+  <?php echo $__env->make('guest.components.footer-component', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
   
   
   <script>
