@@ -12,33 +12,14 @@ class ProjectsController extends Controller
 {
     public function index()
     {
-        // Filtro solo per tipo: ?type=slug
-        $typeSlug = request('type');
-
-        $query = Project::with(['technologies','type'])
+        // HOMEPAGE: Solo progetti featured per carosello (max 4)
+        $featuredProjects = Project::with(['technologies','type'])
+            ->featured()
             ->published()
-            ->ordered();
+            ->take(4)
+            ->get();
 
-        $currentType = null;
-        if ($typeSlug) {
-            $currentType = Type::where('slug', $typeSlug)->first();
-            if ($currentType) {
-                $query->where('type_id', $currentType->id);
-            }
-        }
-
-        $projects = $query->paginate(3)->withQueryString();
-
-        // Liste ordinate e conteggi (solo progetti published)
-        $allTypes = Type::orderBy('sort_order')->orderBy('name')->get();
-
-        // Contatori ottimizzati: una query singola invece di N query
-        $typeCounts = Project::published()
-            ->groupBy('type_id')
-            ->selectRaw('type_id, count(*) as count')
-            ->pluck('count', 'type_id');
-
-        // Tecnologie divise per categoria
+        // Tecnologie divise per categoria (per skills section)
         $technologiesByCategory = [
             'frontend' => Technology::byCategory('frontend')->orderBy('name')->get(),
             'backend' => Technology::byCategory('backend')->orderBy('name')->get(),
@@ -58,14 +39,49 @@ class ProjectsController extends Controller
         }
 
         return view('guest.index-minimal', [
-            'projects' => $projects,
-            'allTypes' => $allTypes,
-            'currentType' => $currentType,
-            'typeCounts' => $typeCounts,
+            'projects' => $featuredProjects,
+            'mode' => 'homepage',
             'technologiesByCategory' => $technologiesByCategory,
             'learningTechnologies' => $learningTechnologies,
             'bioParagraphs' => $bioParagraphs,
             'iconHelper' => new IconHelper(),
+        ]);
+    }
+
+    public function portfolio()
+    {
+        // PORTFOLIO COMPLETA: Tutti progetti con filtri + paginazione
+        $typeSlug = request('type');
+
+        $query = Project::with(['technologies','type'])
+            ->published()
+            ->ordered();
+
+        $currentType = null;
+        if ($typeSlug) {
+            $currentType = Type::where('slug', $typeSlug)->first();
+            if ($currentType) {
+                $query->where('type_id', $currentType->id);
+            }
+        }
+
+        $projects = $query->paginate(9)->withQueryString();
+
+        // Liste ordinate e conteggi (solo progetti published)
+        $allTypes = Type::orderBy('sort_order')->orderBy('name')->get();
+
+        // Contatori ottimizzati: una query singola invece di N query
+        $typeCounts = Project::published()
+            ->groupBy('type_id')
+            ->selectRaw('type_id, count(*) as count')
+            ->pluck('count', 'type_id');
+
+        return view('guest.portfolio', [
+            'projects' => $projects,
+            'allTypes' => $allTypes,
+            'currentType' => $currentType,
+            'typeCounts' => $typeCounts,
+            'mode' => 'portfolio',
         ]);
     }
 

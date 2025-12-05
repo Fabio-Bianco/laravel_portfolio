@@ -14,13 +14,11 @@ use App\Http\Controllers\ContactController;
 // Future feature: riabilitare solo se necessario per personal branding
 // Route::get('/', [\App\Http\Controllers\Guest\SplashController::class, 'index'])->name('splash');
 
-// Home diretta: portfolio senza friction
+// Homepage: solo progetti featured per carosello
 Route::get('/', [ProjectsController::class, 'index'])->name('home');
 
-// Portfolio: alias per retrocompatibilità (redirect alla home)
-Route::get('/portfolio', function () {
-    return redirect()->route('home', [], 301);
-});
+// Portfolio completa: tutti i progetti con filtri e paginazione
+Route::get('/portfolio', [ProjectsController::class, 'portfolio'])->name('portfolio');
 
 
 // Dettaglio progetto

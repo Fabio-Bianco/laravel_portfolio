@@ -19,6 +19,10 @@ export default defineConfig({
                 'resources/js/guest/footer-enhanced.js',
                 'resources/js/guest/theme-switcher.js',
                 
+                // Components
+                'resources/js/components/carousel.js',
+                'resources/sass/components/_carousel.scss',
+                
                 // Admin Area JS
                 'resources/js/admin/projects-bulk.js',
                 

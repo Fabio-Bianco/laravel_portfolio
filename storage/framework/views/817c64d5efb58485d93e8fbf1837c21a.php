@@ -7,12 +7,14 @@
   
   
   <?php echo $__env->make('guest.components.hero-section', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+
+      
+    <?php echo $__env->make('guest.components.projects-component', ['mode' => 'homepage'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?> 
   
   
   <?php echo $__env->make('guest.components.skills-component', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
-    
-    <?php echo $__env->make('guest.components.projects-component', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?> 
+
 
     
     <?php echo $__env->make('guest.partials.contact-modern', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
