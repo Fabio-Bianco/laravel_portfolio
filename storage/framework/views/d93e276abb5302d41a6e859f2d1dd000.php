@@ -26,57 +26,30 @@
                          style="height: 500px; object-fit: cover;">
                     
                     <div class="carousel-caption">
-                        
-                        <div class="project-header mb-3">
-                            <?php if($project->type): ?>
-                                <span class="badge bg-primary project-type-badge">
-                                    <i class="bi bi-folder"></i> <?php echo e($project->type->name); ?>
-
-                                </span>
-                            <?php endif; ?>
+                        <!-- Badge linguaggio (top-left) -->
+                        <?php if($project->type): ?>
+                        <div class="project-type-badge">
+                            <span class="badge"><?php echo e($project->type->name); ?></span>
                         </div>
-                        
-                        
-                        <h3 class="project-title mb-3"><?php echo e($project->title); ?></h3>
-                        
-                        
-                        <p class="project-description mb-3">
-                            <?php echo e(Str::limit($project->description ?: 'Progetto sviluppato con passione e dedizione', 100)); ?>
-
-                        </p>
-                        
-                        
-                        <?php if($project->technologies && $project->technologies->count() > 0): ?>
-                            <div class="tech-stack mb-4">
-                                <div class="tech-label mb-2">
-                                    <i class="bi bi-code-slash"></i> <strong>Stack:</strong>
-                                </div>
-                                <div class="tech-badges">
-                                    <?php $__currentLoopData = $project->technologies->take(5); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tech): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <span class="badge bg-dark tech-badge"><?php echo e($tech->name); ?></span>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                    <?php if($project->technologies->count() > 5): ?>
-                                        <span class="badge bg-info tech-badge-more">+<?php echo e($project->technologies->count() - 5); ?></span>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
                         <?php endif; ?>
                         
-                        
-                        <div class="project-actions">
-                            <?php if($project->github_url): ?>
-                                <a href="<?php echo e($project->github_url); ?>" 
-                                   target="_blank" 
-                                   class="btn btn-outline-light btn-action me-2"
-                                   rel="noopener noreferrer">
-                                    <i class="bi bi-github"></i> Codice Sorgente
-                                </a>
-                            <?php endif; ?>
+                        <!-- Contenuto principale (bottom-left) -->
+                        <div class="project-content">
+                            <h5 class="project-title"><?php echo e($project->title); ?></h5>
+                            <p class="project-description"><?php echo e($project->description ?: 'Progetto interessante'); ?></p>
                             
-                            <a href="<?php echo e(route('projects.show', $project->slug)); ?>" 
-                               class="btn btn-primary btn-action">
-                                <i class="bi bi-arrow-right-circle"></i> Esplora Progetto
-                            </a>
+                            <!-- Pulsanti azione (inline) -->
+                            <div class="project-actions">
+                                <?php if($project->github_url): ?>
+                                    <a href="<?php echo e($project->github_url); ?>" target="_blank" class="btn btn-outline-light">
+                                        <i class="bi bi-github"></i> <span>GitHub</span>
+                                    </a>
+                                <?php endif; ?>
+                                
+                                <a href="<?php echo e(route('projects.show', $project->slug)); ?>" class="btn btn-outline-light btn-details">
+                                    <i class="bi bi-arrow-right"></i> <span>Dettagli</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>

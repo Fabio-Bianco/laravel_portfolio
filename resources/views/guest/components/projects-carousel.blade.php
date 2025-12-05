@@ -26,55 +26,30 @@
                          style="height: 500px; object-fit: cover;">
                     
                     <div class="carousel-caption">
-                        {{-- Header con tipo progetto --}}
-                        <div class="project-header mb-3">
-                            @if($project->type)
-                                <span class="badge bg-primary project-type-badge">
-                                    <i class="bi bi-folder"></i> {{ $project->type->name }}
-                                </span>
-                            @endif
+                        <!-- Badge linguaggio (top-left) -->
+                        @if($project->type)
+                        <div class="project-type-badge">
+                            <span class="badge">{{ $project->type->name }}</span>
                         </div>
-                        
-                        {{-- Titolo progetto --}}
-                        <h3 class="project-title mb-3">{{ $project->title }}</h3>
-                        
-                        {{-- Descrizione --}}
-                        <p class="project-description mb-3">
-                            {{ Str::limit($project->description ?: 'Progetto sviluppato con passione e dedizione', 100) }}
-                        </p>
-                        
-                        {{-- Stack tecnologie --}}
-                        @if($project->technologies && $project->technologies->count() > 0)
-                            <div class="tech-stack mb-4">
-                                <div class="tech-label mb-2">
-                                    <i class="bi bi-code-slash"></i> <strong>Stack:</strong>
-                                </div>
-                                <div class="tech-badges">
-                                    @foreach($project->technologies->take(5) as $tech)
-                                        <span class="badge bg-dark tech-badge">{{ $tech->name }}</span>
-                                    @endforeach
-                                    @if($project->technologies->count() > 5)
-                                        <span class="badge bg-info tech-badge-more">+{{ $project->technologies->count() - 5 }}</span>
-                                    @endif
-                                </div>
-                            </div>
                         @endif
                         
-                        {{-- Azioni progetto --}}
-                        <div class="project-actions">
-                            @if($project->github_url)
-                                <a href="{{ $project->github_url }}" 
-                                   target="_blank" 
-                                   class="btn btn-outline-light btn-action me-2"
-                                   rel="noopener noreferrer">
-                                    <i class="bi bi-github"></i> Codice Sorgente
-                                </a>
-                            @endif
+                        <!-- Contenuto principale (bottom-left) -->
+                        <div class="project-content">
+                            <h5 class="project-title">{{ $project->title }}</h5>
+                            <p class="project-description">{{ $project->description ?: 'Progetto interessante' }}</p>
                             
-                            <a href="{{ route('projects.show', $project->slug) }}" 
-                               class="btn btn-primary btn-action">
-                                <i class="bi bi-arrow-right-circle"></i> Esplora Progetto
-                            </a>
+                            <!-- Pulsanti azione (inline) -->
+                            <div class="project-actions">
+                                @if($project->github_url)
+                                    <a href="{{ $project->github_url }}" target="_blank" class="btn btn-outline-light">
+                                        <i class="bi bi-github"></i> <span>GitHub</span>
+                                    </a>
+                                @endif
+                                
+                                <a href="{{ route('projects.show', $project->slug) }}" class="btn btn-outline-light btn-details">
+                                    <i class="bi bi-arrow-right"></i> <span>Dettagli</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
