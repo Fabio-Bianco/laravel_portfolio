@@ -5,7 +5,7 @@
     <div class="section-header">
       <span class="section-tag">I Miei Lavori</span>
       <h2 class="section-title">Progetti in Evidenza</h2>
-      <p class="section-subtitle">I miei progetti più significativi</p>
+      
     </div>
     
     
