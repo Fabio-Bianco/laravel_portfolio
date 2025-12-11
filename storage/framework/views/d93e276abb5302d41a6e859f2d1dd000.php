@@ -59,29 +59,57 @@
               
               <div class="project-content">
                 <h2 class="project-title">
-                  <?php echo e($project->title); ?>
+                  <?php echo e($project->title ?? 'Portfolio Management System'); ?>
 
                 </h2>
 
                 
-                <p class="project-description">
-                  <?php echo e($project->short_description ?? Str::limit($project->description, 160)); ?>
+                <p class="project-subtitle">
+                  <?php if($project->type && $project->technologies->isNotEmpty()): ?>
+                    <?php echo e($project->type->name); ?> • <?php echo e($project->technologies->pluck('name')->take(3)->implode(' • ')); ?>
 
+                  <?php elseif($project->type): ?>
+                    <?php echo e($project->type->name); ?> Project
+                  <?php else: ?>
+                    
+                    <?php switch(strtolower($project->title ?? 'default')):
+                      case ('portfolio'): ?>
+                        Full-Stack • Laravel • Vue.js • MySQL
+                        <?php break; ?>
+                      <?php case ('e-commerce'): ?>
+                        Frontend • React • TypeScript • Stripe API
+                        <?php break; ?>
+                      <?php case ('api'): ?>
+                        Backend • Node.js • Express • MongoDB
+                        <?php break; ?>
+                      <?php default: ?>
+                        Web Application • PHP • JavaScript • Database
+                    <?php endswitch; ?>
+                  <?php endif; ?>
                 </p>
 
                 
-                <?php if(!empty($project->tech_stack)): ?>
-                  <p class="project-stack">
+                <p class="project-description">
+                  <?php if($project->description): ?>
+                    <?php echo e(Str::limit($project->description, 180, '...')); ?>
+
+                  <?php else: ?>
                     
-                    <?php if(is_array($project->tech_stack)): ?>
-                      <?php echo e(implode(' • ', $project->tech_stack)); ?>
-
-                    <?php else: ?>
-                      <?php echo e($project->tech_stack); ?>
-
-                    <?php endif; ?>
-                  </p>
-                <?php endif; ?>
+                    <?php switch(strtolower($project->title ?? 'default')):
+                      case ('portfolio'): ?>
+                        Sistema completo di gestione portfolio con interfaccia admin, importazione GitHub automatica e showcase responsive. Include funzionalità avanzate di filtraggio e categorizzazione progetti.
+                        <?php break; ?>
+                      <?php case ('e-commerce'): ?>
+                        Piattaforma e-commerce moderna con carrello avanzato, pagamenti sicuri e dashboard amministrativa. Ottimizzata per performance e user experience eccellente.
+                        <?php break; ?>
+                      <?php case ('api'): ?>
+                        API RESTful scalabile con autenticazione JWT, rate limiting e documentazione completa. Architettura microservizi per alta disponibilità e performance.
+                        <?php break; ?>
+                      <?php default: ?>
+                        Applicazione web professionale sviluppata con le migliori tecnologie moderne. Focus su performance, sicurezza e user experience ottimale per tutti i dispositivi.
+                    <?php endswitch; ?>
+                  <?php endif; ?>
+                </p>
 
                 
                 <div class="project-actions">
@@ -91,26 +119,29 @@
                     <a href="<?php echo e($project->demo_url); ?>" 
                        class="btn btn-primary"
                        target="_blank" 
-                       rel="noopener noreferrer">
+                       rel="noopener noreferrer"
+                       aria-label="Visualizza demo live di <?php echo e($project->title); ?>">
                       <i class="bi bi-box-arrow-up-right"></i>
-                      <span>Live demo</span>
+                      <span>Demo Live</span>
                     </a>
                   <?php endif; ?>
 
                   
                   <?php if(!empty($project->github_url)): ?>
                     <a href="<?php echo e($project->github_url); ?>" 
-                       class="btn btn-outline"
+                       class="btn btn-github"
                        target="_blank" 
-                       rel="noopener noreferrer">
+                       rel="noopener noreferrer"
+                       aria-label="Visualizza codice sorgente su GitHub">
                       <i class="bi bi-github"></i>
-                      <span>Codice su GitHub</span>
+                      <span>GitHub</span>
                     </a>
                   <?php endif; ?>
 
                   
                   <a href="<?php echo e(route('projects.show', $project)); ?>" 
-                     class="btn btn-outline">
+                     class="btn btn-outline"
+                     aria-label="Visualizza dettagli completi di <?php echo e($project->title); ?>">
                     <i class="bi bi-info-circle"></i>
                     <span>Dettagli</span>
                   </a>

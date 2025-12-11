@@ -69,57 +69,89 @@
                 </span>
               </div>
 
-              {{-- Contenuto principale in basso a sinistra --}}
+              {{-- Contenuto principale centrato --}}
               <div class="project-content">
                 <h2 class="project-title">
-                  {{ $project->title }}
+                  {{ $project->title ?? 'Portfolio Management System' }}
                 </h2>
 
-                {{-- Descrizione breve: usa un accessor o un campo short_description --}}
-                <p class="project-description">
-                  {{ $project->short_description ?? Str::limit($project->description, 160) }}
+                {{-- Sottotitolo con tecnologie principali (hardcoded per test) --}}
+                <p class="project-subtitle">
+                  @if($project->type && $project->technologies->isNotEmpty())
+                    {{ $project->type->name }} • {{ $project->technologies->pluck('name')->take(3)->implode(' • ') }}
+                  @elseif($project->type)
+                    {{ $project->type->name }} Project
+                  @else
+                    {{-- Sottotitoli hardcoded per testing --}}
+                    @switch(strtolower($project->title ?? 'default'))
+                      @case('portfolio')
+                        Full-Stack • Laravel • Vue.js • MySQL
+                        @break
+                      @case('e-commerce')
+                        Frontend • React • TypeScript • Stripe API
+                        @break
+                      @case('api')
+                        Backend • Node.js • Express • MongoDB
+                        @break
+                      @default
+                        Web Application • PHP • JavaScript • Database
+                    @endswitch
+                  @endif
                 </p>
 
-                {{-- Opzionale: se hai uno stack (es. [Laravel, React, MySQL]) --}}
-                @if(!empty($project->tech_stack))
-                  <p class="project-stack">
-                    {{-- tech_stack potrebbe essere array o stringa --}}
-                    @if(is_array($project->tech_stack))
-                      {{ implode(' • ', $project->tech_stack) }}
-                    @else
-                      {{ $project->tech_stack }}
-                    @endif
-                  </p>
-                @endif
+                {{-- Descrizione progetto (hardcoded per test) --}}
+                <p class="project-description">
+                  @if($project->description)
+                    {{ Str::limit($project->description, 180, '...') }}
+                  @else
+                    {{-- Descrizioni hardcoded per testing --}}
+                    @switch(strtolower($project->title ?? 'default'))
+                      @case('portfolio')
+                        Sistema completo di gestione portfolio con interfaccia admin, importazione GitHub automatica e showcase responsive. Include funzionalità avanzate di filtraggio e categorizzazione progetti.
+                        @break
+                      @case('e-commerce')
+                        Piattaforma e-commerce moderna con carrello avanzato, pagamenti sicuri e dashboard amministrativa. Ottimizzata per performance e user experience eccellente.
+                        @break
+                      @case('api')
+                        API RESTful scalabile con autenticazione JWT, rate limiting e documentazione completa. Architettura microservizi per alta disponibilità e performance.
+                        @break
+                      @default
+                        Applicazione web professionale sviluppata con le migliori tecnologie moderne. Focus su performance, sicurezza e user experience ottimale per tutti i dispositivi.
+                    @endswitch
+                  @endif
+                </p>
 
-                {{-- Pulsanti di azione --}}
+                {{-- Pulsanti di azione ridisegnati --}}
                 <div class="project-actions">
 
-                  {{-- Live demo (se esiste) --}}
+                  {{-- Live demo (se esiste) - Primario --}}
                   @if(!empty($project->demo_url))
                     <a href="{{ $project->demo_url }}" 
                        class="btn btn-primary"
                        target="_blank" 
-                       rel="noopener noreferrer">
+                       rel="noopener noreferrer"
+                       aria-label="Visualizza demo live di {{ $project->title }}">
                       <i class="bi bi-box-arrow-up-right"></i>
-                      <span>Live demo</span>
+                      <span>Demo Live</span>
                     </a>
                   @endif
 
-                  {{-- GitHub repo (se esiste) --}}
+                  {{-- GitHub repo (se esiste) - Secondario con stile specifico --}}
                   @if(!empty($project->github_url))
                     <a href="{{ $project->github_url }}" 
-                       class="btn btn-outline"
+                       class="btn btn-github"
                        target="_blank" 
-                       rel="noopener noreferrer">
+                       rel="noopener noreferrer"
+                       aria-label="Visualizza codice sorgente su GitHub">
                       <i class="bi bi-github"></i>
-                      <span>Codice su GitHub</span>
+                      <span>GitHub</span>
                     </a>
                   @endif
 
-                  {{-- Pagina dettagli progetto (route tipo projects.show) --}}
+                  {{-- Pagina dettagli progetto - Neutro --}}
                   <a href="{{ route('projects.show', $project) }}" 
-                     class="btn btn-outline">
+                     class="btn btn-outline"
+                     aria-label="Visualizza dettagli completi di {{ $project->title }}">
                     <i class="bi bi-info-circle"></i>
                     <span>Dettagli</span>
                   </a>
