@@ -58,10 +58,10 @@
 
               
               <div class="project-content">
-                <h3 class="project-title">
+                <h2 class="project-title">
                   <?php echo e($project->title); ?>
 
-                </h3>
+                </h2>
 
                 
                 <p class="project-description">
@@ -110,7 +110,7 @@
 
                   
                   <a href="<?php echo e(route('projects.show', $project)); ?>" 
-                     class="btn btn-details">
+                     class="btn btn-outline">
                     <i class="bi bi-info-circle"></i>
                     <span>Dettagli</span>
                   </a>

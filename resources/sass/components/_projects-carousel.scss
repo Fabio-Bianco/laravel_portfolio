@@ -16,7 +16,7 @@
     margin-bottom: 1.5rem;
   }
   
-  // section-tag ora è globale in _portfolio-guest.scss
+  
 }
 
 #projectsCarousel {
@@ -38,17 +38,18 @@
   flex-direction: column;
   justify-content: space-between;
   
-  // Badge linguaggio (allineato a destra)
+  // Badge linguaggio (allineato in alto a destra - forzato)
   .project-type-badge {
-    position: absolute;
-    top: 2rem;
-    right: 2rem;
+    position: absolute !important;
+    top: 2rem !important;
+    right: 2rem !important;
+    left: auto !important;
     z-index: 10;
     
     .badge {
       background: rgba(255, 255, 255, 0.95);
       color: #1a1d23;
-      font-size: 0.9rem;
+      font-size: 0.7rem;
       font-weight: 700;
       padding: 0.6rem 1.2rem;
       border-radius: 25px;
@@ -77,20 +78,20 @@
     text-align: left;
     
     .project-title {
-      font-size: var(--font-size-3xl); // Ridotto da 4xl a 3xl
+      font-size: var(--font-size-3xl);
       font-weight: var(--font-weight-bold);
       color: white;
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem; // Spaziatura ottimale per leggibilità
       text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
-      line-height: var(--line-height-tight);
+      line-height: 1.2; // Line-height più compatto
       text-align: left;
     }
     
     .project-description {
       font-size: var(--font-size-lg);
       color: rgba(255, 255, 255, 0.9);
-      margin-bottom: 1.5rem;
-      line-height: var(--line-height-normal);
+      margin-bottom: 1.25rem; // Spazio bilanciato prima dei bottoni
+      line-height: 1.4; // Miglior leggibilità
       text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
     }
     
@@ -99,12 +100,13 @@
       display: flex;
       gap: 1rem;
       flex-wrap: wrap;
+      align-items: center; // Allineamento verticale
       
       .btn {
-        padding: 0.75rem 1.5rem;
-        border-radius: 12px;
-        font-weight: 600;
-        font-size: 0.95rem;
+        padding: 0.25rem 0.5rem; // Padding minimo
+        border-radius: 6px; // Border-radius minimo
+        font-weight: 500;
+        font-size: 0.7rem; // Font-size molto piccolo
         border: 2px solid rgba(255, 255, 255, 0.8);
         background: rgba(255, 255, 255, 0.1);
         color: white;
@@ -128,7 +130,7 @@
           color: white;
         }
         
-        // Rimosso btn-details - ora usa btn-outline come GitHub
+        
         
         // Stati di focus per accessibilità
         &:focus {

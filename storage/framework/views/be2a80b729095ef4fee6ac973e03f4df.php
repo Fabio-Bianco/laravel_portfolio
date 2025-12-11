@@ -15,7 +15,7 @@
       
       
       <div class="text-center mt-4">
-        <a href="<?php echo e(route('portfolio')); ?>" class="btn btn-outline-primary btn-portfolio-view">Vedi tutti i progetti →</a>
+        <a href="<?php echo e(route('portfolio')); ?>" class="btn btn-view-all">Vedi tutti i progetti →</a>
       </div>
     <?php else: ?>
       <div class="empty-state text-center">
