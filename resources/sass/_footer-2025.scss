@@ -2,7 +2,9 @@
 .footer {
     position: relative;
     margin-top: 5rem;
-    padding: 0 0 2rem;
+    padding: 3rem 0 2rem;
+    background: linear-gradient(135deg, #1a1d23 0%, #2d3039 50%, #1e2128 100%);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     
     // Modern gradient separator
     &::before {

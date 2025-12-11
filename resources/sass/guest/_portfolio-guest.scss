@@ -432,12 +432,24 @@
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   background: 
-    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.4) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.35) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(120, 219, 226, 0.25) 0%, transparent 50%),
+    /* Orb Full HD - Viola scuro tendente al blu */
+    radial-gradient(ellipse 1920px 1080px at 18% 82%, 
+      rgba(85, 95, 170, 0.45) 0%, 
+      rgba(65, 75, 150, 0.3) 40%, 
+      transparent 65%),
+    /* Orb Full HD - Rosa intenso */
+    radial-gradient(ellipse 1600px 900px at 82% 18%, 
+      rgba(255, 119, 198, 0.4) 0%, 
+      rgba(235, 99, 178, 0.25) 40%, 
+      transparent 65%),
+    /* Orb Full HD - Azzurro profondo */
+    radial-gradient(ellipse 1400px 800px at 42% 38%, 
+      rgba(95, 185, 210, 0.3) 0%, 
+      rgba(75, 165, 190, 0.18) 40%, 
+      transparent 65%),
     transparent;
   background-attachment: fixed;
-  background-size: 100% 100%;
+  background-size: 120% 120%, 110% 110%, 105% 105%;
   color: var(--color-text);
   line-height: 1.6;
   min-height: 100vh;
@@ -445,6 +457,30 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Ottimizzazioni Full HD e Retina */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  body {
+    background-size: 150% 150%, 140% 140%, 130% 130%;
+    will-change: transform;
+  }
+}
+
+/* Ottimizzazione specifica Full HD 1920x1080 */
+@media (min-width: 1920px) and (min-height: 1080px) {
+  body {
+    background-size: 100% 100%, 95% 95%, 90% 90%;
+  }
+}
+
+/* Ottimizzazione per 4K Ultra HD */
+@media (min-width: 2560px) {
+  body {
+    background-size: 200% 200%, 180% 180%, 160% 160%;
+  }
 }
 
 // ==================================================
