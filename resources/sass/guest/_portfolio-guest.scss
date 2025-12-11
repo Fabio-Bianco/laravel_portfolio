@@ -432,54 +432,80 @@
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   background: 
-    /* Orb Full HD - Viola scuro tendente al blu */
-    radial-gradient(ellipse 1920px 1080px at 18% 82%, 
-      rgba(85, 95, 170, 0.45) 0%, 
-      rgba(65, 75, 150, 0.3) 40%, 
-      transparent 65%),
-    /* Orb Full HD - Rosa intenso */
-    radial-gradient(ellipse 1600px 900px at 82% 18%, 
-      rgba(255, 119, 198, 0.4) 0%, 
-      rgba(235, 99, 178, 0.25) 40%, 
-      transparent 65%),
-    /* Orb Full HD - Azzurro profondo */
-    radial-gradient(ellipse 1400px 800px at 42% 38%, 
-      rgba(95, 185, 210, 0.3) 0%, 
-      rgba(75, 165, 190, 0.18) 40%, 
-      transparent 65%),
+    /* Orb 4K Ultra HD - Viola scuro tendente al blu */
+    radial-gradient(ellipse 3840px 2160px at 16% 84%, 
+      rgba(85, 95, 170, 0.5) 0%, 
+      rgba(65, 75, 150, 0.35) 30%, 
+      rgba(45, 55, 130, 0.2) 60%, 
+      transparent 80%),
+    /* Orb 4K Ultra HD - Rosa intenso */
+    radial-gradient(ellipse 3200px 1800px at 84% 16%, 
+      rgba(255, 119, 198, 0.45) 0%, 
+      rgba(235, 99, 178, 0.3) 30%, 
+      rgba(215, 79, 158, 0.18) 60%, 
+      transparent 80%),
+    /* Orb 4K Ultra HD - Azzurro profondo */
+    radial-gradient(ellipse 2800px 1600px at 44% 36%, 
+      rgba(95, 185, 210, 0.35) 0%, 
+      rgba(75, 165, 190, 0.22) 30%, 
+      rgba(55, 145, 170, 0.12) 60%, 
+      transparent 80%),
+    /* Orb aggiuntivo per ricchezza 4K */
+    radial-gradient(ellipse 2400px 1400px at 70% 90%, 
+      rgba(140, 100, 255, 0.25) 0%, 
+      rgba(120, 80, 235, 0.15) 40%, 
+      transparent 75%),
     transparent;
   background-attachment: fixed;
-  background-size: 120% 120%, 110% 110%, 105% 105%;
+  background-size: 150% 150%, 140% 140%, 130% 130%, 120% 120%;
   color: var(--color-text);
   line-height: 1.6;
   min-height: 100vh;
   scroll-behavior: smooth;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: auto;
+  text-rendering: geometricPrecision;
   image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
+  filter: contrast(1.02) saturate(1.05);
 }
 
-/* Ottimizzazioni Full HD e Retina */
+/* Ottimizzazioni 4K Ultra HD native */
+@media (min-width: 3840px) {
+  body {
+    background-size: 100% 100%, 95% 95%, 90% 90%, 85% 85%;
+    filter: contrast(1.03) saturate(1.08) brightness(1.02);
+  }
+}
+
+/* Ottimizzazioni 2K/QHD 2560x1440 */
+@media (min-width: 2560px) and (max-width: 3839px) {
+  body {
+    background-size: 125% 125%, 120% 120%, 115% 115%, 110% 110%;
+    filter: contrast(1.025) saturate(1.06);
+  }
+}
+
+/* Ottimizzazione Full HD 1920x1080 */
+@media (min-width: 1920px) and (max-width: 2559px) {
+  body {
+    background-size: 150% 150%, 140% 140%, 130% 130%, 120% 120%;
+  }
+}
+
+/* Retina e Display ad alta densità */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   body {
-    background-size: 150% 150%, 140% 140%, 130% 130%;
+    background-size: 175% 175%, 165% 165%, 155% 155%, 145% 145%;
     will-change: transform;
+    image-rendering: -webkit-optimize-contrast;
   }
 }
 
-/* Ottimizzazione specifica Full HD 1920x1080 */
-@media (min-width: 1920px) and (min-height: 1080px) {
+/* 8K Future-proof */
+@media (min-width: 7680px) {
   body {
-    background-size: 100% 100%, 95% 95%, 90% 90%;
-  }
-}
-
-/* Ottimizzazione per 4K Ultra HD */
-@media (min-width: 2560px) {
-  body {
-    background-size: 200% 200%, 180% 180%, 160% 160%;
+    background-size: 80% 80%, 75% 75%, 70% 70%, 65% 65%;
+    filter: contrast(1.05) saturate(1.12) brightness(1.03);
   }
 }
 
