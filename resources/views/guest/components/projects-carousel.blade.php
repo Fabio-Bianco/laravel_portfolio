@@ -61,14 +61,6 @@
             {{-- Overlay con contenuto testo / bottoni --}}
             <div class="carousel-caption">
 
-              {{-- Badge stack/language in alto a destra --}}
-              <div class="project-type-badge">
-                <span class="badge">
-                  {{-- Se hai relazione type: $project->type->name --}}
-                  {{ $project->type->name ?? $project->stack_label ?? 'Full-stack' }}
-                </span>
-              </div>
-
               {{-- Contenuto principale centrato --}}
               <div class="project-content">
                 <h2 class="project-title">

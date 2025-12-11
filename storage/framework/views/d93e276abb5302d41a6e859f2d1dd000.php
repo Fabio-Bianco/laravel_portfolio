@@ -48,15 +48,6 @@
             <div class="carousel-caption">
 
               
-              <div class="project-type-badge">
-                <span class="badge">
-                  
-                  <?php echo e($project->type->name ?? $project->stack_label ?? 'Full-stack'); ?>
-
-                </span>
-              </div>
-
-              
               <div class="project-content">
                 <h2 class="project-title">
                   <?php echo e($project->title ?? 'Portfolio Management System'); ?>
