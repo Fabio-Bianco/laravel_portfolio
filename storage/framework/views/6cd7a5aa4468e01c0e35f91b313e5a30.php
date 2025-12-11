@@ -4,51 +4,69 @@
     
     
     <div class="sidebar-links" id="sidebarLinks" role="list">
-      <a href="#hero" class="sidebar-item active" data-section="hero" aria-current="page" title="Home">
+      
+      <a href="<?php echo e(route('home')); ?>#hero" class="sidebar-item <?php echo e(request()->routeIs('home') ? 'active' : ''); ?>" data-section="hero" title="Home Page">
         <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'sidebar-home', 'size' => 24], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
         <span class="sidebar-label">Home</span>
       </a>
       
-
       
-      <a href="#skills" class="sidebar-item" data-section="skills" aria-current="false" title="Skills">
+      <a href="<?php echo e(route('home')); ?>#projects" class="sidebar-item" data-section="projects" title="I Miei Progetti">
+        <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'sidebar-briefcase', 'size' => 24], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+        <span class="sidebar-label">Projects</span>
+      </a>
+      
+      
+      <a href="<?php echo e(route('home')); ?>#skills" class="sidebar-item" data-section="skills" title="Le Mie Competenze">
         <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'sidebar-code', 'size' => 24], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
         <span class="sidebar-label">Skills</span>
       </a>
       
-      <a href="#projects" class="sidebar-item" data-section="projects" aria-current="false" title="Work">
-        <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'sidebar-briefcase', 'size' => 24], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-        <span class="sidebar-label">Work</span>
+      
+      <a href="<?php echo e(route('home')); ?>#bio" class="sidebar-item" data-section="bio" title="Chi Sono">
+        <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'sidebar-user', 'size' => 24], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+        <span class="sidebar-label">Bio</span>
       </a>
       
-      <a href="#contact" class="sidebar-item" data-section="contact" aria-current="false" title="Contact">
+      
+      <a href="<?php echo e(route('home')); ?>#contact" class="sidebar-item" data-section="contact" title="Contattami">
         <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'sidebar-mail', 'size' => 24], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
         <span class="sidebar-label">Contact</span>
+      </a>
+      
+      
+      <a href="<?php echo e(asset('files/cv-fabio-bianco.pdf')); ?>" 
+         class="sidebar-item sidebar-item-download" 
+         download="CV-Fabio-Bianco.pdf"
+         title="Scarica il mio CV">
+        <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'sidebar-download', 'size' => 24], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+        <span class="sidebar-label">CV</span>
       </a>
     </div>
     
     
+    <div class="sidebar-divider"></div>
+    
+    
     <div class="sidebar-social">
-      <a href="https://github.com/Fabio-Bianco" 
+      <a href="<?php echo e(config('app.owner_github', 'https://github.com/Fabio-Bianco')); ?>" 
          class="sidebar-social-link" 
          target="_blank" 
          rel="noopener noreferrer"
          title="GitHub"
-         aria-label="Visita il mio profilo GitHub">
-        <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-        </svg>
+         aria-label="Visualizza i miei progetti su GitHub">
+        <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'sidebar-github', 'size' => 20], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+        <span class="social-label">GitHub</span>
       </a>
       
-      <a href="https://www.linkedin.com/in/fabio-bianco-008a0b118/" 
+      <a href="<?php echo e(config('app.owner_linkedin', 'https://www.linkedin.com/in/fabio-bianco-008a0b118/')); ?>" 
          class="sidebar-social-link" 
          target="_blank" 
          rel="noopener noreferrer"
          title="LinkedIn"
-         aria-label="Visita il mio profilo LinkedIn">
-        <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-          <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
-        </svg>
+         aria-label="Collegati su LinkedIn">
+        <?php echo $__env->make('guest.partials.tech-icons', ['icon' => 'sidebar-linkedin', 'size' => 20], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+        <span class="social-label">LinkedIn</span>
       </a>
     </div>
     

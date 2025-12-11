@@ -38,6 +38,13 @@ class ProjectsController extends Controller
             $bioParagraphs = explode('|', $adminUser->bio);
         }
 
+        // Tipi e conteggi per i filtri (anche in homepage)
+        $allTypes = Type::orderBy('sort_order')->orderBy('name')->get();
+        $typeCounts = Project::published()
+            ->groupBy('type_id')
+            ->selectRaw('type_id, count(*) as count')
+            ->pluck('count', 'type_id');
+
         return view('guest.index-minimal', [
             'projects' => $featuredProjects,
             'mode' => 'homepage',
@@ -45,6 +52,10 @@ class ProjectsController extends Controller
             'learningTechnologies' => $learningTechnologies,
             'bioParagraphs' => $bioParagraphs,
             'iconHelper' => new IconHelper(),
+            // Dati per filtri e carousel
+            'allTypes' => $allTypes,
+            'currentType' => null,
+            'typeCounts' => $typeCounts,
         ]);
     }
 

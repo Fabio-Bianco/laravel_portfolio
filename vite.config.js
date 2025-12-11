@@ -21,7 +21,6 @@ export default defineConfig({
                 
                 // Components
                 'resources/js/components/carousel.js',
-                'resources/sass/components/_carousel.scss',
                 
                 // Admin Area JS
                 'resources/js/admin/projects-bulk.js',

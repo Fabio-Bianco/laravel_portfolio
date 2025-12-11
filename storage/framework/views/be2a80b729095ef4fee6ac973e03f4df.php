@@ -15,7 +15,7 @@
       
       
       <div class="text-center mt-4">
-        <a href="<?php echo e(route('portfolio')); ?>" class="btn-primary" style="background: #e50914; border: none; padding: 12px 24px; border-radius: 4px; color: white; text-decoration: none; font-weight: 500;">Vedi tutti i progetti →</a>
+        <a href="<?php echo e(route('portfolio')); ?>" class="btn btn-outline-primary btn-portfolio-view">Vedi tutti i progetti →</a>
       </div>
     <?php else: ?>
       <div class="empty-state text-center">

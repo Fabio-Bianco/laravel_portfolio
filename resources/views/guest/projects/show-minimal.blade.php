@@ -6,12 +6,14 @@
 <div class="guest-container">
   
   {{-- Back button --}}
-  <a href="{{ route('home') }}" class="btn-minimal" style="margin-bottom: 2rem; display: inline-flex;">
-    ← Torna al portfolio
-  </a>
+  <div class="mb-4">
+    <a href="{{ route('home') }}" class="btn btn-outline-primary btn-portfolio-view">
+      ← Torna al portfolio
+    </a>
+  </div>
 
   {{-- Hero Section --}}
-  <article style="max-width: 900px; margin: 0 auto;">
+  <article class="project-detail-container">
     
     {{-- Header --}}
     <header style="margin-bottom: 2rem;">
@@ -33,13 +35,13 @@
       </div>
       
       {{-- Title --}}
-      <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.2;">
+      <h1 class="project-detail-title">
         {{ $project->title }}
       </h1>
       
       {{-- Description --}}
       @if($project->description)
-        <p style="font-size: 1.2rem; color: var(--color-text-muted); line-height: 1.6;">
+        <p class="project-detail-description">
           {{ $project->description }}
         </p>
       @endif
@@ -61,46 +63,46 @@
 
     {{-- Stats --}}
     @if(!is_null($project->stargazers_count) || !is_null($project->forks_count) || !is_null($project->watchers_count))
-      <div style="display: flex; gap: 2rem; margin-bottom: 2rem; padding: 1.5rem; background: var(--color-surface); border-radius: var(--radius); border: 1px solid var(--color-border);">
+      <div class="project-stats">
         @if(!is_null($project->stargazers_count))
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 600; color: var(--color-text);">
+          <div class="stat-item">
+            <div class="stat-value">
               {{ $project->stargazers_count }}
             </div>
-            <div style="font-size: 0.9rem; color: var(--color-text-muted);">
+            <div class="stat-label">
               ⭐ Stars
             </div>
           </div>
         @endif
         
         @if(!is_null($project->forks_count))
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 600; color: var(--color-text);">
+          <div class="stat-item">
+            <div class="stat-value">
               {{ $project->forks_count }}
             </div>
-            <div style="font-size: 0.9rem; color: var(--color-text-muted);">
+            <div class="stat-label">
               🔀 Forks
             </div>
           </div>
         @endif
         
         @if(!is_null($project->watchers_count))
-          <div>
-            <div style="font-size: 1.5rem; font-weight: 600; color: var(--color-text);">
+          <div class="stat-item">
+            <div class="stat-value">
               {{ $project->watchers_count }}
             </div>
-            <div style="font-size: 0.9rem; color: var(--color-text-muted);">
+            <div class="stat-label">
               👁️ Watchers
             </div>
           </div>
         @endif
         
         @if(!is_null($project->updated_at_github))
-          <div style="margin-left: auto;">
-            <div style="font-size: 0.9rem; color: var(--color-text-muted);">
+          <div class="stat-item stat-update">
+            <div class="stat-label">
               Ultimo aggiornamento
             </div>
-            <div style="font-weight: 500; color: var(--color-text);">
+            <div class="stat-value-small">
               {{ $project->updated_at_github->diffForHumans() }}
             </div>
           </div>
@@ -109,13 +111,12 @@
     @endif
 
     {{-- Actions --}}
-    <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 3rem;">
+    <div class="project-actions-detail">
       @if($project->link)
         <a href="{{ $project->link }}" 
-           class="btn-primary-minimal" 
+           class="btn btn-primary" 
            target="_blank" 
-           rel="noopener"
-           style="font-size: 1rem; padding: 0.85rem 1.75rem;">
+           rel="noopener">
           🔗 Visita il progetto
           <span style="font-size: 1.2rem;">→</span>
         </a>

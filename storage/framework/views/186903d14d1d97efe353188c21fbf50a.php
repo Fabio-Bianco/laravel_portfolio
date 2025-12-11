@@ -11,7 +11,7 @@
   <main class="main-content">
     
     <div class="mb-4">
-      <a href="<?php echo e(route('home')); ?>" class="btn-minimal">← Torna alla Home</a>
+      <a href="<?php echo e(route('home')); ?>" class="btn btn-outline-primary btn-portfolio-view">← Torna alla Home</a>
     </div>
     
     

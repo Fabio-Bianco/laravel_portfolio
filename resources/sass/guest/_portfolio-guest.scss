@@ -49,6 +49,29 @@
   --z-nav-overlay: 999;
   --z-modal: 1100;
   --z-tooltip: 1200;
+  
+  // Typography Scale Uniforme
+  --font-size-xs: 0.75rem;     // 12px
+  --font-size-sm: 0.875rem;    // 14px 
+  --font-size-base: 1rem;      // 16px
+  --font-size-lg: 1.125rem;    // 18px
+  --font-size-xl: 1.25rem;     // 20px
+  --font-size-2xl: 1.5rem;     // 24px
+  --font-size-3xl: 1.875rem;   // 30px
+  --font-size-4xl: 2.25rem;    // 36px
+  --font-size-5xl: 3rem;       // 48px
+  
+  // Line Heights
+  --line-height-tight: 1.25;
+  --line-height-snug: 1.375;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+  
+  // Font Weights
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
 }
 
 // ==================================================
@@ -145,6 +168,214 @@
   --shadow-lg: 0 10px 15px rgba(0,0,0,0.5);
   --shadow-xl: 0 20px 25px rgba(0,0,0,0.6);
   --shadow-glow: 0 0 20px rgba(59, 130, 246, 0.25);
+}
+
+// ==================================================
+// SECTION TAGS UNIFORMI
+// ==================================================
+.section-tag {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-accent);
+  background: linear-gradient(135deg, 
+    rgba(var(--color-accent-rgb), 0.12) 0%, 
+    rgba(var(--color-accent-rgb), 0.08) 100%);
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  border: 1px solid rgba(var(--color-accent-rgb), 0.15);
+  backdrop-filter: blur(8px);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+      transparent 0%, 
+      rgba(255, 255, 255, 0.1) 50%, 
+      transparent 100%);
+    transition: left 0.5s ease;
+  }
+  
+  &:hover::before {
+    left: 100%;
+  }
+  
+  // Dark mode adjustments
+  [data-bs-theme="dark"] & {
+    background: linear-gradient(135deg, 
+      rgba(var(--color-accent-rgb), 0.15) 0%, 
+      rgba(var(--color-accent-rgb), 0.1) 100%);
+    border-color: rgba(var(--color-accent-rgb), 0.2);
+  }
+}
+
+// ==================================================
+// BOTTONI UNIFORMI
+// ==================================================
+.btn-portfolio-view {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  background: transparent;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-block;
+  
+  &:hover {
+    background: var(--color-accent);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+    text-decoration: none;
+  }
+}
+
+// Nuovo stile per "Vedi tutti i progetti" - stile del vecchio btn-details
+.btn-view-all {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-sm);
+  background: rgba(13, 110, 253, 0.15);
+  border: 2px solid rgba(13, 110, 253, 0.6);
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-block;
+  
+  &:hover {
+    background: rgba(13, 110, 253, 0.25);
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(13, 110, 253, 0.3);
+    text-decoration: none;
+  }
+}
+
+// ==================================================
+// PAGINE DETTAGLIO E PORTFOLIO UNIFORMI
+// ==================================================
+.project-detail-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  
+  @media (min-width: 768px) {
+    padding: 0 2rem;
+  }
+}
+
+.project-detail-title {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 1rem;
+  line-height: var(--line-height-tight);
+  color: var(--color-text);
+  
+  @media (max-width: 768px) {
+    font-size: var(--font-size-3xl);
+  }
+}
+
+.project-detail-description {
+  font-size: var(--font-size-xl);
+  color: var(--color-text-muted);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: 2rem;
+  max-width: 65ch;
+  
+  @media (max-width: 768px) {
+    font-size: var(--font-size-lg);
+  }
+}
+
+// Container principale del portfolio
+.guest-container {
+  min-height: 100vh;
+  background: var(--color-bg);
+  color: var(--color-text);
+  
+  .main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    
+    @media (min-width: 768px) {
+      padding: 3rem 2rem;
+    }
+  }
+}
+
+// Stats del progetto
+.project-stats {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  flex-wrap: wrap;
+  
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    
+    &.stat-update {
+      margin-left: auto;
+      text-align: right;
+      
+      @media (max-width: 768px) {
+        margin-left: 0;
+        text-align: left;
+      }
+    }
+  }
+  
+  .stat-value {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+  }
+  
+  .stat-value-small {
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+    font-size: var(--font-size-base);
+  }
+  
+  .stat-label {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+  }
+}
+
+// Azioni del dettaglio progetto
+.project-actions-detail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  
+  .btn {
+    font-size: var(--font-size-base);
+    padding: 0.85rem 1.75rem;
+  }
 }
 
 // ==================================================
@@ -573,4 +804,272 @@ body {
 
 .theme-btn.active {
   animation: themeChange 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// ==================================================
+// SIDEBAR NAVIGATION LOGICA MIGLIORATA
+// ==================================================
+
+// Divider per separare sezioni logiche
+.sidebar-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--color-border) 50%, transparent 100%);
+  margin: 1rem 0;
+  opacity: 0.6;
+}
+
+// Quick Actions (social/external links)
+.sidebar-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sidebar-action-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  border-radius: var(--radius-xs);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: var(--font-size-sm);
+  
+  svg {
+    flex-shrink: 0;
+    opacity: 0.7;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .action-label {
+    font-weight: var(--font-weight-medium);
+    opacity: 0.8;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  &:hover {
+    color: var(--color-accent);
+    background: rgba(var(--color-accent-rgb), 0.08);
+    text-decoration: none;
+    transform: translateX(2px);
+    
+    svg {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+    
+    .action-label {
+      opacity: 1;
+    }
+  }
+  
+  // Stili specifici per GitHub
+  &[href*="github"] {
+    &:hover {
+      color: #6e40c9;
+      background: rgba(110, 64, 201, 0.08);
+    }
+  }
+  
+  // Stili specifici per LinkedIn  
+  &[href*="linkedin"] {
+    &:hover {
+      color: #0077b5;
+      background: rgba(0, 119, 181, 0.08);
+    }
+  }
+}
+
+// Miglioramenti per sidebar-item per maggiore coerenza
+.sidebar-item {
+  // Active state più chiaro
+  &.active {
+    background: linear-gradient(135deg, 
+      rgba(var(--color-accent-rgb), 0.15) 0%, 
+      rgba(var(--color-accent-rgb), 0.08) 100%);
+    border-left: 3px solid var(--color-accent);
+    color: var(--color-accent);
+    
+    .sidebar-label {
+      font-weight: var(--font-weight-semibold);
+    }
+  }
+  
+  // Miglior feedback visivo
+  &:not(.active):hover {
+    background: rgba(var(--color-accent-rgb), 0.05);
+    transform: translateX(2px);
+  }
+  
+  // Stile speciale per il download CV
+  &.sidebar-item-download {
+    background: linear-gradient(135deg, 
+      rgba(34, 197, 94, 0.1) 0%, 
+      rgba(16, 185, 129, 0.08) 100%);
+    border: 1px solid rgba(34, 197, 94, 0.2);
+    
+    &:hover {
+      background: linear-gradient(135deg, 
+        rgba(34, 197, 94, 0.15) 0%, 
+        rgba(16, 185, 129, 0.12) 100%);
+      color: #22c55e;
+      transform: translateX(3px);
+      border-color: rgba(34, 197, 94, 0.3);
+    }
+  }
+}
+
+// Social links - Solo icone visibili, testi all'hover
+.sidebar-social {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.sidebar-social-link {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 0.75rem;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  border-radius: var(--radius-xs);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: var(--font-size-sm);
+  position: relative;
+  justify-content: center;
+  width: 100%;
+  
+  svg {
+    flex-shrink: 0;
+    opacity: 0.8;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .social-label {
+    position: absolute;
+    left: 50px;
+    font-weight: var(--font-weight-medium);
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+  
+  &:hover {
+    text-decoration: none;
+    transform: translateX(2px);
+    gap: 0.75rem;
+    justify-content: flex-start;
+    
+    svg {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+    
+    .social-label {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  // GitHub specifico
+  &[href*="github"] {
+    &:hover {
+      color: #6e40c9;
+      background: rgba(110, 64, 201, 0.1);
+    }
+  }
+  
+  // LinkedIn specifico  
+  &[href*="linkedin"] {
+    &:hover {
+      color: #0077b5;
+      background: rgba(0, 119, 181, 0.1);
+    }
+  }
+}
+
+// ==================================================
+// BIO SECTION STYLES
+// ==================================================
+.bio-section {
+  background: var(--color-bg);
+  
+  .bio-content {
+    margin-bottom: 3rem;
+  }
+  
+  .bio-paragraph {
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-muted);
+    margin-bottom: 1.5rem;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// CV Download Card
+.cv-download-section {
+  .cv-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(var(--color-accent-rgb), 0.3);
+    }
+  }
+  
+  .cv-title {
+    color: var(--color-text);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: 0.5rem;
+  }
+  
+  .cv-description {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-base);
+  }
+}
+
+// Bottone CV Download
+.btn-cv-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  &:hover {
+    background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+    color: white;
+    text-decoration: none;
+  }
+  
+  svg {
+    transition: transform 0.2s ease;
+  }
+  
+  &:hover svg {
+    transform: translateY(-1px);
+  }
 }

@@ -1,0 +1,203 @@
+// ============================================
+// CAROUSEL RESPONSIVE COMPONENT
+// ============================================
+// Media queries responsive per il carousel
+
+// Mobile (max-width: 768px)
+@media (max-width: 768px) {
+  .projects-carousel-section h2 {
+    font-size: clamp(1.8rem, 6vw, 2.2rem);
+  }
+  
+  .carousel-caption {
+    // Badge più piccolo su mobile
+    .project-type-badge {
+      top: 1rem;
+      left: 1rem;
+      
+      .badge {
+        font-size: 0.7rem;
+        padding: 0.4rem 0.8rem;
+      }
+    }
+    
+    // Contenuto ridotto su mobile
+    .project-content {
+      bottom: 1rem;
+      left: 1rem;
+      right: 1rem;
+      
+      .project-title {
+        font-size: clamp(1.4rem, 6vw, 2rem);
+        margin-bottom: 0.75rem;
+      }
+      
+      .project-description {
+        font-size: clamp(0.9rem, 3.5vw, 1rem);
+        margin-bottom: 1.5rem;
+        max-width: 40ch;
+      }
+      
+      .project-actions {
+        flex-direction: column;
+        gap: 0.75rem;
+        max-width: 250px;
+        
+        .btn {
+          padding: 0.75rem 1.25rem;
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+  
+  // Indicatori più visibili su mobile
+  #projectsCarousel .carousel-indicators {
+    bottom: 15px !important;
+    gap: 4px !important;
+    
+    button[data-bs-target] {
+      width: 30px !important;
+      height: 1px !important;
+      min-height: 1px !important;
+      max-height: 1px !important;
+      
+      &.active {
+        width: 45px !important;
+        height: 1px !important;
+        min-height: 1px !important;
+        max-height: 1px !important;
+      }
+      
+      &:hover:not(.active) {
+        width: 35px !important;
+        height: 1px !important;
+        min-height: 1px !important;
+        max-height: 1px !important;
+      }
+    }
+  }
+  
+  // Controlli più visibili su mobile
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: 12%;
+    
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
+
+// Tablet (769px - 1024px)
+@media (min-width: 769px) and (max-width: 1024px) {
+  .projects-carousel-section h2 {
+    font-size: clamp(2.2rem, 4vw, 2.8rem);
+  }
+  
+  .carousel-caption {
+    .project-type-badge {
+      top: 1.5rem;
+      left: 1.5rem;
+    }
+    
+    .project-content {
+      bottom: 1.5rem;
+      left: 1.5rem;
+      right: 1.5rem;
+      
+      .project-title {
+        font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      }
+      
+      .project-description {
+        font-size: clamp(1rem, 2.2vw, 1.1rem);
+        max-width: 55ch;
+      }
+      
+      .project-actions {
+        gap: 0.875rem;
+        
+        .btn {
+          padding: 0.75rem 1.4rem;
+          font-size: 0.95rem;
+        }
+      }
+    }
+  }
+}
+
+// Desktop grande (min-width: 1400px)
+@media (min-width: 1400px) {
+  .projects-carousel-section h2 {
+    font-size: clamp(2.8rem, 3vw, 3.5rem);
+  }
+  
+  .carousel-caption {
+    .project-type-badge {
+      top: 3rem;
+      left: 3rem;
+      
+      .badge {
+        font-size: 0.85rem;
+        padding: 0.6rem 1.2rem;
+      }
+    }
+    
+    .project-content {
+      bottom: 3rem;
+      left: 3rem;
+      right: 3rem;
+      max-width: 700px;
+      
+      .project-title {
+        font-size: clamp(2.2rem, 3vw, 3.2rem);
+        margin-bottom: 1.5rem;
+      }
+      
+      .project-description {
+        font-size: clamp(1.15rem, 1.8vw, 1.3rem);
+        max-width: 60ch;
+        margin-bottom: 2.5rem;
+      }
+      
+      .project-actions {
+        gap: 1.25rem;
+        
+        .btn {
+          padding: 1rem 2rem;
+          font-size: 1.05rem;
+        }
+      }
+    }
+  }
+  
+  // Indicatori più eleganti su schermi grandi
+  #projectsCarousel .carousel-indicators {
+    bottom: 30px !important;
+    gap: 10px !important;
+    
+    button[data-bs-target] {
+      width: 50px !important;
+      height: 1px !important;
+      min-height: 1px !important;
+      max-height: 1px !important;
+      
+      &.active {
+        width: 80px !important;
+        height: 1px !important;
+        min-height: 1px !important;
+        max-height: 1px !important;
+      }
+      
+      &:hover:not(.active) {
+        width: 65px !important;
+        height: 1px !important;
+        min-height: 1px !important;
+        max-height: 1px !important;
+      }
+    }
+  }
+}

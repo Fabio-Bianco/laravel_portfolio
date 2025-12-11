@@ -1,0 +1,153 @@
+// ============================================
+// PROJECTS CAROUSEL COMPONENT
+// ============================================
+// Stili per il carousel  dei progetti featured
+
+// Container sezione con larghezza controllata
+.projects-section {
+  max-width: 80vw;
+  margin: 0 auto;
+  
+  .section-title {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-tight);
+    color: var(--color-text);
+    margin-bottom: 1.5rem;
+  }
+  
+  // section-tag ora è globale in _portfolio-guest.scss
+}
+
+#projectsCarousel {
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+// Layout asimmetrico del contenuto
+.carousel-caption {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, transparent 70%);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+  // Badge linguaggio (allineato a destra)
+  .project-type-badge {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    z-index: 10;
+    
+    .badge {
+      background: rgba(255, 255, 255, 0.95);
+      color: #1a1d23;
+      font-size: 0.9rem;
+      font-weight: 700;
+      padding: 0.6rem 1.2rem;
+      border-radius: 25px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+      backdrop-filter: blur(15px);
+      border: 2px solid rgba(255,255,255,0.3);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      
+      &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      }
+    }
+  }
+  
+  // Contenuto principale (bottom-left)
+  .project-content {
+    position: absolute;
+    bottom: 3rem;
+    left: 3rem;
+    right: 3rem;
+    z-index: 10;
+    max-width: 70%;
+    text-align: left;
+    
+    .project-title {
+      font-size: var(--font-size-3xl); // Ridotto da 4xl a 3xl
+      font-weight: var(--font-weight-bold);
+      color: white;
+      margin-bottom: 1rem;
+      text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
+      line-height: var(--line-height-tight);
+      text-align: left;
+    }
+    
+    .project-description {
+      font-size: var(--font-size-lg);
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 1.5rem;
+      line-height: var(--line-height-normal);
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+    
+    // Pulsanti azione inline
+    .project-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      
+      .btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        border: 2px solid rgba(255, 255, 255, 0.8);
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        text-decoration: none;
+        backdrop-filter: blur(10px);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        
+        i {
+          margin-right: 0.5rem;
+        }
+        
+        span {
+          font-weight: 600;
+        }
+        
+        &:hover {
+          background: rgba(255, 255, 255, 0.2);
+          border-color: rgba(255, 255, 255, 1);
+          transform: translateY(-2px);
+          box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+          color: white;
+        }
+        
+        // Rimosso btn-details - ora usa btn-outline come GitHub
+        
+        // Stati di focus per accessibilità
+        &:focus {
+          outline: 3px solid rgba(13, 110, 253, 0.4);
+          outline-offset: 2px;
+          box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.25);
+        }
+        
+        &:focus:not(:focus-visible) {
+          outline: none;
+          box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        
+        &:focus-visible {
+          outline: 3px solid rgba(13, 110, 253, 0.6);
+          outline-offset: 2px;
+          box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.25);
+        }
+      }
+    }
+  }
+}

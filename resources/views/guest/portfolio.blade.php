@@ -11,7 +11,7 @@
   <main class="main-content">
     {{-- Back Navigation --}}
     <div class="mb-4">
-      <a href="{{ route('home') }}" class="btn-minimal">← Torna alla Home</a>
+      <a href="{{ route('home') }}" class="btn btn-outline-primary btn-portfolio-view">← Torna alla Home</a>
     </div>
     
     {{-- Projects Component - Mode: Portfolio --}}

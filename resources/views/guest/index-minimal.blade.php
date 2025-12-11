@@ -14,10 +14,11 @@
   {{-- Skills Component (Competenze & Tecnologie + Learning) --}}
   @include('guest.components.skills-component')
 
+  {{-- Bio Section (Chi Sono) --}}
+  @include('guest.components.bio-section')
 
-
-    {{-- Modern Contact Section --}}
-    @include('guest.partials.contact-modern')
+  {{-- Modern Contact Section --}}
+  @include('guest.partials.contact-modern')
 
 </div>
 @endsection

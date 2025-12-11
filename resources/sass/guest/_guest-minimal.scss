@@ -734,19 +734,18 @@ h1, h2, h3, h4, h5, h6 {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background: 
-    radial-gradient(circle at 25% 40%, rgba(59, 130, 246, 0.08) 0%, transparent 40%),
-    radial-gradient(circle at 75% 60%, rgba(139, 92, 246, 0.08) 0%, transparent 40%),
-    radial-gradient(circle at 50% 80%, rgba(236, 72, 153, 0.06) 0%, transparent 35%),
-    linear-gradient(135deg, 
-      rgba(30, 30, 45, 1) 0%, 
-      rgba(25, 28, 40, 1) 50%, 
-      rgba(20, 25, 38, 1) 100%);
-  animation: gradientShift 25s ease infinite;
+    radial-gradient(circle at 25% 40%, rgba(59, 130, 246, 0.02) 0%, transparent 30%),
+    radial-gradient(circle at 75% 60%, rgba(139, 92, 246, 0.02) 0%, transparent 30%);
   z-index: -2;
   pointer-events: none;
-  filter: blur(0px);
+  opacity: 0.3;
+  
+  // Disabilita in light mode
+  [data-bs-theme="light"] & {
+    display: none;
+  }
   
   [data-bs-theme="light"] & {
     background: 
@@ -813,12 +812,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-title {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 800;
-  margin-bottom: 1rem;
+  font-size: clamp(2.75rem, 6vw, 4.5rem);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 1.25rem;
   margin-top: 0;
   color: var(--color-text);
-  line-height: 1.1;
+  line-height: var(--line-height-tight);
   animation: fadeInUp 0.6s ease 0.2s backwards;
   text-align: left;
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
@@ -844,10 +843,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-subtitle {
-  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  font-size: clamp(1.375rem, 3vw, 1.75rem);
   color: var(--color-text);
-  margin-bottom: 1.5rem;
-  font-weight: 600;
+  margin-bottom: 1.75rem;
+  font-weight: var(--font-weight-semibold);
   animation: fadeInUp 0.6s ease 0.3s backwards;
   text-align: left;
   text-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
@@ -867,11 +866,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-tagline {
-  font-size: clamp(1.125rem, 2.2vw, 1.375rem);
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
   color: var(--color-text);
-  margin-bottom: 2.5rem;
-  line-height: 1.7;
-  max-width: 560px;
+  margin-bottom: 2.75rem;
+  line-height: var(--line-height-relaxed);
+  max-width: 600px;
   animation: fadeInUp 0.6s ease 0.4s backwards;
   text-align: left;
   text-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);

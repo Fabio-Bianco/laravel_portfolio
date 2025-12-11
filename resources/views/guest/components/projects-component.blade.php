@@ -28,7 +28,7 @@
       
       {{-- Link "Vedi tutti" --}}
       <div class="text-center mt-4">
-        <a href="{{ route('portfolio') }}" class="btn-primary" style="background: #e50914; border: none; padding: 12px 24px; border-radius: 4px; color: white; text-decoration: none; font-weight: 500;">Vedi tutti i progetti →</a>
+        <a href="{{ route('portfolio') }}" class="btn btn-view-all">Vedi tutti i progetti →</a>
       </div>
     @else
       <div class="empty-state text-center">
